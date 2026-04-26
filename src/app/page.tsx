@@ -39,9 +39,6 @@ export default function Home() {
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 h-12 text-lg">
                 <Link href="/services">Our Solutions</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 h-12 text-lg">
-                <Link href="/recommend">AI Recommendation</Link>
-              </Button>
             </div>
           </div>
         </div>
