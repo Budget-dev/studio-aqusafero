@@ -8,34 +8,46 @@
       "imageHint": "industrial water filtration"
     },
     {
-      "id": "service-industrial",
-      "description": "Large scale industrial reverse osmosis plant",
-      "imageUrl": "https://picsum.photos/seed/aqua2/600/400",
-      "imageHint": "industrial RO plant"
+      "id": "service-stp",
+      "description": "Compact sewage treatment plant installation",
+      "imageUrl": "https://picsum.photos/seed/stp/400/300",
+      "imageHint": "sewage treatment"
     },
     {
-      "id": "service-commercial",
-      "description": "Commercial water purification unit in a professional setting",
-      "imageUrl": "https://picsum.photos/seed/aqua3/600/400",
-      "imageHint": "commercial water treatment"
+      "id": "service-ro",
+      "description": "High performance commercial RO plant",
+      "imageUrl": "https://picsum.photos/seed/ro/400/300",
+      "imageHint": "commercial RO"
     },
     {
-      "id": "service-residential",
-      "description": "Compact under-sink residential RO system",
-      "imageUrl": "https://picsum.photos/seed/aqua4/600/400",
-      "imageHint": "home RO system"
+      "id": "service-etp",
+      "description": "Industrial effluent treatment system",
+      "imageUrl": "https://picsum.photos/seed/etp/400/300",
+      "imageHint": "effluent treatment"
+    },
+    {
+      "id": "service-why",
+      "description": "Close up of high quality filtration membrane",
+      "imageUrl": "https://picsum.photos/seed/quality/400/300",
+      "imageHint": "water quality"
+    },
+    {
+      "id": "banner-service",
+      "description": "Technician servicing a water system",
+      "imageUrl": "https://picsum.photos/seed/service/800/600",
+      "imageHint": "water technician"
+    },
+    {
+      "id": "banner-advanced",
+      "description": "Modern industrial RO system setup",
+      "imageUrl": "https://picsum.photos/seed/industrial/800/600",
+      "imageHint": "advanced RO"
     },
     {
       "id": "team-expert",
       "description": "Professional technician inspecting a water treatment panel",
       "imageUrl": "https://picsum.photos/seed/aqua5/600/400",
       "imageHint": "water treatment engineer"
-    },
-    {
-      "id": "resource-article",
-      "description": "Microscopic view of water filtration membrane",
-      "imageUrl": "https://picsum.photos/seed/aqua6/600/400",
-      "imageHint": "RO membrane technology"
     }
   ]
 }

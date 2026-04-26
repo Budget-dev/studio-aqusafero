@@ -1,150 +1,196 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShieldCheck, Activity, Settings, Zap, ArrowRight, Star } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ShieldCheck, Droplets, Zap, Activity, ArrowRight, Star, Building2, Factory } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export default function Home() {
-  const heroImg = PlaceHolderImages.find(img => img.id === "hero-water");
-  
+  const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
+
+  const serviceCards = [
+    {
+      title: "Compact Sewage Treatment Plant",
+      tag: "No Land Required",
+      desc: "Compact STP plant is a new evolution of sewage wastewater treatment with no land requirement for installation.",
+      imgId: "service-stp",
+      icon: Droplets
+    },
+    {
+      title: "Commercial RO Plant",
+      tag: "High Efficiency",
+      desc: "Aqua Safe Water Technologies is a leading commercial RO plant manufacturer delivering high-performance water purification systems.",
+      imgId: "service-ro",
+      icon: Zap
+    },
+    {
+      title: "Compact Effluent Treatment Plant",
+      tag: "Industrial Use",
+      desc: "ETP systems treat industrial wastewater and make it reusable by removing dissolved impurities.",
+      imgId: "service-etp",
+      icon: Factory
+    },
+    {
+      title: "Why Choose Us",
+      tag: "Trusted Solutions",
+      desc: "We manufacture reliable and efficient water treatment plants with strong vendor partnerships.",
+      imgId: "service-why",
+      icon: ShieldCheck
+    }
+  ];
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-slate-50/50">
       {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={heroImg?.imageUrl || ""}
-            alt={heroImg?.description || "Water filtration"}
-            fill
-            className="object-cover brightness-[0.4]"
-            priority
-            data-ai-hint="industrial water filtration"
-          />
+      <section className="py-12 md:py-20 container mx-auto px-4">
+        <div className="mb-12 text-center md:text-left">
+          <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary mb-4">
+            Smart Water Solutions 360!
+          </h1>
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            Revolutionizing water treatment with intelligent, compact, and high-efficiency systems for a sustainable future.
+          </p>
         </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl text-white space-y-6 animate-in fade-in slide-in-from-left-8 duration-700">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary-foreground text-sm font-medium">
-              <Zap className="h-4 w-4" />
-              <span>Next-Gen RO Technology</span>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          {/* Left Side - Service Cards Grid */}
+          <div className="lg:col-span-7 xl:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {serviceCards.map((card, i) => (
+                <Card key={i} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow group bg-white">
+                  <div className="aspect-[16/9] relative overflow-hidden">
+                    <Image
+                      src={getImage(card.imgId)?.imageUrl || ""}
+                      alt={card.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm text-primary font-bold shadow-sm">
+                        {card.tag}
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardContent className="p-5 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                        <card.icon className="h-4 w-4" />
+                      </div>
+                      <h3 className="font-bold font-headline text-lg group-hover:text-primary transition-colors">
+                        {card.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold font-headline leading-tight">
-              Purity in Every <span className="text-primary-foreground">Drop</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl">
-              AquaSafe Hub provides mission-critical reverse osmosis solutions for industries that demand the highest standards of water quality.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 h-12 text-lg">
-                <Link href="/services">Our Solutions</Link>
-              </Button>
+          </div>
+
+          {/* Right Side - Large Feature Banners */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
+            {/* Top Banner */}
+            <div className="relative h-full min-h-[280px] rounded-3xl overflow-hidden group shadow-sm">
+              <Image
+                src={getImage("banner-service")?.imageUrl || ""}
+                alt="At Your Service"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 flex flex-col justify-end">
+                <p className="text-primary-foreground font-bold uppercase tracking-widest text-xs mb-2 opacity-90">At Your Service</p>
+                <h3 className="text-2xl font-bold text-white font-headline mb-1">Smart Water Treatment at Your Place</h3>
+                <p className="text-white/70 text-sm mb-4">On-site expert support and maintenance.</p>
+                <Button size="sm" variant="secondary" className="w-fit" asChild>
+                  <Link href="/contact">Book Inquiry <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Bottom Banner */}
+            <div className="relative h-full min-h-[280px] rounded-3xl overflow-hidden group shadow-sm">
+              <Image
+                src={getImage("banner-advanced")?.imageUrl || ""}
+                alt="Advanced Water Solutions"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 flex flex-col justify-end">
+                <p className="text-primary-foreground font-bold uppercase tracking-widest text-xs mb-2 opacity-90">Advanced Systems</p>
+                <h3 className="text-2xl font-bold text-white font-headline mb-1">Advanced Water Solutions</h3>
+                <p className="text-white/70 text-sm mb-4">For Domestic & Industrial Needs.</p>
+                <Button size="sm" variant="secondary" className="w-fit" asChild>
+                  <Link href="/services">View Catalog <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Teaser */}
-      <section className="py-20 bg-background">
+      {/* Bottom Stats Section */}
+      <section className="py-12 bg-white border-y border-slate-100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Core Water Solutions</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              From large-scale industrial desalinization to advanced residential filtration, we cover the full spectrum of RO requirements.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {
-                title: "Industrial Plants",
-                desc: "High-capacity systems for manufacturing, pharma, and power generation.",
-                icon: Activity,
-                link: "/services#industrial"
-              },
-              {
-                title: "Commercial RO",
-                desc: "Efficient water purification for restaurants, offices, and laboratories.",
-                icon: ShieldCheck,
-                link: "/services#commercial"
-              },
-              {
-                title: "Maintenance",
-                desc: "24/7 technical support and precision filter replacement services.",
-                icon: Settings,
-                link: "/services#maintenance"
-              }
-            ].map((s, i) => (
-              <Card key={i} className="group hover:shadow-xl transition-all duration-300 border-none bg-white/50 backdrop-blur">
-                <CardContent className="p-8 space-y-4">
-                  <div className="p-3 rounded-xl bg-primary/10 w-fit group-hover:bg-primary group-hover:text-white transition-colors">
-                    <s.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold font-headline text-primary">{s.title}</h3>
-                  <p className="text-muted-foreground">{s.desc}</p>
-                  <Link href={s.link} className="inline-flex items-center text-primary font-semibold hover:gap-2 transition-all">
-                    Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </CardContent>
-              </Card>
+              { label: "Liters Treated Daily", value: "25,00,000+", icon: Droplets },
+              { label: "Installations Across Cities", value: "60+", icon: Building2 },
+              { label: "Years Experience", value: "10+", icon: Activity }
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50/50 border border-slate-100 shadow-sm hover:border-primary/20 transition-colors">
+                <div className="p-3 rounded-full bg-primary/10 text-primary mb-4">
+                  <stat.icon className="h-6 w-6" />
+                </div>
+                <div className="text-3xl font-bold font-headline text-primary mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Trust Signals & Stats */}
-      <section className="py-20 bg-accent text-accent-foreground overflow-hidden">
+      {/* Core Services Summary */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl font-bold font-headline leading-tight">Trusted by Industry Leaders Worldwide</h2>
-              <div className="space-y-6">
-                <div className="flex gap-4 items-start">
-                  <div className="p-2 rounded-full bg-primary/20"><ShieldCheck className="h-6 w-6 text-primary-foreground" /></div>
-                  <div>
-                    <h4 className="font-bold text-lg">Unmatched Reliability</h4>
-                    <p className="text-accent-foreground/60 text-sm">99.9% uptime for our industrial installations with automated monitoring systems.</p>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <h2 className="text-3xl font-bold font-headline text-primary">Trusted by Industry Leaders Worldwide</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                With over a decade of technical mastery, AquaSafe Hub provides mission-critical reverse osmosis and wastewater treatment solutions that power industrial progress and human health.
+              </p>
+              <div className="grid grid-cols-2 gap-6 pt-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-primary font-bold">
+                    <ShieldCheck className="h-5 w-5" />
+                    <span>99.9% Uptime</span>
                   </div>
+                  <p className="text-xs text-muted-foreground">Reliable industrial installations with automated monitoring.</p>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <div className="p-2 rounded-full bg-primary/20"><Star className="h-6 w-6 text-primary-foreground" /></div>
-                  <div>
-                    <h4 className="font-bold text-lg">Expert Consultation</h4>
-                    <p className="text-accent-foreground/60 text-sm">Our PhD-level engineers provide custom design specs for every unique application.</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-primary font-bold">
+                    <Star className="h-5 w-5" />
+                    <span>Expert Support</span>
                   </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-accent-foreground/10">
-                <div>
-                  <p className="text-3xl font-bold font-headline">500+</p>
-                  <p className="text-xs uppercase tracking-widest text-accent-foreground/40">Plants Installed</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold font-headline">15M</p>
-                  <p className="text-xs uppercase tracking-widest text-accent-foreground/40">GPD Purified</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold font-headline">24/7</p>
-                  <p className="text-xs uppercase tracking-widest text-accent-foreground/40">Active Support</p>
+                  <p className="text-xs text-muted-foreground">PhD-level engineers providing custom design specs.</p>
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
+            <div className="flex-1 w-full">
+              <div className="aspect-video relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
                 <Image
-                  src={PlaceHolderImages.find(i => i.id === "team-expert")?.imageUrl || ""}
+                  src={getImage("team-expert")?.imageUrl || ""}
                   alt="Expert consultation"
-                  width={600}
-                  height={400}
+                  fill
                   className="object-cover"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs md:block hidden">
-                <div className="flex text-yellow-500 mb-2">
-                  {[1, 2, 3, 4, 5].map(n => <Star key={n} className="h-4 w-4 fill-current" />)}
-                </div>
-                <p className="text-primary text-sm italic font-medium">"AquaSafe Hub transformed our manufacturing process with their tailored RO solution. The ROI was clear within months."</p>
-                <p className="text-muted-foreground text-xs mt-2">— TechPharma Global, CEO</p>
               </div>
             </div>
           </div>
@@ -152,18 +198,16 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold font-headline text-primary mb-6">Ready for Crystal Clear Results?</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-10 text-lg">
+      <section className="py-24 bg-primary relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div className="container mx-auto px-4 text-center relative z-10 text-primary-foreground">
+          <h2 className="text-3xl md:text-5xl font-bold font-headline mb-6">Ready for Crystal Clear Results?</h2>
+          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-10 text-lg">
             Connect with our water treatment experts today to design a solution tailored to your specific industrial or commercial needs.
           </p>
-          <div className="flex justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary px-10 rounded-full h-14 text-lg">
-              <Link href="/contact">Get Custom Quote</Link>
-            </Button>
-          </div>
+          <Button asChild size="lg" variant="secondary" className="px-10 rounded-full h-14 text-lg font-bold">
+            <Link href="/contact">Get Custom Quote</Link>
+          </Button>
         </div>
       </section>
     </div>
