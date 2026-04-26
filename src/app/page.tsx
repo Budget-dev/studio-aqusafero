@@ -47,8 +47,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
+      {/* Hero Section */}
       <section className="py-12 md:py-16 container mx-auto px-4 max-w-7xl">
-        {/* Main Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold font-headline text-accent tracking-tight">
             Smart Water Solutions 360!
@@ -84,7 +84,6 @@ export default function Home() {
 
           {/* Right Column: 2 Large Banners + Stats */}
           <div className="lg:col-span-6 xl:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
             {/* Banner 1 Column */}
             <div className="flex flex-col gap-4">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden group shadow-sm bg-accent">
@@ -127,7 +126,98 @@ export default function Home() {
                 <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Installations Active</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Why Choose AquaSafe Hub Section */}
+      <section className="py-16 md:py-24 container mx-auto px-4 max-w-7xl overflow-hidden">
+        <div className="flex items-center gap-6 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-headline text-accent whitespace-nowrap">Why Choose AquaSafe Hub</h2>
+          <div className="h-0.5 bg-slate-200 flex-grow rounded-full hidden sm:block"></div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Vertical Tabs */}
+          <div className="lg:col-span-3 flex flex-col gap-4">
+            <button className="text-left px-6 py-4 rounded-xl font-bold text-sm bg-accent text-white border-2 border-accent transition-all">
+              Industrial RO Services
+            </button>
+            <button className="text-left px-6 py-4 rounded-xl font-bold text-sm bg-white text-accent border-2 border-slate-100 hover:border-accent transition-all shadow-sm">
+              Filtration Spares & Spares
+            </button>
+            <button className="text-left px-6 py-4 rounded-xl font-bold text-sm bg-white text-accent border-2 border-slate-100 hover:border-accent transition-all shadow-sm">
+              Maintenance AMC Plans
+            </button>
+          </div>
+
+          {/* Right Cards Grid */}
+          <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Professionals */}
+            <div className="flex flex-col rounded-[2.5rem] overflow-hidden group">
+              <div className="bg-[#FACC15] aspect-[3/4] relative flex items-center justify-center p-8">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={getImage("team-expert")?.imageUrl || ""}
+                    alt="Professionals"
+                    fill
+                    className="object-contain mix-blend-multiply opacity-80 transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+              <div className="bg-accent p-6 text-center">
+                <h4 className="text-white font-bold font-headline text-lg md:text-xl">Highly Trained Professionals</h4>
+              </div>
+            </div>
+
+            {/* Card 2: Affordability */}
+            <div className="flex flex-col rounded-[2.5rem] overflow-hidden group relative">
+              <div className="absolute top-6 right-6 z-20 bg-accent text-[#FACC15] px-4 py-2 rounded-2xl flex flex-col items-center shadow-xl">
+                 <span className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1">Starting at</span>
+                 <span className="text-2xl font-black font-headline leading-none">$49</span>
+              </div>
+              <div className="bg-[#FACC15] aspect-[3/4] relative flex items-center justify-center p-8">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={getImage("service-why")?.imageUrl || ""}
+                    alt="Affordability"
+                    fill
+                    className="object-contain mix-blend-multiply opacity-80 transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+              <div className="bg-accent p-6 text-center">
+                <h4 className="text-white font-bold font-headline text-lg md:text-xl">Convenience & Affordability</h4>
+              </div>
+            </div>
+
+            {/* Card 3: Quality */}
+            <div className="flex flex-col rounded-[2.5rem] overflow-hidden group relative">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-accent text-white p-6 rounded-3xl w-[85%] text-center space-y-3 shadow-2xl">
+                 <div className="flex items-center justify-center gap-2">
+                    <div className="h-6 w-6 rounded-lg bg-[#FACC15] flex items-center justify-center text-accent font-black text-xs">A</div>
+                    <span className="font-bold tracking-tighter text-sm">AQUASAFE</span>
+                 </div>
+                 <div className="space-y-1">
+                    <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">Trusted by</p>
+                    <p className="text-3xl font-black text-[#FACC15] font-headline">500+</p>
+                    <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">Industrial Clients</p>
+                 </div>
+              </div>
+              <div className="bg-[#FACC15] aspect-[3/4] relative flex items-center justify-center p-8">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={getImage("service-ro")?.imageUrl || ""}
+                    alt="Quality"
+                    fill
+                    className="object-contain mix-blend-multiply opacity-80 transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+              <div className="bg-accent p-6 text-center">
+                <h4 className="text-white font-bold font-headline text-lg md:text-xl">Quality You Can Trust</h4>
+              </div>
+            </div>
           </div>
         </div>
       </section>
