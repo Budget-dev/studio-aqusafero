@@ -1,6 +1,5 @@
 
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Target, Users, Award, CheckCircle2 } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
@@ -11,9 +10,9 @@ export default function AboutPage() {
       <section className="py-20 bg-accent text-accent-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">Engineering a Purer Future Through Technical Mastery.</h1>
+            <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">Our Profile</h1>
             <p className="text-xl text-accent-foreground/70 leading-relaxed">
-              For over two decades, AquaSafe Hub has been at the forefront of reverse osmosis innovation, solving the most complex water challenges for industry leaders.
+              Engineering a purer future through technical mastery and two decades of reverse osmosis innovation.
             </p>
           </div>
         </div>
@@ -27,7 +26,7 @@ export default function AboutPage() {
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src={PlaceHolderImages.find(i => i.id === "team-expert")?.imageUrl || ""}
-                  alt="Our laboratory"
+                  alt="Our expertise"
                   fill
                   className="object-cover"
                 />
@@ -39,9 +38,9 @@ export default function AboutPage() {
             </div>
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold font-headline text-primary">Our Core Mission</h2>
+                <h2 className="text-3xl font-bold font-headline text-primary">Technical Excellence</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  We believe that access to high-purity water is the foundation of industrial progress and human health. Our goal is to make advanced RO technology accessible, efficient, and sustainable for every client, from global manufacturers to family homes.
+                  AquaSafe Hub has been at the forefront of reverse osmosis innovation, solving complex water challenges for industry leaders. We believe that access to high-purity water is the foundation of industrial progress and human health.
                 </p>
               </div>
               
@@ -67,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* Expertise & Certificates */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl font-bold font-headline text-primary">Global Compliance & Standards</h2>
