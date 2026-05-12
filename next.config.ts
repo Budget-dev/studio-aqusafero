@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'aquasaferoworks.sirv.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

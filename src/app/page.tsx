@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,13 +29,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened spacing to bring buttons up */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-12 lg:pb-20">
-        <div className="container mx-auto px-4 max-w-7xl pt-4 lg:pt-8">
+      {/* 1. Hero Section - Tightened spacing to remove white gap */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-12 lg:pb-16">
+        <div className="container mx-auto px-4 max-w-7xl pt-4 lg:pt-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700">
-              <div className="space-y-3">
-                <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1 px-4 text-[10px]">
+            <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
+              <div className="space-y-2">
+                <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1 px-4 text-[10px] rounded-sm">
                   Pure Water. Safe Future.
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
@@ -63,17 +62,17 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button asChild size="lg" className="h-12 px-8 rounded-full text-base font-bold shadow-lg hover:shadow-xl transition-all">
+                <Button asChild size="lg" className="h-12 px-8 rounded-sm text-base font-bold shadow-lg hover:shadow-xl transition-all">
                   <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 rounded-full text-base font-bold border-2">
+                <Button asChild variant="outline" size="lg" className="h-12 px-8 rounded-sm text-base font-bold border-2">
                   <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
 
             <div className="relative group animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden shadow-2xl">
                 <Image
                   src={getImage("service-industrial")?.imageUrl || ""}
                   alt="Industrial RO Plant"
@@ -84,14 +83,15 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
               
-              {/* Floating Stats Card - Smaller for better fit */}
-              <div className="absolute -bottom-4 -right-4 md:right-8 bg-white p-4 rounded-xl shadow-2xl border border-slate-100 max-w-[180px] animate-bounce-slow">
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl font-bold font-headline text-primary">10+</div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-tight">
-                    Years of<br />Exp.
-                  </div>
-                </div>
+              {/* Experience Badge Image - No card, no border */}
+              <div className="absolute -bottom-8 -right-8 md:right-4 w-40 h-40 z-20 pointer-events-none">
+                <Image 
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
+                  alt="10+ Years of Experience"
+                  width={160}
+                  height={160}
+                  className="object-contain"
+                />
               </div>
 
               {/* Decorative Fluid Effect */}
@@ -102,7 +102,7 @@ export default function Home() {
       </section>
 
       {/* 2. Trust Metrics Strip */}
-      <section className="bg-slate-900 py-10">
+      <section className="bg-slate-900 py-8">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -112,7 +112,7 @@ export default function Home() {
               { icon: ShieldCheck, stat: "Support", label: "Pan India Support", desc: "Expert service at your location" }
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3 text-white">
-                <div className="p-2 rounded-lg bg-white/10 shrink-0">
+                <div className="p-2 rounded-sm bg-white/10 shrink-0">
                   <item.icon className="h-5 w-5 text-blue-400" />
                 </div>
                 <div>
@@ -126,18 +126,18 @@ export default function Home() {
       </section>
 
       {/* 3. Core Services Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div className="space-y-3">
-              <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px]">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+            <div className="space-y-2">
+              <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm">
                 Our Core Services
               </Badge>
               <h2 className="text-3xl font-bold font-headline text-slate-900 leading-tight">
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild variant="outline" className="rounded-full px-6 h-10 text-sm">
+            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-sm">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -169,7 +169,7 @@ export default function Home() {
                 icon: ShieldCheck
               }
             ].map((service, i) => (
-              <Card key={i} className="group overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-500 rounded-3xl flex flex-col">
+              <Card key={i} className="group overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-500 rounded-sm flex flex-col">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
@@ -177,7 +177,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4 p-3 rounded-2xl bg-white/95 shadow-xl">
+                  <div className="absolute top-4 left-4 p-3 rounded-sm bg-white/95 shadow-xl">
                     <service.icon className="h-4 w-4 text-primary" />
                   </div>
                 </div>
@@ -199,10 +199,10 @@ export default function Home() {
       </section>
 
       {/* 4. Industries Served Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12 space-y-3">
-            <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px]">Industries We Serve</Badge>
+          <div className="text-center mb-10 space-y-2">
+            <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px] rounded-sm">Industries We Serve</Badge>
             <h2 className="text-3xl font-bold font-headline text-slate-900">Trusted Water Solutions for Every Industry</h2>
           </div>
 
@@ -218,7 +218,7 @@ export default function Home() {
               { icon: ZapOff, label: "Power Plants" }
             ].map((item, i) => (
               <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
-                <div className="w-14 h-14 rounded-xl bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <div className="w-14 h-14 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
                 </div>
                 <span className="text-[9px] font-bold uppercase tracking-wider text-slate-600 group-hover:text-primary transition-colors">
@@ -231,18 +231,18 @@ export default function Home() {
       </section>
 
       {/* 5. Why Choose Us */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <Badge variant="outline" className="text-primary border-primary/20 text-[10px]">We deliver quality, you get</Badge>
+                <Badge variant="outline" className="text-primary border-primary/20 text-[10px] rounded-sm">We deliver quality, you get</Badge>
                 <h2 className="text-3xl font-bold font-headline text-slate-900">Pure & Safe Water</h2>
                 <p className="text-sm text-slate-500 leading-relaxed">
                   Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
                 </p>
               </div>
-              <Button asChild className="rounded-full px-8 h-12 font-bold text-base">
+              <Button asChild className="rounded-sm px-8 h-12 font-bold text-base">
                 <Link href="/about">Know More About Us</Link>
               </Button>
             </div>
@@ -255,7 +255,7 @@ export default function Home() {
                 { icon: Activity, stat: "24/7", label: "Technical Support" }
               ].map((m, i) => (
                 <div key={i} className="space-y-1">
-                  <div className="p-2 rounded-xl bg-slate-50 w-fit">
+                  <div className="p-2 rounded-sm bg-slate-50 w-fit">
                     <m.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div className="text-2xl font-bold font-headline text-slate-900">{m.stat}</div>
@@ -265,7 +265,7 @@ export default function Home() {
             </div>
 
             <div className="lg:col-span-3">
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
+              <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-xl">
                 <Image
                   src={getImage("team-expert")?.imageUrl || ""}
                   alt="Expert Engineer"
@@ -279,9 +279,9 @@ export default function Home() {
       </section>
 
       {/* 6. CTA Banner */}
-      <section className="pb-20">
+      <section className="pb-16">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-blue-700 to-blue-600 p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-sm bg-gradient-to-r from-blue-700 to-blue-600 p-8 md:p-12">
             <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
               <Droplets className="w-full h-full text-white rotate-12 scale-150" />
             </div>
@@ -297,10 +297,10 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-3">
-                <Button size="lg" className="h-12 px-6 rounded-full bg-white text-primary hover:bg-blue-50 font-bold text-base min-w-[180px]">
+                <Button size="lg" className="h-12 px-6 rounded-sm bg-white text-primary hover:bg-blue-50 font-bold text-base min-w-[180px]">
                   <Phone className="mr-2 h-4 w-4" /> Call Now
                 </Button>
-                <Button variant="outline" size="lg" className="h-12 px-6 rounded-full border-2 border-white/40 bg-white/10 text-white hover:bg-white/20 font-bold text-base min-w-[180px]">
+                <Button variant="outline" size="lg" className="h-12 px-6 rounded-sm border-2 border-white/40 bg-white/10 text-white hover:bg-white/20 font-bold text-base min-w-[180px]">
                   <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp Us
                 </Button>
               </div>
