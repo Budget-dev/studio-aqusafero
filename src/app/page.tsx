@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened spacing, removed white gap */}
+      {/* 1. Hero Section - Tightened spacing */}
       <section className="relative overflow-hidden bg-white pt-0 pb-6 lg:pb-8">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -81,7 +81,7 @@ export default function Home() {
                   priority
                 />
                 
-                {/* 10+ Years Experience Overlay - Clean, no card/border */}
+                {/* 10+ Years Experience Overlay */}
                 <div className="absolute bottom-4 right-4 bg-primary text-white p-4 rounded-sm z-10 hidden sm:block">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-3xl font-black font-headline leading-none">10+</span>
@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip - Compact, Light, Casual Professional */}
+      {/* 2. Trust Metrics Strip - Compact, Light */}
       <section className="bg-white py-6 border-y border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-100">
@@ -121,15 +121,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Core Services Section - Matches provided screenshot exactly */}
+      {/* 3. Core Services Section - Fixed Icon Clipping */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div className="space-y-2">
-              <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm">
-                Our Core Services
+              <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm px-3 py-1">
+                OUR CORE SERVICES
               </Badge>
-              <h2 className="text-3xl font-bold font-headline text-slate-900 leading-tight">
+              <h2 className="text-4xl font-bold font-headline text-slate-900 leading-tight">
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
@@ -166,14 +166,14 @@ export default function Home() {
               }
             ].map((service, i) => (
               <Card key={i} className="group overflow-hidden border-none shadow-sm hover:shadow-md transition-all duration-300 rounded-sm flex flex-col">
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-video">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-t-sm"
                   />
-                  {/* Icon Overlay - Fixed to match screenshot exactly */}
+                  {/* Icon Overlay - Removed overflow-hidden from parent to fix clipping */}
                   <div className="absolute -bottom-5 left-6 p-2 rounded-full bg-primary border-[3px] border-white shadow-sm z-10 flex items-center justify-center w-10 h-10">
                     <service.icon className="h-5 w-5 text-white" />
                   </div>
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Industries Served Section - High contrast text */}
+      {/* 4. Industries Served Section */}
       <section className="py-12 bg-slate-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-8 space-y-2">
@@ -227,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Why Choose Us - High contrast typography */}
+      {/* 5. Why Choose Us */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
