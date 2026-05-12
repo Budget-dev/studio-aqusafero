@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened spacing */}
+      {/* 1. Hero Section */}
       <section className="relative overflow-hidden bg-white pt-0 pb-6 lg:pb-8">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -81,7 +81,6 @@ export default function Home() {
                   priority
                 />
                 
-                {/* 10+ Years Experience Overlay */}
                 <div className="absolute bottom-4 right-4 bg-primary text-white p-4 rounded-sm z-20 shadow-xl">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-3xl font-black font-headline leading-none tracking-tighter">10+</span>
@@ -95,7 +94,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip - Compact, Light, Casual */}
+      {/* 2. Trust Metrics Strip */}
       <section className="bg-white py-4 border-y border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 lg:divide-x lg:divide-slate-200">
@@ -121,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Core Services Section - Blue Card Edges & Blue Buttons */}
+      {/* 3. Core Services Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
@@ -133,7 +132,6 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            {/* View All Services with Solid Blue Background */}
             <Button asChild className="rounded-sm px-8 h-12 text-sm font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-none">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
@@ -174,7 +172,6 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-none"
                   />
-                  {/* Icon Overlay - No clipping */}
                   <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-12 h-12">
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
@@ -196,15 +193,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Industries Served Section */}
-      <section className="py-12 bg-slate-50">
+      {/* 4. Industries Served Section - Updated to match reference image */}
+      <section className="py-16 bg-slate-50/50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-10 space-y-2">
-            <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px] rounded-sm bg-slate-200 text-slate-800">Industries We Serve</Badge>
-            <h2 className="text-3xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Industries We Serve</span>
+            </div>
+            <h2 className="text-4xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 md:gap-4">
             {[
               { icon: Factory, label: "Industrial Units" },
               { icon: GraduationCap, label: "Schools & Colleges" },
@@ -215,11 +214,11 @@ export default function Home() {
               { icon: CupSoda, label: "Food & Beverage" },
               { icon: ZapOff, label: "Power Plants" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
-                <div className="w-14 h-14 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
+              <div key={i} className="flex flex-col items-center text-center group">
+                <div className="w-16 h-16 rounded-xl bg-white shadow-sm flex items-center justify-center mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <item.icon className="h-7 w-7 text-primary" />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-slate-900 group-hover:text-primary transition-colors">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-900 leading-tight px-2">
                   {item.label}
                 </span>
               </div>
@@ -228,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Technical Excellence Section - Updated Content */}
+      {/* 5. Technical Excellence Section */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
