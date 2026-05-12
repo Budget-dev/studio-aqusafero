@@ -1,53 +1,40 @@
-
 {
   "placeholderImages": [
     {
       "id": "hero-water",
-      "description": "Crystal clear water flowing through an industrial filter system",
-      "imageUrl": "https://picsum.photos/seed/aqua1/1200/800",
-      "imageHint": "industrial water filtration"
+      "description": "High-tech industrial RO plant with blue storage tanks and stainless steel pipes",
+      "imageUrl": "https://picsum.photos/seed/industrial-ro/1200/800",
+      "imageHint": "industrial RO plant stainless"
     },
     {
-      "id": "service-stp",
-      "description": "Compact sewage treatment plant installation",
-      "imageUrl": "https://picsum.photos/seed/stp/400/300",
-      "imageHint": "sewage treatment"
+      "id": "service-industrial",
+      "description": "Close-up of industrial reverse osmosis membrane modules",
+      "imageUrl": "https://picsum.photos/seed/industrial-membrane/800/600",
+      "imageHint": "RO membrane industrial"
     },
     {
-      "id": "service-ro",
-      "description": "High performance commercial RO plant",
-      "imageUrl": "https://picsum.photos/seed/ro/400/300",
-      "imageHint": "commercial RO"
+      "id": "service-commercial",
+      "description": "Commercial water filtration unit for office buildings",
+      "imageUrl": "https://picsum.photos/seed/commercial-water/800/600",
+      "imageHint": "commercial water filtration"
     },
     {
-      "id": "service-etp",
-      "description": "Industrial effluent treatment system",
-      "imageUrl": "https://picsum.photos/seed/etp/400/300",
-      "imageHint": "effluent treatment"
-    },
-    {
-      "id": "service-why",
-      "description": "Close up of high quality filtration membrane",
-      "imageUrl": "https://picsum.photos/seed/quality/400/300",
-      "imageHint": "water quality"
-    },
-    {
-      "id": "banner-service",
-      "description": "Technician servicing a water system",
-      "imageUrl": "https://picsum.photos/seed/service/800/600",
-      "imageHint": "water technician"
-    },
-    {
-      "id": "banner-advanced",
-      "description": "Modern industrial RO system setup",
-      "imageUrl": "https://picsum.photos/seed/industrial/800/600",
-      "imageHint": "advanced RO"
+      "id": "service-residential",
+      "description": "Modern domestic RO water purifier system",
+      "imageUrl": "https://picsum.photos/seed/residential-ro/800/600",
+      "imageHint": "home water purifier"
     },
     {
       "id": "team-expert",
-      "description": "Professional technician inspecting a water treatment panel",
-      "imageUrl": "https://picsum.photos/seed/aqua5/600/400",
-      "imageHint": "water treatment engineer"
+      "description": "Industrial water treatment technician checking control panel",
+      "imageUrl": "https://picsum.photos/seed/technician-ro/800/1000",
+      "imageHint": "water treatment technician"
+    },
+    {
+      "id": "resource-article",
+      "description": "Abstract water purification technology background",
+      "imageUrl": "https://picsum.photos/seed/water-tech/800/600",
+      "imageHint": "water technology abstract"
     }
   ]
 }
