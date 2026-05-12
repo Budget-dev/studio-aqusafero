@@ -72,7 +72,6 @@ export default function Home() {
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              {/* Image without card container or shadow */}
               <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
@@ -99,23 +98,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip */}
-      <section className="bg-slate-900 py-8">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* 2. Trust Metrics Strip - Improved Visuals */}
+      <section className="bg-slate-900 py-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-400 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
             {[
-              { icon: CheckCircle2, stat: "500+", label: "Projects Completed", desc: "Successfully delivered across India" },
-              { icon: Award, stat: "100%", label: "Quality Assurance", desc: "High quality components & strict QC" },
-              { icon: Zap, stat: "Custom", label: "Tailored Solutions", desc: "Solutions for every requirement" },
-              { icon: ShieldCheck, stat: "Support", label: "Pan India Support", desc: "Expert service at your location" }
+              { icon: CheckCircle2, stat: "500+", label: "Projects Completed", sub: "Delivered Pan India" },
+              { icon: Award, stat: "100%", label: "Quality Assurance", sub: "Premium Components" },
+              { icon: Zap, stat: "Custom", label: "Tailored Solutions", sub: "Built for Your Needs" },
+              { icon: ShieldCheck, stat: "Support", label: "24/7 Assistance", sub: "Technical Expertise" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 text-white">
-                <div className="p-2 rounded-sm bg-white/10 shrink-0">
-                  <item.icon className="h-5 w-5 text-blue-400" />
+              <div key={i} className="flex flex-col items-center lg:items-start lg:px-12 first:pl-0 last:pr-0 group">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="p-3 rounded-sm bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-black font-headline text-white tracking-tight">{item.stat}</div>
                 </div>
-                <div>
-                  <div className="text-xl font-bold font-headline leading-none mb-1">{item.stat}</div>
-                  <div className="text-[10px] font-bold text-white/90 uppercase tracking-widest">{item.label}</div>
+                <div className="space-y-1 text-center lg:text-left">
+                  <div className="text-xs font-bold text-white uppercase tracking-[0.2em]">{item.label}</div>
+                  <div className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{item.sub}</div>
                 </div>
               </div>
             ))}
