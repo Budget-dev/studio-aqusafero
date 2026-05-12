@@ -62,31 +62,31 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-black shadow-none transition-all">
+                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-black shadow-none bg-primary text-white hover:bg-primary/90 transition-all border-none">
                   <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-11 px-8 rounded-sm text-sm font-black border-2 border-slate-900 text-slate-900">
+                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-black bg-primary text-white hover:bg-primary/90 border-none">
                   <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700 pt-6">
-              <div className="relative aspect-video lg:aspect-[4/3] rounded-xl overflow-visible">
+              <div className="relative aspect-video lg:aspect-[4/3] rounded-xl">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
                   fill
-                  className="object-cover rounded-xl"
+                  className="object-cover rounded-xl shadow-lg shadow-slate-200"
                   priority
                 />
                 
-                {/* 10+ Years Experience Overlay - No border, floating */}
-                <div className="absolute bottom-6 right-6 bg-primary text-white p-5 rounded-sm z-20">
+                {/* 10+ Years Experience Overlay */}
+                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 rounded-sm z-20 shadow-xl">
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-4xl font-black font-headline leading-none tracking-tighter">10+</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
+                    <span className="text-3xl font-black font-headline leading-none tracking-tighter">10+</span>
+                    <span className="text-[9px] font-bold uppercase tracking-widest mt-1 opacity-90 leading-tight">Years of</span>
+                    <span className="text-[9px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Core Services Section - Fixed Icon Clipping & Blur Button */}
+      {/* 3. Core Services Section - Blue Card Edges & Blue Buttons */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
@@ -133,8 +133,8 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            {/* View All Services with Background Blur */}
-            <Button asChild variant="outline" className="rounded-sm px-8 h-12 text-sm font-black border-slate-900 bg-white/40 backdrop-blur-md hover:bg-white/60 transition-all text-slate-900">
+            {/* View All Services with Blue Background */}
+            <Button asChild className="rounded-sm px-8 h-12 text-sm font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-none">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -166,28 +166,28 @@ export default function Home() {
                 icon: ShieldCheck
               }
             ].map((service, i) => (
-              <Card key={i} className="group overflow-visible border-none shadow-none rounded-none flex flex-col bg-transparent">
-                <div className="relative aspect-video">
+              <Card key={i} className="group overflow-visible border-2 border-primary bg-white shadow-none rounded-none flex flex-col p-4 transition-all">
+                <div className="relative aspect-video mb-10">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-none"
                   />
-                  {/* Icon Overlay - No clipping */}
-                  <div className="absolute -bottom-6 left-6 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-12 h-12">
+                  {/* Icon Overlay */}
+                  <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-12 h-12">
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <CardContent className="p-0 pt-10 space-y-3 flex-1 flex flex-col">
-                  <h3 className="text-xl font-black font-headline text-slate-900 group-hover:text-primary transition-colors leading-tight">
+                <CardContent className="p-0 space-y-3 flex-1 flex flex-col">
+                  <h3 className="text-lg font-black font-headline text-slate-900 leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-sm font-semibold text-slate-700 leading-relaxed flex-1">
+                  <p className="text-xs font-semibold text-slate-700 leading-relaxed flex-1">
                     {service.desc}
                   </p>
-                  <Button variant="link" className="p-0 h-auto text-primary font-black text-xs w-fit hover:gap-2 transition-all">
-                    Learn More <ArrowRight className="ml-1 h-3 w-3" />
+                  <Button asChild className="mt-4 bg-primary text-white text-xs font-black rounded-sm h-9 hover:bg-primary/90 w-fit px-6 shadow-none">
+                    <Link href="/services">Learn More <ArrowRight className="ml-2 h-3 w-3" /></Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -240,7 +240,7 @@ export default function Home() {
                   Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
                 </p>
               </div>
-              <Button asChild className="rounded-sm px-10 h-14 font-black text-lg shadow-none">
+              <Button asChild className="rounded-sm px-10 h-14 font-black text-lg bg-primary text-white hover:bg-primary/90 shadow-none border-none">
                 <Link href="/about">Know More About Us</Link>
               </Button>
             </div>
@@ -295,7 +295,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Button size="lg" className="h-14 px-10 rounded-sm bg-primary text-white hover:bg-primary/90 font-black text-lg min-w-[200px] shadow-none">
+                <Button size="lg" className="h-14 px-10 rounded-sm bg-primary text-white hover:bg-primary/90 font-black text-lg min-w-[200px] shadow-none border-none">
                   <Phone className="mr-2 h-5 w-5" /> Call Now
                 </Button>
                 <Button variant="outline" size="lg" className="h-14 px-10 rounded-sm border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-lg min-w-[200px] backdrop-blur-sm">
