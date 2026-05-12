@@ -31,23 +31,23 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-white min-h-screen">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-6 pb-12">
+      <section className="relative overflow-hidden bg-white pt-12 pb-16">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700">
-              <div className="space-y-4">
+            <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-700">
+              <div className="space-y-6">
                 <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-full bg-primary/5">
                   Pure Water. Safe Future.
                 </Badge>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-headline text-slate-900 leading-[1.05]">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-headline text-slate-900 leading-[1.05] tracking-tight">
                   Complete RO <br />Solutions for <br /><span className="text-primary">Every Industry</span>
                 </h1>
-                <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-medium">
+                <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-bold">
                   We design, manufacture, install and maintain high-performance RO plants for industrial, commercial & institutional & residential applications.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 text-sm font-bold text-slate-900">
+              <div className="flex flex-wrap items-center gap-6 text-sm font-black text-slate-900">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-primary" />
                   High Performance
@@ -62,27 +62,29 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-xl shadow-primary/20">
-                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-200 hover:bg-slate-50 transition-all">
-                  <Link href="/services">Explore Services</Link>
-                </Button>
+              <div className="flex flex-col sm:row gap-4 pt-2">
+                <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-xl shadow-primary/20">
+                    <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-100 hover:bg-slate-50 text-slate-900 transition-all bg-slate-50/50">
+                    <Link href="/services">Explore Services</Link>
+                  </Button>
+                </div>
               </div>
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-visible">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-visible bg-white">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
                   fill
-                  className="object-cover rounded-3xl shadow-2xl"
+                  className="object-cover rounded-3xl"
                   priority
                 />
                 
-                <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl z-20 shadow-2xl border-4 border-white">
+                <div className="absolute bottom-6 right-6 bg-primary text-white p-6 rounded-2xl z-20 shadow-2xl border-4 border-white w-32 h-32 flex items-center justify-center">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-4xl font-black font-headline leading-none tracking-tighter">10+</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90 leading-tight">Years of</span>
@@ -96,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* 2. Trust Metrics Strip */}
-      <section className="bg-white py-8 border-y border-slate-100">
+      <section className="bg-white py-10 border-y border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-200">
             {[
@@ -107,11 +109,11 @@ export default function Home() {
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-5 lg:px-10 justify-center lg:justify-start group">
                 <div className="p-4 rounded-2xl bg-primary/5 text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-white">
-                  <item.icon className="h-7 w-7" />
+                  <item.icon className="h-8 w-8" />
                 </div>
                 <div className="flex flex-col">
                   <div className="text-3xl font-black font-headline text-slate-900 tracking-tighter leading-none">{item.stat}</div>
-                  <div className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1.5">
+                  <div className="text-[11px] font-bold text-slate-600 uppercase tracking-widest mt-1.5">
                     {item.label}
                   </div>
                 </div>
@@ -122,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* 3. Core Services Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="space-y-4">
@@ -133,7 +135,7 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild className="rounded-xl px-8 h-14 text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-lg shadow-primary/20">
+            <Button asChild className="rounded-xl px-10 h-14 text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-lg shadow-primary/20">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
@@ -165,26 +167,26 @@ export default function Home() {
                 icon: ShieldCheck
               }
             ].map((service, i) => (
-              <Card key={i} className="group overflow-visible border border-slate-200 bg-white shadow-none rounded-none flex flex-col p-5 transition-all hover:shadow-xl hover:border-primary/20">
+              <Card key={i} className="group overflow-visible border border-slate-100 bg-white shadow-none rounded-2xl flex flex-col p-5 transition-all hover:shadow-xl">
                 <div className="relative aspect-video mb-12">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-none"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-xl"
                   />
-                  <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-14 h-14">
-                    <service.icon className="h-7 w-7 text-white" />
+                  <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[6px] border-white shadow-lg z-20 flex items-center justify-center w-16 h-16">
+                    <service.icon className="h-8 w-8 text-white" />
                   </div>
                 </div>
                 <div className="space-y-4 flex-1 flex flex-col">
                   <h3 className="text-xl font-black font-headline text-slate-900 leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-sm font-medium text-slate-600 leading-relaxed flex-1">
+                  <p className="text-sm font-bold text-slate-600 leading-relaxed flex-1">
                     {service.desc}
                   </p>
-                  <Button asChild className="mt-4 bg-primary text-white text-sm font-black rounded-sm h-11 hover:bg-primary/90 w-fit px-8 shadow-none transition-all">
+                  <Button asChild className="mt-4 bg-primary text-white text-sm font-black rounded-lg h-11 hover:bg-primary/90 w-fit px-8 shadow-none transition-all">
                     <Link href="/services">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </div>
@@ -236,7 +238,7 @@ export default function Home() {
               <div className="space-y-4">
                 <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-full px-4 py-1.5 uppercase tracking-widest bg-primary/5">Technical Excellence</Badge>
                 <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Pure & Safe Water Systems</h2>
-                <p className="text-lg font-medium text-slate-600 leading-relaxed">
+                <p className="text-lg font-bold text-slate-600 leading-relaxed">
                   Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
                 </p>
               </div>
@@ -291,7 +293,7 @@ export default function Home() {
                 <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight tracking-tight">
                   Need a Reliable RO Solution<br />for Your Business?
                 </h2>
-                <p className="text-slate-400 text-xl font-medium">
+                <p className="text-slate-400 text-xl font-bold">
                   Talk to our experts today and get the best solution for your needs.
                 </p>
               </div>
