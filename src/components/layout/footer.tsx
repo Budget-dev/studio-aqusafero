@@ -1,15 +1,54 @@
 import Link from "next/link";
-import { Droplets, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, Youtube } from "lucide-react";
+import { 
+  Droplets, 
+  Facebook, 
+  Github, 
+  Instagram, 
+  Linkedin, 
+  Twitter, 
+  Youtube 
+} from "lucide-react";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
+  const company = [
+    { title: 'About Us', href: '/about' },
+    { title: 'Services', href: '/services' },
+    { title: 'Products', href: '/spares' },
+    { title: 'Industries', href: '/clients' },
+    { title: 'Privacy Policy', href: '/contact' },
+  ];
+
+  const resources = [
+    { title: 'Blog', href: '/resources' },
+    { title: 'News', href: '/news' },
+    { title: 'FAQs', href: '/faqs' },
+    { title: 'Gallery', href: '/gallery' },
+    { title: 'Contact Us', href: '/contact' },
+  ];
+
+  const socialLinks = [
+    { icon: <Facebook className="size-4" />, link: '#' },
+    { icon: <Twitter className="size-4" />, link: '#' },
+    { icon: <Instagram className="size-4" />, link: '#' },
+    { icon: <Linkedin className="size-4" />, link: '#' },
+    { icon: <Youtube className="size-4" />, link: '#' },
+    { icon: <Github className="size-4" />, link: '#' },
+  ];
+
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-white/5">
-      <div className="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-3">
+    <footer className="relative bg-slate-900 text-slate-300">
+      <div className="mx-auto max-w-7xl px-4">
+        {/* Top Border */}
+        <div className="h-px w-full bg-white/10" />
+        
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-12 py-16">
+          {/* Brand and Description */}
+          <div className="col-span-1 md:col-span-4 flex flex-col gap-6">
+            <Link href="/" className="flex items-center gap-3 w-max">
               <div className="p-2 rounded-xl bg-primary">
-                <Droplets className="h-6 w-6 text-white" />
+                <Droplets className="size-6 text-white" />
               </div>
               <div className="flex flex-col">
                 <span className="font-headline text-2xl font-black text-white tracking-tighter leading-none">
@@ -20,78 +59,69 @@ export default function Footer() {
                 </span>
               </div>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              A leading manufacturer and service provider of RO plants, water treatment solutions and purification systems for industrial, commercial & institutional needs.
+            <p className="max-w-sm text-sm text-slate-400 leading-relaxed font-semibold">
+              Leading manufacturer and service provider of industrial, commercial, and residential RO plants and purification systems.
             </p>
-            <div className="flex gap-4">
-              {[Twitter, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
-                  <Icon className="h-4 w-4" />
-                </div>
+            <div className="flex gap-2">
+              {socialLinks.map((item, i) => (
+                <a
+                  key={i}
+                  className="hover:bg-primary/20 rounded-md border border-white/10 p-2 transition-colors"
+                  target="_blank"
+                  href={item.link}
+                >
+                  {item.icon}
+                </a>
               ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="font-headline font-bold text-white mb-8 uppercase tracking-widest text-xs">Quick Links</h4>
-            <ul className="space-y-4 text-sm font-medium">
-              {["Home", "About Us", "Products", "Services", "Industries", "Projects", "Blog", "Contact Us"].map((link) => (
-                <li key={link}>
-                  <Link href={`/${link.toLowerCase().replace(' ', '-')}`} className="hover:text-primary transition-colors flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-primary/40"></div>
-                    {link}
-                  </Link>
-                </li>
+          {/* Resources Column */}
+          <div className="col-span-1">
+            <span className="text-white font-black uppercase tracking-widest text-[10px] mb-4 block">
+              Resources
+            </span>
+            <div className="flex flex-col gap-3">
+              {resources.map(({ href, title }, i) => (
+                <Link
+                  key={i}
+                  className="w-max text-sm font-bold duration-200 hover:text-primary"
+                  href={href}
+                >
+                  {title}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-headline font-bold text-white mb-8 uppercase tracking-widest text-xs">Our Services</h4>
-            <ul className="space-y-4 text-sm font-medium">
-              {[
-                "RO Plant Manufacturing",
-                "Water Plant Services",
-                "RO Products",
-                "AMC Services",
-                "Installation",
-                "Repair & Maintenance"
-              ].map((service) => (
-                <li key={service}>
-                  <Link href="/services" className="hover:text-primary transition-colors flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-primary/40"></div>
-                    {service}
-                  </Link>
-                </li>
+          {/* Company Column */}
+          <div className="col-span-1">
+            <span className="text-white font-black uppercase tracking-widest text-[10px] mb-4 block">
+              Company
+            </span>
+            <div className="flex flex-col gap-3">
+              {company.map(({ href, title }, i) => (
+                <Link
+                  key={i}
+                  className="w-max text-sm font-bold duration-200 hover:text-primary"
+                  href={href}
+                >
+                  {title}
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-headline font-bold text-white mb-8 uppercase tracking-widest text-xs">Contact Info</h4>
-            <ul className="space-y-6 text-sm">
-              <li className="flex items-start gap-4">
-                <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <span className="leading-relaxed">123, Industrial Area,<br />Ahmedabad, Gujarat - 382415</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <Phone className="h-5 w-5 shrink-0 text-primary" />
-                <span className="font-bold text-white">+91 98765 43210</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <Mail className="h-5 w-5 shrink-0 text-primary" />
-                <span>info@aquasafe.com</span>
-              </li>
-            </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-          <p>© 2024 AQUASAFE RO SYSTEMS. All Rights Reserved.</p>
-          <div className="flex gap-8">
-            <Link href="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Terms & Conditions</Link>
-          </div>
+        {/* Bottom Border and Copyright */}
+        <div className="h-px w-full bg-white/10" />
+        <div className="flex flex-col md:flex-row justify-between items-center py-8 gap-4">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            © {year} AQUASAFE RO SYSTEMS. ALL RIGHTS RESERVED.
+          </p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            ENGINEERING PURITY SINCE 2014
+          </p>
         </div>
       </div>
     </footer>
