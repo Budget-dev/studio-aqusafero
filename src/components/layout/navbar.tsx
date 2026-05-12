@@ -2,7 +2,19 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Droplets, Menu, X, ChevronDown, PhoneCall } from "lucide-react";
+import { 
+  Droplets, 
+  Menu, 
+  X, 
+  ChevronDown, 
+  PhoneCall, 
+  MapPin, 
+  MessageCircle, 
+  Mail,
+  Facebook,
+  Instagram,
+  Linkedin
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -42,16 +54,32 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
-      {/* Top Utility Bar */}
-      <div className="hidden lg:block bg-slate-50 border-b border-slate-100">
-        <div className="container mx-auto px-4 h-10 flex items-center justify-between text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5"><PhoneCall className="h-3 w-3 text-primary" /> +91 98765 43210</span>
-            <span>solutions@aquasafe.com</span>
+      {/* Top Utility Bar - Matched to reference image */}
+      <div className="hidden lg:block border-b border-slate-100">
+        <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+          <div className="flex items-center gap-2">
+            <MapPin className="h-3.5 w-3.5 text-primary" />
+            <span>123, Industrial Area, Ahmedabad, Gujarat - 382415</span>
           </div>
+          
           <div className="flex items-center gap-6">
-            <Link href="/about" className="hover:text-primary transition-colors">Career</Link>
-            <Link href="/contact" className="hover:text-primary transition-colors">Support</Link>
+            <div className="flex items-center gap-6 border-r border-slate-200 pr-6">
+              <Link href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <PhoneCall className="h-3.5 w-3.5" /> Call Us
+              </Link>
+              <Link href="https://wa.me/919876543210" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
+              </Link>
+              <Link href="mailto:info@aquasafe.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <Mail className="h-3.5 w-3.5" /> Email Us
+              </Link>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <Link href="#" className="hover:text-primary transition-colors"><Facebook className="h-3.5 w-3.5" /></Link>
+              <Link href="#" className="hover:text-primary transition-colors"><Instagram className="h-3.5 w-3.5" /></Link>
+              <Link href="#" className="hover:text-primary transition-colors"><Linkedin className="h-3.5 w-3.5" /></Link>
+            </div>
           </div>
         </div>
       </div>
@@ -101,7 +129,7 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20">
+          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black">
             <Link href="/contact">+91 98765 43210</Link>
           </Button>
         </nav>
@@ -148,7 +176,7 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <Button asChild className="w-full mt-6 h-14 rounded-full text-lg shadow-xl shadow-primary/20">
+            <Button asChild className="w-full mt-6 h-14 rounded-full text-lg shadow-xl shadow-primary/20 font-black">
               <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
             </Button>
           </div>
