@@ -39,7 +39,7 @@ export default function Home() {
                   Pure Water. Safe Future.
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
-                  Complete RO Solutions for <span className="text-primary">Every Industry</span>
+                  Complete RO <br />Solutions for <span className="text-primary">Every Industry</span>
                 </h1>
                 <p className="text-base text-slate-600 max-w-lg leading-relaxed">
                   We design, manufacture, install and maintain high-performance RO plants for industrial, commercial, institutional & residential applications.
@@ -74,24 +74,23 @@ export default function Home() {
             <div className="relative group animate-in fade-in slide-in-from-right-4 duration-700">
               <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden shadow-2xl">
                 <Image
-                  src={getImage("service-industrial")?.imageUrl || ""}
+                  src={getImage("hero-water")?.imageUrl || ""}
                   alt="Industrial RO Plant"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-              </div>
-              
-              {/* Experience Badge Image - Floating overlay, no card, no border */}
-              <div className="absolute bottom-4 right-4 w-32 h-32 md:w-40 md:h-40 z-20 pointer-events-none drop-shadow-2xl">
-                <Image 
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
-                  alt="10+ Years of Experience"
-                  width={160}
-                  height={160}
-                  className="object-contain"
-                />
+                
+                {/* Experience Badge Image - Floating naturally over hero, no card, no border */}
+                <div className="absolute bottom-4 right-4 w-32 h-32 md:w-40 md:h-40 z-20 pointer-events-none drop-shadow-2xl">
+                  <Image 
+                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
+                    alt="10+ Years of Experience"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
 
               {/* Decorative Fluid Effect */}
