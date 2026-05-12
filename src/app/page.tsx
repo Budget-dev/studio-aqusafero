@@ -29,16 +29,16 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Extreme tight spacing to remove top gap */}
-      <section className="relative overflow-hidden bg-white pt-2 pb-8 lg:pb-12">
-        <div className="container mx-auto px-4 max-w-7xl pt-0">
+      {/* 1. Hero Section - Tightened further for maximum visibility */}
+      <section className="relative overflow-hidden bg-white pt-2 pb-6 lg:pb-8">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-2">
                 <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1 px-4 text-[10px] rounded-full">
                   Pure Water. Safe Future.
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
                   Complete RO <br />Solutions for <span className="text-primary">Every Industry</span>
                 </h1>
                 <p className="text-base text-slate-600 max-w-lg leading-relaxed">
@@ -61,18 +61,18 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button asChild size="lg" className="h-12 px-8 rounded-sm text-base font-bold shadow-lg hover:shadow-xl transition-all">
-                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-bold shadow-lg hover:shadow-xl transition-all">
+                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 rounded-sm text-base font-bold border-2">
+                <Button asChild variant="outline" size="lg" className="h-11 px-8 rounded-sm text-sm font-bold border-2">
                   <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden">
+              <div className="relative aspect-video lg:aspect-[4/3] rounded-sm overflow-hidden">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
@@ -81,10 +81,10 @@ export default function Home() {
                   priority
                 />
                 
-                {/* Floating Experience Badge integrated into the image corner */}
-                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-6 rounded-sm shadow-2xl z-10 hidden sm:block">
+                {/* 10+ Years Experience Badge - Clean overlay without card container */}
+                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-5 rounded-sm z-10 hidden sm:block">
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-3xl md:text-4xl font-black font-headline leading-none">10+</span>
+                    <span className="text-3xl font-black font-headline leading-none">10+</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
                   </div>
@@ -95,25 +95,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip - Clean, Casual & Professional Light Design */}
-      <section className="bg-white py-12 border-y border-slate-100">
+      {/* 2. Trust Metrics Strip - Compact, Light, Casual Professional */}
+      <section className="bg-white py-6 border-y border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-100">
             {[
               { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
               { icon: Award, stat: "100%", label: "Quality Assurance" },
               { icon: Zap, stat: "Custom", label: "Tailored Solutions" },
-              { icon: ShieldCheck, stat: "Pan India", label: "Service Support" }
+              { icon: ShieldCheck, stat: "Service", label: "Pan India Support" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center lg:items-start lg:px-12 first:pl-0 last:pr-0">
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="p-3 rounded-sm bg-primary/5 text-primary">
-                    <item.icon className="h-6 w-6" />
-                  </div>
-                  <div className="text-3xl lg:text-4xl font-black font-headline text-slate-900 tracking-tight">{item.stat}</div>
+              <div key={i} className="flex items-center gap-4 lg:px-8 first:pl-0 last:pr-0 justify-center lg:justify-start">
+                <div className="p-3 rounded-sm bg-primary/5 text-primary shrink-0">
+                  <item.icon className="h-6 w-6" />
                 </div>
-                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] text-center lg:text-left">
-                  {item.label}
+                <div className="flex flex-col">
+                  <div className="text-2xl font-black font-headline text-slate-900 tracking-tight leading-none">{item.stat}</div>
+                  <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                    {item.label}
+                  </div>
                 </div>
               </div>
             ))}
@@ -122,9 +122,9 @@ export default function Home() {
       </section>
 
       {/* 3. Core Services Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
             <div className="space-y-2">
               <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm">
                 Our Core Services
@@ -133,7 +133,7 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-sm">
+            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-xs">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -165,7 +165,7 @@ export default function Home() {
                 icon: ShieldCheck
               }
             ].map((service, i) => (
-              <Card key={i} className="group overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-500 rounded-sm flex flex-col">
+              <Card key={i} className="group overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-500 rounded-sm flex flex-col">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
@@ -173,7 +173,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4 p-3 rounded-sm bg-white/95 shadow-xl">
+                  <div className="absolute top-4 left-4 p-2.5 rounded-sm bg-white/95 shadow-xl">
                     <service.icon className="h-4 w-4 text-primary" />
                   </div>
                 </div>
@@ -181,10 +181,10 @@ export default function Home() {
                   <h3 className="text-lg font-bold font-headline text-slate-900 group-hover:text-primary transition-colors leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed flex-1">
+                  <p className="text-xs text-slate-500 leading-relaxed flex-1">
                     {service.desc}
                   </p>
-                  <Button variant="link" className="p-0 h-auto text-primary font-bold text-xs w-fit group-hover:gap-2 transition-all">
+                  <Button variant="link" className="p-0 h-auto text-primary font-bold text-[11px] w-fit group-hover:gap-2 transition-all">
                     Learn More <ArrowRight className="ml-1 h-3 w-3" />
                   </Button>
                 </CardContent>
@@ -195,9 +195,9 @@ export default function Home() {
       </section>
 
       {/* 4. Industries Served Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-12 bg-slate-50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-10 space-y-2">
+          <div className="text-center mb-8 space-y-2">
             <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px] rounded-sm">Industries We Serve</Badge>
             <h2 className="text-3xl font-bold font-headline text-slate-900">Trusted Water Solutions for Every Industry</h2>
           </div>
@@ -214,8 +214,8 @@ export default function Home() {
               { icon: ZapOff, label: "Power Plants" }
             ].map((item, i) => (
               <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
-                <div className="w-14 h-14 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
+                <div className="w-12 h-12 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <item.icon className="h-5 w-5 text-primary group-hover:text-white" />
                 </div>
                 <span className="text-[9px] font-bold uppercase tracking-wider text-slate-600 group-hover:text-primary transition-colors">
                   {item.label}
