@@ -29,9 +29,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened to the extreme to remove white gaps */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-8 lg:pb-12">
-        <div className="container mx-auto px-4 max-w-7xl pt-0 lg:pt-0">
+      {/* 1. Hero Section - Extreme tight spacing to remove top gap */}
+      <section className="relative overflow-hidden bg-white pt-2 pb-8 lg:pb-12">
+        <div className="container mx-auto px-4 max-w-7xl pt-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-2">
@@ -81,8 +81,8 @@ export default function Home() {
                   priority
                 />
                 
-                {/* Floating Experience Badge in the corner */}
-                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-6 rounded-sm shadow-2xl z-10 hidden sm:block border border-white/10">
+                {/* Floating Experience Badge integrated into the image corner */}
+                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-6 rounded-sm shadow-2xl z-10 hidden sm:block">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-3xl md:text-4xl font-black font-headline leading-none">10+</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
@@ -90,39 +90,30 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              {/* Decorative Fluid Effect */}
-              <div className="absolute -z-10 -top-20 -right-20 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)] pointer-events-none blur-3xl opacity-50"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip - Improved Visuals */}
-      <section className="bg-slate-900 py-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-400 rounded-full blur-[120px]"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
+      {/* 2. Trust Metrics Strip - Clean, Casual & Professional Light Design */}
+      <section className="bg-white py-12 border-y border-slate-100">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-100">
             {[
-              { icon: CheckCircle2, stat: "500+", label: "Projects Completed", sub: "Delivered Pan India" },
-              { icon: Award, stat: "100%", label: "Quality Assurance", sub: "Premium Components" },
-              { icon: Zap, stat: "Custom", label: "Tailored Solutions", sub: "Built for Your Needs" },
-              { icon: ShieldCheck, stat: "Support", label: "24/7 Assistance", sub: "Technical Expertise" }
+              { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
+              { icon: Award, stat: "100%", label: "Quality Assurance" },
+              { icon: Zap, stat: "Custom", label: "Tailored Solutions" },
+              { icon: ShieldCheck, stat: "Pan India", label: "Service Support" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center lg:items-start lg:px-12 first:pl-0 last:pr-0 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="p-3 rounded-sm bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <div key={i} className="flex flex-col items-center lg:items-start lg:px-12 first:pl-0 last:pr-0">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="p-3 rounded-sm bg-primary/5 text-primary">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <div className="text-3xl lg:text-4xl font-black font-headline text-white tracking-tight">{item.stat}</div>
+                  <div className="text-3xl lg:text-4xl font-black font-headline text-slate-900 tracking-tight">{item.stat}</div>
                 </div>
-                <div className="space-y-1 text-center lg:text-left">
-                  <div className="text-xs font-bold text-white uppercase tracking-[0.2em]">{item.label}</div>
-                  <div className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{item.sub}</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] text-center lg:text-left">
+                  {item.label}
                 </div>
               </div>
             ))}
