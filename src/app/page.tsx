@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened further for maximum visibility */}
+      {/* 1. Hero Section - Tightened */}
       <section className="relative overflow-hidden bg-white pt-2 pb-6 lg:pb-8">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -81,7 +81,7 @@ export default function Home() {
                   priority
                 />
                 
-                {/* 10+ Years Experience Badge - Clean overlay without card container */}
+                {/* 10+ Years Experience Badge - Clean overlay */}
                 <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-5 rounded-sm z-10 hidden sm:block">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-3xl font-black font-headline leading-none">10+</span>
@@ -121,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Core Services Section */}
+      {/* 3. Core Services Section - Matches provided image precisely */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
@@ -133,7 +133,7 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-xs">
+            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-xs font-bold border-slate-200">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -173,11 +173,12 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4 p-2.5 rounded-sm bg-white/95 shadow-xl">
-                    <service.icon className="h-4 w-4 text-primary" />
+                  {/* Icon Overlay exactly as shown in reference */}
+                  <div className="absolute bottom-[-16px] left-6 p-2.5 rounded-full bg-primary border-4 border-white shadow-lg z-10">
+                    <service.icon className="h-4 w-4 text-white" />
                   </div>
                 </div>
-                <CardContent className="p-6 space-y-3 flex-1 flex flex-col">
+                <CardContent className="p-6 pt-10 space-y-3 flex-1 flex flex-col">
                   <h3 className="text-lg font-bold font-headline text-slate-900 group-hover:text-primary transition-colors leading-tight">
                     {service.title}
                   </h3>
