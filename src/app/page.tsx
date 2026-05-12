@@ -42,7 +42,7 @@ export default function Home() {
                   Complete RO <br />Solutions for <span className="text-primary">Every Industry</span>
                 </h1>
                 <p className="text-base text-slate-600 max-w-lg leading-relaxed font-semibold">
-                  We design, manufacture, install and maintain high-performance RO plants for industrial, commercial, institutional & residential applications.
+                  We design, manufacture, install and maintain high-performance RO plants for industrial, commercial & institutional & residential applications.
                 </p>
               </div>
 
@@ -72,12 +72,12 @@ export default function Home() {
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700 pt-6">
-              <div className="relative aspect-video lg:aspect-[4/3] rounded-xl">
+              <div className="relative aspect-video lg:aspect-[4/3] rounded-xl overflow-hidden">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
                   fill
-                  className="object-cover rounded-xl shadow-lg shadow-slate-200"
+                  className="object-cover rounded-xl"
                   priority
                 />
                 
@@ -133,7 +133,7 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            {/* View All Services with Blue Background */}
+            {/* View All Services with Solid Blue Background */}
             <Button asChild className="rounded-sm px-8 h-12 text-sm font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-none">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
@@ -174,7 +174,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-none"
                   />
-                  {/* Icon Overlay */}
+                  {/* Icon Overlay - No clipping */}
                   <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-12 h-12">
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
@@ -228,13 +228,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Why Choose Us */}
+      {/* 5. Technical Excellence Section - Updated Content */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <Badge variant="outline" className="text-primary border-primary/20 text-[10px] font-bold rounded-sm">Technical Excellence</Badge>
+                <Badge variant="outline" className="text-primary border-primary/20 text-[10px] font-bold rounded-sm uppercase tracking-widest">Technical Excellence</Badge>
                 <h2 className="text-4xl font-black font-headline text-slate-900 tracking-tight">Pure & Safe Water Systems</h2>
                 <p className="text-base font-semibold text-slate-700 leading-relaxed">
                   Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
@@ -257,7 +257,9 @@ export default function Home() {
                     <m.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-3xl font-black font-headline text-slate-900">{m.stat}</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-600">{m.label}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-600 leading-tight">
+                    {m.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -265,8 +267,8 @@ export default function Home() {
             <div className="lg:col-span-3">
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
                 <Image
-                  src={getImage("team-expert")?.imageUrl || ""}
-                  alt="Expert Engineer"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2008_20_08%20PM.png"
+                  alt="Industrial RO Equipment"
                   fill
                   className="object-cover"
                 />
