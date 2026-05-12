@@ -29,9 +29,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 py-20 lg:py-32">
-        <div className="container mx-auto px-4 max-w-7xl">
+      {/* 1. Hero Section - Adjusted pt-0 to remove top gap */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-20 lg:pb-32">
+        <div className="container mx-auto px-4 max-w-7xl pt-16 lg:pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-4">
