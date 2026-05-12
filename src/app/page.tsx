@@ -29,9 +29,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
-      {/* 1. Hero Section - Tightened spacing to remove white gap */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-12 lg:pb-16">
-        <div className="container mx-auto px-4 max-w-7xl pt-2 lg:pt-2">
+      {/* 1. Hero Section - Tightened to the extreme to remove white gaps */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-8 lg:pb-12">
+        <div className="container mx-auto px-4 max-w-7xl pt-0 lg:pt-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-2">
@@ -71,20 +71,20 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative group animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden shadow-2xl">
+            <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
+              {/* Image without card container or shadow */}
+              <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
 
               {/* Decorative Fluid Effect */}
-              <div className="absolute -z-10 -top-20 -right-20 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)] pointer-events-none blur-3xl"></div>
+              <div className="absolute -z-10 -top-20 -right-20 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)] pointer-events-none blur-3xl opacity-50"></div>
             </div>
           </div>
         </div>
