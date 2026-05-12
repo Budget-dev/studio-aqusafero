@@ -83,8 +83,8 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
               
-              {/* Experience Badge Image - No card, no border */}
-              <div className="absolute -bottom-8 -right-8 md:right-4 w-40 h-40 z-20 pointer-events-none">
+              {/* Experience Badge Image - Floating overlay, no card, no border */}
+              <div className="absolute bottom-4 right-4 w-32 h-32 md:w-40 md:h-40 z-20 pointer-events-none drop-shadow-2xl">
                 <Image 
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="10+ Years of Experience"
