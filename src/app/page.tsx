@@ -31,7 +31,7 @@ export default function Home() {
     <div className="flex flex-col bg-white min-h-screen">
       {/* 1. Hero Section - Tightened spacing to remove white gap */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/50 pt-0 pb-12 lg:pb-16">
-        <div className="container mx-auto px-4 max-w-7xl pt-4 lg:pt-6">
+        <div className="container mx-auto px-4 max-w-7xl pt-2 lg:pt-2">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-2">
@@ -74,23 +74,13 @@ export default function Home() {
             <div className="relative group animate-in fade-in slide-in-from-right-4 duration-700">
               <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden shadow-2xl">
                 <Image
-                  src={getImage("hero-water")?.imageUrl || ""}
-                  alt="Industrial RO Plant"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
+                  alt="Industrial RO Water Treatment"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                
-                {/* Experience Badge Image - Floating naturally over hero, no card, no border */}
-                <div className="absolute bottom-4 right-4 w-32 h-32 md:w-40 md:h-40 z-20 pointer-events-none drop-shadow-2xl">
-                  <Image 
-                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
-                    alt="10+ Years of Experience"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
               </div>
 
               {/* Decorative Fluid Effect */}
