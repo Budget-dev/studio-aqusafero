@@ -81,6 +81,15 @@ export default function Home() {
                   className="object-cover"
                   priority
                 />
+                
+                {/* Floating Experience Badge in the corner */}
+                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 md:p-6 rounded-sm shadow-2xl z-10 hidden sm:block border border-white/10">
+                  <div className="flex flex-col items-center text-center">
+                    <span className="text-3xl md:text-4xl font-black font-headline leading-none">10+</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
+                  </div>
+                </div>
               </div>
 
               {/* Decorative Fluid Effect */}
