@@ -41,12 +41,12 @@ export default function Home() {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
                   Complete RO <br />Solutions for <span className="text-primary">Every Industry</span>
                 </h1>
-                <p className="text-base text-slate-600 max-w-lg leading-relaxed">
+                <p className="text-base text-slate-600 max-w-lg leading-relaxed font-semibold">
                   We design, manufacture, install and maintain high-performance RO plants for industrial, commercial, institutional & residential applications.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 text-xs font-semibold text-slate-500">
+              <div className="flex flex-wrap items-center gap-6 text-xs font-bold text-slate-900">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-primary" />
                   High Performance
@@ -62,31 +62,31 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-bold shadow-lg hover:shadow-xl transition-all">
+                <Button asChild size="lg" className="h-11 px-8 rounded-sm text-sm font-black shadow-none transition-all">
                   <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-11 px-8 rounded-sm text-sm font-bold border-2">
+                <Button asChild variant="outline" size="lg" className="h-11 px-8 rounded-sm text-sm font-black border-2 border-slate-900 text-slate-900">
                   <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700 pt-6">
-              <div className="relative aspect-video lg:aspect-[4/3] rounded-sm overflow-hidden">
+              <div className="relative aspect-video lg:aspect-[4/3] rounded-xl overflow-visible">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-xl"
                   priority
                 />
                 
-                {/* 10+ Years Experience Overlay */}
-                <div className="absolute bottom-4 right-4 bg-primary text-white p-4 rounded-sm z-10 hidden sm:block">
+                {/* 10+ Years Experience Overlay - No border, floating */}
+                <div className="absolute bottom-6 right-6 bg-primary text-white p-5 rounded-sm z-20">
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-3xl font-black font-headline leading-none">10+</span>
-                    <span className="text-[9px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
-                    <span className="text-[9px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
+                    <span className="text-4xl font-black font-headline leading-none tracking-tighter">10+</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90">Years of</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
                   </div>
                 </div>
               </div>
@@ -95,23 +95,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip - Compact, Light */}
-      <section className="bg-white py-6 border-y border-slate-100">
+      {/* 2. Trust Metrics Strip - Compact, Light, Casual */}
+      <section className="bg-white py-4 border-y border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 lg:divide-x lg:divide-slate-200">
             {[
               { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
               { icon: Award, stat: "100%", label: "Quality Assurance" },
               { icon: Zap, stat: "Custom", label: "Tailored Solutions" },
               { icon: ShieldCheck, stat: "Service", label: "Pan India Support" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 lg:px-8 first:pl-0 last:pr-0 justify-center lg:justify-start">
-                <div className="p-3 rounded-sm bg-primary/5 text-primary shrink-0">
+              <div key={i} className="flex items-center gap-4 lg:px-8 justify-center lg:justify-start">
+                <div className="p-3 rounded-full bg-primary/5 text-primary shrink-0">
                   <item.icon className="h-6 w-6" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-2xl font-black font-headline text-slate-900 tracking-tight leading-none">{item.stat}</div>
-                  <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                  <div className="text-2xl font-black font-headline text-slate-900 tracking-tighter leading-none">{item.stat}</div>
+                  <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-1">
                     {item.label}
                   </div>
                 </div>
@@ -121,24 +121,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Core Services Section - Fixed Icon Clipping */}
+      {/* 3. Core Services Section - Fixed Icon Clipping & Blur Button */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div className="space-y-2">
-              <Badge variant="secondary" className="bg-primary/5 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm px-3 py-1">
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-none font-bold uppercase tracking-widest text-[10px] rounded-sm px-3 py-1">
                 OUR CORE SERVICES
               </Badge>
-              <h2 className="text-4xl font-bold font-headline text-slate-900 leading-tight">
+              <h2 className="text-4xl font-black font-headline text-slate-900 leading-tight tracking-tight">
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild variant="outline" className="rounded-sm px-6 h-10 text-xs font-bold border-slate-200">
+            {/* View All Services with Background Blur */}
+            <Button asChild variant="outline" className="rounded-sm px-8 h-12 text-sm font-black border-slate-900 bg-white/40 backdrop-blur-md hover:bg-white/60 transition-all text-slate-900">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {[
               {
                 title: "RO Plant Manufacturing",
@@ -165,27 +166,27 @@ export default function Home() {
                 icon: ShieldCheck
               }
             ].map((service, i) => (
-              <Card key={i} className="group overflow-hidden border-none shadow-sm hover:shadow-md transition-all duration-300 rounded-sm flex flex-col">
+              <Card key={i} className="group overflow-visible border-none shadow-none rounded-none flex flex-col bg-transparent">
                 <div className="relative aspect-video">
                   <Image
                     src={getImage(service.img)?.imageUrl || ""}
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-t-sm"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-none"
                   />
-                  {/* Icon Overlay - Removed overflow-hidden from parent to fix clipping */}
-                  <div className="absolute -bottom-5 left-6 p-2 rounded-full bg-primary border-[3px] border-white shadow-sm z-10 flex items-center justify-center w-10 h-10">
-                    <service.icon className="h-5 w-5 text-white" />
+                  {/* Icon Overlay - No clipping */}
+                  <div className="absolute -bottom-6 left-6 p-2 rounded-full bg-primary border-[4px] border-white shadow-lg z-20 flex items-center justify-center w-12 h-12">
+                    <service.icon className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <CardContent className="p-6 pt-8 space-y-3 flex-1 flex flex-col">
-                  <h3 className="text-lg font-bold font-headline text-slate-900 group-hover:text-primary transition-colors leading-tight">
+                <CardContent className="p-0 pt-10 space-y-3 flex-1 flex flex-col">
+                  <h3 className="text-xl font-black font-headline text-slate-900 group-hover:text-primary transition-colors leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed flex-1">
+                  <p className="text-sm font-semibold text-slate-700 leading-relaxed flex-1">
                     {service.desc}
                   </p>
-                  <Button variant="link" className="p-0 h-auto text-primary font-bold text-[11px] w-fit hover:gap-2 transition-all">
+                  <Button variant="link" className="p-0 h-auto text-primary font-black text-xs w-fit hover:gap-2 transition-all">
                     Learn More <ArrowRight className="ml-1 h-3 w-3" />
                   </Button>
                 </CardContent>
@@ -198,9 +199,9 @@ export default function Home() {
       {/* 4. Industries Served Section */}
       <section className="py-12 bg-slate-50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-8 space-y-2">
-            <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px] rounded-sm">Industries We Serve</Badge>
-            <h2 className="text-3xl font-bold font-headline text-slate-900">Trusted Water Solutions for Every Industry</h2>
+          <div className="text-center mb-10 space-y-2">
+            <Badge variant="secondary" className="font-bold uppercase tracking-widest text-[10px] rounded-sm bg-slate-200 text-slate-800">Industries We Serve</Badge>
+            <h2 className="text-3xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
@@ -215,10 +216,10 @@ export default function Home() {
               { icon: ZapOff, label: "Power Plants" }
             ].map((item, i) => (
               <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
-                <div className="w-12 h-12 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <item.icon className="h-5 w-5 text-primary group-hover:text-white" />
+                <div className="w-14 h-14 rounded-sm bg-white shadow-sm flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
                 </div>
-                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-700 group-hover:text-primary transition-colors">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-900 group-hover:text-primary transition-colors">
                   {item.label}
                 </span>
               </div>
@@ -233,18 +234,18 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <Badge variant="outline" className="text-primary border-primary/20 text-[10px] rounded-sm">Technical Excellence</Badge>
-                <h2 className="text-3xl font-bold font-headline text-slate-900">Pure & Safe Water Systems</h2>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <Badge variant="outline" className="text-primary border-primary/20 text-[10px] font-bold rounded-sm">Technical Excellence</Badge>
+                <h2 className="text-4xl font-black font-headline text-slate-900 tracking-tight">Pure & Safe Water Systems</h2>
+                <p className="text-base font-semibold text-slate-700 leading-relaxed">
                   Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
                 </p>
               </div>
-              <Button asChild className="rounded-sm px-8 h-12 font-bold text-base shadow-lg">
+              <Button asChild className="rounded-sm px-10 h-14 font-black text-lg shadow-none">
                 <Link href="/about">Know More About Us</Link>
               </Button>
             </div>
 
-            <div className="lg:col-span-4 grid grid-cols-2 gap-6">
+            <div className="lg:col-span-4 grid grid-cols-2 gap-8">
               {[
                 { icon: Award, stat: "10+", label: "Years of Experience" },
                 { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
@@ -253,16 +254,16 @@ export default function Home() {
               ].map((m, i) => (
                 <div key={i} className="space-y-1">
                   <div className="p-2 rounded-sm bg-slate-50 w-fit">
-                    <m.icon className="h-5 w-5 text-primary" />
+                    <m.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <div className="text-2xl font-bold font-headline text-slate-900">{m.stat}</div>
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-slate-500">{m.label}</div>
+                  <div className="text-3xl font-black font-headline text-slate-900">{m.stat}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-600">{m.label}</div>
                 </div>
               ))}
             </div>
 
             <div className="lg:col-span-3">
-              <div className="relative aspect-[4/5] rounded-sm overflow-hidden border border-slate-100">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
                 <Image
                   src={getImage("team-expert")?.imageUrl || ""}
                   alt="Expert Engineer"
@@ -278,27 +279,27 @@ export default function Home() {
       {/* 6. CTA Banner */}
       <section className="pb-16">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="relative overflow-hidden rounded-sm bg-gradient-to-r from-blue-700 to-blue-600 p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-xl bg-slate-900 p-10 md:p-14">
             <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
               <Droplets className="w-full h-full text-white rotate-12 scale-150" />
             </div>
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
-              <div className="space-y-3 max-w-xl">
-                <h2 className="text-2xl md:text-3xl font-bold font-headline text-white leading-tight">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 text-center lg:text-left">
+              <div className="space-y-4 max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-black font-headline text-white leading-tight tracking-tight">
                   Need a Reliable RO Solution<br />for Your Business?
                 </h2>
-                <p className="text-blue-100 text-base opacity-80">
+                <p className="text-slate-400 text-lg font-semibold">
                   Talk to our experts today and get the best solution for your needs.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <Button size="lg" className="h-12 px-6 rounded-sm bg-white text-primary hover:bg-blue-50 font-bold text-base min-w-[180px]">
-                  <Phone className="mr-2 h-4 w-4" /> Call Now
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <Button size="lg" className="h-14 px-10 rounded-sm bg-primary text-white hover:bg-primary/90 font-black text-lg min-w-[200px] shadow-none">
+                  <Phone className="mr-2 h-5 w-5" /> Call Now
                 </Button>
-                <Button variant="outline" size="lg" className="h-12 px-6 rounded-sm border-2 border-white/40 bg-white/10 text-white hover:bg-white/20 font-bold text-base min-w-[180px]">
-                  <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp Us
+                <Button variant="outline" size="lg" className="h-14 px-10 rounded-sm border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-lg min-w-[200px] backdrop-blur-sm">
+                  <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp Us
                 </Button>
               </div>
             </div>
