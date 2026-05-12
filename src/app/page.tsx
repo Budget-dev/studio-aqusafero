@@ -35,7 +35,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-2">
-                <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1 px-4 text-[10px] rounded-sm">
+                <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1 px-4 text-[10px] rounded-full">
                   Pure Water. Safe Future.
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold font-headline text-slate-900 leading-[1.1]">
