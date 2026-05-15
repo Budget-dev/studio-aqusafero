@@ -1,16 +1,16 @@
 
 "use client"
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { 
   Search, 
   SlidersHorizontal, 
-  ChevronDown, 
-  Grid2X2, 
-  LayoutList,
   ChevronRight,
   FilterX,
-  Star
+  Star,
+  Grid2X2,
+  LayoutList
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,124 +34,130 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-
-export const MOCK_PRODUCTS = [
-  { id: "iro-101", name: "Industrial RO Plant Type-A", price: 12500, category: "Industrial Systems", rating: 4.9, isNew: true, image: "https://picsum.photos/seed/ro1/800/1000", discount: 10, description: "High-performance reverse osmosis system designed for 24/7 industrial operations." },
-  { id: "mod-des-202", name: "Modular Desalinization Unit", price: 45000, category: "Industrial Systems", rating: 5.0, image: "https://picsum.photos/seed/ro2/800/1000", description: "Containerized desalinization solution for coastal manufacturing plants." },
-  { id: "comm-pro-303", name: "ClinicPurity Pro Max", price: 3200, category: "Commercial Units", rating: 4.8, isNew: true, image: "https://picsum.photos/seed/ro3/800/1000", description: "Medical-grade water purification for hospitals and specialized clinics." },
-  { id: "home-ult-404", name: "HomeGuard X7 Ultimate", price: 899, category: "Residential Filters", rating: 4.7, image: "https://picsum.photos/seed/ro4/800/1000", discount: 15, description: "7-stage alkaline filtration for the purest household drinking water." },
-  { id: "memb-spare-505", name: "Membrane Master Spares", price: 150, category: "Spares & Parts", rating: 4.6, image: "https://picsum.photos/seed/ro5/800/1000", description: "Spiral-wound TFC replacement membranes for standard systems." },
-  { id: "carb-med-606", name: "CrystalClear Carbon Media", price: 85, category: "Filters", rating: 4.9, image: "https://picsum.photos/seed/ro6/800/1000", description: "Activated coconut shell carbon for superior chemical removal." },
-  { id: "scale-chem-707", name: "ScaleGuard Pro Chemical", price: 120, category: "Chemicals", rating: 4.8, image: "https://picsum.photos/seed/ro7/800/1000", description: "Advanced antiscalant to prevent membrane fouling and scaling." },
-  { id: "flow-met-808", name: "Digital Flow Meter 2.0", price: 450, category: "Spares & Parts", rating: 5.0, image: "https://picsum.photos/seed/ro8/800/1000", isNew: true, description: "Precision ultrasonic flow monitoring with remote connectivity." },
-];
+import { PRODUCTS } from "@/app/lib/products-data";
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category');
+  
   const [view, setView] = useState<'grid' | 'list'>('grid');
-  const [priceRange, setPriceRange] = useState([0, 50000]);
+  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
+
+  const filteredProducts = useMemo(() => {
+    return PRODUCTS.filter(p => {
+      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.subcategory.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = !selectedCategory || p.category === selectedCategory;
+      const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
+      return matchesSearch && matchesCategory && matchesPrice;
+    });
+  }, [searchQuery, selectedCategory, priceRange]);
+
+  const categories = ["Domestic Products", "Commercial Products", "Spares and Components", "Filters and Chemicals"];
 
   return (
     <div className="min-h-screen bg-slate-50/50">
-      {/* Futuristic Header */}
+      {/* Header */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-white border-b">
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-40" 
-             style={{ backgroundImage: `radial-gradient(circle at 10% 20%, #c4b5fd22, transparent)` }} />
-        
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6">
             <a href="/" className="hover:text-primary transition-colors">Home</a>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-slate-900">Products</span>
+            <span className="text-slate-900">{selectedCategory || "All Products"}</span>
           </nav>
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl font-black font-headline text-slate-900 tracking-tighter">
-                Premium <br /><span className="text-primary">Water Systems</span>
+              <h1 className="text-5xl md:text-7xl font-black font-headline text-slate-900 tracking-tighter leading-tight">
+                {selectedCategory ? selectedCategory.split(' ')[0] : "Premium"} <br />
+                <span className="text-primary">{selectedCategory ? selectedCategory.split(' ').slice(1).join(' ') : "Catalog"}</span>
               </h1>
               <p className="text-slate-500 max-w-lg font-bold text-lg leading-relaxed">
-                Discover our engineered solutions for precise water purification, from industrial plants to high-end domestic filters.
+                {selectedCategory 
+                  ? `Discover our curated selection of high-performance ${selectedCategory.toLowerCase()}.`
+                  : "Explore our enterprise-grade water treatment solutions and certified components."}
               </p>
             </div>
             
-            <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-2xl border border-slate-100">
+            <div className="hidden lg:flex items-center gap-4 bg-slate-50 p-2 rounded-2xl border border-slate-100">
               <div className="px-6 py-4 border-r border-slate-200 text-center">
-                <p className="text-2xl font-black text-slate-900">1.2k+</p>
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Total Products</p>
+                <p className="text-2xl font-black text-slate-900">{filteredProducts.length}</p>
+                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Results</p>
               </div>
               <div className="px-6 py-4 text-center">
                 <p className="text-2xl font-black text-primary">24h</p>
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Avg Shipping</p>
+                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Global Logistics</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Catalog Area */}
+      {/* Main Grid */}
       <div className="container mx-auto px-4 max-w-7xl py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Desktop Sidebar Filters */}
+          {/* Sidebar */}
           <aside className="hidden lg:block lg:col-span-3 space-y-10 sticky top-32 h-fit">
             <div className="space-y-6">
               <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Category</h3>
               <div className="space-y-4">
-                {["Industrial Systems", "Commercial Units", "Residential Filters", "Spares & Parts", "Chemicals"].map((cat) => (
-                  <div key={cat} className="flex items-center space-x-3 group cursor-pointer">
-                    <Checkbox id={cat} className="rounded-md border-2 border-slate-200 data-[state=checked]:bg-primary" />
-                    <Label htmlFor={cat} className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat}</Label>
+                {categories.map((cat) => (
+                  <div 
+                    key={cat} 
+                    className="flex items-center space-x-3 group cursor-pointer"
+                    onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
+                  >
+                    <Checkbox checked={selectedCategory === cat} className="rounded-md border-2 border-slate-200" />
+                    <Label className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat}</Label>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="space-y-6">
-              <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Price Range</h3>
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Price Limit</h3>
               <div className="px-2">
                 <Slider 
-                  value={priceRange} 
-                  onValueChange={setPriceRange} 
-                  max={50000} 
+                  value={[priceRange[1]]} 
+                  onValueChange={(val) => setPriceRange([0, val[0]])} 
+                  max={10000} 
                   step={100} 
                   className="mb-6"
                 />
                 <div className="flex items-center justify-between text-[11px] font-black text-slate-900">
-                  <span>${priceRange[0].toLocaleString()}</span>
+                  <span>$0</span>
                   <span>${priceRange[1].toLocaleString()}</span>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Rating</h3>
-              <div className="space-y-4">
-                {[5, 4, 3].map((r) => (
-                  <div key={r} className="flex items-center space-x-3 cursor-pointer group">
-                    <Checkbox id={`r-${r}`} />
-                    <Label htmlFor={`r-${r}`} className="flex items-center gap-1 text-sm font-bold text-slate-600 cursor-pointer">
-                      {Array.from({ length: r }).map((_, i) => (
-                        <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                      ))}
-                      <span className="ml-1">& Up</span>
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Button variant="outline" className="w-full h-14 rounded-2xl border-2 border-slate-200 font-black uppercase tracking-widest text-xs">
+            <Button 
+              variant="outline" 
+              className="w-full h-14 rounded-2xl border-2 border-slate-100 font-black uppercase tracking-widest text-xs"
+              onClick={() => {
+                setSelectedCategory(null);
+                setPriceRange([0, 10000]);
+                setSearchQuery("");
+              }}
+            >
               <FilterX className="mr-2 h-4 w-4" /> Reset Filters
             </Button>
           </aside>
 
-          {/* Main Content Area */}
+          {/* Catalog */}
           <main className="lg:col-span-9 space-y-8">
-            {/* Toolbar */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 bg-white rounded-[2rem] border border-slate-100 shadow-sm">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input className="pl-12 h-14 bg-slate-50 border-none rounded-2xl font-bold" placeholder="Search systems or spares..." />
+                <Input 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 h-14 bg-slate-50 border-none rounded-2xl font-bold" 
+                  placeholder="Search model, tech or SKU..." 
+                />
               </div>
               
               <div className="flex items-center gap-4">
@@ -175,65 +181,36 @@ export default function ProductsPage() {
                 </div>
 
                 <Select defaultValue="newest">
-                  <SelectTrigger className="w-[180px] h-12 bg-white rounded-xl font-bold border-slate-200">
+                  <SelectTrigger className="w-[180px] h-12 bg-white rounded-xl font-bold border-slate-200 shadow-none">
                     <SelectValue placeholder="Sort By" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="rounded-2xl">
                     <SelectItem value="newest">Newest First</SelectItem>
                     <SelectItem value="price-asc">Price: Low to High</SelectItem>
                     <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                    <SelectItem value="rating">Highest Rated</SelectItem>
                   </SelectContent>
                 </Select>
-
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <Button variant="outline" size="icon" className="lg:hidden h-12 w-12 rounded-xl border-slate-200">
-                      <SlidersHorizontal className="h-4 w-4" />
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent side="right" className="w-[300px]">
-                    <SheetHeader>
-                      <SheetTitle className="text-left font-headline font-black text-2xl">Filters</SheetTitle>
-                    </SheetHeader>
-                    <div className="mt-8 space-y-10">
-                       {/* Mobile Filters Content - Replicated briefly */}
-                       <div className="space-y-4">
-                        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900">Categories</h3>
-                        {["Industrial", "Commercial", "Residential", "Spares"].map(c => (
-                          <div key={c} className="flex items-center gap-2">
-                             <Checkbox id={`mob-${c}`} />
-                             <Label htmlFor={`mob-${c}`} className="text-sm font-bold">{c}</Label>
-                          </div>
-                        ))}
-                       </div>
-                    </div>
-                  </SheetContent>
-                </Sheet>
               </div>
             </div>
 
-            {/* Product Grid */}
             <div className={cn(
               "grid gap-8",
               view === 'grid' ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
             )}>
-              {MOCK_PRODUCTS.map((p) => (
+              {filteredProducts.map((p) => (
                 <ProductCard key={p.id} {...p} />
               ))}
             </div>
 
-            {/* Pagination */}
-            <div className="flex items-center justify-center gap-2 pt-12">
-              <Button variant="outline" disabled className="rounded-xl h-12 w-12 p-0 font-black">1</Button>
-              <Button variant="ghost" className="rounded-xl h-12 w-12 p-0 font-black">2</Button>
-              <Button variant="ghost" className="rounded-xl h-12 w-12 p-0 font-black">3</Button>
-              <div className="mx-2 text-slate-400 font-black">...</div>
-              <Button variant="ghost" className="rounded-xl h-12 w-12 p-0 font-black">12</Button>
-              <Button variant="outline" className="rounded-xl h-12 px-6 font-black uppercase tracking-widest text-[10px] ml-4">
-                Next <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+            {filteredProducts.length === 0 && (
+              <div className="text-center py-32 space-y-6">
+                <div className="h-20 w-20 rounded-[2rem] bg-slate-100 flex items-center justify-center mx-auto">
+                  <FilterX className="h-10 w-10 text-slate-400" />
+                </div>
+                <h3 className="text-2xl font-black font-headline">No products found</h3>
+                <p className="text-slate-500 font-bold">Try adjusting your filters or search query.</p>
+              </div>
+            )}
           </main>
         </div>
       </div>
