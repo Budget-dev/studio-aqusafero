@@ -20,7 +20,8 @@ import {
   Wrench,
   Users,
   Image as ImageIcon,
-  Contact2
+  Contact2,
+  Award
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -59,7 +60,7 @@ export default function Navbar() {
         { name: "Repair", href: "/services", description: "Rapid diagnostic and on-site restoration." },
       ],
     },
-    { name: "Industries", href: "/clients", icon: MapPin },
+    { name: "Our Brands", href: "/brands", icon: Award },
     { name: "Gallery", href: "/gallery", icon: ImageIcon },
     { name: "Contact Us", href: "/contact", icon: Contact2 },
   ];

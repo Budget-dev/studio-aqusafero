@@ -109,7 +109,7 @@ export default function Home() {
               id: "stp",
               title: "Compact Sewage Treatment Plant",
               summary: "Compact STP plant is New evolution of sewage Wastewater Treatment, No Land Required installations. We manufacture best packaged sewage treatment plants.",
-              image: getImage("stp-compact")?.imageUrl || "",
+              image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_44_42%20PM.png",
               label: "Industrial",
               author: "AquaSafe",
               published: "2024",
@@ -119,7 +119,7 @@ export default function Home() {
               id: "ro",
               title: "Commercial RO Plant",
               summary: "Aqua Safe Water Technologies is a leading Commercial RO Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
-              image: getImage("ro-commercial")?.imageUrl || "",
+              image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
               label: "Commercial",
               author: "AquaSafe",
               published: "2024",
@@ -160,36 +160,40 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. Industries Served Section */}
+        {/* 4. Partner Brands Section */}
         <section className="py-24">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="text-center mb-16 space-y-6">
               <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
-                <span className="text-xs font-black uppercase tracking-widest text-primary">Industries We Serve</span>
+                <span className="text-xs font-black uppercase tracking-widest text-primary">Strategic Technology Partners</span>
               </div>
-              <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
+              <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">World-Class Brands Behind Our Technology</h2>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-10 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 md:gap-6">
               {[
-                { icon: Factory, label: "Industrial Units" },
-                { icon: GraduationCap, label: "Schools & Colleges" },
-                { icon: Hospital, label: "Hospitals" },
-                { icon: Hotel, label: "Hotels & Resorts" },
-                { icon: Building2, label: "Commercial Buildings" },
-                { icon: FlaskConical, label: "Pharmaceutical Units" },
-                { icon: CupSoda, label: "Food & Beverage" },
-                { icon: ZapOff, label: "Power Plants" }
-              ].map((item, i) => (
+                "Dow Filmtec", "Pentair", "Grundfos", "Hydranautics", "Vontron", "Ion Exchange"
+              ].map((brand, i) => (
                 <div key={i} className="flex flex-col items-center text-center group">
-                  <div className="w-20 h-20 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-110 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20">
-                    <item.icon className="h-8 w-8 text-primary" />
+                  <div className="w-full aspect-video rounded-2xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-105 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20 p-6 overflow-hidden">
+                    <Image 
+                      src={`https://picsum.photos/seed/${brand}/300/200`} 
+                      alt={brand} 
+                      width={200} 
+                      height={100} 
+                      className="object-contain grayscale group-hover:grayscale-0 transition-all" 
+                    />
                   </div>
                   <span className="text-xs font-black uppercase tracking-wider text-slate-900 leading-tight px-2">
-                    {item.label}
+                    {brand}
                   </span>
                 </div>
               ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Button asChild variant="ghost" className="text-primary font-black uppercase tracking-widest text-xs">
+                <Link href="/brands">View All Brand Partners <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
             </div>
           </div>
         </section>

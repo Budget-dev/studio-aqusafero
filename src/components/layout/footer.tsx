@@ -1,4 +1,6 @@
 
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import { 
@@ -16,8 +18,8 @@ export default function Footer() {
   const company = [
     { title: 'About Us', href: '/about' },
     { title: 'Services', href: '/services' },
-    { title: 'Products', href: '/spares' },
-    { title: 'Industries', href: '/clients' },
+    { title: 'Our Brands', href: '/brands' },
+    { title: 'Products', href: '/products' },
     { title: 'Privacy Policy', href: '/contact' },
   ];
 
@@ -51,9 +53,9 @@ export default function Footer() {
               <Image 
                 src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
                 alt="AquaSafe Logo" 
-                width={240} 
-                height={65} 
-                className="h-12 w-auto object-contain brightness-0 invert"
+                width={300} 
+                height={80} 
+                className="h-16 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="max-w-sm text-sm text-slate-400 leading-relaxed font-semibold">
