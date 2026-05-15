@@ -5,7 +5,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { UserPlus, Loader2, ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { useAuth } from "@/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
@@ -40,7 +39,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 p-4">
+    <div className="fixed inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-50 p-4 overflow-hidden">
       <Link href="/login" className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-black uppercase text-[10px] tracking-widest">
         <ArrowLeft className="h-4 w-4" /> Back to Login
       </Link>

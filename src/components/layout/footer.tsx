@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { 
   Facebook, 
   Github, 
@@ -13,6 +14,10 @@ import {
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
+
+  // Hide footer on auth pages
+  if (pathname === '/login' || pathname === '/signup') return null;
 
   const company = [
     { title: 'About Us', href: '/about' },

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { 
   Menu, 
   X, 
@@ -47,9 +48,13 @@ import { signOut } from "firebase/auth"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
   const { cartCount } = useCart()
   const { user } = useUser()
   const { auth } = useAuth()
+
+  // Hide navbar on auth pages
+  if (pathname === '/login' || pathname === '/signup') return null;
 
   const navigation = [
     { name: "Home", href: "/", icon: Home },
