@@ -28,6 +28,7 @@ import {
   Package
 } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import { Cta4 } from "@/components/ui/cta-4";
 
 export default function Home() {
   const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -304,36 +305,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. CTA Banner */}
-        <section className="pb-24 pt-12">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="relative overflow-hidden rounded-[3rem] bg-slate-900 p-12 md:p-16">
-              <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
-                <Droplets className="w-full h-full text-white rotate-12 scale-150" />
-              </div>
-
-              <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
-                <div className="space-y-6 max-w-xl">
-                  <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight tracking-tight">
-                    Need a Reliable RO Solution<br />for Your Business?
-                  </h2>
-                  <p className="text-slate-400 text-xl font-bold">
-                    Talk to our experts today and get the best solution for your needs.
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-6">
-                  <Button size="lg" className="h-16 px-12 rounded-2xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all">
-                    <Phone className="mr-2 h-6 w-6" /> Call Now
-                  </Button>
-                  <Button variant="outline" size="lg" className="h-16 px-12 rounded-2xl border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-xl min-w-[240px] backdrop-blur-md transition-all">
-                    <MessageCircle className="mr-2 h-6 w-6" /> WhatsApp Us
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* 6. CTA Banner (Updated to Cta4) */}
+        <Cta4
+          title="Need a Reliable RO Solution for Your Business?"
+          description="Talk to our experts today and get the best solution for your needs. We provide end-to-end support from design to maintenance."
+          buttonText="Get Started"
+          buttonUrl="/contact"
+          items={[
+            "Easy Integration",
+            "24/7 Support",
+            "Customizable Design",
+            "Scalable Performance",
+            "ISO Certified Quality"
+          ]}
+        />
       </div>
     </div>
   );
