@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -13,9 +12,9 @@ import {
   Truck,
   Waves
 } from "lucide-react";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
+import AboutUsSection from "@/components/sections/about-us-section";
 
 export default function Home() {
   return (
@@ -129,27 +128,8 @@ export default function Home() {
           ]}
         />
 
-        {/* 3. High Impact Stats Section */}
-        <section className="bg-primary py-24 text-white overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <Waves className="w-full h-full scale-150 rotate-12" />
-          </div>
-          <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0 lg:divide-x lg:divide-white/20">
-              {[
-                { stat: "10000", label: "CUSTOMERS" },
-                { stat: "2000", label: "INSTALLATIONS" },
-                { stat: "25", label: "YEARS" },
-                { stat: "6000", label: "PROJECTS" }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-center px-6">
-                  <span className="text-6xl md:text-7xl font-black font-headline tracking-tighter mb-2">{item.stat}</span>
-                  <span className="text-xs md:text-sm font-black uppercase tracking-[0.2em] opacity-80">{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 3. High Impact Animated About Us Section */}
+        <AboutUsSection />
 
         {/* 4. Our Brands Section */}
         <section className="py-24 bg-slate-50/50">
@@ -189,102 +169,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. Technical Excellence Section */}
-        <section className="py-24 overflow-hidden border-t border-slate-100 bg-white">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <p className="text-primary font-black uppercase tracking-widest text-xs">Technical Excellence</p>
-                    <h2 className="text-4xl md:text-6xl font-black font-headline text-slate-900 tracking-tight leading-[1.1]">
-                      Milestone Achieved in Delivering water, Wastewater Treatment and Its Solutions
-                    </h2>
-                  </div>
-                  <p className="text-lg font-bold text-slate-700 leading-relaxed">
-                    Aqua Safe Water Technologies takes immense pleasure in introducing ourselves as one of the leading Water and Wastewater Treatment Companies in India offering projects and services in the fields of WTP plant manufacturing, WWTP plant manufacturing, ETP plant manufacturing, and STP plant manufacturing, Energy Management, Automation Solutions, and Waste Management.
-                  </p>
-                  <div className="flex flex-col gap-4">
-                     <p className="text-2xl font-black text-primary uppercase tracking-tighter italic">
-                      Offering easy on-budget solutions
-                    </p>
-                    <div className="flex items-center gap-4">
-                      <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-lg px-5 py-2 uppercase tracking-widest bg-white shadow-sm">
-                        A Trusted Name in Water Solutions
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-                <Button asChild className="rounded-xl px-12 h-16 font-black text-lg bg-primary text-white hover:bg-primary/90 transition-all border-none">
-                  <Link href="/contact">Get a Quote</Link>
-                </Button>
-              </div>
-
-              <div className="relative">
-                <div className="relative aspect-square overflow-hidden rounded-3xl border border-slate-50">
-                  <Image
-                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
-                    alt="Company Milestones"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-10 -right-10 grid grid-cols-2 gap-4 p-8 bg-white rounded-3xl shadow-2xl border border-slate-100 hidden md:grid">
-                  {[
-                    { stat: "25+", label: "Experience" },
-                    { stat: "6000+", label: "Projects" },
-                    { stat: "100%", label: "Quality" },
-                    { stat: "24/7", label: "Support" }
-                  ].map((item, i) => (
-                    <div key={i} className="text-center p-4 border-r last:border-r-0 border-slate-100">
-                      <p className="text-2xl font-black text-primary font-headline">{item.stat}</p>
-                      <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{item.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
-              {[
-                { 
-                  icon: Truck, 
-                  title: "Our Mission", 
-                  desc: "We are faithful towards delivering the best customer experience by providing the most valuable solutions." 
-                },
-                { 
-                  icon: Award, 
-                  title: "Quality", 
-                  desc: "We are dedicated towards enhancing the customer experience by offering world-class proven products." 
-                },
-                { 
-                  icon: Factory, 
-                  title: "Leading Manufacturer", 
-                  desc: "We are a leading ISO certified manufacturer of water solutions." 
-                },
-                { 
-                  icon: Zap, 
-                  title: "Cost Effective Solutions", 
-                  desc: "Offering easy on-budget solutions without compromising the quality." 
-                }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col gap-5 p-8 rounded-[2rem] bg-slate-50 border border-slate-100 group transition-all hover:shadow-2xl hover:-translate-y-1">
-                  <div className="p-4 rounded-xl bg-primary text-white shrink-0 shadow-lg shadow-primary/20 w-fit">
-                    <item.icon className="h-6 w-6" />
-                  </div>
-                  <div className="space-y-3">
-                    <h4 className="text-xl font-black font-headline text-slate-900 uppercase tracking-tight leading-tight">{item.title}</h4>
-                    <p className="text-sm font-bold text-slate-600 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6. CTA Banner */}
+        {/* 5. CTA Banner */}
         <Cta4
           title="Need a Reliable RO Solution for Your Business?"
           description="Talk to our experts today and get the best solution for your needs. We provide end-to-end support from design to maintenance."
