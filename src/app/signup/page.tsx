@@ -5,9 +5,12 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { UserPlus, Loader2, ArrowLeft } from "lucide-react"
-import { useAuth } from "@/firebase"
+import { useAuth, useFirestore } from "@/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import { doc, setDoc } from "firebase/firestore"
 import { useToast } from "@/hooks/use-toast"
+import { errorEmitter } from "@/firebase/error-emitter"
+import { FirestorePermissionError } from "@/firebase/errors"
 
 export default function SignupPage() {
   const [email, setEmail] = useState("")
@@ -15,6 +18,7 @@ export default function SignupPage() {
   const [phone, setPhone] = useState("")
   const [loading, setLoading] = useState(false)
   const { auth } = useAuth()
+  const firestore = useFirestore()
   const router = useRouter()
   const { toast } = useToast()
 
@@ -24,7 +28,29 @@ export default function SignupPage() {
 
     setLoading(true)
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const user = userCredential.user
+
+      // Create user profile in Firestore
+      if (firestore) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userData = {
+          email: user.email,
+          phone: phone,
+          role: "user"
+        };
+
+        setDoc(userDocRef, userData)
+          .catch(async (serverError) => {
+            const permissionError = new FirestorePermissionError({
+              path: userDocRef.path,
+              operation: 'create',
+              requestResourceData: userData,
+            });
+            errorEmitter.emit('permission-error', permissionError);
+          });
+      }
+
       toast({ title: "Account Created", description: "Welcome to the AquaSafe Technical Hub." })
       router.push("/")
     } catch (error: any) {
