@@ -1,6 +1,7 @@
+
 import Link from "next/link";
+import Image from "next/image";
 import { 
-  Droplets, 
   Facebook, 
   Github, 
   Instagram, 
@@ -47,17 +48,13 @@ export default function Footer() {
           {/* Brand and Description */}
           <div className="col-span-1 md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3 w-max">
-              <div className="p-2 rounded-xl bg-primary">
-                <Droplets className="size-6 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-headline text-2xl font-black text-white tracking-tighter leading-none">
-                  AQUASAFE
-                </span>
-                <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase leading-none mt-1">
-                  RO Systems
-                </span>
-              </div>
+              <Image 
+                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
+                alt="AquaSafe Logo" 
+                width={180} 
+                height={50} 
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </Link>
             <p className="max-w-sm text-sm text-slate-400 leading-relaxed font-semibold">
               Leading manufacturer and service provider of industrial, commercial, and residential RO plants and purification systems.
