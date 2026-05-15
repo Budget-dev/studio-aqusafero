@@ -51,15 +51,13 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:row gap-5">
-                <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-xl shadow-primary/20">
-                    <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-200 hover:bg-slate-100 text-slate-900 transition-all bg-white shadow-sm">
-                    <Link href="/services">Explore Services</Link>
-                  </Button>
-                </div>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none">
+                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-200 hover:bg-slate-100 text-slate-900 transition-all bg-white">
+                  <Link href="/services">Explore Services</Link>
+                </Button>
               </div>
 
               <div className="flex flex-wrap items-center gap-8 text-sm font-black text-slate-900 pt-2">
@@ -79,7 +77,7 @@ export default function Home() {
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-visible">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-visible border-none shadow-none">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_31_10%20AM.png"
                   alt="Industrial RO Water Treatment"
@@ -234,13 +232,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Button asChild className="rounded-xl px-12 h-16 font-black text-lg bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-xl shadow-primary/20">
+              <Button asChild className="rounded-xl px-12 h-16 font-black text-lg bg-primary text-white hover:bg-primary/90 transition-all border-none">
                 <Link href="/contact">Get a Quote</Link>
               </Button>
             </div>
 
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
+              <div className="relative aspect-square rounded-[2rem] overflow-hidden border-none shadow-none">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Company Milestones"
@@ -322,7 +320,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-6">
-                <Button size="lg" className="h-16 px-12 rounded-2xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all shadow-2xl shadow-primary/40">
+                <Button size="lg" className="h-16 px-12 rounded-2xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all">
                   <Phone className="mr-2 h-6 w-6" /> Call Now
                 </Button>
                 <Button variant="outline" size="lg" className="h-16 px-12 rounded-2xl border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-xl min-w-[240px] backdrop-blur-md transition-all">
