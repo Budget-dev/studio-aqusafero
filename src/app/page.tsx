@@ -37,7 +37,7 @@ export default function Home() {
       {/* 1. Hero Section */}
       <section className="relative overflow-hidden bg-sky-50/30 pt-16 pb-20">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.3fr] gap-16 items-center">
             <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-6">
                 <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-full bg-primary/10">
@@ -201,8 +201,8 @@ export default function Home() {
       {/* 5. Technical Excellence Section */}
       <section className="py-24 bg-sky-50/30 overflow-hidden border-t border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
               <div className="space-y-6">
                 <div className="space-y-2">
                   <p className="text-primary font-black uppercase tracking-widest text-xs">Technical Excellence</p>
@@ -229,7 +229,7 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="lg:col-span-5 relative">
+            <div className="relative">
               <div className="relative aspect-square rounded-[2rem] overflow-hidden border-none shadow-none">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
