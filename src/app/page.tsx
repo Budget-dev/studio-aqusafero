@@ -31,7 +31,7 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
-        <section className="relative overflow-hidden pt-16 pb-20 border-b border-slate-100 bg-slate-50/30">
+        <section className="relative overflow-hidden pt-6 lg:pt-8 pb-20 border-b border-slate-100 bg-slate-50/30">
           <div className="container mx-auto px-4 max-w-[1400px]">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.8fr] gap-12 items-center">
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
