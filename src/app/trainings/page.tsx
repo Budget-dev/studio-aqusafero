@@ -4,12 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const COURSES = [
+export const COURSES = [
   {
     id: "ro-basic",
     title: "RO Fundamentals & Operations",
     level: "Beginner",
     duration: "3 Days",
+    fee: "₹15,000",
     description: "A comprehensive introduction to reverse osmosis technology, membrane theory, and daily system operations.",
     features: [
       "Basic Hydraulics",
@@ -24,6 +25,7 @@ const COURSES = [
     title: "Advanced Industrial Plant Design",
     level: "Professional",
     duration: "5 Days",
+    fee: "₹45,000",
     description: "Technical deep-dive into plant sizing, flux calculations, and building custom RO solutions for large-scale industry.",
     features: [
       "System Design Software",
@@ -38,6 +40,7 @@ const COURSES = [
     title: "Service & Troubleshooting Expert",
     level: "Technical",
     duration: "4 Days",
+    fee: "₹35,000",
     description: "Hands-on training for identifying system failures, membrane cleaning (CIP), and pump restorations.",
     features: [
       "Diagnostic Tools",
@@ -127,6 +130,7 @@ export default function TrainingsPage() {
                   <CardTitle className="text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors">
                     {course.title}
                   </CardTitle>
+                  <p className="text-primary font-black text-lg pt-2">{course.fee}</p>
                 </CardHeader>
                 <CardContent className="p-10 py-6 flex-grow">
                   <CardDescription className="text-slate-500 font-bold mb-8 leading-relaxed">
@@ -143,7 +147,7 @@ export default function TrainingsPage() {
                 </CardContent>
                 <CardFooter className="p-10 pt-0">
                   <Button asChild className="w-full h-12 rounded-xl bg-slate-900 hover:bg-primary text-white font-black uppercase tracking-widest text-[10px] shadow-lg transition-all">
-                    <Link href="/contact">Enroll Now <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                    <Link href={`/trainings/enroll/${course.id}`}>Enroll Now <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </CardFooter>
               </Card>
