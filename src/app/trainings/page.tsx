@@ -56,26 +56,24 @@ export const COURSES = [
 ];
 
 export default function TrainingsPage() {
-  const heroImage = PlaceHolderImages.find(img => img.id === 'trainings-hero')?.imageUrl;
+  const heroImage = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_59_50%20PM.png";
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-48 bg-black text-white overflow-hidden">
+      <section className="relative pt-12 pb-24 md:pt-20 md:pb-40 bg-black text-white overflow-hidden">
         {/* Background Image with Neutral Overlay */}
         <div className="absolute inset-0 z-0">
-          {heroImage && (
-            <Image 
-              src={heroImage} 
-              alt="AquaSafe Technical Training" 
-              fill 
-              className="object-cover opacity-90 transition-all duration-700"
-              priority
-              data-ai-hint="technical training"
-            />
-          )}
-          {/* Neutral dark gradient for text legibility without the blue tint */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <Image 
+            src={heroImage} 
+            alt="AquaSafe Technical Training" 
+            fill 
+            className="object-cover opacity-90 transition-all duration-700"
+            priority
+            data-ai-hint="technical training"
+          />
+          {/* Neutral dark gradient for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">

@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -113,7 +114,7 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  // Hide navbar on auth pages - MUST BE AFTER ALL HOOKS
+  // Hide navbar on auth pages
   if (pathname === '/login' || pathname === '/signup') return null;
 
   return (
@@ -150,17 +151,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 h-24 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Image 
-            src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
-            alt="AquaSafe Logo" 
-            width={320} 
-            height={85} 
-            className="h-12 md:h-[11rem] w-auto object-contain transition-all duration-300"
-            priority
-          />
-        </Link>
+      <div className="container mx-auto px-4 h-24 flex items-center justify-between overflow-visible relative">
+        <div className="flex items-center h-24 shrink-0">
+          <Link href="/" className="block relative z-[60]">
+            <Image 
+              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
+              alt="AquaSafe Logo" 
+              width={320} 
+              height={85} 
+              className="h-12 md:h-[11rem] w-auto object-contain transition-all duration-300 pointer-events-none"
+              priority
+            />
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center gap-2">
