@@ -15,6 +15,7 @@ export interface Product {
   stockStatus: "In Stock" | "Low Stock" | "Out of Stock";
   deliveryEstimate: string;
   specs: Record<string, string>;
+  videoUrl?: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -34,6 +35,7 @@ export const PRODUCTS: Product[] = [
     description: "Advanced engineering meets household safety. This high-performance RO unit features technical 10-stage purification, copper-enriched mineralization, and a precision-engineered filtration membrane for unmatched water purity.",
     stockStatus: "In Stock",
     deliveryEstimate: "1-2 Days",
+    videoUrl: "https://www.youtube.com/embed/fW72n_2f15w",
     specs: { 
       "Technology": "RO + UV + UF + Copper", 
       "Stages": "10 Stage Purification", 
@@ -57,6 +59,7 @@ export const PRODUCTS: Product[] = [
     description: "Intelligent water purification with pH balanced alkaline output. Features a digital display for real-time TDS monitoring and filter life alerts.",
     stockStatus: "In Stock",
     deliveryEstimate: "1-3 Days",
+    videoUrl: "https://www.youtube.com/embed/nU6pY9p97yY",
     specs: {
       "pH Range": "7.5 - 8.5",
       "Filtration": "Active Copper + Alkaline",
@@ -77,6 +80,7 @@ export const PRODUCTS: Product[] = [
     description: "Space-saving technical design perfect for modern modular kitchens. Delivers high-rejection purification in a slim, aesthetic form factor.",
     stockStatus: "In Stock",
     deliveryEstimate: "2-3 Days",
+    videoUrl: "https://www.youtube.com/embed/Xq-O8_vV9A8",
     specs: {
       "Design": "Ultra Slim Profile",
       "Membrane": "High Rejection TFC",
@@ -97,6 +101,7 @@ export const PRODUCTS: Product[] = [
     description: "Compact & efficient under-sink RO for kitchens and small spaces. Saves counter space while delivering high purity.",
     stockStatus: "In Stock",
     deliveryEstimate: "3-4 Days",
+    videoUrl: "https://www.youtube.com/embed/8-P_l-C6W6U",
     specs: { "Type": "Direct Flow", "Filters": "Composite", "Flow Rate": "1.5L/min" }
   },
   {
@@ -112,6 +117,7 @@ export const PRODUCTS: Product[] = [
     description: "Advanced 3/4 stage purification for enhanced water quality. Perfect for high TDS groundwater sources.",
     stockStatus: "In Stock",
     deliveryEstimate: "2-3 Days",
+    videoUrl: "https://www.youtube.com/embed/0B98W8X-r0I",
     specs: { "Tech": "RO+UV+UF", "Recovery": "40%", "TDS Range": "Up to 2000" }
   },
   // Commercial Products (Medium to Large Scale)
@@ -130,6 +136,7 @@ export const PRODUCTS: Product[] = [
     description: "Industrial-grade skid mounted unit for small production plants and apartment complexes. Features heavy-duty SS pressure vessels and precision pressure gauges.",
     stockStatus: "Low Stock",
     deliveryEstimate: "5-7 Days",
+    videoUrl: "https://www.youtube.com/embed/6X88yU1Q0R0",
     specs: {
       "Structure": "MS Powder Coated Skid",
       "Vessels": "SS 304 Technical Grade",
@@ -150,6 +157,7 @@ export const PRODUCTS: Product[] = [
     description: "Suitable for schools, clinics and small commercial establishments. Fully automated with high-quality membrane systems.",
     stockStatus: "In Stock",
     deliveryEstimate: "5-7 Days",
+    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
     specs: { "Capacity": "250 LPH", "Automation": "Fully Auto PLC", "Material": "SS 304" }
   },
   {
@@ -165,6 +173,7 @@ export const PRODUCTS: Product[] = [
     description: "Ideal for medium sized industries, hotels & institutions. Heavy-duty design for consistent performance.",
     stockStatus: "In Stock",
     deliveryEstimate: "7-10 Days",
+    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
     specs: { "UV Intensity": "40mJ/cm2", "Port Size": "1.5 inch", "Bulb Life": "9000 Hours" }
   },
   {
@@ -180,6 +189,7 @@ export const PRODUCTS: Product[] = [
     description: "High performance solution for large institutions & industries. Advanced monitoring and control systems.",
     stockStatus: "In Stock",
     deliveryEstimate: "10-14 Days",
+    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
     specs: { "Control": "Remote IoT", "Membranes": "Dow Filmtec", "Power": "3-Phase" }
   },
   // Spares
@@ -195,6 +205,7 @@ export const PRODUCTS: Product[] = [
     description: "High rejection RO membranes with TFC technology for maximum durability and purity.",
     stockStatus: "In Stock",
     deliveryEstimate: "1-2 Days",
+    videoUrl: "https://www.youtube.com/embed/m6lQp_qVd_8",
     specs: { "Rejection Rate": "98%", "Size": "1812-75 GPD", "Cert": "NSF 58" }
   },
   {
@@ -209,6 +220,7 @@ export const PRODUCTS: Product[] = [
     description: "Accurate dosing for better efficiency. Compatible with major industrial RO plant brands.",
     stockStatus: "In Stock",
     deliveryEstimate: "2-3 Days",
+    videoUrl: "https://www.youtube.com/embed/rP3iXhH3Dww",
     specs: { "Pressure": "100 PSI", "Current": "1.2A", "Voltage": "24V DC" }
   }
 ];

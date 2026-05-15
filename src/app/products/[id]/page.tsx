@@ -11,7 +11,11 @@ import {
   Plus, 
   Minus, 
   ShoppingCart,
-  Check
+  Check,
+  PlayCircle,
+  Activity,
+  Zap,
+  Shield
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -181,6 +185,74 @@ export default function ProductDetailPage() {
             </Accordion>
           </div>
         </div>
+
+        {/* Video Deep Analysis Section */}
+        <section className="mt-24 pt-24 border-t border-slate-100">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="text-center space-y-4">
+              <Badge className="bg-primary hover:bg-primary text-white border-none px-4 py-1 uppercase tracking-widest font-black text-[10px]">
+                Engineering Insights
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight">
+                Deep Analysis <span className="text-primary">& Performance</span>
+              </h2>
+              <p className="text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+                Take a closer look at the technical mastery powering this system. Our engineers provide a full breakdown of the filtration stages, membrane flux, and long-term durability metrics.
+              </p>
+            </div>
+
+            <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-50 bg-slate-900 group">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src={product.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ"} 
+                title={`${product.name} Deep Analysis`}
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowFullScreen
+                className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100"
+              ></iframe>
+              <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-[2rem]"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center space-y-3 group hover:bg-white hover:shadow-xl transition-all">
+                  <div className="p-3 rounded-xl bg-white shadow-sm text-primary">
+                    <Activity className="h-6 w-6" />
+                  </div>
+                  <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Efficiency Index</p>
+                  <p className="text-lg font-black text-slate-900 uppercase">98.5% Rejection</p>
+               </div>
+               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center space-y-3 group hover:bg-white hover:shadow-xl transition-all">
+                  <div className="p-3 rounded-xl bg-white shadow-sm text-primary">
+                    <Zap className="h-6 w-6" />
+                  </div>
+                  <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Energy Rating</p>
+                  <p className="text-lg font-black text-slate-900 uppercase">A++ Grade Tech</p>
+               </div>
+               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center space-y-3 group hover:bg-white hover:shadow-xl transition-all">
+                  <div className="p-3 rounded-xl bg-white shadow-sm text-primary">
+                    <Shield className="h-6 w-6" />
+                  </div>
+                  <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Certification</p>
+                  <p className="text-lg font-black text-slate-900 uppercase">ISI Compliant</p>
+               </div>
+            </div>
+
+            <div className="p-10 rounded-[3rem] bg-slate-900 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2" />
+              <div className="relative z-10 space-y-6">
+                <h4 className="text-2xl font-black font-headline uppercase tracking-tight">Need a custom technical audit?</h4>
+                <p className="text-slate-400 font-bold max-w-lg">
+                  Our senior engineering team can provide on-site diagnostics and performance mapping for your specific site conditions.
+                </p>
+                <Button asChild className="h-12 px-8 rounded-xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-[10px] border-none shadow-xl shadow-primary/20">
+                  <a href="/contact">Book Technical Consultation</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );
