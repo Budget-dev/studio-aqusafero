@@ -1,9 +1,10 @@
 
 "use client"
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, ShoppingCart } from "lucide-react";
+import { ChevronRight, ShoppingCart, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
@@ -14,15 +15,20 @@ export function ProductCard(props: Product) {
   const { id, name, price, category, image, description, capacity, discount, isNew } = props;
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addToCart(props);
+    
+    setIsAdded(true);
     toast({
       title: "Added to Cart",
       description: `${name} has been added to your shopping cart.`,
     });
+
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
   return (
@@ -89,9 +95,15 @@ export function ProductCard(props: Product) {
 
           <Button 
             onClick={handleAddToCart}
-            className="w-full h-10 rounded-lg bg-slate-900 hover:bg-primary text-white font-black uppercase text-[10px] tracking-widest gap-2 transition-colors border-none"
+            className={`w-full h-10 rounded-lg font-black uppercase text-[10px] tracking-widest gap-2 transition-all border-none ${
+              isAdded ? 'bg-green-500 hover:bg-green-600' : 'bg-slate-900 hover:bg-primary'
+            }`}
           >
-            <ShoppingCart className="h-3.5 w-3.5" /> Add to Cart
+            {isAdded ? (
+              <><Check className="h-3.5 w-3.5" /> Added to Cart</>
+            ) : (
+              <><ShoppingCart className="h-3.5 w-3.5" /> Add to Cart</>
+            )}
           </Button>
         </div>
       </div>

@@ -2,6 +2,7 @@
 "use client"
 
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { 
   ArrowLeft, 
@@ -18,15 +19,24 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 const STEPS = [
-  { id: 1, name: "Order Confirmed", desc: "Your payment has been verified.", date: "12 May, 10:30 AM", status: "completed", icon: Package },
-  { id: 2, name: "Engineering Check", desc: "Quality inspection for components.", date: "12 May, 02:15 PM", status: "completed", icon: Factory },
-  { id: 3, name: "Processing", desc: "Packing your specialized unit.", date: "Expected 14 May", status: "active", icon: Wrench },
+  { id: 1, name: "Order Confirmed", desc: "Your payment has been verified.", date: "Just now", status: "completed", icon: Package },
+  { id: 2, name: "Engineering Check", desc: "Quality inspection for components.", date: "Today", status: "completed", icon: Factory },
+  { id: 3, name: "Processing", desc: "Packing your specialized unit.", date: "Awaiting", status: "active", icon: Wrench },
   { id: 4, name: "On the Way", desc: "Courier partner has picked up.", date: "Pending", status: "pending", icon: Truck },
   { id: 5, name: "Delivered", desc: "Product handed over to customer.", date: "Pending", status: "pending", icon: CheckCircle2 },
 ];
 
 export default function OrderTrackingPage() {
   const params = useParams();
+  const [order, setOrder] = useState<any>(null);
+
+  useEffect(() => {
+    const savedOrders = JSON.parse(localStorage.getItem('aquasafe-orders') || '[]');
+    const found = savedOrders.find((o: any) => o.id === params.id);
+    setOrder(found);
+  }, [params.id]);
+
+  if (!order) return <div className="min-h-screen flex items-center justify-center">Loading Tracking...</div>;
 
   return (
     <div className="min-h-screen bg-white py-20">
@@ -44,8 +54,8 @@ export default function OrderTrackingPage() {
               <Clock className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Expected Delivery</p>
-              <p className="text-sm font-black text-slate-900 uppercase">24 May, 2024</p>
+              <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Status</p>
+              <p className="text-sm font-black text-slate-900 uppercase">{order.status}</p>
             </div>
           </div>
         </div>
@@ -71,7 +81,7 @@ export default function OrderTrackingPage() {
                         <h4 className={`text-lg font-black font-headline uppercase tracking-tight ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-900'}`}>
                           {step.name}
                         </h4>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{step.date}</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{step.status === 'completed' ? order.date : step.date}</span>
                       </div>
                       <p className={`text-sm font-bold leading-relaxed ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-500'}`}>
                         {step.desc}
@@ -90,13 +100,11 @@ export default function OrderTrackingPage() {
               <div className="flex gap-4">
                 <MapPin className="h-6 w-6 text-primary shrink-0" />
                 <div className="space-y-1">
-                  <p className="text-sm font-black text-slate-900 uppercase">John Doe</p>
+                  <p className="text-sm font-black text-slate-900 uppercase">{order.customerName}</p>
                   <p className="text-sm font-bold text-slate-600 leading-relaxed">
-                    #07-13-23/2, NH-5 Main Road,<br />
-                    Old Gajuwaka, Visakhapatnam,<br />
-                    Andhra Pradesh - 530026
+                    {order.shippingAddress}
                   </p>
-                  <p className="text-sm font-bold text-primary pt-2">+91 99858 XXXXX</p>
+                  <p className="text-sm font-bold text-primary pt-2">{order.phone}</p>
                 </div>
               </div>
             </section>
@@ -104,10 +112,7 @@ export default function OrderTrackingPage() {
             <section className="bg-slate-900 text-white p-8 rounded-3xl space-y-6">
               <h3 className="font-black font-headline uppercase tracking-tight text-lg">Items Summary</h3>
               <div className="space-y-4">
-                {[
-                  { name: "Domestic RO Purifiers", qty: 1, price: "₹12,500" },
-                  { name: "RO Membranes", qty: 2, price: "₹5,000" }
-                ].map((item, i) => (
+                {order.orderItems.map((item: any, i: number) => (
                   <div key={i} className="flex justify-between items-center text-xs">
                     <div className="flex gap-2">
                       <span className="font-bold opacity-60">x{item.qty}</span>
@@ -120,7 +125,7 @@ export default function OrderTrackingPage() {
               <Separator className="bg-white/10" />
               <div className="flex justify-between text-lg font-black font-headline">
                 <span>Paid Total</span>
-                <span className="text-primary">₹20,650</span>
+                <span className="text-primary">{order.total}</span>
               </div>
               <Button asChild className="w-full h-12 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-black uppercase text-[10px] tracking-widest border-none">
                 <Link href="/contact">Support Center <ChevronRight className="ml-1 h-3 w-3" /></Link>

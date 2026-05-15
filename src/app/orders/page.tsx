@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
   Package, 
@@ -17,37 +17,17 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-const MOCK_ORDERS = [
-  {
-    id: "AQ-ORDER-XJ92K8L1",
-    date: "12 May, 2024",
-    status: "Processing",
-    total: "₹20,650",
-    items: ["Domestic RO Purifier", "Membrane Set"],
-    type: "Domestic"
-  },
-  {
-    id: "AQ-ORDER-PL02M3B5",
-    date: "05 May, 2024",
-    status: "Delivered",
-    total: "₹85,000",
-    items: ["250 LPH RO Plant"],
-    type: "Commercial"
-  },
-  {
-    id: "AQ-ORDER-KK88V1N4",
-    date: "28 April, 2024",
-    status: "Cancelled",
-    total: "₹4,500",
-    items: ["Dosing Pump"],
-    type: "Spares"
-  }
-];
-
 export default function OrdersPage() {
   const [search, setSearch] = useState("");
+  const [orders, setOrders] = useState<any[]>([]);
 
-  const filteredOrders = MOCK_ORDERS.filter(order => 
+  useEffect(() => {
+    // Load orders from localStorage
+    const savedOrders = JSON.parse(localStorage.getItem('aquasafe-orders') || '[]');
+    setOrders(savedOrders);
+  }, []);
+
+  const filteredOrders = orders.filter(order => 
     order.id.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -127,7 +107,10 @@ export default function OrdersPage() {
             <div className="text-center py-32 bg-white rounded-3xl border-2 border-dashed border-slate-200 space-y-4">
               <Package className="h-12 w-12 text-slate-300 mx-auto" />
               <h3 className="text-xl font-black font-headline">No orders found</h3>
-              <p className="text-slate-500 font-bold">Try searching with a different order reference.</p>
+              <p className="text-slate-500 font-bold">You haven't purchased any products yet.</p>
+              <Button asChild variant="outline" className="mt-4">
+                <Link href="/products">Browse Catalog</Link>
+              </Button>
             </div>
           )}
         </div>

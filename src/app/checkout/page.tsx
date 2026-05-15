@@ -21,10 +21,12 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/context/cart-context";
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { cart, cartTotal, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("razorpay");
   const [isDetecting, setIsDetecting] = useState(false);
@@ -50,8 +52,6 @@ export default function CheckoutPage() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          // In a real app, you'd use reverse geocoding here
-          // Mocking the behavior for technical accuracy
           setTimeout(() => {
             setFormData(prev => ({
               ...prev,
@@ -74,14 +74,47 @@ export default function CheckoutPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (cart.length === 0) {
+      toast({ variant: "destructive", title: "Cart is empty", description: "Add items before checkout." });
+      return;
+    }
+
     setLoading(true);
     
-    // Simulate order placement
+    // Simulate order placement and save to local history
     setTimeout(() => {
+      const orderId = "AQ-ORDER-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+      const newOrder = {
+        id: orderId,
+        date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+        status: "Processing",
+        total: `₹${(cartTotal * 1.18).toLocaleString('en-IN')}`, // Including simulated GST
+        items: cart.map(item => item.name),
+        type: cart[0].category.split(' ')[0],
+        shippingAddress: `${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}`,
+        phone: formData.phone,
+        customerName: `${formData.firstName} ${formData.lastName}`,
+        orderItems: cart.map(item => ({ name: item.name, qty: item.quantity, price: `₹${item.price.toLocaleString('en-IN')}` }))
+      };
+
+      // Save to localStorage history
+      const existingOrders = JSON.parse(localStorage.getItem('aquasafe-orders') || '[]');
+      localStorage.setItem('aquasafe-orders', JSON.stringify([newOrder, ...existingOrders]));
+
+      clearCart();
       setLoading(false);
-      router.push("/checkout/success");
+      router.push("/checkout/success?orderId=" + orderId);
     }, 2000);
   };
+
+  if (cart.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+        <h2 className="text-2xl font-black font-headline mb-4">Your cart is empty</h2>
+        <Button onClick={() => router.push('/products')}>Go to Catalog</Button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 py-20">
@@ -212,16 +245,13 @@ export default function CheckoutPage() {
               <h2 className="text-2xl font-black font-headline uppercase tracking-tight">Order Review</h2>
               
               <div className="space-y-4">
-                {[
-                  { name: "Domestic RO Purifiers", qty: 1, price: 12500 },
-                  { name: "RO Membranes", qty: 2, price: 5000 }
-                ].map((item, i) => (
+                {cart.map((item, i) => (
                   <div key={i} className="flex justify-between items-center text-xs">
                     <div className="flex gap-2">
-                      <span className="font-bold opacity-60">x{item.qty}</span>
+                      <span className="font-bold opacity-60">x{item.quantity}</span>
                       <span className="font-black uppercase tracking-tight">{item.name}</span>
                     </div>
-                    <span className="font-black">₹{item.price.toLocaleString('en-IN')}</span>
+                    <span className="font-black">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
                   </div>
                 ))}
               </div>
@@ -231,15 +261,15 @@ export default function CheckoutPage() {
               <div className="space-y-3">
                 <div className="flex justify-between text-sm font-bold opacity-60">
                   <span>Subtotal</span>
-                  <span>₹17,500</span>
+                  <span>₹{cartTotal.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-sm font-bold opacity-60">
                   <span>GST (18%)</span>
-                  <span>₹3,150</span>
+                  <span>₹{(cartTotal * 0.18).toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-lg font-black font-headline">
                   <span>Payable</span>
-                  <span className="text-primary">₹20,650</span>
+                  <span className="text-primary">₹{(cartTotal * 1.18).toLocaleString('en-IN')}</span>
                 </div>
               </div>
 

@@ -11,6 +11,7 @@ import {
   Plus, 
   Minus, 
   ShoppingCart,
+  Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +31,7 @@ export default function ProductDetailPage() {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
+  const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -53,10 +55,13 @@ export default function ProductDetailPage() {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
+    setIsAdded(true);
     toast({
       title: "Added to Cart",
       description: `${quantity} x ${product.name} added to your cart.`,
     });
+    
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
   return (
@@ -133,9 +138,15 @@ export default function ProductDetailPage() {
                 
                 <Button 
                   onClick={handleAddToCart}
-                  className="flex-1 h-12 rounded-lg bg-slate-900 hover:bg-primary text-white font-black uppercase tracking-widest text-xs border-none transition-all"
+                  className={`flex-1 h-12 rounded-lg font-black uppercase tracking-widest text-xs border-none transition-all ${
+                    isAdded ? 'bg-green-500 hover:bg-green-600' : 'bg-slate-900 hover:bg-primary'
+                  } text-white`}
                 >
-                  <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+                  {isAdded ? (
+                    <><Check className="mr-2 h-4 w-4" /> Added to Cart</>
+                  ) : (
+                    <><ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart</>
+                  )}
                 </Button>
               </div>
 
