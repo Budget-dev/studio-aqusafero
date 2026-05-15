@@ -21,20 +21,26 @@ export const PRODUCTS: Product[] = [
   // Domestic Products (Small Scale)
   {
     id: "dom-101",
-    name: "Domestic RO Purifiers",
-    price: 12500,
-    originalPrice: 15000,
+    name: "Premium Technical RO Purifier",
+    price: 999,
+    originalPrice: 2999,
     category: "Domestic Products",
     subcategory: "RO Water Purifiers",
     rating: 4.9,
-    reviewsCount: 245,
+    reviewsCount: 312,
     isNew: true,
-    image: "https://picsum.photos/seed/purifier1/800/1000",
-    capacity: "8-15 LPH",
-    description: "Advanced RO purifiers for pure & safe drinking water at home. Features 7-stage filtration and mineral guard.",
+    image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_11_05%20PM.png",
+    capacity: "15 LPH",
+    description: "Advanced engineering meets household safety. This high-performance RO unit features technical 10-stage purification, copper-enriched mineralization, and a precision-engineered filtration membrane for unmatched water purity.",
     stockStatus: "In Stock",
-    deliveryEstimate: "2-3 Days",
-    specs: { "Purification": "7 Stage", "Capacity": "12L", "Warranty": "2 Years", "Power": "36W" }
+    deliveryEstimate: "1-2 Days",
+    specs: { 
+      "Technology": "RO + UV + UF + Copper", 
+      "Stages": "10 Stage Purification", 
+      "Tank Material": "Food Grade Technical ABS", 
+      "Power Consumption": "40W High Efficiency",
+      "Compliance": "ISO 9001:2015 Certified"
+    }
   },
   {
     id: "dom-102",
