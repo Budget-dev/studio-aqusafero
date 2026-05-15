@@ -55,9 +55,6 @@ export default function Navbar() {
   const { user } = useUser()
   const { auth } = useAuth()
 
-  // Hide navbar on auth pages
-  if (pathname === '/login' || pathname === '/signup') return null;
-
   const navigation = [
     { name: "Home", href: "/", icon: Home },
     { name: "About Us", href: "/about", icon: Users },
@@ -115,6 +112,9 @@ export default function Navbar() {
       document.body.style.overflow = "unset"
     }
   }, [isOpen])
+
+  // Hide navbar on auth pages - MUST BE AFTER ALL HOOKS
+  if (pathname === '/login' || pathname === '/signup') return null;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
