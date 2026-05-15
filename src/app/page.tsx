@@ -7,16 +7,9 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Activity, 
-  Building2, 
   Zap, 
   Award, 
   Factory,
-  GraduationCap,
-  Hospital,
-  Hotel,
-  FlaskConical,
-  CupSoda,
-  ZapOff,
   Truck,
   Waves
 } from "lucide-react";
@@ -25,8 +18,6 @@ import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
 
 export default function Home() {
-  const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
-
   return (
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
       {/* Soft Lavender Center Glow */}
@@ -85,8 +76,8 @@ export default function Home() {
               <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
                 <div className="relative aspect-video overflow-hidden rounded-3xl border border-slate-200 shadow-2xl">
                   <Image
-                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png"
-                    alt="Industrial RO Water Treatment"
+                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
+                    alt="AquaSafe RO Plant Solutions"
                     fill
                     className="object-cover"
                     priority
@@ -311,3 +302,4 @@ export default function Home() {
     </div>
   );
 }
+
