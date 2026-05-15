@@ -216,6 +216,7 @@ export default function Navbar() {
           <button 
             className="p-2 text-slate-900 z-[60] relative" 
             onClick={toggleSidebar}
+            aria-label="Toggle Menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -225,7 +226,7 @@ export default function Navbar() {
       {/* Mobile Sidebar (Right Side) */}
       <div
         className={cn(
-          "fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
+          "fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={toggleSidebar}
@@ -233,38 +234,38 @@ export default function Navbar() {
       
       <div
         className={cn(
-          "fixed top-0 right-0 h-full w-[280px] bg-white z-[100] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl",
+          "fixed top-0 right-0 h-svh w-[300px] bg-white z-[100] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         {/* Sidebar Header */}
-        <div className="p-4 border-b flex items-center gap-3 bg-slate-50/50">
-          <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-sm">
-            <span className="text-white font-bold text-base">A</span>
+        <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+            <span className="text-white font-black text-lg">A</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-black text-slate-900 text-xs uppercase tracking-tight leading-none">AquaSafe Hub</span>
-            <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Water Technologies</span>
+            <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AquaSafe Hub</span>
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Water Technologies</span>
           </div>
-          <button onClick={toggleSidebar} className="ml-auto p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
-            <X className="h-4 w-4 text-slate-400" />
+          <button onClick={toggleSidebar} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
+            <X className="h-5 w-5 text-slate-400" />
           </button>
         </div>
 
-        {/* Search Bar */}
-        <div className="px-4 py-4 border-b">
+        {/* Search Bar Area */}
+        <div className="px-5 py-6 border-b shrink-0">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <Input
               type="text"
-              placeholder="Search..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border-slate-200 rounded-lg text-xs font-bold placeholder-slate-400 focus:ring-1 focus:ring-primary h-10"
+              placeholder="Search equipment..."
+              className="w-full pl-10 pr-4 h-12 bg-slate-50 border-slate-200 rounded-xl text-sm font-bold placeholder-slate-400 focus:ring-1 focus:ring-primary"
             />
           </div>
         </div>
 
-        {/* Navigation Section */}
-        <nav className="flex-1 overflow-y-auto px-2 py-4">
+        {/* Scrollable Navigation Section */}
+        <nav className="flex-1 overflow-y-auto px-3 py-6 custom-scrollbar">
           <ul className="space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon;
@@ -273,55 +274,66 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
+                    className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
                   >
-                    <Icon className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
-                    <span className="text-xs font-black uppercase tracking-tight">{item.name}</span>
+                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
+                      <Icon className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
+                    </div>
+                    <span className="text-sm font-black uppercase tracking-tight">{item.name}</span>
+                    <ChevronRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                   </Link>
                 </li>
               );
             })}
-            <Separator className="my-4" />
+            
+            <Separator className="my-6 mx-4" />
+            
             <li>
               <Link
                 href="/orders"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
+                className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
               >
-                <Package className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
-                <span className="text-xs font-black uppercase tracking-tight">My Orders</span>
+                <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
+                  <Package className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-black uppercase tracking-tight">My Orders</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Track Purchases</span>
+                </div>
               </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Profile Section (Bottom) */}
-        <div className="mt-auto border-t">
-          <div className="p-4 bg-slate-50/30">
-            <div className="flex items-center p-2 rounded-xl bg-white border border-slate-100 shadow-sm">
-              <div className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
-                <span className="text-slate-600 font-black text-xs">AS</span>
+        {/* Profile Section (Fixed Bottom) */}
+        <div className="mt-auto border-t bg-slate-50/50 shrink-0">
+          <div className="p-5">
+            <div className="flex items-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm mb-4">
+              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-white shadow-inner">
+                <span className="text-slate-600 font-black text-sm">AS</span>
               </div>
               <div className="ml-3 min-w-0">
-                <p className="text-[11px] font-black text-slate-900 uppercase tracking-tight">Technical Hub</p>
-                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Customer Access</p>
+                <p className="text-xs font-black text-slate-900 uppercase tracking-tight leading-none">Technical Hub</p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Client</p>
+                </div>
               </div>
-              <div className="ml-auto w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
             </div>
-          </div>
 
-          <div className="px-4 pb-6 pt-2">
             <button
               onClick={() => {
                 setIsOpen(false);
                 window.location.href = "/";
               }}
-              className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-red-500 hover:bg-red-50 transition-all duration-200 group"
+              className="w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 font-black uppercase text-xs tracking-widest group"
             >
-              <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5" />
-              <span className="text-xs font-black uppercase tracking-tight">Logout</span>
+              <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
+              Logout
             </button>
           </div>
+          <div className="h-6 bg-white" /> {/* Safe area spacer */}
         </div>
       </div>
     </header>
