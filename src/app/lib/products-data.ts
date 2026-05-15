@@ -43,6 +43,48 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
+    id: "dom-104",
+    name: "Smart Alkaline RO System",
+    price: 15500,
+    originalPrice: 18500,
+    category: "Domestic Products",
+    subcategory: "Alkaline Purifiers",
+    rating: 4.8,
+    reviewsCount: 145,
+    isNew: true,
+    image: "https://aquasaferoworks.sirv.com/Product32.jpg",
+    capacity: "18 LPH",
+    description: "Intelligent water purification with pH balanced alkaline output. Features a digital display for real-time TDS monitoring and filter life alerts.",
+    stockStatus: "In Stock",
+    deliveryEstimate: "1-3 Days",
+    specs: {
+      "pH Range": "7.5 - 8.5",
+      "Filtration": "Active Copper + Alkaline",
+      "Display": "Digital Technical Console",
+      "Storage": "8 Liters Technical Tank"
+    }
+  },
+  {
+    id: "dom-105",
+    name: "Ultra Slim Wall-Mount RO",
+    price: 12800,
+    category: "Domestic Products",
+    subcategory: "Compact Purifiers",
+    rating: 4.6,
+    reviewsCount: 88,
+    image: "https://aquasaferoworks.sirv.com/Product31.jpg",
+    capacity: "12 LPH",
+    description: "Space-saving technical design perfect for modern modular kitchens. Delivers high-rejection purification in a slim, aesthetic form factor.",
+    stockStatus: "In Stock",
+    deliveryEstimate: "2-3 Days",
+    specs: {
+      "Design": "Ultra Slim Profile",
+      "Membrane": "High Rejection TFC",
+      "Mounting": "Wall Mount / Counter Top",
+      "Weight": "7.5 KG Technical Weight"
+    }
+  },
+  {
     id: "dom-102",
     name: "Under Sink RO Systems",
     price: 18500,
@@ -73,6 +115,28 @@ export const PRODUCTS: Product[] = [
     specs: { "Tech": "RO+UV+UF", "Recovery": "40%", "TDS Range": "Up to 2000" }
   },
   // Commercial Products (Medium to Large Scale)
+  {
+    id: "comm-204",
+    name: "High-Flow 500 LPH skid",
+    price: 95000,
+    originalPrice: 110000,
+    category: "Commercial Products",
+    subcategory: "Commercial Skid Units",
+    rating: 4.9,
+    reviewsCount: 12,
+    isNew: true,
+    image: "https://aquasaferoworks.sirv.com/Product30.jpg",
+    capacity: "500 LPH",
+    description: "Industrial-grade skid mounted unit for small production plants and apartment complexes. Features heavy-duty SS pressure vessels and precision pressure gauges.",
+    stockStatus: "Low Stock",
+    deliveryEstimate: "5-7 Days",
+    specs: {
+      "Structure": "MS Powder Coated Skid",
+      "Vessels": "SS 304 Technical Grade",
+      "Pumps": "Vertical Multi-Stage",
+      "Instruments": "Analog Flow & Pressure Meters"
+    }
+  },
   {
     id: "comm-201",
     name: "250 LPH RO Plant",
