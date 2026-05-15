@@ -15,7 +15,7 @@ const CONTACT_REASONS: iCardItem[] = [
     title: "Sales",
     description: "Expert consultation and tailored quotations for industrial water solutions.",
     tag: "Consultation",
-    src: "https://picsum.photos/seed/sales/1200/800",
+    src: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_14_45%20PM.png",
     link: "#",
     color: "#1e293b", // Slate 800
     textColor: "#ffffff",
