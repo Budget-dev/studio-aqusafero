@@ -1,8 +1,11 @@
+
 import { GraduationCap, Award, BookOpen, Clock, Users, CheckCircle2, ArrowRight, ShieldCheck, Microscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export const COURSES = [
   {
@@ -53,27 +56,43 @@ export const COURSES = [
 ];
 
 export default function TrainingsPage() {
+  const heroImage = PlaceHolderImages.find(img => img.id === 'trainings-hero')?.imageUrl;
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative py-24 bg-slate-900 text-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-1/4 pointer-events-none" />
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          {heroImage && (
+            <Image 
+              src={heroImage} 
+              alt="AquaSafe Technical Training" 
+              fill 
+              className="object-cover opacity-40 scale-110 blur-[2px]"
+              priority
+              data-ai-hint="technical training"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl space-y-8">
+          <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-left-4 duration-1000">
             <Badge className="bg-primary hover:bg-primary text-white border-none px-4 py-1 uppercase tracking-widest font-black text-[10px]">
               AquaSafe Technical Academy
             </Badge>
             <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tight leading-[1.05]">
               Master the Art of <span className="text-primary">Water Engineering</span>
             </h1>
-            <p className="text-xl text-slate-400 font-bold leading-relaxed max-w-xl">
+            <p className="text-xl text-slate-300 font-bold leading-relaxed max-w-xl">
               Professional training programs designed to bridge the gap between theory and industrial application. Certification provided upon completion.
             </p>
-            <div className="flex gap-4">
-              <Button asChild size="lg" className="h-14 px-8 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-xs">
+            <div className="flex flex-wrap gap-4">
+              <Button asChild size="lg" className="h-14 px-8 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/20">
                 <Link href="#courses">View All Courses</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-xl border-white/20 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs">
+              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-xl border-white/20 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs backdrop-blur-md">
                 <Link href="/contact">Inquire for Groups</Link>
               </Button>
             </div>
