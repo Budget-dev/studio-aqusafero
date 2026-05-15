@@ -74,7 +74,7 @@ export default function Home() {
               </div>
 
               <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-                <div className="relative aspect-video overflow-hidden rounded-3xl border border-slate-200 shadow-2xl">
+                <div className="relative aspect-video overflow-hidden rounded-3xl">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
                     alt="AquaSafe RO Plant Solutions"
@@ -302,4 +302,3 @@ export default function Home() {
     </div>
   );
 }
-
