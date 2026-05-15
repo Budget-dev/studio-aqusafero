@@ -150,14 +150,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image 
             src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
             alt="AquaSafe Logo" 
-            width={240} 
-            height={65} 
-            className="h-10 md:h-12 w-auto object-contain"
+            width={320} 
+            height={85} 
+            className="h-12 md:h-16 w-auto object-contain"
             priority
           />
         </Link>
