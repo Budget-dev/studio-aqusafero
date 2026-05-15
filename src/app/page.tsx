@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -84,7 +85,7 @@ export default function Home() {
               <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
-                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
+                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png"
                     alt="Industrial RO Water Treatment"
                     fill
                     className="object-cover"

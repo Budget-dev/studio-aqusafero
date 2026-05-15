@@ -25,11 +25,11 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -168,7 +168,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Simplified Mobile Navigation Overlay */}
+      {/* Mobile Menu Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-50 bg-white transition-all duration-300 xl:hidden pt-24",
