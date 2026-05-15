@@ -157,7 +157,7 @@ export default function Navbar() {
             alt="AquaSafe Logo" 
             width={320} 
             height={85} 
-            className="h-12 md:h-16 w-auto object-contain"
+            className="h-12 md:h-[11rem] w-auto object-contain transition-all duration-300"
             priority
           />
         </Link>

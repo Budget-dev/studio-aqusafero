@@ -90,7 +90,7 @@ export default function Footer() {
               alt="AquaSafe Logo" 
               width={280} 
               height={70} 
-              className="h-12 md:h-16 w-auto object-contain brightness-0 invert"
+              className="h-16 md:h-24 w-auto object-contain brightness-0 invert"
             />
           </Link>
           <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
