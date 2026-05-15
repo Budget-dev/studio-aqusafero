@@ -81,7 +81,7 @@ export default function Home() {
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
               <div className="relative aspect-[4/3] rounded-3xl overflow-visible">
                 <Image
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2008_20_08%20PM.png"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_31_10%20AM.png"
                   alt="Industrial RO Water Treatment"
                   fill
                   className="object-cover rounded-3xl"
@@ -250,8 +250,8 @@ export default function Home() {
               </div>
               <div className="absolute -bottom-10 -right-10 grid grid-cols-2 gap-4 p-8 bg-white rounded-3xl shadow-2xl border border-slate-100 hidden md:grid">
                 {[
-                  { stat: "10+", label: "Experience" },
-                  { stat: "500+", label: "Projects" },
+                  { stat: "25+", label: "Experience" },
+                  { stat: "6000+", label: "Projects" },
                   { stat: "100%", label: "Quality" },
                   { stat: "24/7", label: "Support" }
                 ].map((item, i) => (
