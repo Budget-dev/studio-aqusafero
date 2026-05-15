@@ -61,20 +61,21 @@ export default function TrainingsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 bg-slate-900 text-white overflow-hidden">
-        {/* Background Image with Overlay */}
+      <section className="relative py-32 md:py-48 bg-black text-white overflow-hidden">
+        {/* Background Image with Neutral Overlay */}
         <div className="absolute inset-0 z-0">
           {heroImage && (
             <Image 
               src={heroImage} 
               alt="AquaSafe Technical Training" 
               fill 
-              className="object-cover opacity-40 scale-110 blur-[2px]"
+              className="object-cover opacity-90 transition-all duration-700"
               priority
               data-ai-hint="technical training"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+          {/* Neutral dark gradient for text legibility without the blue tint */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -85,14 +86,14 @@ export default function TrainingsPage() {
             <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tight leading-[1.05]">
               Master the Art of <span className="text-primary">Water Engineering</span>
             </h1>
-            <p className="text-xl text-slate-300 font-bold leading-relaxed max-w-xl">
+            <p className="text-xl text-slate-100 font-bold leading-relaxed max-w-xl drop-shadow-md">
               Professional training programs designed to bridge the gap between theory and industrial application. Certification provided upon completion.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="h-14 px-8 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/20">
                 <Link href="#courses">View All Courses</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-xl border-white/20 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs backdrop-blur-md">
+              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-xl border-white/40 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs backdrop-blur-sm">
                 <Link href="/contact">Inquire for Groups</Link>
               </Button>
             </div>
