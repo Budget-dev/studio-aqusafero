@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -5,20 +6,14 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { 
   ChevronRight, 
-  Star, 
   ShieldCheck, 
   Truck, 
   Plus, 
   Minus, 
   ShoppingCart,
-  Heart,
-  Package,
-  Clock,
-  RotateCcw
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Accordion, 
   AccordionContent, 
@@ -27,12 +22,16 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { PRODUCTS, type Product } from "@/app/lib/products-data";
+import { useCart } from "@/context/cart-context";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   useEffect(() => {
     const found = PRODUCTS.find(p => p.id === params.id);
@@ -51,6 +50,14 @@ export default function ProductDetailPage() {
     `https://picsum.photos/seed/${product.id}3/1200/1500`,
     `https://picsum.photos/seed/${product.id}4/1200/1500`,
   ];
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    toast({
+      title: "Added to Cart",
+      description: `${quantity} x ${product.name} added to your cart.`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -124,7 +131,10 @@ export default function ProductDetailPage() {
                   <Button variant="ghost" size="icon" onClick={() => setQuantity(quantity + 1)} className="h-10 w-10 text-slate-400"><Plus className="h-4 w-4" /></Button>
                 </div>
                 
-                <Button className="flex-1 h-12 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-black uppercase tracking-widest text-xs border-none transition-all">
+                <Button 
+                  onClick={handleAddToCart}
+                  className="flex-1 h-12 rounded-lg bg-slate-900 hover:bg-primary text-white font-black uppercase tracking-widest text-xs border-none transition-all"
+                >
                   <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
                 </Button>
               </div>

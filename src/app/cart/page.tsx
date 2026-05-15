@@ -18,26 +18,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-
-const INITIAL_CART = [
-  { id: "dom-101", name: "Domestic RO Purifiers", price: 12500, category: "Domestic Products", image: "https://picsum.photos/seed/purifier1/400/500", quantity: 1 },
-  { id: "spare-301", name: "RO Membranes", price: 2500, category: "Spares and Components", image: "https://picsum.photos/seed/spare1/400/500", quantity: 2 },
-];
+import { useCart } from "@/context/cart-context";
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState(INITIAL_CART);
+  const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const { toast } = useToast();
 
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems(prev => prev.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
-    ));
+  const handleUpdateQuantity = (id: string, delta: number) => {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      updateQuantity(id, Math.max(1, item.quantity + delta));
+    }
   };
 
-  const removeItem = (id: string) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
+  const handleRemoveItem = (id: string) => {
+    removeFromCart(id);
     toast({ title: "Item removed", description: "Cart updated successfully." });
   };
 
@@ -53,19 +50,18 @@ export default function CartPage() {
     }
   };
 
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const discountAmount = subtotal * discount;
-  const tax = (subtotal - discountAmount) * 0.18;
-  const total = subtotal - discountAmount + tax;
+  const discountAmount = cartTotal * discount;
+  const tax = (cartTotal - discountAmount) * 0.18;
+  const total = cartTotal - discountAmount + tax;
 
-  if (cartItems.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center space-y-6">
         <div className="p-8 rounded-full bg-slate-50">
           <Trash2 className="h-16 w-16 text-slate-300" />
         </div>
         <h2 className="text-3xl font-black font-headline">Your cart is empty</h2>
-        <Button asChild className="bg-primary px-8 rounded-xl h-12 font-black uppercase text-xs">
+        <Button asChild className="bg-primary px-8 rounded-xl h-12 font-black uppercase text-xs border-none">
           <Link href="/products">Browse Catalog</Link>
         </Button>
       </div>
@@ -95,7 +91,7 @@ export default function CartPage() {
               </div>
               
               <div className="divide-y divide-slate-100">
-                {cartItems.map((item) => (
+                {cart.map((item) => (
                   <div key={item.id} className="p-6 flex flex-col md:flex-row items-center gap-6">
                     <div className="relative h-24 w-24 rounded-lg overflow-hidden bg-slate-50 shrink-0 border border-slate-100 p-2">
                       <Image src={item.image} alt={item.name} fill className="object-contain" />
@@ -105,7 +101,7 @@ export default function CartPage() {
                       <p className="text-[9px] font-black uppercase tracking-widest text-primary mb-1">{item.category}</p>
                       <h3 className="font-bold text-slate-900 mb-2">{item.name}</h3>
                       <button 
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => handleRemoveItem(item.id)}
                         className="text-destructive font-black uppercase tracking-widest text-[8px] flex items-center justify-center md:justify-start gap-1 hover:opacity-70 transition-opacity"
                       >
                         <Trash2 className="h-3.5 w-3.5" /> Remove Item
@@ -114,9 +110,9 @@ export default function CartPage() {
 
                     <div className="w-32 flex items-center justify-center">
                       <div className="flex items-center bg-slate-50 border border-slate-100 rounded-lg p-1">
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item.id, -1)}><Minus className="h-3 w-3" /></Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleUpdateQuantity(item.id, -1)}><Minus className="h-3 w-3" /></Button>
                         <span className="w-8 text-center font-black text-sm">{item.quantity}</span>
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item.id, 1)}><Plus className="h-3 w-3" /></Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleUpdateQuantity(item.id, 1)}><Plus className="h-3 w-3" /></Button>
                       </div>
                     </div>
 
@@ -146,7 +142,7 @@ export default function CartPage() {
                 </div>
                 <Button 
                   onClick={applyCoupon}
-                  className="h-14 px-8 rounded-xl bg-slate-900 text-white font-black uppercase tracking-widest text-xs"
+                  className="h-14 px-8 rounded-xl bg-slate-900 text-white font-black uppercase tracking-widest text-xs border-none"
                 >
                   Apply
                 </Button>
@@ -164,7 +160,7 @@ export default function CartPage() {
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-sm font-bold opacity-60">
                   <span>Subtotal</span>
-                  <span>₹{subtotal.toLocaleString('en-IN')}</span>
+                  <span>₹{cartTotal.toLocaleString('en-IN')}</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-sm font-bold text-primary">

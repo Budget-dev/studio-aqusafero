@@ -25,8 +25,6 @@ import {
   Search,
   LogOut,
   GraduationCap,
-  Settings,
-  HelpCircle,
   ShoppingCart,
   Package
 } from "lucide-react";
@@ -43,9 +41,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/context/cart-context";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartCount } = useCart();
 
   const navigation = [
     { name: "Home", href: "/", icon: Home },
@@ -196,9 +196,11 @@ export default function Navbar() {
             
             <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white">
-                3
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white animate-in zoom-in">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
@@ -211,7 +213,11 @@ export default function Navbar() {
         <div className="flex items-center gap-3 xl:hidden">
           <Link href="/cart" className="p-2 relative">
             <ShoppingCart className="h-6 w-6 text-slate-900" />
-            <span className="absolute top-1 right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white">3</span>
+            {cartCount > 0 && (
+              <span className="absolute top-1 right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white animate-in zoom-in">
+                {cartCount}
+              </span>
+            )}
           </Link>
           <button 
             className="p-2 text-slate-900 z-[60] relative" 

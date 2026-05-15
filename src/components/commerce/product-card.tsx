@@ -1,25 +1,30 @@
+
 "use client"
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronRight, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/cart-context";
+import { useToast } from "@/hooks/use-toast";
+import { type Product } from "@/app/lib/products-data";
 
-interface ProductCardProps {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  rating: number;
-  image: string;
-  description?: string;
-  capacity?: string;
-  discount?: number;
-  isNew?: boolean;
-}
+export function ProductCard(props: Product) {
+  const { id, name, price, category, image, description, capacity, discount, isNew } = props;
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
-export function ProductCard({ id, name, price, category, rating, image, description, capacity, discount, isNew }: ProductCardProps) {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(props);
+    toast({
+      title: "Added to Cart",
+      description: `${name} has been added to your shopping cart.`,
+    });
+  };
+
   return (
     <div className="group flex flex-col bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
       {/* Image Container */}
@@ -61,24 +66,33 @@ export function ProductCard({ id, name, price, category, rating, image, descript
           </div>
         )}
 
-        <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-50">
-          <div className="flex flex-col">
-            <span className="text-xl font-black text-slate-900">
-              ₹{price.toLocaleString('en-IN')}
-            </span>
-            {discount && (
-              <span className="text-xs text-slate-400 line-through">
-                ₹{((price * 100) / (100 - discount)).toLocaleString('en-IN')}
+        <div className="mt-auto pt-4 border-t border-slate-50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col">
+              <span className="text-xl font-black text-slate-900">
+                ₹{price.toLocaleString('en-IN')}
               </span>
-            )}
+              {discount && (
+                <span className="text-xs text-slate-400 line-through">
+                  ₹{((price * 100) / (100 - discount)).toLocaleString('en-IN')}
+                </span>
+              )}
+            </div>
+            
+            <Link 
+              href={`/products/${id}`}
+              className="flex items-center gap-1 text-[11px] font-bold text-primary uppercase tracking-wider hover:gap-2 transition-all"
+            >
+              View <ChevronRight className="h-3 w-3" />
+            </Link>
           </div>
-          
-          <Link 
-            href={`/products/${id}`}
-            className="flex items-center gap-1 text-[11px] font-bold text-primary uppercase tracking-wider hover:gap-2 transition-all"
+
+          <Button 
+            onClick={handleAddToCart}
+            className="w-full h-10 rounded-lg bg-slate-900 hover:bg-primary text-white font-black uppercase text-[10px] tracking-widest gap-2 transition-colors border-none"
           >
-            View Details <ChevronRight className="h-3 w-3" />
-          </Link>
+            <ShoppingCart className="h-3.5 w-3.5" /> Add to Cart
+          </Button>
         </div>
       </div>
     </div>
