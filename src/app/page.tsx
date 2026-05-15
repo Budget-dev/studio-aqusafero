@@ -52,7 +52,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.4fr] gap-16 items-center">
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="space-y-6">
-                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-full bg-primary/10">
+                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-primary/10">
                     Pure Water. Safe Future.
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight">
@@ -74,15 +74,15 @@ export default function Home() {
 
                 <div className="flex flex-wrap items-center gap-8 text-sm font-black text-slate-900 pt-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-full bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-lg bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
                     High Performance
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-full bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-lg bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
                     Advanced Tech
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-full bg-primary/10"><Zap className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-lg bg-primary/10"><Zap className="h-5 w-5 text-primary" /></div>
                     24/7 Support
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function Home() {
         <section className="py-24">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="text-center mb-16 space-y-6">
-              <div className="inline-block px-6 py-2 rounded-full bg-sky-50 border border-primary/20 shadow-sm">
+              <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
                 <span className="text-xs font-black uppercase tracking-widest text-primary">Industries We Serve</span>
               </div>
               <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
@@ -230,7 +230,7 @@ export default function Home() {
                       Offering easy on-budget solutions
                     </p>
                     <div className="flex items-center gap-4">
-                      <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-full px-5 py-2 uppercase tracking-widest bg-white shadow-sm">
+                      <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-lg px-5 py-2 uppercase tracking-widest bg-white shadow-sm">
                         A Trusted Name in Water Solutions
                       </Badge>
                     </div>

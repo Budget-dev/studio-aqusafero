@@ -43,7 +43,7 @@ export function Cta4({ title, description, buttonText, buttonUrl, items }: Cta4P
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
               {items.map((item, index) => (
                 <div key={index} className="flex items-center gap-4 group">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                     <Check className="h-5 w-5 text-white stroke-[3px]" />
                   </div>
                   <span className="text-lg font-black text-white/90 tracking-tight uppercase text-xs sm:text-sm">
