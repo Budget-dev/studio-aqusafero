@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -27,7 +28,9 @@ import {
   GraduationCap,
   ShoppingCart,
   Package,
-  User
+  User,
+  Settings,
+  ShieldCheck
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -75,9 +78,9 @@ export default function Navbar() {
       href: "/services",
       icon: Wrench,
       children: [
-        { name: "Installation", href: "/services", description: "Precision setup by certified engineering teams." },
-        { name: "AMC Maintenance", href: "/services", description: "Predictive care and scheduled plant auditing." },
-        { name: "Repair", href: "/services", description: "Rapid diagnostic and on-site restoration." },
+        { name: "Installation", href: "/services/installation", description: "Precision setup by certified engineering teams." },
+        { name: "AMC Maintenance", href: "/services/amc-maintenance", description: "Predictive care and scheduled plant auditing." },
+        { name: "Repair", href: "/services/repair", description: "Rapid diagnostic and on-site restoration." },
       ],
     },
     { name: "Trainings", href: "/trainings", icon: GraduationCap },
