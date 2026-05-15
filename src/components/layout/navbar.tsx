@@ -32,10 +32,10 @@ export default function Navbar() {
     {
       name: "Products",
       children: [
-        { name: "RO Plants", href: "/services#industrial" },
-        { name: "Water Systems", href: "/services#commercial" },
-        { name: "Spares", href: "/spares" },
-        { name: "Filters", href: "/filters" },
+        { name: "Domestic Products", href: "/services#residential" },
+        { name: "Commercial Products", href: "/services#commercial" },
+        { name: "Spares and Components", href: "/spares" },
+        { name: "Filters and Chemicals", href: "/filters" },
       ],
     },
     {
@@ -48,7 +48,6 @@ export default function Navbar() {
     },
     { name: "Industries", href: "/clients" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Blog", href: "/resources" },
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -129,7 +128,7 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black">
+          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black border-none text-white">
             <Link href="tel:+919985850777">+91 99858 50777</Link>
           </Button>
         </nav>
@@ -176,7 +175,7 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <Button asChild className="w-full mt-6 h-14 rounded-full text-lg shadow-xl shadow-primary/20 font-black">
+            <Button asChild className="w-full mt-6 h-14 rounded-full text-lg shadow-xl shadow-primary/20 font-black bg-primary text-white border-none">
               <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
             </Button>
           </div>
