@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link";
@@ -24,8 +23,7 @@ import {
   Award,
   Search,
   LogOut,
-  LayoutDashboard,
-  Bell,
+  GraduationCap,
   Settings,
   HelpCircle
 } from "lucide-react";
@@ -69,6 +67,7 @@ export default function Navbar() {
         { name: "Repair", href: "/services", description: "Rapid diagnostic and on-site restoration." },
       ],
     },
+    { name: "Trainings", href: "/trainings", icon: GraduationCap },
     { name: "Our Brands", href: "/brands", icon: Award },
     { name: "Gallery", href: "/gallery", icon: ImageIcon },
     { name: "Contact Us", href: "/contact", icon: Contact2 },
@@ -256,35 +255,15 @@ export default function Navbar() {
                   >
                     <Icon className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
                     <span className="text-xs font-black uppercase tracking-tight">{item.name}</span>
-                    {item.name === "Products" && (
+                    {item.name === "Trainings" && (
                       <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded-full bg-primary/10 text-primary">
-                        Catalog
+                        New
                       </span>
                     )}
                   </Link>
                 </li>
               );
             })}
-            <li>
-              <Link
-                href="/services"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
-              >
-                <Settings className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
-                <span className="text-xs font-black uppercase tracking-tight">Maintenance</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/faqs"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
-              >
-                <HelpCircle className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
-                <span className="text-xs font-black uppercase tracking-tight">Help & Support</span>
-              </Link>
-            </li>
           </ul>
         </nav>
 
