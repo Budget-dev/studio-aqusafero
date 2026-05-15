@@ -92,9 +92,9 @@ export default function Navbar() {
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
               alt="AquaSafe Logo" 
-              width={180} 
-              height={50} 
-              className="h-12 w-auto object-contain"
+              width={220} 
+              height={60} 
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>

@@ -51,9 +51,9 @@ export default function Footer() {
               <Image 
                 src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
                 alt="AquaSafe Logo" 
-                width={180} 
-                height={50} 
-                className="h-10 w-auto object-contain brightness-0 invert"
+                width={240} 
+                height={65} 
+                className="h-12 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="max-w-sm text-sm text-slate-400 leading-relaxed font-semibold">
