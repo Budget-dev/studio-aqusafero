@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -23,17 +22,12 @@ import {
   Image as ImageIcon,
   Contact2,
   Award,
-  Search,
   LogOut,
   GraduationCap,
   ShoppingCart,
-  Package,
-  User,
-  Settings,
-  ShieldCheck
+  Package
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -43,7 +37,6 @@ import {
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
@@ -114,11 +107,10 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  // Hide navbar on auth pages
   if (pathname === '/login' || pathname === '/signup') return null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm h-24 lg:h-36">
       {/* Top Utility Bar */}
       <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
         <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
@@ -157,9 +149,9 @@ export default function Navbar() {
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
-              width={320} 
-              height={85} 
-              className="h-12 md:h-[11rem] w-auto object-contain transition-all duration-300 pointer-events-none"
+              width={400} 
+              height={160} 
+              className="h-16 md:h-[11rem] w-auto object-contain transition-all duration-300 pointer-events-none"
               priority
             />
           </Link>
@@ -198,9 +190,9 @@ export default function Navbar() {
                     <NavigationMenuLink asChild>
                       <Link
                         href={item.href}
-                        className={navigationMenuTriggerStyle()}
+                        className={cn(navigationMenuTriggerStyle(), "font-black text-[11px] uppercase tracking-widest")}
                       >
-                        <span className="font-black text-[11px] uppercase tracking-widest">{item.name}</span>
+                        {item.name}
                       </Link>
                     </NavigationMenuLink>
                   )}

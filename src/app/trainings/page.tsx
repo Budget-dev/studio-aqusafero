@@ -1,11 +1,9 @@
-
 import { GraduationCap, Award, BookOpen, Clock, Users, CheckCircle2, ArrowRight, ShieldCheck, Microscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export const COURSES = [
   {
@@ -60,8 +58,8 @@ export default function TrainingsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-24 md:pt-20 md:pb-40 bg-black text-white overflow-hidden">
+      {/* Hero Section - Reduced padding to pull content up clearing the hanging logo */}
+      <section className="relative pt-24 pb-24 md:pt-32 md:pb-40 bg-black text-white overflow-hidden">
         {/* Background Image with Neutral Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
@@ -73,7 +71,7 @@ export default function TrainingsPage() {
             data-ai-hint="technical training"
           />
           {/* Neutral dark gradient for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">

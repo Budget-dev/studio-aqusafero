@@ -8,17 +8,15 @@ import {
   GraduationCap, 
   CreditCard, 
   ShieldCheck, 
-  CheckCircle2, 
   Loader2,
-  Lock,
-  Mail,
   User,
-  Building2
+  Building2,
+  Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { COURSES } from "../../page";
