@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { 
   Menu, 
   X, 
@@ -21,10 +21,7 @@ import {
   Wrench,
   Users,
   Image as ImageIcon,
-  Contact2,
-  Settings,
-  LogOut,
-  ChevronLeft
+  Contact2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
