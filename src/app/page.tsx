@@ -23,7 +23,8 @@ import {
   CupSoda,
   ZapOff,
   Truck,
-  Target
+  Target,
+  Waves
 } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
@@ -38,10 +39,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-700">
               <div className="space-y-6">
-                <Badge variant="outline" className="text-primary border-primary/20 font-bold tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-full bg-primary/5">
+                <Badge variant="outline" className="text-primary border-primary/20 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-full bg-primary/5">
                   Pure Water. Safe Future.
                 </Badge>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-headline text-slate-900 leading-[1.05] tracking-tight">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight">
                   Complete RO <br />Solutions for <br /><span className="text-primary">Every Industry</span>
                 </h1>
                 <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-bold">
@@ -77,7 +78,7 @@ export default function Home() {
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-visible bg-white">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-visible">
                 <Image
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                   alt="Industrial RO Water Treatment"
@@ -88,7 +89,7 @@ export default function Home() {
                 
                 <div className="absolute bottom-6 right-6 bg-primary text-white p-6 rounded-2xl z-20 border-4 border-white w-32 h-32 flex items-center justify-center">
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-4xl font-black font-headline leading-none tracking-tighter">10+</span>
+                    <span className="text-4xl font-black font-headline leading-none tracking-tighter">25</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90 leading-tight">Years of</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
                   </div>
@@ -99,111 +100,85 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Trust Metrics Strip */}
-      <section className="bg-white py-10 border-y border-slate-100">
+      {/* 2. Solutions We Deliver Section */}
+      <section className="py-24 bg-slate-50/50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-200">
-            {[
-              { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
-              { icon: Award, stat: "100%", label: "Quality Assurance" },
-              { icon: Zap, stat: "Custom", label: "Tailored Solutions" },
-              { icon: ShieldCheck, stat: "Support", label: "Pan India Service Support" }
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-5 lg:px-10 justify-center lg:justify-start group">
-                <div className="p-4 rounded-2xl bg-primary/5 text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-white">
-                  <item.icon className="h-8 w-8" />
-                </div>
-                <div className="flex flex-col">
-                  <div className="text-3xl font-black font-headline text-slate-900 tracking-tighter leading-none">{item.stat}</div>
-                  <div className="text-[11px] font-bold text-slate-600 uppercase tracking-widest mt-1.5">
-                    {item.label}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Core Services Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div className="space-y-4">
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-none font-bold uppercase tracking-widest text-[11px] rounded-full px-4 py-1.5">
-                OUR CORE SERVICES
-              </Badge>
-              <h2 className="text-5xl font-black font-headline text-slate-900 leading-tight tracking-tight">
-                End-to-end Solutions for<br />Pure and Safe Water
-              </h2>
-            </div>
-            <Button asChild className="rounded-xl px-10 h-14 text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none">
-              <Link href="/services">View All Services <ArrowRight className="ml-2 h-5 w-5" /></Link>
-            </Button>
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Solutions We Deliver</h2>
+            <p className="text-lg font-bold text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial RO Water Plant -pouring life to the water.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "RO Plant Manufacturing",
-                desc: "We design & manufacture high-quality RO plants for industrial, commercial & institutional use.",
-                img: "service-industrial",
-                icon: Factory
+                title: "Compact Sewage Treatment Plant",
+                desc: "Compact STP plant is New evolution of sewage Wastewater Treatment, No Land Required installations. We manufacture best packaged sewage treatment plants.",
+                imgId: "stp-compact"
               },
               {
-                title: "Water Plant Services",
-                desc: "Installation, AMC, repair & maintenance services to ensure uninterrupted performance.",
-                img: "team-expert",
-                icon: Activity
+                title: "Commercial RO Plant",
+                desc: "Aqua Safe Water Technologies is a leading Commercial RO Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
+                imgId: "ro-commercial"
               },
               {
-                title: "RO Products",
-                desc: "Wide range of RO systems, filters, membranes, spares & accessories available.",
-                img: "service-commercial",
-                icon: Zap
-              },
-              {
-                title: "Maintenance & Support",
-                desc: "24/7 technical support & AMC services for optimal performance and longer life.",
-                img: "service-residential",
-                icon: ShieldCheck
+                title: "Compact Effluent Treatment Plant",
+                desc: "Effluent Treatment Plant (ETP) is used to treat industrial wastewater and make it reusable by eradicating dissolved impurities present in it.",
+                imgId: "etp-compact"
               }
-            ].map((service, i) => (
-              <Card key={i} className="group overflow-visible border border-slate-100 bg-white shadow-none rounded-2xl flex flex-col p-5 transition-all hover:shadow-xl">
-                <div className="relative aspect-video mb-12">
+            ].map((solution, i) => (
+              <Card key={i} className="group border-none bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <div className="relative aspect-[4/3]">
                   <Image
-                    src={getImage(service.img)?.imageUrl || ""}
-                    alt={service.title}
+                    src={getImage(solution.imgId)?.imageUrl || ""}
+                    alt={solution.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-xl"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute -bottom-6 left-2 p-2 rounded-full bg-primary border-[6px] border-white shadow-lg z-20 flex items-center justify-center w-16 h-16">
-                    <service.icon className="h-8 w-8 text-white" />
-                  </div>
                 </div>
-                <div className="space-y-4 flex-1 flex flex-col">
-                  <h3 className="text-xl font-black font-headline text-slate-900 leading-tight">
-                    {service.title}
+                <CardContent className="p-8 space-y-4">
+                  <h3 className="text-2xl font-black font-headline text-slate-900 leading-tight">
+                    {solution.title}
                   </h3>
-                  <p className="text-sm font-bold text-slate-600 leading-relaxed flex-1">
-                    {service.desc}
+                  <p className="text-sm font-bold text-slate-500 leading-relaxed">
+                    {solution.desc}
                   </p>
-                  <Button asChild className="mt-4 bg-primary text-white text-sm font-black rounded-lg h-11 hover:bg-primary/90 w-fit px-8 shadow-none transition-all">
-                    <Link href="/services">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                  </Button>
-                </div>
+                </CardContent>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
+      {/* 3. High Impact Stats Section */}
+      <section className="bg-primary py-20 text-white overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <Waves className="w-full h-full scale-150 rotate-12" />
+        </div>
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0 lg:divide-x lg:divide-white/20">
+            {[
+              { stat: "10000+", label: "CUSTOMERS" },
+              { stat: "2000+", label: "INDUSTRIES" },
+              { stat: "25", label: "YEARS" },
+              { stat: "6000+", label: "PROJECTS" }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center px-6">
+                <span className="text-6xl md:text-7xl font-black font-headline tracking-tighter mb-2">{item.stat}</span>
+                <span className="text-xs md:text-sm font-black uppercase tracking-[0.2em] opacity-80">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 4. Industries Served Section */}
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16 space-y-6">
-            <div className="inline-block px-5 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Industries We Serve</span>
+            <div className="inline-block px-5 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm">
+              <span className="text-[11px] font-black uppercase tracking-widest text-slate-600">Industries We Serve</span>
             </div>
             <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Trusted Water Solutions for Every Industry</h2>
           </div>
@@ -233,7 +208,7 @@ export default function Home() {
       </section>
 
       {/* 5. Technical Excellence & Milestones Section */}
-      <section className="py-24 bg-white overflow-hidden border-t border-slate-100">
+      <section className="py-24 bg-slate-50/50 overflow-hidden border-t border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7 space-y-8">
@@ -242,7 +217,7 @@ export default function Home() {
                   A Trusted Name in Water Solutions
                 </Badge>
                 <h2 className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight leading-[1.1]">
-                  Milestone Achieved in Delivering Water, Wastewater Treatment and Its Solutions
+                  Milestone Achieved in Delivering water, Wastewater Treatment and Its Solutions
                 </h2>
                 <p className="text-lg font-bold text-slate-600 leading-relaxed">
                   Aqua Safe Water Technologies takes immense pleasure in introducing ourselves as one of the leading Water and Wastewater Treatment Companies in India offering projects and services in the fields of WTP plant manufacturing, WWTP plant manufacturing, ETP plant manufacturing, and STP plant manufacturing, Energy Management, Automation Solutions, and Waste Management.
@@ -279,7 +254,7 @@ export default function Home() {
                   desc: "Offering easy on-budget solutions without compromising the quality." 
                 }
               ].map((item, i) => (
-                <div key={i} className="flex gap-5 p-6 rounded-2xl bg-slate-50 border border-slate-100 group transition-all hover:bg-white hover:shadow-xl">
+                <div key={i} className="flex gap-5 p-6 rounded-2xl bg-white border border-slate-100 group transition-all hover:shadow-xl">
                   <div className="p-4 rounded-xl bg-primary/10 text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-white h-fit">
                     <item.icon className="h-6 w-6" />
                   </div>
@@ -297,9 +272,9 @@ export default function Home() {
       </section>
 
       {/* 6. CTA Banner */}
-      <section className="pb-24">
+      <section className="pb-24 pt-12">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="relative overflow-hidden rounded-3xl bg-slate-900 p-12 md:p-16">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-12 md:p-16">
             <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
               <Droplets className="w-full h-full text-white rotate-12 scale-150" />
             </div>
@@ -315,10 +290,10 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-5">
-                <Button size="lg" className="h-16 px-12 rounded-xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all">
+                <Button size="lg" className="h-16 px-12 rounded-2xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all">
                   <Phone className="mr-2 h-6 w-6" /> Call Now
                 </Button>
-                <Button variant="outline" size="lg" className="h-16 px-12 rounded-xl border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-xl min-w-[240px] backdrop-blur-md transition-all">
+                <Button variant="outline" size="lg" className="h-16 px-12 rounded-2xl border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-xl min-w-[240px] backdrop-blur-md transition-all">
                   <MessageCircle className="mr-2 h-6 w-6" /> WhatsApp Us
                 </Button>
               </div>

@@ -1,40 +1,59 @@
+
 {
   "placeholderImages": [
     {
       "id": "hero-water",
-      "description": "High-tech industrial RO plant with blue storage tanks and stainless steel pipes",
-      "imageUrl": "https://picsum.photos/seed/industrial-ro/1200/800",
-      "imageHint": "industrial RO plant stainless"
+      "description": "Crystal clear water flowing through an industrial filter system",
+      "imageUrl": "https://picsum.photos/seed/aqua1/1200/800",
+      "imageHint": "industrial water filtration"
     },
     {
       "id": "service-industrial",
-      "description": "Close-up of industrial reverse osmosis membrane modules",
-      "imageUrl": "https://picsum.photos/seed/industrial-membrane/800/600",
-      "imageHint": "RO membrane industrial"
+      "description": "Large scale industrial reverse osmosis plant",
+      "imageUrl": "https://picsum.photos/seed/aqua2/600/400",
+      "imageHint": "industrial RO plant"
     },
     {
       "id": "service-commercial",
-      "description": "Commercial water filtration unit for office buildings",
-      "imageUrl": "https://picsum.photos/seed/commercial-water/800/600",
-      "imageHint": "commercial water filtration"
+      "description": "Commercial water purification unit in a professional setting",
+      "imageUrl": "https://picsum.photos/seed/aqua3/600/400",
+      "imageHint": "commercial water treatment"
     },
     {
       "id": "service-residential",
-      "description": "Modern domestic RO water purifier system",
-      "imageUrl": "https://picsum.photos/seed/residential-ro/800/600",
-      "imageHint": "home water purifier"
+      "description": "Compact under-sink residential RO system",
+      "imageUrl": "https://picsum.photos/seed/aqua4/600/400",
+      "imageHint": "home RO system"
     },
     {
       "id": "team-expert",
-      "description": "Industrial water treatment technician checking control panel",
-      "imageUrl": "https://picsum.photos/seed/technician-ro/800/1000",
-      "imageHint": "water treatment technician"
+      "description": "Professional technician inspecting a water treatment panel",
+      "imageUrl": "https://picsum.photos/seed/aqua5/600/400",
+      "imageHint": "water treatment engineer"
     },
     {
       "id": "resource-article",
-      "description": "Abstract water purification technology background",
-      "imageUrl": "https://picsum.photos/seed/water-tech/800/600",
-      "imageHint": "water technology abstract"
+      "description": "Microscopic view of water filtration membrane",
+      "imageUrl": "https://picsum.photos/seed/aqua6/600/400",
+      "imageHint": "RO membrane technology"
+    },
+    {
+      "id": "stp-compact",
+      "description": "Compact Sewage Treatment Plant unit",
+      "imageUrl": "https://picsum.photos/seed/stp-unit/800/600",
+      "imageHint": "sewage treatment plant"
+    },
+    {
+      "id": "ro-commercial",
+      "description": "Commercial Grade RO Water Plant",
+      "imageUrl": "https://picsum.photos/seed/comm-ro-unit/800/600",
+      "imageHint": "commercial RO"
+    },
+    {
+      "id": "etp-compact",
+      "description": "Effluent Treatment Plant installation",
+      "imageUrl": "https://picsum.photos/seed/etp-unit/800/600",
+      "imageHint": "effluent treatment plant"
     }
   ]
 }
