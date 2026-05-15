@@ -21,7 +21,9 @@ import {
   Hotel,
   FlaskConical,
   CupSoda,
-  ZapOff
+  ZapOff,
+  Truck,
+  Target
 } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
@@ -64,7 +66,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:row gap-4 pt-2">
                 <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-xl shadow-primary/20">
+                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none">
                     <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-100 hover:bg-slate-50 text-slate-900 transition-all bg-slate-50/50">
@@ -84,7 +86,7 @@ export default function Home() {
                   priority
                 />
                 
-                <div className="absolute bottom-6 right-6 bg-primary text-white p-6 rounded-2xl z-20 shadow-2xl border-4 border-white w-32 h-32 flex items-center justify-center">
+                <div className="absolute bottom-6 right-6 bg-primary text-white p-6 rounded-2xl z-20 border-4 border-white w-32 h-32 flex items-center justify-center">
                   <div className="flex flex-col items-center text-center">
                     <span className="text-4xl font-black font-headline leading-none tracking-tighter">10+</span>
                     <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90 leading-tight">Years of</span>
@@ -135,7 +137,7 @@ export default function Home() {
                 End-to-end Solutions for<br />Pure and Safe Water
               </h2>
             </div>
-            <Button asChild className="rounded-xl px-10 h-14 text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-lg shadow-primary/20">
+            <Button asChild className="rounded-xl px-10 h-14 text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none">
               <Link href="/services">View All Services <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
@@ -230,51 +232,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Technical Excellence Section */}
+      {/* 5. Technical Excellence & Milestones Section */}
       <section className="py-24 bg-white overflow-hidden border-t border-slate-100">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 space-y-8">
-              <div className="space-y-4">
-                <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-full px-4 py-1.5 uppercase tracking-widest bg-primary/5">Technical Excellence</Badge>
-                <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Pure & Safe Water Systems</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-6">
+                <Badge variant="outline" className="text-primary border-primary/20 text-[11px] font-bold rounded-full px-4 py-1.5 uppercase tracking-widest bg-primary/5">
+                  A Trusted Name in Water Solutions
+                </Badge>
+                <h2 className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight leading-[1.1]">
+                  Milestone Achieved in Delivering Water, Wastewater Treatment and Its Solutions
+                </h2>
                 <p className="text-lg font-bold text-slate-600 leading-relaxed">
-                  Our commitment to quality, innovation and customer satisfaction makes us a trusted partner across industries. Every system is engineered to meet specific technical challenges with precision.
+                  Aqua Safe Water Technologies takes immense pleasure in introducing ourselves as one of the leading Water and Wastewater Treatment Companies in India offering projects and services in the fields of WTP plant manufacturing, WWTP plant manufacturing, ETP plant manufacturing, and STP plant manufacturing, Energy Management, Automation Solutions, and Waste Management.
+                </p>
+                <p className="text-xl font-black text-primary uppercase tracking-tighter italic">
+                  Offering easy on-budget solutions
                 </p>
               </div>
-              <Button asChild className="rounded-xl px-12 h-16 font-black text-lg bg-primary text-white hover:bg-primary/90 shadow-xl shadow-primary/20 border-none transition-all">
-                <Link href="/about">Know More About Us</Link>
+              <Button asChild className="rounded-xl px-12 h-16 font-black text-lg bg-primary text-white hover:bg-primary/90 transition-all border-none">
+                <Link href="/contact">Get a Quote</Link>
               </Button>
             </div>
 
-            <div className="lg:col-span-4 grid grid-cols-2 gap-10">
+            <div className="lg:col-span-5 grid grid-cols-1 gap-6">
               {[
-                { icon: Award, stat: "10+", label: "Years of Experience" },
-                { icon: CheckCircle2, stat: "500+", label: "Projects Completed" },
-                { icon: ShieldCheck, stat: "100%", label: "Quality Assurance" },
-                { icon: Activity, stat: "24/7", label: "Technical Support" }
-              ].map((m, i) => (
-                <div key={i} className="space-y-2 group">
-                  <div className="p-3 rounded-2xl bg-slate-50 w-fit transition-colors group-hover:bg-primary group-hover:text-white">
-                    <m.icon className="h-8 w-8" />
+                { 
+                  icon: Target, 
+                  title: "Our Mission", 
+                  desc: "We are faithful towards delivering the best customer experience by providing the most valuable solutions." 
+                },
+                { 
+                  icon: Award, 
+                  title: "Quality", 
+                  desc: "We are dedicated towards enhancing the customer experience by offering world-class proven products." 
+                },
+                { 
+                  icon: Factory, 
+                  title: "Leading Manufacturer", 
+                  desc: "We are a leading ISO certified manufacturer of water solutions." 
+                },
+                { 
+                  icon: Zap, 
+                  title: "Cost Effective Solutions", 
+                  desc: "Offering easy on-budget solutions without compromising the quality." 
+                }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-5 p-6 rounded-2xl bg-slate-50 border border-slate-100 group transition-all hover:bg-white hover:shadow-xl">
+                  <div className="p-4 rounded-xl bg-primary/10 text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-white h-fit">
+                    <item.icon className="h-6 w-6" />
                   </div>
-                  <div className="text-4xl font-black font-headline text-slate-900">{m.stat}</div>
-                  <div className="text-[11px] font-bold uppercase tracking-widest text-slate-500 leading-tight">
-                    {m.label}
+                  <div className="space-y-1">
+                    <h4 className="text-xl font-black font-headline text-slate-900 uppercase tracking-tight">{item.title}</h4>
+                    <p className="text-sm font-bold text-slate-500 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="lg:col-span-3">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <Image
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2008_20_08%20PM.png"
-                  alt="Industrial RO Equipment"
-                  fill
-                  className="object-cover"
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -299,7 +315,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-5">
-                <Button size="lg" className="h-16 px-12 rounded-xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] shadow-2xl shadow-primary/40 border-none transition-all">
+                <Button size="lg" className="h-16 px-12 rounded-xl bg-primary text-white hover:bg-primary/90 font-black text-xl min-w-[240px] border-none transition-all">
                   <Phone className="mr-2 h-6 w-6" /> Call Now
                 </Button>
                 <Button variant="outline" size="lg" className="h-16 px-12 rounded-xl border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 font-black text-xl min-w-[240px] backdrop-blur-md transition-all">
