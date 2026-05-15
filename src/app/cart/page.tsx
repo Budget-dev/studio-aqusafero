@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image from "next/image";
@@ -14,12 +15,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 const CART_ITEMS = [
-  { id: "1", name: "Industrial RO Plant Type-A", price: 11250, category: "Industrial", image: "https://picsum.photos/seed/ro1/400/500", quantity: 1 },
-  { id: "5", name: "Membrane Master Spares", price: 150, category: "Spares", image: "https://picsum.photos/seed/ro5/400/500", quantity: 2 },
+  { id: "iro-101", name: "Industrial RO Plant Type-A", price: 11250, category: "Industrial Systems", image: "https://picsum.photos/seed/ro1/400/500", quantity: 1 },
+  { id: "memb-spare-505", name: "Membrane Master Spares", price: 150, category: "Spares & Parts", image: "https://picsum.photos/seed/ro5/400/500", quantity: 2 },
+  { id: "carb-med-606", name: "CrystalClear Carbon Media", price: 85, category: "Filters", image: "https://picsum.photos/seed/ro6/400/500", quantity: 5 },
 ];
 
 export default function CartPage() {

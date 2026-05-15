@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react";
@@ -8,7 +9,8 @@ import {
   Grid2X2, 
   LayoutList,
   ChevronRight,
-  FilterX
+  FilterX,
+  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,16 +33,17 @@ import { ProductCard } from "@/components/commerce/product-card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { cn } from "@/lib/utils";
 
-const MOCK_PRODUCTS = [
-  { id: "1", name: "Industrial RO Plant Type-A", price: 12500, category: "Industrial", rating: 4.9, isNew: true, image: "https://picsum.photos/seed/ro1/800/1000", discount: 10 },
-  { id: "2", name: "Modular Desalinization Unit", price: 45000, category: "Industrial", rating: 5.0, image: "https://picsum.photos/seed/ro2/800/1000" },
-  { id: "3", name: "ClinicPurity Pro Max", price: 3200, category: "Commercial", rating: 4.8, isNew: true, image: "https://picsum.photos/seed/ro3/800/1000" },
-  { id: "4", name: "HomeGuard X7 Ultimate", price: 899, category: "Residential", rating: 4.7, image: "https://picsum.photos/seed/ro4/800/1000", discount: 15 },
-  { id: "5", name: "Membrane Master Spares", price: 150, category: "Spares", rating: 4.6, image: "https://picsum.photos/seed/ro5/800/1000" },
-  { id: "6", name: "CrystalClear Carbon Media", price: 85, category: "Filters", rating: 4.9, image: "https://picsum.photos/seed/ro6/800/1000" },
-  { id: "7", name: "ScaleGuard Pro Chemical", price: 120, category: "Chemicals", rating: 4.8, image: "https://picsum.photos/seed/ro7/800/1000" },
-  { id: "8", name: "Digital Flow Meter 2.0", price: 450, category: "Spares", rating: 5.0, image: "https://picsum.photos/seed/ro8/800/1000", isNew: true },
+export const MOCK_PRODUCTS = [
+  { id: "iro-101", name: "Industrial RO Plant Type-A", price: 12500, category: "Industrial Systems", rating: 4.9, isNew: true, image: "https://picsum.photos/seed/ro1/800/1000", discount: 10, description: "High-performance reverse osmosis system designed for 24/7 industrial operations." },
+  { id: "mod-des-202", name: "Modular Desalinization Unit", price: 45000, category: "Industrial Systems", rating: 5.0, image: "https://picsum.photos/seed/ro2/800/1000", description: "Containerized desalinization solution for coastal manufacturing plants." },
+  { id: "comm-pro-303", name: "ClinicPurity Pro Max", price: 3200, category: "Commercial Units", rating: 4.8, isNew: true, image: "https://picsum.photos/seed/ro3/800/1000", description: "Medical-grade water purification for hospitals and specialized clinics." },
+  { id: "home-ult-404", name: "HomeGuard X7 Ultimate", price: 899, category: "Residential Filters", rating: 4.7, image: "https://picsum.photos/seed/ro4/800/1000", discount: 15, description: "7-stage alkaline filtration for the purest household drinking water." },
+  { id: "memb-spare-505", name: "Membrane Master Spares", price: 150, category: "Spares & Parts", rating: 4.6, image: "https://picsum.photos/seed/ro5/800/1000", description: "Spiral-wound TFC replacement membranes for standard systems." },
+  { id: "carb-med-606", name: "CrystalClear Carbon Media", price: 85, category: "Filters", rating: 4.9, image: "https://picsum.photos/seed/ro6/800/1000", description: "Activated coconut shell carbon for superior chemical removal." },
+  { id: "scale-chem-707", name: "ScaleGuard Pro Chemical", price: 120, category: "Chemicals", rating: 4.8, image: "https://picsum.photos/seed/ro7/800/1000", description: "Advanced antiscalant to prevent membrane fouling and scaling." },
+  { id: "flow-met-808", name: "Digital Flow Meter 2.0", price: 450, category: "Spares & Parts", rating: 5.0, image: "https://picsum.photos/seed/ro8/800/1000", isNew: true, description: "Precision ultrasonic flow monitoring with remote connectivity." },
 ];
 
 export default function ProductsPage() {
@@ -193,9 +196,17 @@ export default function ProductsPage() {
                     <SheetHeader>
                       <SheetTitle className="text-left font-headline font-black text-2xl">Filters</SheetTitle>
                     </SheetHeader>
-                    {/* Replicate Sidebar Filters for Mobile */}
-                    <div className="mt-8 space-y-10 overflow-y-auto max-h-[calc(100vh-100px)]">
-                      {/* Mobile Filters Content... */}
+                    <div className="mt-8 space-y-10">
+                       {/* Mobile Filters Content - Replicated briefly */}
+                       <div className="space-y-4">
+                        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900">Categories</h3>
+                        {["Industrial", "Commercial", "Residential", "Spares"].map(c => (
+                          <div key={c} className="flex items-center gap-2">
+                             <Checkbox id={`mob-${c}`} />
+                             <Label htmlFor={`mob-${c}`} className="text-sm font-bold">{c}</Label>
+                          </div>
+                        ))}
+                       </div>
                     </div>
                   </SheetContent>
                 </Sheet>

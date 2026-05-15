@@ -1,6 +1,7 @@
+
 "use client"
 
-import { useState } from "react";
+import Image from "next/image";
 import { 
   Plus, 
   Search, 
@@ -35,13 +36,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const ADMIN_PRODUCTS = [
-  { id: "P-1001", name: "Industrial RO Plant Type-A", sku: "AS-IRO-1001", stock: 12, price: 11250, category: "Industrial", status: "Active" },
-  { id: "P-1005", name: "Membrane Master Spares", sku: "AS-SP-1005", stock: 85, price: 150, category: "Spares", status: "Active" },
-  { id: "P-1009", name: "Modular Desalinization Unit", sku: "AS-IRO-1009", stock: 3, price: 45000, category: "Industrial", status: "Active" },
-  { id: "P-2002", name: "ClinicPurity Pro Max", sku: "AS-COMM-2002", stock: 24, price: 3200, category: "Commercial", status: "Draft" },
-  { id: "P-3001", name: "HomeGuard X7 Ultimate", sku: "AS-RES-3001", stock: 0, price: 899, category: "Residential", status: "Out of Stock" },
+  { id: "iro-101", name: "Industrial RO Plant Type-A", sku: "AS-IRO-101", stock: 12, price: 11250, category: "Industrial", status: "Active" },
+  { id: "mod-des-202", name: "Modular Desalinization Unit", sku: "AS-MOD-202", stock: 3, price: 45000, category: "Industrial", status: "Active" },
+  { id: "comm-pro-303", name: "ClinicPurity Pro Max", sku: "AS-COMM-303", stock: 24, price: 3200, category: "Commercial", status: "Draft" },
+  { id: "home-ult-404", name: "HomeGuard X7 Ultimate", sku: "AS-HOME-404", stock: 0, price: 899, category: "Residential", status: "Out of Stock" },
+  { id: "memb-spare-505", name: "Membrane Master Spares", sku: "AS-SPARE-505", stock: 85, price: 150, category: "Spares", status: "Active" },
+  { id: "carb-med-606", name: "CrystalClear Carbon Media", sku: "AS-FILT-606", stock: 150, price: 85, category: "Filters", status: "Active" },
 ];
 
 export default function AdminProductsPage() {
@@ -50,9 +53,11 @@ export default function AdminProductsPage() {
       {/* Admin Sidebar simulation */}
       <aside className="w-80 bg-slate-900 text-white p-10 flex flex-col gap-12 hidden xl:flex">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-primary"><Package className="h-6 w-6" /></div>
+          <div className="p-2 rounded-xl bg-primary shadow-lg shadow-primary/20">
+            <Package className="h-6 w-6 text-white" />
+          </div>
           <div>
-            <p className="font-black font-headline text-xl leading-none">ADMIN HUB</p>
+            <p className="font-black font-headline text-xl leading-none tracking-tighter">ADMIN HUB</p>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mt-1">v.2.0.29</p>
           </div>
         </div>
