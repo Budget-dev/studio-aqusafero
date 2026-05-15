@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -154,7 +153,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image 
-            src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
+            src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
             alt="AquaSafe Logo" 
             width={240} 
             height={65} 

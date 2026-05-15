@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -87,7 +86,7 @@ export default function Footer() {
         <AnimatedContainer className="space-y-6">
           <Link href="/" className="block">
             <Image 
-              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
+              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
               width={200} 
               height={50} 
