@@ -77,22 +77,14 @@ export default function Home() {
             </div>
 
             <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-visible border-none shadow-none">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border-none shadow-none">
                 <Image
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_31_10%20AM.png"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
                   alt="Industrial RO Water Treatment"
                   fill
                   className="object-cover rounded-3xl"
                   priority
                 />
-                
-                <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl z-20 border-4 border-white w-32 h-32 flex items-center justify-center shadow-2xl">
-                  <div className="flex flex-col items-center text-center">
-                    <span className="text-4xl font-black font-headline leading-none tracking-tighter">25</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-90 leading-tight">Years of</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none opacity-90">Experience</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
