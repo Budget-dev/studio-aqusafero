@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Activity, Calendar, ClipboardCheck, Microscope, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { Activity, Calendar, ClipboardCheck, Microscope, ArrowRight, ShieldCheck, Zap, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
