@@ -25,7 +25,7 @@ const GALLERY_DATA: MediaItemType[] = [
     type: 'image',
     title: 'Compact STP Unit',
     desc: 'New evolution of sewage wastewater treatment for high-rise residential buildings.',
-    url: 'https://picsum.photos/seed/stp-comp/800/600',
+    url: 'https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_44_42%20PM.png',
     span: 'sm:col-span-1 sm:row-span-2'
   },
   {
