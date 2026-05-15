@@ -34,14 +34,17 @@ const Card: FC<iCardProps> = ({
 				style={{backgroundColor: color}}
 			>
         {/* Background Image Overlay */}
-				<div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+				<div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
 					<Image
-						className="w-full h-full object-cover grayscale"
+						className="w-full h-full object-cover"
 						src={src}
 						alt="Background"
 						fill
 					/>
 				</div>
+
+        {/* Gradient for legibility */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
 
 				<span className="font-bold relative text-5xl md:text-8xl mt-5 z-10">
 					<span
