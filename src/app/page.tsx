@@ -41,7 +41,7 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
-        <section className="relative overflow-hidden pt-16 pb-20">
+        <section className="relative overflow-hidden pt-16 pb-20 border-b border-slate-100 bg-slate-50/30">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.4fr] gap-16 items-center">
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
@@ -50,10 +50,10 @@ export default function Home() {
                     Pure Water. Safe Future.
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight">
-                    Complete RO <br />Solutions for <br /><span className="text-primary">Every Industry</span>
+                    Complete RO <br />Solutions for <br /><span className="text-primary">Every Sector</span>
                   </h1>
                   <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
-                    We design, manufacture, install and maintain high-performance RO plants for industrial, commercial & institutional & residential applications.
+                    We design, manufacture, install and maintain high-performance RO plants for industrial, commercial & residential applications.
                   </p>
                 </div>
 
@@ -83,7 +83,7 @@ export default function Home() {
               </div>
 
               <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-video overflow-hidden rounded-3xl border border-slate-200 shadow-2xl">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png"
                     alt="Industrial RO Water Treatment"
@@ -129,7 +129,7 @@ export default function Home() {
               id: "etp",
               title: "Compact Effluent Treatment Plant",
               summary: "Effluent Treatment Plant (ETP) is used to treat industrial wastewater and make it reusable by eradicating dissolved impurities present in it.",
-              image: getImage("etp-compact")?.imageUrl || "",
+              image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_57_02%20PM.png",
               label: "Industrial",
               author: "AquaSafe",
               published: "2024",
@@ -147,7 +147,7 @@ export default function Home() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0 lg:divide-x lg:divide-white/20">
               {[
                 { stat: "10000", label: "CUSTOMERS" },
-                { stat: "2000", label: "INDUSTRIES" },
+                { stat: "2000", label: "INSTALLATIONS" },
                 { stat: "25", label: "YEARS" },
                 { stat: "6000", label: "PROJECTS" }
               ].map((item, i) => (
@@ -160,12 +160,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. Partner Brands Section */}
-        <section className="py-24">
+        {/* 4. Our Brands Section */}
+        <section className="py-24 bg-slate-50/50">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="text-center mb-16 space-y-6">
               <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
-                <span className="text-xs font-black uppercase tracking-widest text-primary">Strategic Technology Partners</span>
+                <span className="text-xs font-black uppercase tracking-widest text-primary">Our Strategic Partners</span>
               </div>
               <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">World-Class Brands Behind Our Technology</h2>
             </div>
@@ -199,7 +199,7 @@ export default function Home() {
         </section>
 
         {/* 5. Technical Excellence Section */}
-        <section className="py-24 overflow-hidden border-t border-slate-100">
+        <section className="py-24 overflow-hidden border-t border-slate-100 bg-white">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
@@ -230,7 +230,7 @@ export default function Home() {
               </div>
 
               <div className="relative">
-                <div className="relative aspect-square overflow-hidden">
+                <div className="relative aspect-square overflow-hidden rounded-[3rem] border-8 border-slate-50 shadow-2xl">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                     alt="Company Milestones"
@@ -277,7 +277,7 @@ export default function Home() {
                   desc: "Offering easy on-budget solutions without compromising the quality." 
                 }
               ].map((item, i) => (
-                <div key={i} className="flex flex-col gap-5 p-8 rounded-[2rem] bg-white border border-slate-100 group transition-all hover:shadow-2xl hover:-translate-y-1">
+                <div key={i} className="flex flex-col gap-5 p-8 rounded-[2rem] bg-slate-50 border border-slate-100 group transition-all hover:shadow-2xl hover:-translate-y-1">
                   <div className="p-4 rounded-xl bg-primary text-white shrink-0 shadow-lg shadow-primary/20 w-fit">
                     <item.icon className="h-6 w-6" />
                   </div>

@@ -4,19 +4,19 @@
     {
       "id": "hero-water",
       "description": "Crystal clear water flowing through an industrial filter system",
-      "imageUrl": "https://picsum.photos/seed/aqua1/1200/800",
+      "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
       "imageHint": "industrial water filtration"
     },
     {
       "id": "service-industrial",
       "description": "Large scale industrial reverse osmosis plant",
-      "imageUrl": "https://picsum.photos/seed/aqua2/600/400",
+      "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
       "imageHint": "industrial RO plant"
     },
     {
       "id": "service-commercial",
       "description": "Commercial water purification unit in a professional setting",
-      "imageUrl": "https://picsum.photos/seed/aqua3/600/400",
+      "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
       "imageHint": "commercial water treatment"
     },
     {
@@ -52,7 +52,7 @@
     {
       "id": "etp-compact",
       "description": "Effluent Treatment Plant installation",
-      "imageUrl": "https://picsum.photos/seed/etp-unit/800/600",
+      "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_57_02%20PM.png",
       "imageHint": "effluent treatment plant"
     }
   ]

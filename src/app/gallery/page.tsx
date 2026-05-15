@@ -9,7 +9,7 @@ const GALLERY_DATA: MediaItemType[] = [
     type: 'image',
     title: 'Industrial RO Installation',
     desc: 'Large scale 10,000 LPH RO plant for a pharmaceutical manufacturing unit in Visakhapatnam.',
-    url: 'https://picsum.photos/seed/ro-ind-1/1200/800',
+    url: 'https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png',
     span: 'sm:col-span-2 sm:row-span-4'
   },
   {
@@ -33,7 +33,7 @@ const GALLERY_DATA: MediaItemType[] = [
     type: 'image',
     title: 'Commercial RO Plant',
     desc: 'Professional RO setup for a leading hotel chain, providing crystal clear water.',
-    url: 'https://picsum.photos/seed/comm-ro-2/800/600',
+    url: 'https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png',
     span: 'sm:col-span-1 sm:row-span-2'
   },
   {
@@ -41,7 +41,7 @@ const GALLERY_DATA: MediaItemType[] = [
     type: 'image',
     title: 'Effluent Treatment Plant',
     desc: 'Customized ETP plant for industrial chemical processing units.',
-    url: 'https://picsum.photos/seed/etp-3/800/600',
+    url: 'https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_57_02%20PM.png',
     span: 'sm:col-span-2 sm:row-span-3'
   },
   {
@@ -73,8 +73,8 @@ export default function GalleryPage() {
       
       {/* Bottom CTA */}
       <div className="container mx-auto px-4 max-w-4xl mt-20 text-center">
-        <div className="p-12 rounded-[2rem] bg-slate-50 border border-slate-100 space-y-6">
-          <h2 className="text-3xl font-black font-headline text-slate-900 tracking-tight">Inspired by our work?</h2>
+        <div className="p-12 rounded-3xl bg-slate-50 border border-slate-100 space-y-6">
+          <h2 className="text-3xl font-black font-headline text-slate-900 tracking-tight text-gradient">Inspired by our work?</h2>
           <p className="text-slate-600 font-bold max-w-lg mx-auto leading-relaxed">
             Every installation we do is custom-engineered to solve specific water quality challenges. Get in touch for your technical assessment.
           </p>
