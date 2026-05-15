@@ -4,10 +4,10 @@ import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { LogIn, Lock, Mail, Loader2, ArrowLeft } from "lucide-react"
+import { LogIn, Loader2, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/firebase"
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 
 export default function LoginPage() {
@@ -38,96 +38,59 @@ export default function LoginPage() {
     }
   }
 
-  const handleGoogleSignIn = async () => {
-    if (!auth) return
-    const provider = new GoogleAuthProvider()
-    try {
-      await signInWithPopup(auth, provider)
-      router.push("/")
-    } catch (error: any) {
-      toast({ variant: "destructive", title: "Error", description: error.message })
-    }
-  }
-
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 p-4">
       <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-black uppercase text-[10px] tracking-widest">
         <ArrowLeft className="h-4 w-4" /> Back to Home
       </Link>
 
-      <div className="w-full max-w-sm bg-white rounded-[2.5rem] shadow-2xl p-10 flex flex-col items-center border border-slate-100">
-        <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-8 shadow-inner group">
-          <LogIn className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+      <div className="w-[350px] bg-white rounded-xl shadow-[rgba(0,0,0,0.35)_0px_5px_15px] p-[20px_30px] flex flex-col">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white mb-6 shadow-[rgba(0,0,0,0.05)_0px_3px_8px]">
+            <LogIn className="w-7 h-7 text-black" />
+          </div>
+          
+          <h2 className="text-[28px] font-extrabold font-headline mb-[30px] text-center text-slate-900 leading-tight">
+            Welcome back
+          </h2>
         </div>
-        
-        <h2 className="text-2xl font-black font-headline mb-2 text-center uppercase tracking-tight text-slate-900">
-          Technical <span className="text-primary">Sign In</span>
-        </h2>
-        <p className="text-slate-400 text-xs font-bold mb-8 text-center uppercase tracking-widest leading-relaxed">
-          Access your technical assets, orders, and specialized configurations.
-        </p>
 
-        <form onSubmit={handleSignIn} className="w-full flex flex-col gap-4 mb-6">
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
-              <Mail className="w-4 h-4" />
-            </span>
-            <input
-              placeholder="EMAIL ADDRESS"
-              type="email"
-              required
-              value={email}
-              className="w-full pl-12 pr-4 h-14 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 text-xs font-black placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+        <form onSubmit={handleSignIn} className="w-full flex flex-col gap-[18px] mb-[15px]">
+          <input
+            placeholder="Email"
+            type="email"
+            required
+            value={email}
+            className="w-full rounded-[20px] border border-[#c0c0c0] outline-0 p-[12px_15px] text-sm text-slate-900 bg-white"
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
-              <Lock className="w-4 h-4" />
-            </span>
-            <input
-              placeholder="PASSWORD"
-              type="password"
-              required
-              value={password}
-              className="w-full pl-12 pr-4 h-14 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 text-xs font-black placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <input
+            placeholder="Password"
+            type="password"
+            required
+            value={password}
+            className="w-full rounded-[20px] border border-[#c0c0c0] outline-0 p-[12px_15px] text-sm text-slate-900 bg-white"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <div className="w-full flex justify-end">
-            <button type="button" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
-              Forgot password?
+            <button type="button" className="text-[9px] font-bold text-[#747474] underline hover:text-black transition-colors">
+              Forgot Password?
             </button>
           </div>
 
-          <Button
+          <button
             type="submit"
             disabled={loading}
-            className="w-full h-14 bg-slate-900 hover:bg-primary text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl transition-all border-none"
+            className="w-full h-10 bg-[teal] hover:brightness-110 text-white font-bold text-sm rounded-[20px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] transition-all flex items-center justify-center"
           >
-            {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Authorize Entry"}
-          </Button>
+            {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : "Log in"}
+          </button>
         </form>
 
-        <div className="flex items-center w-full my-4">
-          <div className="flex-grow border-t border-slate-100"></div>
-          <span className="mx-4 text-[9px] font-black text-slate-300 uppercase tracking-widest">Or connect via</span>
-          <div className="flex-grow border-t border-slate-100"></div>
-        </div>
-
-        <div className="flex gap-4 w-full justify-center">
-          <button 
-            onClick={handleGoogleSignIn}
-            className="flex items-center justify-center w-full h-14 rounded-xl border border-slate-100 bg-white hover:bg-slate-50 transition-all shadow-sm"
-          >
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-6 h-6" />
-          </button>
-        </div>
-
-        <p className="mt-8 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-          New to the hub? <Link href="/signup" className="text-primary hover:underline">Create Account</Link>
+        <p className="text-[10px] text-[#747474] font-medium">
+          Don't have an account? <Link href="/signup" className="text-[11px] font-extrabold text-[teal] underline ml-1">Sign up</Link>
         </p>
       </div>
     </div>

@@ -4,7 +4,7 @@ import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { UserPlus, Lock, Mail, Phone, Loader2, ArrowLeft } from "lucide-react"
+import { UserPlus, Loader2, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
@@ -45,79 +45,56 @@ export default function SignupPage() {
         <ArrowLeft className="h-4 w-4" /> Back to Login
       </Link>
 
-      <div className="w-full max-w-sm bg-white rounded-[2.5rem] shadow-2xl p-10 flex flex-col items-center border border-slate-100">
-        <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-8 shadow-inner group">
-          <UserPlus className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+      <div className="w-[350px] bg-white rounded-xl shadow-[rgba(0,0,0,0.35)_0px_5px_15px] p-[20px_30px] flex flex-col">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white mb-6 shadow-[rgba(0,0,0,0.05)_0px_3px_8px]">
+            <UserPlus className="w-7 h-7 text-black" />
+          </div>
+          
+          <h2 className="text-[28px] font-extrabold font-headline mb-[30px] text-center text-slate-900 leading-tight">
+            Create Account
+          </h2>
         </div>
-        
-        <h2 className="text-2xl font-black font-headline mb-2 text-center uppercase tracking-tight text-slate-900">
-          Create <span className="text-primary">Hub Account</span>
-        </h2>
-        <p className="text-slate-400 text-xs font-bold mb-8 text-center uppercase tracking-widest leading-relaxed">
-          Join our network for specialized water treatment support.
-        </p>
 
-        <form onSubmit={handleSignUp} className="w-full flex flex-col gap-4">
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
-              <Mail className="w-4 h-4" />
-            </span>
-            <input
-              placeholder="EMAIL ADDRESS"
-              type="email"
-              required
-              value={email}
-              className="w-full pl-12 pr-4 h-14 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 text-xs font-black placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+        <form onSubmit={handleSignUp} className="w-full flex flex-col gap-[18px] mb-[15px]">
+          <input
+            placeholder="Email"
+            type="email"
+            required
+            value={email}
+            className="w-full rounded-[20px] border border-[#c0c0c0] outline-0 p-[12px_15px] text-sm text-slate-900 bg-white"
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
-              <Phone className="w-4 h-4" />
-            </span>
-            <input
-              placeholder="PHONE NUMBER"
-              type="tel"
-              required
-              value={phone}
-              className="w-full pl-12 pr-4 h-14 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 text-xs font-black placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
+          <input
+            placeholder="Phone Number"
+            type="tel"
+            required
+            value={phone}
+            className="w-full rounded-[20px] border border-[#c0c0c0] outline-0 p-[12px_15px] text-sm text-slate-900 bg-white"
+            onChange={(e) => setPhone(e.target.value)}
+          />
 
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
-              <Lock className="w-4 h-4" />
-            </span>
-            <input
-              placeholder="SECURE PASSWORD"
-              type="password"
-              required
-              value={password}
-              className="w-full pl-12 pr-4 h-14 rounded-xl border border-slate-100 bg-slate-50 text-slate-900 text-xs font-black placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <input
+            placeholder="Password"
+            type="password"
+            required
+            value={password}
+            className="w-full rounded-[20px] border border-[#c0c0c0] outline-0 p-[12px_15px] text-sm text-slate-900 bg-white"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-          <div className="pt-4">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full h-14 bg-slate-900 hover:bg-primary text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl transition-all border-none"
-            >
-              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Register & Start"}
-            </Button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full h-10 bg-[teal] hover:brightness-110 text-white font-bold text-sm rounded-[20px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] transition-all flex items-center justify-center"
+          >
+            {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : "Register"}
+          </button>
         </form>
 
-        <p className="mt-8 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center leading-relaxed">
-          By registering, you agree to our <br />
-          <button className="text-primary hover:underline">Terms of Service</button>
-        </p>
-
-        <p className="mt-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-          Already have an account? <Link href="/login" className="text-primary hover:underline">Sign In</Link>
+        <p className="text-[10px] text-[#747474] font-medium">
+          Already have an account? <Link href="/login" className="text-[11px] font-extrabold text-[teal] underline ml-1">Sign In</Link>
         </p>
       </div>
     </div>
