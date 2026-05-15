@@ -1,136 +1,159 @@
 
-"use client"
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+import React from 'react';
+import type { ComponentProps, ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { 
   Facebook, 
-  Github, 
   Instagram, 
   Linkedin, 
+  Youtube, 
   Twitter, 
-  Youtube 
-} from "lucide-react";
+  Github,
+  Zap
+} from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
+interface FooterLink {
+  title: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
+interface FooterSection {
+  label: string;
+  links: FooterLink[];
+}
+
+const footerLinks: FooterSection[] = [
+  {
+    label: 'Company',
+    links: [
+      { title: 'About Us', href: '/about' },
+      { title: 'Our Brands', href: '/brands' },
+      { title: 'Gallery', href: '/gallery' },
+      { title: 'Contact Us', href: '/contact' },
+    ],
+  },
+  {
+    label: 'Services',
+    links: [
+      { title: 'Installation', href: '/services/installation' },
+      { title: 'AMC & Maintenance', href: '/services/amc-maintenance' },
+      { title: 'Repair & Diagnostic', href: '/services/repair' },
+      { title: 'Technical Trainings', href: '/trainings' },
+    ],
+  },
+  {
+    label: 'Admin Hub',
+    links: [
+      { title: 'Certificate Portal', href: '/admin/certificates' },
+      { title: 'Invoice Portal', href: '/admin/invoices' },
+      { title: 'Product Catalog', href: '/products' },
+      { title: 'Resources', href: '/resources' },
+    ],
+  },
+  {
+    label: 'Social Links',
+    links: [
+      { title: 'Facebook', href: '#', icon: Facebook },
+      { title: 'Instagram', href: '#', icon: Instagram },
+      { title: 'Youtube', href: '#', icon: Youtube },
+      { title: 'LinkedIn', href: '#', icon: Linkedin },
+    ],
+  },
+];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
   const pathname = usePathname();
 
   // Hide footer on auth pages
   if (pathname === '/login' || pathname === '/signup') return null;
 
-  const company = [
-    { title: 'About Us', href: '/about' },
-    { title: 'Services', href: '/services' },
-    { title: 'Trainings', href: '/trainings' },
-    { title: 'Our Brands', href: '/brands' },
-    { title: 'Products', href: '/products' },
-    { title: 'Certificate Portal', href: '/admin/certificates' },
-    { title: 'Invoice Portal', href: '/admin/invoices' },
-  ];
-
-  const resources = [
-    { title: 'Blog', href: '/resources' },
-    { title: 'News', href: '/news' },
-    { title: 'FAQs', href: '/faqs' },
-    { title: 'Gallery', href: '/gallery' },
-    { title: 'Contact Us', href: '/contact' },
-  ];
-
-  const socialLinks = [
-    { icon: <Facebook className="size-4" />, link: '#', color: 'text-[#1877F2]' },
-    { icon: <Twitter className="size-4" />, link: '#', color: 'text-[#1DA1F2]' },
-    { icon: <Instagram className="size-4" />, link: '#', color: 'text-[#E4405F]' },
-    { icon: <Linkedin className="size-4" />, link: '#', color: 'text-[#0A66C2]' },
-    { icon: <Youtube className="size-4" />, link: '#', color: 'text-[#FF0000]' },
-    { icon: <Github className="size-4" />, link: '#', color: 'text-white' },
-  ];
-
   return (
-    <footer className="relative bg-slate-900 text-slate-300">
-      <div className="mx-auto max-w-7xl px-4">
-        {/* Top Border */}
-        <div className="h-px w-full bg-white/10" />
-        
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-12 py-16">
-          {/* Brand and Description */}
-          <div className="col-span-1 md:col-span-4 flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-3 w-max">
-              <Image 
-                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
-                alt="AquaSafe Logo" 
-                width={300} 
-                height={80} 
-                className="h-16 w-auto object-contain brightness-0 invert"
-              />
-            </Link>
-            <p className="max-w-sm text-sm text-slate-400 leading-relaxed font-semibold">
-              Leading manufacturer and service provider of industrial, commercial, and residential RO plants and purification systems.
-            </p>
-            <div className="flex gap-2">
-              {socialLinks.map((item, i) => (
-                <a
-                  key={i}
-                  className={`hover:bg-white/5 rounded-md border border-white/10 p-2 transition-all ${item.color}`}
-                  target="_blank"
-                  href={item.link}
-                >
-                  {item.icon}
-                </a>
-              ))}
-            </div>
-          </div>
+    <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[3rem] md:rounded-t-[4rem] border-t border-white/10 bg-slate-900 px-6 py-16 lg:py-20 overflow-hidden">
+      {/* Subtle Top Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/50 to-transparent blur-sm" />
+      
+      {/* Radial Gradient Decoration */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20" 
+           style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary)) 0%, transparent 70%)' }} 
+      />
 
-          {/* Resources Column */}
-          <div className="col-span-1">
-            <span className="text-white font-black uppercase tracking-widest text-[10px] mb-4 block">
-              Resources
-            </span>
-            <div className="flex flex-col gap-3">
-              {resources.map(({ href, title }, i) => (
-                <Link
-                  key={i}
-                  className="w-max text-sm font-bold duration-200 hover:text-primary"
-                  href={href}
-                >
-                  {title}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Company Column */}
-          <div className="col-span-1">
-            <span className="text-white font-black uppercase tracking-widest text-[10px] mb-4 block">
-              Company
-            </span>
-            <div className="flex flex-col gap-3">
-              {company.map(({ href, title }, i) => (
-                <Link
-                  key={i}
-                  className="w-max text-sm font-bold duration-200 hover:text-primary"
-                  href={href}
-                >
-                  {title}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Border and Copyright */}
-        <div className="h-px w-full bg-white/10" />
-        <div className="flex flex-col md:flex-row justify-between items-center py-8 gap-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            © {year} AQUASAFE RO SYSTEMS. ALL RIGHTS RESERVED.
+      <div className="relative z-10 grid w-full gap-12 xl:grid-cols-4">
+        <AnimatedContainer className="space-y-6">
+          <Link href="/" className="block">
+            <Image 
+              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2011_18_11%20AM.png" 
+              alt="AquaSafe Logo" 
+              width={200} 
+              height={50} 
+              className="h-10 w-auto object-contain brightness-0 invert"
+            />
+          </Link>
+          <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
+            Engineering Purity Since 2014. <br />
+            Leading manufacturer and service provider of industrial RO plants.
           </p>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            ENGINEERING PURITY SINCE 2014
+          <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
+            © {new Date().getFullYear()} AQUASAFE RO SYSTEMS.
           </p>
+        </AnimatedContainer>
+
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-3">
+          {footerLinks.map((section, index) => (
+            <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
+              <div className="space-y-6">
+                <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-white">
+                  {section.label}
+                </h3>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.title}>
+                      <Link
+                        href={link.href}
+                        className="text-slate-400 hover:text-primary inline-flex items-center text-xs font-bold transition-all duration-300 uppercase tracking-wider group"
+                      >
+                        {link.icon && <link.icon className="me-2 size-3.5 group-hover:scale-110 transition-transform" />}
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedContainer>
+          ))}
         </div>
       </div>
     </footer>
   );
 }
 
+type ViewAnimationProps = {
+  delay?: number;
+  className?: ComponentProps<typeof motion.div>['className'];
+  children: ReactNode;
+};
+
+function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      initial={{ filter: 'blur(10px)', translateY: 20, opacity: 0 }}
+      whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.8, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
