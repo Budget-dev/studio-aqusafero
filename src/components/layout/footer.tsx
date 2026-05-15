@@ -27,6 +27,7 @@ export default function Footer() {
     { title: 'Our Brands', href: '/brands' },
     { title: 'Products', href: '/products' },
     { title: 'Certificate Portal', href: '/admin/certificates' },
+    { title: 'Invoice Portal', href: '/admin/invoices' },
   ];
 
   const resources = [
@@ -132,3 +133,4 @@ export default function Footer() {
     </footer>
   );
 }
+
