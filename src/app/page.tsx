@@ -1,20 +1,14 @@
-
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
-  Droplets, 
   ShieldCheck, 
   ArrowRight, 
   Activity, 
   Building2, 
-  CheckCircle2, 
   Zap, 
   Award, 
-  Phone, 
-  MessageCircle,
   Factory,
   GraduationCap,
   Hospital,
@@ -23,12 +17,11 @@ import {
   CupSoda,
   ZapOff,
   Truck,
-  Target,
-  Waves,
-  Package
+  Waves
 } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import { Cta4 } from "@/components/ui/cta-4";
+import { Blog7 } from "@/components/ui/blog-7";
 
 export default function Home() {
   const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -74,27 +67,27 @@ export default function Home() {
 
                 <div className="flex flex-wrap items-center gap-8 text-sm font-black text-slate-900 pt-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-lg bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-xl bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
                     High Performance
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-lg bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-xl bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
                     Advanced Tech
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-lg bg-primary/10"><Zap className="h-5 w-5 text-primary" /></div>
+                    <div className="p-1.5 rounded-xl bg-primary/10"><Zap className="h-5 w-5 text-primary" /></div>
                     24/7 Support
                   </div>
                 </div>
               </div>
 
               <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-                <div className="relative aspect-video rounded-3xl overflow-hidden border-none shadow-none">
+                <div className="relative aspect-video overflow-hidden">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
                     alt="Industrial RO Water Treatment"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                     priority
                   />
                 </div>
@@ -103,56 +96,46 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 2. Solutions We Deliver Section */}
-        <section className="py-24 border-y border-slate-100">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center mb-16 space-y-4">
-              <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight">Solutions We Deliver</h2>
-              <p className="text-xl font-bold text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial RO Water Plant -pouring life to the water.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {[
-                {
-                  title: "Compact Sewage Treatment Plant",
-                  desc: "Compact STP plant is New evolution of sewage Wastewater Treatment, No Land Required installations. We manufacture best packaged sewage treatment plants.",
-                  imgId: "stp-compact"
-                },
-                {
-                  title: "Commercial RO Plant",
-                  desc: "Aqua Safe Water Technologies is a leading Commercial RO Plant Manufacturer in India. We maintain great professional working relationships with many top vendors for best water treatment plants.",
-                  imgId: "ro-commercial"
-                },
-                {
-                  title: "Compact Effluent Treatment Plant",
-                  desc: "Effluent Treatment Plant (ETP) is used to treat industrial wastewater and make it reusable by eradicating dissolved impurities present in it.",
-                  imgId: "etp-compact"
-                }
-              ].map((solution, i) => (
-                <Card key={i} className="group border-none bg-sky-50/30 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={getImage(solution.imgId)?.imageUrl || ""}
-                      alt={solution.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  <CardContent className="p-8 space-y-4 text-center">
-                    <h3 className="text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors">
-                      {solution.title}
-                    </h3>
-                    <p className="text-base font-bold text-slate-600 leading-relaxed">
-                      {solution.desc}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 2. Solutions We Deliver Section (Using Blog7) */}
+        <Blog7
+          tagline="Ace Technology"
+          heading="Solutions We Deliver"
+          description="We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial RO Water Plant - pouring life to the water."
+          buttonText="View All Solutions"
+          buttonUrl="/services"
+          posts={[
+            {
+              id: "stp",
+              title: "Compact Sewage Treatment Plant",
+              summary: "Compact STP plant is New evolution of sewage Wastewater Treatment, No Land Required installations. We manufacture best packaged sewage treatment plants.",
+              image: getImage("stp-compact")?.imageUrl || "",
+              label: "Industrial",
+              author: "AquaSafe",
+              published: "2024",
+              url: "/services"
+            },
+            {
+              id: "ro",
+              title: "Commercial RO Plant",
+              summary: "Aqua Safe Water Technologies is a leading Commercial RO Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
+              image: getImage("ro-commercial")?.imageUrl || "",
+              label: "Commercial",
+              author: "AquaSafe",
+              published: "2024",
+              url: "/services"
+            },
+            {
+              id: "etp",
+              title: "Compact Effluent Treatment Plant",
+              summary: "Effluent Treatment Plant (ETP) is used to treat industrial wastewater and make it reusable by eradicating dissolved impurities present in it.",
+              image: getImage("etp-compact")?.imageUrl || "",
+              label: "Industrial",
+              author: "AquaSafe",
+              published: "2024",
+              url: "/services"
+            }
+          ]}
+        />
 
         {/* 3. High Impact Stats Section */}
         <section className="bg-primary py-24 text-white overflow-hidden relative">
@@ -242,7 +225,7 @@ export default function Home() {
               </div>
 
               <div className="relative">
-                <div className="relative aspect-square rounded-[2rem] overflow-hidden border-none shadow-none">
+                <div className="relative aspect-square overflow-hidden">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
                     alt="Company Milestones"
@@ -289,8 +272,8 @@ export default function Home() {
                   desc: "Offering easy on-budget solutions without compromising the quality." 
                 }
               ].map((item, i) => (
-                <div key={i} className="flex flex-col gap-5 p-8 rounded-3xl bg-white border border-slate-100 group transition-all hover:shadow-2xl hover:-translate-y-1">
-                  <div className="p-4 rounded-2xl bg-primary text-white shrink-0 shadow-lg shadow-primary/20 w-fit">
+                <div key={i} className="flex flex-col gap-5 p-8 rounded-[2rem] bg-white border border-slate-100 group transition-all hover:shadow-2xl hover:-translate-y-1">
+                  <div className="p-4 rounded-xl bg-primary text-white shrink-0 shadow-lg shadow-primary/20 w-fit">
                     <item.icon className="h-6 w-6" />
                   </div>
                   <div className="space-y-3">
@@ -305,7 +288,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. CTA Banner (Updated to Cta4) */}
+        {/* 6. CTA Banner */}
         <Cta4
           title="Need a Reliable RO Solution for Your Business?"
           description="Talk to our experts today and get the best solution for your needs. We provide end-to-end support from design to maintenance."
