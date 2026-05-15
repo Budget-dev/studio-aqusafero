@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link";
@@ -25,6 +26,7 @@ export default function Footer() {
     { title: 'Trainings', href: '/trainings' },
     { title: 'Our Brands', href: '/brands' },
     { title: 'Products', href: '/products' },
+    { title: 'Certificate Portal', href: '/admin/certificates' },
   ];
 
   const resources = [
