@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { 
   Search, 
@@ -35,7 +35,7 @@ import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { PRODUCTS } from "@/app/lib/products-data";
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category');
   
@@ -196,5 +196,13 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading catalog...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
