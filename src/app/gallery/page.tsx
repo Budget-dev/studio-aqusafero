@@ -1,33 +1,89 @@
 
-import Image from "next/image";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
-import { Card, CardContent } from "@/components/ui/card";
+"use client"
+
+import InteractiveBentoGallery, { type MediaItemType } from "@/components/ui/bento-gallery";
+
+const GALLERY_DATA: MediaItemType[] = [
+  {
+    id: 1,
+    type: 'image',
+    title: 'Industrial RO Installation',
+    desc: 'Large scale 10,000 LPH RO plant for a pharmaceutical manufacturing unit in Visakhapatnam.',
+    url: 'https://picsum.photos/seed/ro-ind-1/1200/800',
+    span: 'sm:col-span-2 sm:row-span-4'
+  },
+  {
+    id: 2,
+    type: 'image',
+    title: 'Hospital Water System',
+    desc: 'Pure water system designed for a local multispecialty hospital.',
+    url: 'https://picsum.photos/seed/ro-hosp/800/600',
+    span: 'sm:col-span-1 sm:row-span-2'
+  },
+  {
+    id: 3,
+    type: 'image',
+    title: 'Compact STP Unit',
+    desc: 'New evolution of sewage wastewater treatment for high-rise residential buildings.',
+    url: 'https://picsum.photos/seed/stp-comp/800/600',
+    span: 'sm:col-span-1 sm:row-span-2'
+  },
+  {
+    id: 4,
+    type: 'image',
+    title: 'Commercial RO Plant',
+    desc: 'Professional RO setup for a leading hotel chain, providing crystal clear water.',
+    url: 'https://picsum.photos/seed/comm-ro-2/800/600',
+    span: 'sm:col-span-1 sm:row-span-2'
+  },
+  {
+    id: 5,
+    type: 'image',
+    title: 'Effluent Treatment Plant',
+    desc: 'Customized ETP plant for industrial chemical processing units.',
+    url: 'https://picsum.photos/seed/etp-3/800/600',
+    span: 'sm:col-span-2 sm:row-span-3'
+  },
+  {
+    id: 6,
+    type: 'image',
+    title: 'Domestic Under-sink Setup',
+    desc: 'Sleek and compact residential RO installation for modern kitchens.',
+    url: 'https://picsum.photos/seed/dom-under/600/800',
+    span: 'sm:col-span-1 sm:row-span-3'
+  },
+  {
+    id: 7,
+    type: 'image',
+    title: 'Power Plant Filtration',
+    desc: 'High-performance filtration system for a major power generation facility.',
+    url: 'https://picsum.photos/seed/power-ro/800/600',
+    span: 'sm:col-span-1 sm:row-span-2'
+  }
+];
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 space-y-4">
-          <h1 className="text-4xl font-bold font-headline text-primary">Installation Gallery</h1>
-          <p className="text-muted-foreground">A visual showcase of our technical excellence in the field.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {PlaceHolderImages.map((img, i) => (
-            <Card key={i} className="overflow-hidden border-none group cursor-pointer">
-              <CardContent className="p-0 relative aspect-square">
-                <Image
-                  src={img.imageUrl}
-                  alt={img.description}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
-                  <p className="text-white text-sm font-medium">{img.description}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+    <div className="min-h-screen py-20 bg-white">
+      <InteractiveBentoGallery 
+        title="Installation Gallery" 
+        description="A visual journey through our technical excellence in water and wastewater treatment projects across India."
+        mediaItems={GALLERY_DATA}
+      />
+      
+      {/* Bottom CTA */}
+      <div className="container mx-auto px-4 max-w-4xl mt-20 text-center">
+        <div className="p-12 rounded-[2rem] bg-slate-50 border border-slate-100 space-y-6">
+          <h2 className="text-3xl font-black font-headline text-slate-900 tracking-tight">Inspired by our work?</h2>
+          <p className="text-slate-600 font-bold max-w-lg mx-auto leading-relaxed">
+            Every installation we do is custom-engineered to solve specific water quality challenges. Get in touch for your technical assessment.
+          </p>
+          <a 
+            href="/contact" 
+            className="inline-flex h-12 items-center px-8 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[11px] hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
+          >
+            Get a Quote
+          </a>
         </div>
       </div>
     </div>
