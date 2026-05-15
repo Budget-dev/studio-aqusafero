@@ -24,7 +24,7 @@ const CONTACT_REASONS: iCardItem[] = [
     title: "Audits",
     description: "Professional water quality audits and plant performance certifications.",
     tag: "Audit",
-    src: "https://picsum.photos/seed/audit/1200/800",
+    src: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_17_43%20PM.png",
     link: "#",
     color: "#334155", // Slate 700
     textColor: "#7dd3fc", // Sky 300
@@ -37,8 +37,8 @@ export default function ContactPage() {
       {/* Intro Parallax Section */}
       <section className="bg-slate-50">
         <div className="container mx-auto px-4 pt-20 text-center">
-          <h2 className="text-sm font-black uppercase tracking-[0.3em] text-primary mb-4">How can we help?</h2>
-          <p className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight">Our Dedicated Channels</p>
+          <h2 className="text-sm font-black uppercase tracking-[0.3em] text-primary mb-4">Next-Gen Intelligence</h2>
+          <p className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight">AI-Optimized Support Ecosystem</p>
         </div>
         <CardsParallax items={CONTACT_REASONS} />
       </section>
