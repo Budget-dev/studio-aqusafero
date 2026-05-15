@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link";
@@ -25,7 +26,9 @@ import {
   LogOut,
   GraduationCap,
   Settings,
-  HelpCircle
+  HelpCircle,
+  ShoppingCart,
+  Package
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,6 +41,7 @@ import {
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 export default function Navbar() {
@@ -75,7 +79,6 @@ export default function Navbar() {
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
-  // Close sidebar on window resize if it's open and we cross the breakpoint
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1280 && isOpen) {
@@ -86,7 +89,6 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
-  // Prevent body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -186,18 +188,38 @@ export default function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
           
-          <Button asChild className="bg-primary hover:bg-primary/90 px-8 rounded-xl h-12 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest ml-6 border-none">
-            <Link href="/contact">Quick Quote</Link>
-          </Button>
+          <div className="flex items-center gap-4 ml-6 pl-6 border-l">
+            <Link href="/orders" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative group" title="My Orders">
+              <Package className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform"></span>
+            </Link>
+            
+            <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
+              <ShoppingCart className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white">
+                3
+              </span>
+            </Link>
+
+            <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
+              <Link href="/contact">Quick Quote</Link>
+            </Button>
+          </div>
         </nav>
 
         {/* Mobile Toggle Button */}
-        <button 
-          className="xl:hidden p-2 text-slate-900 z-[60] relative" 
-          onClick={toggleSidebar}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-3 xl:hidden">
+          <Link href="/cart" className="p-2 relative">
+            <ShoppingCart className="h-6 w-6 text-slate-900" />
+            <span className="absolute top-1 right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white">3</span>
+          </Link>
+          <button 
+            className="p-2 text-slate-900 z-[60] relative" 
+            onClick={toggleSidebar}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar (Right Side) */}
@@ -255,15 +277,21 @@ export default function Navbar() {
                   >
                     <Icon className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
                     <span className="text-xs font-black uppercase tracking-tight">{item.name}</span>
-                    {item.name === "Trainings" && (
-                      <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded-full bg-primary/10 text-primary">
-                        New
-                      </span>
-                    )}
                   </Link>
                 </li>
               );
             })}
+            <Separator className="my-4" />
+            <li>
+              <Link
+                href="/orders"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
+              >
+                <Package className="h-4.5 w-4.5 text-slate-400 group-hover:text-primary transition-colors" />
+                <span className="text-xs font-black uppercase tracking-tight">My Orders</span>
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -276,7 +304,7 @@ export default function Navbar() {
               </div>
               <div className="ml-3 min-w-0">
                 <p className="text-[11px] font-black text-slate-900 uppercase tracking-tight">Technical Hub</p>
-                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Admin Access</p>
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Customer Access</p>
               </div>
               <div className="ml-auto w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
             </div>
