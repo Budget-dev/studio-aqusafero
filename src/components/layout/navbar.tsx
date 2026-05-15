@@ -54,23 +54,23 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
-      {/* Top Utility Bar - Matched to reference image */}
-      <div className="hidden lg:block border-b border-slate-100">
-        <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+      {/* Top Utility Bar */}
+      <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
+        <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
           <div className="flex items-center gap-2">
             <MapPin className="h-3.5 w-3.5 text-primary" />
-            <span>123, Industrial Area, Ahmedabad, Gujarat - 382415</span>
+            <span>#07-13-23/2, Ground Floor, NH-5 Main Road, Old Gajuwaka, Visakhapatnam-530026. Andhra Pradesh, India.</span>
           </div>
           
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-6 border-r border-slate-200 pr-6">
-              <Link href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+              <Link href="tel:+919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <PhoneCall className="h-3.5 w-3.5" /> Call Us
               </Link>
-              <Link href="https://wa.me/919876543210" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+              <Link href="https://wa.me/919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
               </Link>
-              <Link href="mailto:info@aquasafe.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+              <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <Mail className="h-3.5 w-3.5" /> Email Us
               </Link>
             </div>
@@ -106,13 +106,13 @@ export default function Navbar() {
           {navigation.map((item) => (
             item.children ? (
               <DropdownMenu key={item.name}>
-                <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-bold text-slate-600 hover:text-primary transition-colors outline-none focus:ring-0">
+                <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-black text-slate-900 hover:text-primary transition-colors outline-none focus:ring-0">
                   {item.name} <ChevronDown className="h-3 w-3 opacity-50" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-56 p-2 rounded-2xl shadow-2xl border-slate-100">
                   {item.children.map((child) => (
                     <DropdownMenuItem key={child.name} asChild className="rounded-xl px-4 py-2 cursor-pointer focus:bg-primary/5">
-                      <Link href={child.href} className="w-full text-xs font-bold text-slate-600">
+                      <Link href={child.href} className="w-full text-xs font-black text-slate-900">
                         {child.name}
                       </Link>
                     </DropdownMenuItem>
@@ -123,20 +123,20 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-bold text-slate-600 hover:text-primary transition-colors"
+                className="text-sm font-black text-slate-900 hover:text-primary transition-colors"
               >
                 {item.name}
               </Link>
             )
           ))}
           <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black">
-            <Link href="/contact">+91 98765 43210</Link>
+            <Link href="tel:+919985850777">+91 99858 50777</Link>
           </Button>
         </nav>
 
         {/* Mobile Nav Toggle */}
         <button
-          className="xl:hidden p-2 text-slate-600"
+          className="xl:hidden p-2 text-slate-900"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
@@ -151,7 +151,7 @@ export default function Navbar() {
               <div key={item.name} className="flex flex-col">
                 {item.children ? (
                   <>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] px-2 mb-2">
+                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2 mb-2">
                       {item.name}
                     </div>
                     {item.children.map((child) => (
@@ -159,7 +159,7 @@ export default function Navbar() {
                         key={child.name}
                         href={child.href}
                         onClick={() => setIsOpen(false)}
-                        className="text-lg font-bold p-2 text-slate-800 hover:text-primary transition-colors"
+                        className="text-lg font-black p-2 text-slate-900 hover:text-primary transition-colors"
                       >
                         {child.name}
                       </Link>
@@ -169,7 +169,7 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold p-2 text-slate-800 hover:text-primary transition-colors"
+                    className="text-lg font-black p-2 text-slate-900 hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>
