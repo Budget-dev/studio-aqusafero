@@ -1,9 +1,8 @@
-
 "use client"
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from "next/link"
+import Image from "next/image"
+import { useState, useEffect } from "react"
 import { 
   Menu, 
   X, 
@@ -26,10 +25,11 @@ import {
   LogOut,
   GraduationCap,
   ShoppingCart,
-  Package
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+  Package,
+  User
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -38,14 +38,18 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
-import { useCart } from "@/context/cart-context";
+} from "@/components/ui/navigation-menu"
+import { Separator } from "@/components/ui/separator"
+import { cn } from "@/lib/utils"
+import { useCart } from "@/context/cart-context"
+import { useUser, useAuth } from "@/firebase"
+import { signOut } from "firebase/auth"
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { cartCount } = useCart();
+  const [isOpen, setIsOpen] = useState(false)
+  const { cartCount } = useCart()
+  const { user } = useUser()
+  const { auth } = useAuth()
 
   const navigation = [
     { name: "Home", href: "/", icon: Home },
@@ -75,30 +79,35 @@ export default function Navbar() {
     { name: "Our Brands", href: "/brands", icon: Award },
     { name: "Gallery", href: "/gallery", icon: ImageIcon },
     { name: "Contact Us", href: "/contact", icon: Contact2 },
-  ];
+  ]
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  const toggleSidebar = () => setIsOpen(!isOpen)
+
+  const handleLogout = () => {
+    if (auth) signOut(auth)
+    setIsOpen(false)
+  }
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1280 && isOpen) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [isOpen])
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "unset"
     }
     return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+      document.body.style.overflow = "unset"
+    }
+  }, [isOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
@@ -176,12 +185,14 @@ export default function Navbar() {
                       </NavigationMenuContent>
                     </>
                   ) : (
-                    <Link
-                      href={item.href}
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      <span className="font-black text-[11px] uppercase tracking-widest">{item.name}</span>
-                    </Link>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={item.href}
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        <span className="font-black text-[11px] uppercase tracking-widest">{item.name}</span>
+                      </Link>
+                    </NavigationMenuLink>
                   )}
                 </NavigationMenuItem>
               ))}
@@ -189,10 +200,12 @@ export default function Navbar() {
           </NavigationMenu>
           
           <div className="flex items-center gap-4 ml-6 pl-6 border-l">
-            <Link href="/orders" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative group" title="My Orders">
-              <Package className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform"></span>
-            </Link>
+            {user && (
+              <Link href="/orders" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative group" title="My Orders">
+                <Package className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform"></span>
+              </Link>
+            )}
             
             <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
               <ShoppingCart className="h-5 w-5" />
@@ -203,9 +216,20 @@ export default function Navbar() {
               )}
             </Link>
 
-            <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
-              <Link href="/contact">Quick Quote</Link>
-            </Button>
+            {user ? (
+              <div className="flex items-center gap-3 ml-2">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-black text-xs">
+                  {user.email?.[0].toUpperCase()}
+                </div>
+                <button onClick={() => auth && signOut(auth)} className="text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-600">
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
+                <Link href="/login">Sign In</Link>
+              </Button>
+            )}
           </div>
         </nav>
 
@@ -229,7 +253,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar (Right Side) */}
+      {/* Mobile Sidebar */}
       <div
         className={cn(
           "fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -244,7 +268,6 @@ export default function Navbar() {
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        {/* Sidebar Header */}
         <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
             <span className="text-white font-black text-lg">A</span>
@@ -258,23 +281,10 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Search Bar Area */}
-        <div className="px-5 py-6 border-b shrink-0">
-          <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-            <Input
-              type="text"
-              placeholder="Search equipment..."
-              className="w-full pl-10 pr-4 h-12 bg-slate-50 border-slate-200 rounded-xl text-sm font-bold placeholder-slate-400 focus:ring-1 focus:ring-primary"
-            />
-          </div>
-        </div>
-
-        {/* Scrollable Navigation Section */}
-        <nav className="flex-1 overflow-y-auto px-3 py-6 custom-scrollbar">
+        <nav className="flex-1 overflow-y-auto px-3 py-6">
           <ul className="space-y-1">
             {navigation.map((item) => {
-              const Icon = item.icon;
+              const Icon = item.icon
               return (
                 <li key={item.name}>
                   <Link
@@ -289,59 +299,41 @@ export default function Navbar() {
                     <ChevronRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                   </Link>
                 </li>
-              );
+              )
             })}
-            
-            <Separator className="my-6 mx-4" />
-            
-            <li>
-              <Link
-                href="/orders"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
-              >
-                <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
-                  <Package className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-black uppercase tracking-tight">My Orders</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Track Purchases</span>
-                </div>
-              </Link>
-            </li>
           </ul>
         </nav>
 
-        {/* Profile Section (Fixed Bottom) */}
         <div className="mt-auto border-t bg-slate-50/50 shrink-0">
           <div className="p-5">
-            <div className="flex items-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm mb-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-white shadow-inner">
-                <span className="text-slate-600 font-black text-sm">AS</span>
-              </div>
-              <div className="ml-3 min-w-0">
-                <p className="text-xs font-black text-slate-900 uppercase tracking-tight leading-none">Technical Hub</p>
-                <div className="flex items-center gap-1.5 mt-1">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Client</p>
+            {user ? (
+              <div className="space-y-4">
+                <div className="flex items-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-black text-sm">
+                    {user.email?.[0].toUpperCase()}
+                  </div>
+                  <div className="ml-3 min-w-0">
+                    <p className="text-xs font-black text-slate-900 uppercase truncate">{user.email}</p>
+                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Engineer</p>
+                  </div>
                 </div>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 font-black uppercase text-xs tracking-widest group"
+                >
+                  <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
+                  Logout from Hub
+                </button>
               </div>
-            </div>
-
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                window.location.href = "/";
-              }}
-              className="w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 font-black uppercase text-xs tracking-widest group"
-            >
-              <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
-              Logout
-            </button>
+            ) : (
+              <Button asChild className="w-full h-14 rounded-xl font-black uppercase tracking-widest text-xs border-none">
+                <Link href="/login" onClick={() => setIsOpen(false)}>Sign In to Hub</Link>
+              </Button>
+            )}
           </div>
-          <div className="h-6 bg-white" /> {/* Safe area spacer */}
+          <div className="h-6 bg-white" />
         </div>
       </div>
     </header>
-  );
+  )
 }

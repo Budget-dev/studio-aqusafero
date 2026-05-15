@@ -6,7 +6,7 @@ const CONTACT_REASONS: iCardItem[] = [
     title: "Support",
     description: "24/7 technical assistance and rapid diagnostics for your RO plants.",
     tag: "Service",
-    src: "https://picsum.photos/seed/support/1200/800",
+    src: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_08_12%20PM.png",
     link: "#",
     color: "#0f172a", // Slate 900
     textColor: "#38bdf8", // Sky 400
