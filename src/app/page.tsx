@@ -56,18 +56,18 @@ export default function Home() {
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-8 text-sm font-black text-slate-900 pt-2">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-sm font-black text-slate-900 pt-2">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 rounded-xl bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
-                    High Performance
+                    <span className="whitespace-nowrap">High Performance</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 rounded-xl bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
-                    Advanced Tech
+                    <span className="whitespace-nowrap">Advanced Tech</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 rounded-xl bg-primary/10"><Zap className="h-5 w-5 text-primary" /></div>
-                    24/7 Support
+                    <span className="whitespace-nowrap">24/7 Support</span>
                   </div>
                 </div>
               </div>
