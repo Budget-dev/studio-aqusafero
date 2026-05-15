@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link";
@@ -6,7 +7,6 @@ import {
   Droplets, 
   Menu, 
   X, 
-  ChevronDown, 
   PhoneCall, 
   MapPin, 
   MessageCircle, 
@@ -17,11 +17,14 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,18 +35,18 @@ export default function Navbar() {
     {
       name: "Products",
       children: [
-        { name: "Domestic Products", href: "/services#residential" },
-        { name: "Commercial Products", href: "/services#commercial" },
-        { name: "Spares and Components", href: "/spares" },
-        { name: "Filters and Chemicals", href: "/filters" },
+        { name: "Domestic Products", href: "/services#residential", description: "Safe and pure water for your home and family." },
+        { name: "Commercial Products", href: "/services#commercial", description: "High-performance systems for offices and clinics." },
+        { name: "Spares and Components", href: "/spares", description: "Genuine factory-certified replacement parts." },
+        { name: "Filters and Chemicals", href: "/filters", description: "Specialized media for optimal filtration." },
       ],
     },
     {
       name: "Services",
       children: [
-        { name: "Installation", href: "/services" },
-        { name: "AMC Maintenance", href: "/services" },
-        { name: "Repair", href: "/services" },
+        { name: "Installation", href: "/services", description: "Professional setup of your RO plant." },
+        { name: "AMC Maintenance", href: "/services", description: "Ongoing care to ensure system longevity." },
+        { name: "Repair", href: "/services", description: "Fast and reliable troubleshooting services." },
       ],
     },
     { name: "Industries", href: "/clients" },
@@ -101,34 +104,48 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center gap-8">
-          {navigation.map((item) => (
-            item.children ? (
-              <DropdownMenu key={item.name}>
-                <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-black text-slate-900 hover:text-primary transition-colors outline-none focus:ring-0">
-                  {item.name} <ChevronDown className="h-3 w-3 opacity-50" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 p-2 rounded-2xl shadow-2xl border-slate-100">
-                  {item.children.map((child) => (
-                    <DropdownMenuItem key={child.name} asChild className="rounded-xl px-4 py-2 cursor-pointer focus:bg-primary/5">
-                      <Link href={child.href} className="w-full text-xs font-black text-slate-900">
-                        {child.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-black text-slate-900 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            )
-          ))}
-          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black border-none text-white">
+        <nav className="hidden xl:flex items-center gap-2">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navigation.map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  {item.children ? (
+                    <>
+                      <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                          {item.children.map((child) => (
+                            <li key={child.name}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={child.href}
+                                  className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                >
+                                  <div className="text-sm font-black uppercase tracking-tight text-slate-900 leading-none">{child.name}</div>
+                                  <p className="line-clamp-2 text-xs font-bold leading-snug text-slate-500">
+                                    {child.description}
+                                  </p>
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+          
+          <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-full h-11 shadow-lg shadow-primary/20 text-xs font-black border-none text-white ml-4">
             <Link href="tel:+919985850777">+91 99858 50777</Link>
           </Button>
         </nav>
