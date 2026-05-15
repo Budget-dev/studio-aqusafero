@@ -30,12 +30,12 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: <Facebook className="size-4" />, link: '#' },
-    { icon: <Twitter className="size-4" />, link: '#' },
-    { icon: <Instagram className="size-4" />, link: '#' },
-    { icon: <Linkedin className="size-4" />, link: '#' },
-    { icon: <Youtube className="size-4" />, link: '#' },
-    { icon: <Github className="size-4" />, link: '#' },
+    { icon: <Facebook className="size-4" />, link: '#', color: 'text-[#1877F2]' },
+    { icon: <Twitter className="size-4" />, link: '#', color: 'text-[#1DA1F2]' },
+    { icon: <Instagram className="size-4" />, link: '#', color: 'text-[#E4405F]' },
+    { icon: <Linkedin className="size-4" />, link: '#', color: 'text-[#0A66C2]' },
+    { icon: <Youtube className="size-4" />, link: '#', color: 'text-[#FF0000]' },
+    { icon: <Github className="size-4" />, link: '#', color: 'text-white' },
   ];
 
   return (
@@ -63,7 +63,7 @@ export default function Footer() {
               {socialLinks.map((item, i) => (
                 <a
                   key={i}
-                  className="hover:bg-primary/20 rounded-md border border-white/10 p-2 transition-colors"
+                  className={`hover:bg-white/5 rounded-md border border-white/10 p-2 transition-all ${item.color}`}
                   target="_blank"
                   href={item.link}
                 >

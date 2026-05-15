@@ -85,8 +85,8 @@ export default function Navbar() {
               <Link href="tel:+919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <PhoneCall className="h-3.5 w-3.5" /> Call Us
               </Link>
-              <Link href="https://wa.me/919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
+              <Link href="https://wa.me/919985850777" className="flex items-center gap-1.5 hover:text-[#25D366] transition-colors">
+                <MessageCircle className="h-3.5 w-3.5 text-[#25D366]" /> WhatsApp
               </Link>
               <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <Mail className="h-3.5 w-3.5" /> Email
@@ -94,9 +94,9 @@ export default function Navbar() {
             </div>
             
             <div className="flex items-center gap-4">
-              <Link href="#" className="hover:text-primary transition-colors"><Facebook className="h-3.5 w-3.5" /></Link>
-              <Link href="#" className="hover:text-primary transition-colors"><Instagram className="h-3.5 w-3.5" /></Link>
-              <Link href="#" className="hover:text-primary transition-colors"><Linkedin className="h-3.5 w-3.5" /></Link>
+              <Link href="#" className="text-[#1877F2] hover:opacity-75 transition-all"><Facebook className="h-4 w-4" /></Link>
+              <Link href="#" className="text-[#E4405F] hover:opacity-75 transition-all"><Instagram className="h-4 w-4" /></Link>
+              <Link href="#" className="text-[#0A66C2] hover:opacity-75 transition-all"><Linkedin className="h-4 w-4" /></Link>
             </div>
           </div>
         </div>
