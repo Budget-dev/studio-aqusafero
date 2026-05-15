@@ -1,4 +1,3 @@
-
 export interface Product {
   id: string;
   name: string;
@@ -11,6 +10,7 @@ export interface Product {
   isNew?: boolean;
   image: string;
   description: string;
+  capacity?: string;
   discount?: number;
   stockStatus: "In Stock" | "Low Stock" | "Out of Stock";
   deliveryEstimate: string;
@@ -18,126 +18,127 @@ export interface Product {
 }
 
 export const PRODUCTS: Product[] = [
-  // Domestic Products
+  // Domestic Products (Small Scale)
   {
     id: "dom-101",
-    name: "SmartGuard Pro RO Purifier",
-    price: 349,
-    originalPrice: 420,
+    name: "Domestic RO Purifiers",
+    price: 12500,
+    originalPrice: 15000,
     category: "Domestic Products",
     subcategory: "RO Water Purifiers",
     rating: 4.9,
     reviewsCount: 245,
     isNew: true,
     image: "https://picsum.photos/seed/purifier1/800/1000",
-    discount: 15,
+    capacity: "8-15 LPH",
+    description: "Advanced RO purifiers for pure & safe drinking water at home. Features 7-stage filtration and mineral guard.",
     stockStatus: "In Stock",
     deliveryEstimate: "2-3 Days",
-    description: "Next-gen alkaline RO purifier with IoT connectivity and real-time TDS monitoring for the modern home.",
     specs: { "Purification": "7 Stage", "Capacity": "12L", "Warranty": "2 Years", "Power": "36W" }
   },
   {
     id: "dom-102",
-    name: "AquaCrystal Under-Sink System",
-    price: 299,
+    name: "Under Sink RO Systems",
+    price: 18500,
     category: "Domestic Products",
     subcategory: "Under-sink Systems",
     rating: 4.8,
     reviewsCount: 180,
     image: "https://picsum.photos/seed/purifier2/800/1000",
+    capacity: "10-20 LPH",
+    description: "Compact & efficient under-sink RO for kitchens and small spaces. Saves counter space while delivering high purity.",
     stockStatus: "In Stock",
     deliveryEstimate: "3-4 Days",
-    description: "Compact under-sink system that saves space while delivering hospital-grade water purity.",
     specs: { "Type": "Direct Flow", "Filters": "Composite", "Flow Rate": "1.5L/min" }
   },
-  // Commercial Products
+  {
+    id: "dom-103",
+    name: "RO + UV + UF Purifiers",
+    price: 14500,
+    category: "Domestic Products",
+    subcategory: "Multi-stage Purifiers",
+    rating: 4.7,
+    reviewsCount: 95,
+    image: "https://picsum.photos/seed/purifier3/800/1000",
+    capacity: "15-25 LPH",
+    description: "Advanced 3/4 stage purification for enhanced water quality. Perfect for high TDS groundwater sources.",
+    stockStatus: "In Stock",
+    deliveryEstimate: "2-3 Days",
+    specs: { "Tech": "RO+UV+UF", "Recovery": "40%", "TDS Range": "Up to 2000" }
+  },
+  // Commercial Products (Medium to Large Scale)
   {
     id: "comm-201",
-    name: "Industrial RO 500 LPH Plant",
-    price: 4500,
-    originalPrice: 5200,
+    name: "250 LPH RO Plant",
+    price: 85000,
     category: "Commercial Products",
     subcategory: "Industrial RO Plants",
     rating: 5.0,
     reviewsCount: 42,
-    isNew: true,
     image: "https://picsum.photos/seed/plant1/800/1000",
-    discount: 12,
+    capacity: "250 LPH",
+    description: "Suitable for schools, clinics and small commercial establishments. Fully automated with high-quality membrane systems.",
     stockStatus: "In Stock",
     deliveryEstimate: "5-7 Days",
-    description: "High-capacity water treatment plant designed for large-scale production facilities and corporate offices.",
-    specs: { "Capacity": "500 LPH", "Automation": "Fully Auto PLC", "Material": "SS 304" }
+    specs: { "Capacity": "250 LPH", "Automation": "Fully Auto PLC", "Material": "SS 304" }
   },
   {
     id: "comm-202",
-    name: "HospitalPurity UV Matrix",
-    price: 1800,
+    name: "500 LPH RO Plant",
+    price: 125000,
     category: "Commercial Products",
-    subcategory: "Hospital Water Systems",
+    subcategory: "Industrial RO Plants",
     rating: 4.9,
     reviewsCount: 28,
     image: "https://picsum.photos/seed/plant2/800/1000",
-    stockStatus: "Low Stock",
-    deliveryEstimate: "4-5 Days",
-    description: "Multi-stage UV sterilization unit optimized for medical environments and sterile processing.",
+    capacity: "500 LPH",
+    description: "Ideal for medium sized industries, hotels & institutions. Heavy-duty design for consistent performance.",
+    stockStatus: "In Stock",
+    deliveryEstimate: "7-10 Days",
     specs: { "UV Intensity": "40mJ/cm2", "Port Size": "1.5 inch", "Bulb Life": "9000 Hours" }
+  },
+  {
+    id: "comm-203",
+    name: "1000 LPH RO Plant",
+    price: 210000,
+    category: "Commercial Products",
+    subcategory: "Industrial RO Plants",
+    rating: 5.0,
+    reviewsCount: 15,
+    image: "https://picsum.photos/seed/plant3/800/1000",
+    capacity: "1000 LPH",
+    description: "High performance solution for large institutions & industries. Advanced monitoring and control systems.",
+    stockStatus: "In Stock",
+    deliveryEstimate: "10-14 Days",
+    specs: { "Control": "Remote IoT", "Membranes": "Dow Filmtec", "Power": "3-Phase" }
   },
   // Spares
   {
     id: "spare-301",
-    name: "TFC Ultra-Pure Membrane",
-    price: 120,
+    name: "RO Membranes",
+    price: 2500,
     category: "Spares and Components",
-    subcategory: "RO Membranes",
+    subcategory: "Membranes",
     rating: 4.7,
     reviewsCount: 512,
     image: "https://picsum.photos/seed/spare1/800/1000",
+    description: "High rejection RO membranes with TFC technology for maximum durability and purity.",
     stockStatus: "In Stock",
     deliveryEstimate: "1-2 Days",
-    description: "High-rejection thin-film composite membrane for maximum removal of heavy metals.",
     specs: { "Rejection Rate": "98%", "Size": "1812-75 GPD", "Cert": "NSF 58" }
   },
   {
     id: "spare-302",
-    name: "HyperForce Booster Pump",
-    price: 85,
+    name: "Dosing Pumps",
+    price: 4500,
     category: "Spares and Components",
     subcategory: "Pumps",
     rating: 4.8,
     reviewsCount: 320,
     image: "https://picsum.photos/seed/spare2/800/1000",
+    description: "Accurate dosing for better efficiency. Compatible with major industrial RO plant brands.",
     stockStatus: "In Stock",
     deliveryEstimate: "2-3 Days",
-    description: "Silent operation high-pressure pump compatible with all standard domestic RO units.",
     specs: { "Pressure": "100 PSI", "Current": "1.2A", "Voltage": "24V DC" }
-  },
-  // Filters & Chemicals
-  {
-    id: "filt-401",
-    name: "CrystalCarbon Block Filter",
-    price: 45,
-    category: "Filters and Chemicals",
-    subcategory: "Carbon Filters",
-    rating: 4.9,
-    reviewsCount: 890,
-    image: "https://picsum.photos/seed/filt1/800/1000",
-    stockStatus: "In Stock",
-    deliveryEstimate: "1-2 Days",
-    description: "Premium activated coconut shell carbon block for superior chlorine and VOC removal.",
-    specs: { "Life": "6000 Gallons", "Micron": "5 Micron", "Standard": "Universal 10\"" }
-  },
-  {
-    id: "filt-402",
-    name: "Antiscalant ScaleGuard Pro",
-    price: 65,
-    category: "Filters and Chemicals",
-    subcategory: "Cleaning Chemicals",
-    rating: 4.6,
-    reviewsCount: 156,
-    image: "https://picsum.photos/seed/filt2/800/1000",
-    stockStatus: "In Stock",
-    deliveryEstimate: "2-3 Days",
-    description: "Liquid antiscalant solution that prevents membrane fouling and extends plant life by 40%.",
-    specs: { "Weight": "5 Kg", "pH": "Neutral", "Concentration": "100%" }
   }
 ];
