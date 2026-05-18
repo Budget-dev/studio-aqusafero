@@ -91,7 +91,7 @@ export default function Home() {
         <Blog7
           tagline="Ace Technology"
           heading="Solutions We Deliver"
-          description="We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial water treatment Plant - pouring life to the water."
+          description="We deliver ace technology like Drinking water treatment, Sewage Treatment and Effluent Treatment Plants for Industrial/Commercial Water treatment - pouring life to the water."
           buttonText="View All Solutions"
           buttonUrl="/services"
           posts={[
@@ -106,9 +106,9 @@ export default function Home() {
               url: "/services"
             },
             {
-              id: "ro",
-              title: "Commercial water treatment Plant",
-              summary: "Aqua Safe Water Technologies is a leading Commercial water treatment Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
+              id: "drinking-water",
+              title: "Drinking water treatment Plant",
+              summary: "We design and manufacture high-capacity drinking water purification systems that meet international safety standards for industrial and commercial use.",
               image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
               label: "Commercial",
               author: "AquaSafe",

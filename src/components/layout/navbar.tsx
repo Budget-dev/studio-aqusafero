@@ -57,7 +57,7 @@ export default function Navbar() {
       href: "/products",
       icon: Droplets,
       children: [
-        { name: "Domestic Products", href: "/products?category=Domestic+Products", description: "Premium RO, UV, and alkaline systems for households." },
+        { name: "Domestic Products", href: "/products?category=Domestic+Products", description: "Premium purification and alkaline systems for households." },
         { name: "Commercial Products", href: "/products?category=Commercial+Products", description: "High-volume treatment for hospitals and industry." },
         { name: "Spares and Components", href: "/products?category=Spares+and+Components", description: "Certified pumps, membranes, and fittings." },
         { name: "Filters and Chemicals", href: "/products?category=Filters+and+Chemicals", description: "Membrane cleaners, antiscalants, and media." },

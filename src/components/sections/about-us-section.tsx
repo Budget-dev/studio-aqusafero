@@ -67,7 +67,7 @@ export default function AboutUsSection() {
       secondaryIcon: <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-primary/40" />,
       title: "Engineering",
       description:
-        "Precision-engineered RO systems designed to exact micron-level specifications for industrial and commercial use.",
+        "Precision-engineered water treatment systems designed to exact micron-level specifications for industrial and commercial use.",
       position: "left",
       link: "/services"
     },
@@ -103,7 +103,7 @@ export default function AboutUsSection() {
       secondaryIcon: <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-primary/40" />,
       title: "Maintenance",
       description:
-        "Predictive Annual Maintenance Contracts (AMC) that prevent downtime and extend the lifespan of your RO membranes.",
+        "Predictive Annual Maintenance Contracts (AMC) that prevent downtime and extend the lifespan of your purification membranes.",
       position: "right",
       link: "/services"
     },
@@ -202,7 +202,7 @@ export default function AboutUsSection() {
               >
                 <img
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2012%2C%202026%2C%2007_19_40%20PM.png"
-                  alt="Industrial RO Plant"
+                  alt="Industrial Water Treatment Plant"
                   className="w-full aspect-[4/5] object-cover"
                 />
                 <motion.div

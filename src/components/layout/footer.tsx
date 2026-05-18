@@ -88,17 +88,17 @@ export default function Footer() {
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
-              width={280} 
-              height={70} 
-              className="h-16 md:h-24 w-auto object-contain brightness-0 invert"
+              width={400} 
+              height={160} 
+              className="h-16 md:h-[10rem] w-auto object-contain brightness-0 invert"
             />
           </Link>
           <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
             Engineering Purity Since 2014. <br />
-            Leading manufacturer and service provider of industrial RO plants.
+            Leading manufacturer and service provider of water treatment plants.
           </p>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
-            © {new Date().getFullYear()} AQUASAFE RO SYSTEMS.
+            © {new Date().getFullYear()} AQUASAFE WATER TECHNOLOGIES.
           </p>
         </AnimatedContainer>
 
