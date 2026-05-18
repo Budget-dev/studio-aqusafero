@@ -40,10 +40,10 @@ export default function Home() {
                     Pure Water. Safe Future.
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight">
-                    Complete RO <br />Solutions for <br /><span className="text-primary">Every Sector</span>
+                    Complete water <br />Solutions for <br /><span className="text-primary">Every Sector</span>
                   </h1>
                   <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
-                    We design, manufacture, install and maintain high-performance RO plants for industrial, commercial & residential applications.
+                    We design, manufacture, install and maintain high-performance water treatment plants for industrial, commercial & residential applications.
                   </p>
                 </div>
 
@@ -76,7 +76,7 @@ export default function Home() {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
-                    alt="AquaSafe RO Plant Solutions"
+                    alt="AquaSafe Water Plant Solutions"
                     fill
                     className="object-cover"
                     priority
@@ -91,7 +91,7 @@ export default function Home() {
         <Blog7
           tagline="Ace Technology"
           heading="Solutions We Deliver"
-          description="We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial RO Water Plant - pouring life to the water."
+          description="We deliver ace technology like Sewage Treatment Plant, Effluent Treatment Plant, Industrial/Commercial water treatment Plant - pouring life to the water."
           buttonText="View All Solutions"
           buttonUrl="/services"
           posts={[
@@ -107,8 +107,8 @@ export default function Home() {
             },
             {
               id: "ro",
-              title: "Commercial RO Plant",
-              summary: "Aqua Safe Water Technologies is a leading Commercial RO Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
+              title: "Commercial water treatment Plant",
+              summary: "Aqua Safe Water Technologies is a leading Commercial water treatment Plant Manufacturer in India. We maintain great professional working relationships with many top vendors.",
               image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
               label: "Commercial",
               author: "AquaSafe",
@@ -171,7 +171,7 @@ export default function Home() {
 
         {/* 5. CTA Banner */}
         <Cta4
-          title="Need a Reliable RO Solution for Your Business?"
+          title="Need a Reliable water treatment Solution for Your Business?"
           description="Talk to our experts today and get the best solution for your needs. We provide end-to-end support from design to maintenance."
           buttonText="Get Started"
           buttonUrl="/contact"
