@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -19,7 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { COURSES } from "../../page";
+import { COURSES } from "@/app/lib/trainings-data";
 
 export default function EnrollmentPage() {
   const params = useParams();
@@ -46,7 +47,7 @@ export default function EnrollmentPage() {
       setLoading(false);
       toast({
         title: "Enrollment Successful",
-        description: `You are now enrolled in ${course.title}.`,
+        description: `You are now enrolled in ${course?.title}.`,
       });
       router.push("/trainings/enroll/success");
     }, 2000);
@@ -59,7 +60,7 @@ export default function EnrollmentPage() {
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="mb-12">
           <Button asChild variant="ghost" className="mb-6 font-black uppercase text-[10px] tracking-widest text-slate-400 hover:text-primary">
-            <Link href="/trainings"><ChevronLeft className="mr-2 h-4 w-4" /> Back to Academy</Link>
+            <Link href={`/trainings/${course.id}`}><ChevronLeft className="mr-2 h-4 w-4" /> Back to Details</Link>
           </Button>
           <h1 className="text-4xl font-black font-headline text-slate-900 uppercase tracking-tight">Technical <span className="text-primary">Enrollment</span></h1>
         </div>
