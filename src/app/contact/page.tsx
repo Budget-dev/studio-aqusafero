@@ -38,7 +38,7 @@ export default function ContactPage() {
       <section className="bg-slate-50">
         <div className="container mx-auto px-4 pt-20 text-center">
           <h2 className="text-sm font-black uppercase tracking-[0.3em] text-primary mb-4">Next-Gen Intelligence</h2>
-          <p className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight">AI-Optimized Support Ecosystem</p>
+          <p className="text-4xl md:text-5xl font-black font-headline text-slate-900 tracking-tight">Advanced Technical Support Hub</p>
         </div>
         <CardsParallax items={CONTACT_REASONS} />
       </section>
