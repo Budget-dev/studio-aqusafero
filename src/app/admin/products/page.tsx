@@ -15,7 +15,8 @@ import {
   ChevronRight,
   Zap,
   CheckCircle2,
-  Clock
+  Clock,
+  Droplets
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,7 +46,7 @@ export default function AdminProductsPage() {
       <aside className="w-64 bg-slate-900 text-white p-8 flex flex-col gap-8 hidden xl:flex">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary">
-            <Package className="h-5 w-5 text-white" />
+            <Droplets className="h-5 w-5 text-white" />
           </div>
           <span className="font-black font-headline text-lg uppercase tracking-tight">Admin Portal</span>
         </div>

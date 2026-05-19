@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react";
@@ -7,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboard, Settings, Edit, Trash2, Plus, Search, Filter } from "lucide-react";
+import { LayoutDashboard, Settings, Edit, Trash2, Plus, Search, Filter, Droplets } from "lucide-react";
 
 const initialServices = [
   { id: 1, name: "Industrial RO Plant Type-A", category: "Industrial", status: "Active", price: "$12,500+" },
@@ -24,7 +23,9 @@ export default function AdminPage() {
       {/* Sidebar Sidebar Simulation */}
       <aside className="w-64 bg-accent text-accent-foreground p-6 space-y-8 hidden md:block">
         <div className="flex items-center gap-2 mb-8">
-          <div className="h-8 w-8 rounded-lg bg-primary"></div>
+          <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+            <Droplets className="h-5 w-5 text-white" />
+          </div>
           <span className="font-headline font-bold text-lg">Admin Hub</span>
         </div>
         <nav className="space-y-2">

@@ -4,7 +4,7 @@ import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { UserPlus, Loader2, ArrowLeft } from "lucide-react"
+import { Droplets, Loader2, ArrowLeft } from "lucide-react"
 import { useAuth, useFirestore } from "@/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
@@ -73,7 +73,7 @@ export default function SignupPage() {
       <div className="w-[350px] bg-white rounded-xl shadow-[rgba(0,0,0,0.35)_0px_5px_15px] p-[20px_30px] flex flex-col">
         <div className="flex flex-col items-center">
           <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white mb-6 shadow-[rgba(0,0,0,0.05)_0px_3px_8px]">
-            <UserPlus className="w-7 h-7 text-black" />
+            <Droplets className="w-7 h-7 text-primary" />
           </div>
           
           <h2 className="text-[28px] font-extrabold font-headline mb-[30px] text-center text-slate-900 leading-tight">
@@ -112,14 +112,14 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-10 bg-[teal] hover:brightness-110 text-white font-bold text-sm rounded-[20px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] transition-all flex items-center justify-center"
+            className="w-full h-10 bg-primary hover:brightness-110 text-white font-bold text-sm rounded-[20px] shadow-[rgba(0,0,0,0.24)_0px_3px_8px] transition-all flex items-center justify-center"
           >
             {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : "Register"}
           </button>
         </form>
 
         <p className="text-[10px] text-[#747474] font-medium">
-          Already have an account? <Link href="/login" className="text-[11px] font-extrabold text-[teal] underline ml-1">Sign In</Link>
+          Already have an account? <Link href="/login" className="text-[11px] font-extrabold text-primary underline ml-1">Sign In</Link>
         </p>
       </div>
     </div>
