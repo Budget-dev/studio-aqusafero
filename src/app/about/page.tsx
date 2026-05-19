@@ -6,12 +6,28 @@ export default function AboutPage() {
     <div className="flex flex-col bg-background">
       {/* Hero Section */}
       <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2 pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
+        {/* Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
+        >
+          <source src="https://aquasaferoworks.sirv.com/Water_flowing_through_industrial%E2%80%A6_202605190922.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Decorative Overlay */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2 pointer-events-none z-10" />
+        
+        <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl space-y-6">
-            <h1 className="text-5xl md:text-7xl font-black font-headline leading-tight tracking-tight uppercase">Technical <br /><span className="text-primary">Excellence</span></h1>
-            <p className="text-xl text-slate-400 font-bold leading-relaxed max-w-xl">
-              Engineering a purer future through technical mastery and two decades of reverse osmosis innovation.
+            <h1 className="text-5xl md:text-7xl font-black font-headline leading-tight tracking-tight uppercase">
+              Technical <br />
+              <span className="text-primary">Excellence</span>
+            </h1>
+            <p className="text-xl text-slate-100 font-bold leading-relaxed max-w-xl drop-shadow-md">
+              Engineering a purer future through technical mastery and two decades of water treatment innovation.
             </p>
           </div>
         </div>
