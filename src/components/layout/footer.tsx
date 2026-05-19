@@ -94,7 +94,7 @@ export default function Footer() {
             />
           </Link>
           <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
-            Engineering Purity Since 2014. <br />
+            Engineering Purity Since 2006. <br />
             Leading manufacturer and service provider of water treatment plants.
           </p>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">

@@ -155,7 +155,7 @@ export default function AboutUsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Zap className="w-4 h-4" />
-            Engineering Purity Since 2014
+            Engineering Purity Since 2006
           </motion.span>
           <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight">Our Technical Story</h2>
           <motion.div
