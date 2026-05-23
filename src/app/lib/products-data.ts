@@ -1,9 +1,13 @@
+
+// This file is retained for type definitions only. 
+// All mock data has been removed and moved to the Admin Hub / Firestore.
+
 export interface Product {
   id: string;
   name: string;
   price: number;
   originalPrice?: number;
-  category: "Domestic Products" | "Commercial Products" | "Spares and Components" | "Filters and Chemicals";
+  category: string;
   subcategory: string;
   rating: number;
   reviewsCount: number;
@@ -12,215 +16,10 @@ export interface Product {
   description: string;
   capacity?: string;
   discount?: number;
-  stockStatus: "In Stock" | "Low Stock" | "Out of Stock";
+  stockStatus: string;
   deliveryEstimate: string;
   specs: Record<string, string>;
   videoUrl?: string;
 }
 
-export const PRODUCTS: Product[] = [
-  // Domestic Products (Small Scale)
-  {
-    id: "dom-101",
-    name: "Premium Technical RO Purifier",
-    price: 999,
-    originalPrice: 2999,
-    category: "Domestic Products",
-    subcategory: "RO Water Purifiers",
-    rating: 4.9,
-    reviewsCount: 312,
-    isNew: true,
-    image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_11_05%20PM.png",
-    capacity: "15 LPH",
-    description: "Advanced engineering meets household safety. This high-performance RO unit features technical 10-stage purification, copper-enriched mineralization, and a precision-engineered filtration membrane for unmatched water purity.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "1-2 Days",
-    videoUrl: "https://www.youtube.com/embed/fW72n_2f15w",
-    specs: { 
-      "Technology": "RO + UV + UF + Copper", 
-      "Stages": "10 Stage Purification", 
-      "Tank Material": "Food Grade Technical ABS", 
-      "Power Consumption": "40W High Efficiency",
-      "Compliance": "ISO 9001:2015 Certified"
-    }
-  },
-  {
-    id: "dom-104",
-    name: "Smart Alkaline RO System",
-    price: 15500,
-    originalPrice: 18500,
-    category: "Domestic Products",
-    subcategory: "Alkaline Purifiers",
-    rating: 4.8,
-    reviewsCount: 145,
-    isNew: true,
-    image: "https://aquasaferoworks.sirv.com/Product32.jpg",
-    capacity: "18 LPH",
-    description: "Intelligent water purification with pH balanced alkaline output. Features a digital display for real-time TDS monitoring and filter life alerts.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "1-3 Days",
-    videoUrl: "https://www.youtube.com/embed/nU6pY9p97yY",
-    specs: {
-      "pH Range": "7.5 - 8.5",
-      "Filtration": "Active Copper + Alkaline",
-      "Display": "Digital Technical Console",
-      "Storage": "8 Liters Technical Tank"
-    }
-  },
-  {
-    id: "dom-105",
-    name: "Ultra Slim Wall-Mount RO",
-    price: 12800,
-    category: "Domestic Products",
-    subcategory: "Compact Purifiers",
-    rating: 4.6,
-    reviewsCount: 88,
-    image: "https://aquasaferoworks.sirv.com/Product31.jpg",
-    capacity: "12 LPH",
-    description: "Space-saving technical design perfect for modern modular kitchens. Delivers high-rejection purification in a slim, aesthetic form factor.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "2-3 Days",
-    videoUrl: "https://www.youtube.com/embed/Xq-O8_vV9A8",
-    specs: {
-      "Design": "Ultra Slim Profile",
-      "Membrane": "High Rejection TFC",
-      "Mounting": "Wall Mount / Counter Top",
-      "Weight": "7.5 KG Technical Weight"
-    }
-  },
-  {
-    id: "dom-102",
-    name: "Under Sink RO Systems",
-    price: 18500,
-    category: "Domestic Products",
-    subcategory: "Under-sink Systems",
-    rating: 4.8,
-    reviewsCount: 180,
-    image: "https://picsum.photos/seed/purifier2/800/1000",
-    capacity: "10-20 LPH",
-    description: "Compact & efficient under-sink RO for kitchens and small spaces. Saves counter space while delivering high purity.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "3-4 Days",
-    videoUrl: "https://www.youtube.com/embed/8-P_l-C6W6U",
-    specs: { "Type": "Direct Flow", "Filters": "Composite", "Flow Rate": "1.5L/min" }
-  },
-  {
-    id: "dom-103",
-    name: "RO + UV + UF Purifiers",
-    price: 14500,
-    category: "Domestic Products",
-    subcategory: "Multi-stage Purifiers",
-    rating: 4.7,
-    reviewsCount: 95,
-    image: "https://picsum.photos/seed/purifier3/800/1000",
-    capacity: "15-25 LPH",
-    description: "Advanced 3/4 stage purification for enhanced water quality. Perfect for high TDS groundwater sources.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "2-3 Days",
-    videoUrl: "https://www.youtube.com/embed/0B98W8X-r0I",
-    specs: { "Tech": "RO+UV+UF", "Recovery": "40%", "TDS Range": "Up to 2000" }
-  },
-  // Commercial Products (Medium to Large Scale)
-  {
-    id: "comm-204",
-    name: "High-Flow 500 LPH skid",
-    price: 95000,
-    originalPrice: 110000,
-    category: "Commercial Products",
-    subcategory: "Commercial Skid Units",
-    rating: 4.9,
-    reviewsCount: 12,
-    isNew: true,
-    image: "https://aquasaferoworks.sirv.com/Product30.jpg",
-    capacity: "500 LPH",
-    description: "Industrial-grade skid mounted unit for small production plants and apartment complexes. Features heavy-duty SS pressure vessels and precision pressure gauges.",
-    stockStatus: "Low Stock",
-    deliveryEstimate: "5-7 Days",
-    videoUrl: "https://www.youtube.com/embed/6X88yU1Q0R0",
-    specs: {
-      "Structure": "MS Powder Coated Skid",
-      "Vessels": "SS 304 Technical Grade",
-      "Pumps": "Vertical Multi-Stage",
-      "Instruments": "Analog Flow & Pressure Meters"
-    }
-  },
-  {
-    id: "comm-201",
-    name: "250 LPH RO Plant",
-    price: 85000,
-    category: "Commercial Products",
-    subcategory: "Industrial RO Plants",
-    rating: 5.0,
-    reviewsCount: 42,
-    image: "https://picsum.photos/seed/plant1/800/1000",
-    capacity: "250 LPH",
-    description: "Suitable for schools, clinics and small commercial establishments. Fully automated with high-quality membrane systems.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "5-7 Days",
-    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
-    specs: { "Capacity": "250 LPH", "Automation": "Fully Auto PLC", "Material": "SS 304" }
-  },
-  {
-    id: "comm-202",
-    name: "500 LPH RO Plant",
-    price: 125000,
-    category: "Commercial Products",
-    subcategory: "Industrial RO Plants",
-    rating: 4.9,
-    reviewsCount: 28,
-    image: "https://picsum.photos/seed/plant2/800/1000",
-    capacity: "500 LPH",
-    description: "Ideal for medium sized industries, hotels & institutions. Heavy-duty design for consistent performance.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "7-10 Days",
-    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
-    specs: { "UV Intensity": "40mJ/cm2", "Port Size": "1.5 inch", "Bulb Life": "9000 Hours" }
-  },
-  {
-    id: "comm-203",
-    name: "1000 LPH RO Plant",
-    price: 210000,
-    category: "Commercial Products",
-    subcategory: "Industrial RO Plants",
-    rating: 5.0,
-    reviewsCount: 15,
-    image: "https://picsum.photos/seed/plant3/800/1000",
-    capacity: "1000 LPH",
-    description: "High performance solution for large institutions & industries. Advanced monitoring and control systems.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "10-14 Days",
-    videoUrl: "https://www.youtube.com/embed/2X96_B-C294",
-    specs: { "Control": "Remote IoT", "Membranes": "Dow Filmtec", "Power": "3-Phase" }
-  },
-  // Spares
-  {
-    id: "spare-301",
-    name: "RO Membranes",
-    price: 2500,
-    category: "Spares and Components",
-    subcategory: "Membranes",
-    rating: 4.7,
-    reviewsCount: 512,
-    image: "https://picsum.photos/seed/spare1/800/1000",
-    description: "High rejection RO membranes with TFC technology for maximum durability and purity.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "1-2 Days",
-    videoUrl: "https://www.youtube.com/embed/m6lQp_qVd_8",
-    specs: { "Rejection Rate": "98%", "Size": "1812-75 GPD", "Cert": "NSF 58" }
-  },
-  {
-    id: "spare-302",
-    name: "Dosing Pumps",
-    price: 4500,
-    category: "Spares and Components",
-    subcategory: "Pumps",
-    rating: 4.8,
-    reviewsCount: 320,
-    image: "https://picsum.photos/seed/spare2/800/1000",
-    description: "Accurate dosing for better efficiency. Compatible with major industrial RO plant brands.",
-    stockStatus: "In Stock",
-    deliveryEstimate: "2-3 Days",
-    videoUrl: "https://www.youtube.com/embed/rP3iXhH3Dww",
-    specs: { "Pressure": "100 PSI", "Current": "1.2A", "Voltage": "24V DC" }
-  }
-];
+export const PRODUCTS: Product[] = [];

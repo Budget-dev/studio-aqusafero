@@ -1,11 +1,15 @@
+
 "use client"
 
 import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
+import { useCollection, useFirestore } from "@/firebase";
+import { collection, query, orderBy } from "firebase/firestore";
 import { 
   Search, 
   FilterX,
-  Filter
+  Filter,
+  Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,32 +32,41 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { PRODUCTS } from "@/app/lib/products-data";
 
 export function ProductsCatalog() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category');
+  const firestore = useFirestore();
   
-  const [priceRange, setPriceRange] = useState([0, 500000]);
+  const [priceRange, setPriceRange] = useState([0, 1000000]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
 
+  const productsRef = useMemo(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, "products"), orderBy("updatedAt", "desc"));
+  }, [firestore]);
+
+  const { data: allProducts, loading } = useCollection(productsRef);
+
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter(p => {
+    if (!allProducts) return [];
+    return allProducts.filter((p: any) => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          p.subcategory.toLowerCase().includes(searchQuery.toLowerCase());
+                          p.brand?.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = !selectedCategory || p.category === selectedCategory;
-      const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
+      const effectivePrice = p.offerPrice || p.price || 0;
+      const matchesPrice = effectivePrice >= priceRange[0] && effectivePrice <= priceRange[1];
       return matchesSearch && matchesCategory && matchesPrice;
     });
-  }, [searchQuery, selectedCategory, priceRange]);
+  }, [allProducts, searchQuery, selectedCategory, priceRange]);
 
-  const categories = ["Domestic Products", "Commercial Products", "Spares and Components", "Filters and Chemicals"];
+  const categories = ["Commercial", "Domestic"];
 
   const FilterContent = () => (
     <div className="space-y-10">
       <div className="space-y-6">
-        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Category</h3>
+        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Industrial Sector</h3>
         <div className="space-y-4">
           {categories.map((cat) => (
             <div 
@@ -62,19 +75,19 @@ export function ProductsCatalog() {
               onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
             >
               <Checkbox checked={selectedCategory === cat} className="rounded-md border-2 border-slate-200" />
-              <Label className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat}</Label>
+              <Label className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat} Solutions</Label>
             </div>
           ))}
         </div>
       </div>
 
       <div className="space-y-6">
-        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Price Limit (₹)</h3>
+        <h3 className="text-xs font-black uppercase tracking-widest text-slate-900 pb-4 border-b">Budget Matrix (₹)</h3>
         <div className="px-2">
           <Slider 
             value={[priceRange[1]]} 
             onValueChange={(val) => setPriceRange([0, val[0]])} 
-            max={500000} 
+            max={1000000} 
             step={5000} 
             className="mb-6"
           />
@@ -90,7 +103,7 @@ export function ProductsCatalog() {
         className="w-full h-12 rounded-xl border-2 border-slate-100 font-black uppercase tracking-widest text-xs"
         onClick={() => {
           setSelectedCategory(null);
-          setPriceRange([0, 500000]);
+          setPriceRange([0, 1000000]);
           setSearchQuery("");
         }}
       >
@@ -106,11 +119,11 @@ export function ProductsCatalog() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-black font-headline text-slate-900 tracking-tight">
-                {selectedCategory || "Our Products Catalog"}
+              <h1 className="text-3xl md:text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">
+                {selectedCategory || "Technical Catalog"}
               </h1>
-              <p className="text-slate-500 font-medium text-sm">
-                Showing {filteredProducts.length} high-performance water solutions
+              <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">
+                {loading ? "Synchronizing with Hub..." : `Displaying ${filteredProducts.length} high-performance assets`}
               </p>
             </div>
             
@@ -120,7 +133,7 @@ export function ProductsCatalog() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-12 h-14 bg-white border-slate-200 rounded-xl font-bold" 
-                placeholder="Search products, tech or capacity..." 
+                placeholder="Search products, tech or SKU..." 
               />
             </div>
           </div>
@@ -168,19 +181,24 @@ export function ProductsCatalog() {
               </div>
             </div>
 
-            <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.map((p) => (
-                <ProductCard key={p.id} {...p} />
-              ))}
-            </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-32 space-y-6">
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-32 gap-4">
+                <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Loading Registry...</p>
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredProducts.map((p) => (
+                  <ProductCard key={p.id} {...p} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-32 space-y-6 bg-slate-50/50 rounded-[3rem] border border-dashed border-slate-200">
                 <div className="h-16 w-16 rounded-xl bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
                   <FilterX className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-black font-headline">No matching products</h3>
-                <p className="text-slate-500 font-bold">Try adjusting your filters or search query.</p>
+                <h3 className="text-2xl font-black font-headline uppercase tracking-tight">No Assets Found</h3>
+                <p className="text-slate-500 font-bold max-w-xs mx-auto">Try adjusting your budget matrix or search query.</p>
               </div>
             )}
           </main>
