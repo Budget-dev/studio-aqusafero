@@ -1,9 +1,8 @@
 
 'use client';
 
-import { useCollection } from '@/firebase';
+import { useCollection, useFirestore } from '@/firebase';
 import { collection } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
 import { 
   Package, 
   Image as ImageIcon, 
@@ -12,21 +11,30 @@ import {
   TrendingUp, 
   Users,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Plus,
+  Star
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { useMemo } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function AdminDashboard() {
   const firestore = useFirestore();
   
-  // Real-time counts
-  const { data: products } = useCollection(firestore ? collection(firestore, 'products') : null);
-  const { data: invoices } = useCollection(firestore ? collection(firestore, 'invoices') : null);
-  const { data: gallery } = useCollection(firestore ? collection(firestore, 'gallery') : null);
-  const { data: reviews } = useCollection(firestore ? collection(firestore, 'reviews') : null);
+  // Memoize references to prevent infinite render loops
+  const productsRef = useMemo(() => firestore ? collection(firestore, 'products') : null, [firestore]);
+  const invoicesRef = useMemo(() => firestore ? collection(firestore, 'invoices') : null, [firestore]);
+  const galleryRef = useMemo(() => firestore ? collection(firestore, 'gallery') : null, [firestore]);
+  const reviewsRef = useMemo(() => firestore ? collection(firestore, 'reviews') : null, [firestore]);
+
+  const { data: products } = useCollection(productsRef);
+  const { data: invoices } = useCollection(invoicesRef);
+  const { data: gallery } = useCollection(galleryRef);
+  const { data: reviews } = useCollection(reviewsRef);
 
   const stats = [
     { label: 'Total Products', value: products?.length || 0, icon: Package, color: 'text-blue-600', bg: 'bg-blue-50' },
@@ -102,7 +110,7 @@ export default function AdminDashboard() {
               <Link href="/admin/invoices"><FileText className="mr-2 h-4 w-4" /> Issue Invoice</Link>
             </Button>
             <Button asChild variant="ghost" className="w-full h-14 rounded-2xl text-slate-400 hover:text-white hover:bg-white/5 font-black uppercase tracking-widest text-xs">
-              <Link href="/admin/gallery"><ImageIcon className="mr-2 h-4 w-4" /> Manage Media</Link>
+              <Link href="/gallery"><ImageIcon className="mr-2 h-4 w-4" /> Manage Media</Link>
             </Button>
           </CardContent>
         </Card>

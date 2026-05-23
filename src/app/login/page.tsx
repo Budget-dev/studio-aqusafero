@@ -2,11 +2,11 @@
 "use client"
 
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Droplets, Loader2, ArrowLeft, ShieldAlert, Key, ShieldCheck } from "lucide-react"
-import { useAuth, useFirestore, useDoc } from "@/firebase"
+import { useAuth, useFirestore, useDoc, useUser } from "@/firebase"
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { useToast } from "@/hooks/use-toast"
@@ -23,14 +23,25 @@ export default function LoginPage() {
   const [initPassword, setInitPassword] = useState("")
   
   const { auth } = useAuth()
+  const { user } = useUser()
   const firestore = useFirestore()
   const router = useRouter()
   const searchParams = useSearchParams()
   const { toast } = useToast()
 
-  // Check if system is initialized
-  const systemConfigRef = firestore ? doc(firestore, "system", "config") : null
+  // Stabilize reference to prevent infinite loops
+  const systemConfigRef = useMemo(() => 
+    firestore ? doc(firestore, "system", "config") : null,
+  [firestore])
+  
   const { data: config, loading: configLoading } = useDoc(systemConfigRef)
+
+  // Redirect if already logged in as admin
+  useEffect(() => {
+    if (user && user.email === ADMIN_EMAIL) {
+      router.push("/admin")
+    }
+  }, [user, router])
 
   useEffect(() => {
     if (searchParams.get('error') === 'unauthorized') {
@@ -92,7 +103,8 @@ export default function LoginPage() {
         initializedAt: serverTimestamp()
       })
 
-      toast({ title: "Hub Initialized", description: "Admin account created. You can now sign in." })
+      toast({ title: "Hub Initialized", description: "Admin account created. Accessing Dashboard..." })
+      router.push("/admin")
     } catch (error: any) {
       toast({ 
         variant: "destructive", 

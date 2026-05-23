@@ -10,8 +10,7 @@ import {
   Trash2, 
   MoreHorizontal, 
   Package, 
-  Filter,
-  ArrowUpDown
+  Filter
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,8 +31,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 
 export default function AdminProductsList() {
   const searchParams = useSearchParams();
@@ -43,11 +43,15 @@ export default function AdminProductsList() {
   const { toast } = useToast();
   const [search, setSearch] = useState('');
 
-  const productsQuery = firestore ? query(
-    collection(firestore, 'products'),
-    ...(cat ? [where('category', '==', cat)] : []),
-    ...(type ? [where('type', '==', type)] : [])
-  ) : null;
+  // Memoize query to prevent infinite loops
+  const productsQuery = useMemo(() => {
+    if (!firestore) return null;
+    return query(
+      collection(firestore, 'products'),
+      ...(cat ? [where('category', '==', cat)] : []),
+      ...(type ? [where('type', '==', type)] : [])
+    );
+  }, [firestore, cat, type]);
 
   const { data: products, loading } = useCollection(productsQuery);
 

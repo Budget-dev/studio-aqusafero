@@ -2,17 +2,12 @@
 'use client';
 
 import { useCollection, useFirestore } from '@/firebase';
-import { collection, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, orderBy } from 'firebase/firestore';
 import { 
-  FileText, 
   Plus, 
   Search, 
   Download, 
-  Printer, 
-  ChevronRight,
-  Clock,
-  CheckCircle2,
-  AlertCircle
+  Printer
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,19 +20,24 @@ import {
   TableRow 
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export default function AdminInvoicesPage() {
   const firestore = useFirestore();
   const { toast } = useToast();
   const [search, setSearch] = useState('');
 
-  const { data: invoices, loading } = useCollection(
-    firestore ? query(collection(firestore, 'invoices'), orderBy('createdAt', 'desc')) : null
-  );
+  // Memoize query to prevent infinite loops
+  const invoicesQuery = useMemo(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'invoices'), orderBy('invoiceNo', 'desc'));
+  }, [firestore]);
+
+  const { data: invoices, loading } = useCollection(invoicesQuery);
 
   const filtered = invoices?.filter(inv => 
     inv.customerName.toLowerCase().includes(search.toLowerCase()) || 
