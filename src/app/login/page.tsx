@@ -12,14 +12,14 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { useToast } from "@/hooks/use-toast"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
+const ADMIN_EMAIL = 'aquasaferoworks@gmail.com';
+
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [initLoading, setInitLoading] = useState(false)
   const [isUnauthorized, setIsUnauthorized] = useState(false)
-  
-  // Initialization state
   const [initPassword, setInitPassword] = useState("")
   
   const { auth } = useAuth()
@@ -48,8 +48,7 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       
-      const adminEmail = 'aquasaferoworks@gmail.com'
-      if (email === adminEmail) {
+      if (email === ADMIN_EMAIL) {
         toast({ title: "Welcome back, Admin!", description: "Accessing Technical Hub Dashboard." })
         router.push("/admin")
       } else {
@@ -75,15 +74,14 @@ export default function LoginPage() {
     }
 
     setInitLoading(true)
-    const adminEmail = 'aquasaferoworks@gmail.com'
 
     try {
       // 1. Create the Auth User
-      const userCredential = await createUserWithEmailAndPassword(auth, adminEmail, initPassword)
+      const userCredential = await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, initPassword)
       
       // 2. Create the User Profile
       await setDoc(doc(firestore, "users", userCredential.user.uid), {
-        email: adminEmail,
+        email: ADMIN_EMAIL,
         role: "admin",
         createdAt: serverTimestamp()
       })
@@ -108,84 +106,107 @@ export default function LoginPage() {
 
   const isSystemInitialized = config && (config as any).adminInitialized === true
 
+  if (configLoading) {
+    return (
+      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50">
+        <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Calibrating Hub...</p>
+      </div>
+    )
+  }
+
   return (
-    <div className="fixed inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-50 p-4 overflow-hidden">
-      <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-black uppercase text-[10px] tracking-widest">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 p-6 md:p-12 relative">
+      <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-black uppercase text-[10px] tracking-widest z-50">
         <ArrowLeft className="h-4 w-4" /> Back to Home
       </Link>
 
-      <div className="w-[380px] space-y-6">
+      <div className="w-full max-w-[400px] space-y-8 animate-in fade-in duration-700">
         {isUnauthorized && (
-          <Alert variant="destructive" className="bg-red-50 border-red-200 text-red-900 rounded-2xl animate-in slide-in-from-top-4 duration-500">
+          <Alert variant="destructive" className="bg-red-50 border-red-200 text-red-900 rounded-3xl overflow-hidden shadow-sm">
             <ShieldAlert className="h-5 w-5" />
             <AlertTitle className="font-black uppercase text-[10px] tracking-widest mb-1">Access Restricted</AlertTitle>
             <AlertDescription className="text-xs font-bold leading-tight">
-              Your account does not have permission to access the Technical Admin Hub.
+              Only {ADMIN_EMAIL} is permitted to access the administrative matrix.
             </AlertDescription>
           </Alert>
         )}
 
         {/* One-Time Initialization Block */}
-        {!configLoading && !isSystemInitialized && (
-          <div className="bg-primary/5 border border-primary/20 rounded-[2.5rem] p-8 mb-4 animate-in fade-in zoom-in duration-700">
-            <div className="flex items-center gap-3 mb-4">
-              <Key className="h-5 w-5 text-primary" />
-              <h3 className="font-black font-headline text-sm uppercase tracking-tight text-slate-900">One-Time Setup</h3>
+        {!isSystemInitialized && (
+          <div className="bg-primary/5 border border-primary/20 rounded-[2.5rem] p-10 space-y-6 shadow-xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 -skew-x-12 translate-x-8 -translate-y-8" />
+            
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-2xl bg-white shadow-sm border border-primary/10">
+                <Key className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-black font-headline text-lg uppercase tracking-tight text-slate-900">One-Time Setup</h3>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Register Administrative Master Key</p>
+              </div>
             </div>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Set Master Password for aquasaferoworks@gmail.com</p>
+
             <div className="space-y-4">
-              <input
-                placeholder="Secure Master Key"
-                type="password"
-                className="w-full h-12 rounded-xl border border-primary/20 outline-none px-4 text-sm font-bold bg-white"
-                value={initPassword}
-                onChange={(e) => setInitPassword(e.target.value)}
-              />
+              <div className="space-y-1.5">
+                <label className="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Target Account: {ADMIN_EMAIL}</label>
+                <input
+                  placeholder="Create Master Password"
+                  type="password"
+                  className="w-full h-14 rounded-2xl border border-primary/20 outline-none px-6 text-sm font-bold bg-white focus:ring-2 focus:ring-primary/20 transition-all"
+                  value={initPassword}
+                  onChange={(e) => setInitPassword(e.target.value)}
+                  autoFocus
+                />
+              </div>
               <button
                 onClick={handleInitializeAdmin}
-                disabled={initLoading}
-                className="w-full h-12 bg-primary text-white font-black uppercase tracking-widest text-[10px] rounded-xl shadow-lg flex items-center justify-center border-none"
+                disabled={initLoading || !initPassword}
+                className="w-full h-14 bg-primary text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center border-none transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:scale-100"
               >
-                {initLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Confirm Initialization"}
+                {initLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Finalize Admin Creation"}
               </button>
             </div>
           </div>
         )}
 
-        <div className="bg-white rounded-[2.5rem] shadow-[rgba(0,0,0,0.2)_0px_25px_50px_-12px] p-10 flex flex-col relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 -skew-x-12 translate-x-12 -translate-y-12 pointer-events-none" />
+        {/* Main Login Card */}
+        <div className="bg-white rounded-[3rem] shadow-[rgba(0,0,0,0.1)_0px_40px_80px_-15px] p-12 flex flex-col relative overflow-hidden border border-slate-100">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 -skew-x-12 translate-x-16 -translate-y-16 pointer-events-none" />
           
-          <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-white mb-6 shadow-[rgba(0,0,0,0.1)_0px_10px_20px] border border-slate-50">
-              <Droplets className="w-8 h-8 text-primary" />
+          <div className="flex flex-col items-center mb-10">
+            <div className="flex items-center justify-center w-20 h-20 rounded-3xl bg-slate-50 mb-6 shadow-inner border border-slate-100 relative group overflow-hidden">
+              <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-5 transition-opacity" />
+              <Droplets className="w-10 h-10 text-primary relative z-10" />
             </div>
             
-            <h2 className="text-3xl font-black font-headline mb-8 text-center text-slate-900 leading-tight tracking-tight uppercase">
-              Secure <span className="text-primary">Hub</span> Access
+            <h2 className="text-3xl font-black font-headline text-center text-slate-900 leading-tight tracking-tight uppercase">
+              Secure <span className="text-primary">Hub</span> Portal
             </h2>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">Technical Authentication Required</p>
           </div>
 
-          <form onSubmit={handleSignIn} className="w-full space-y-4 mb-6">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">Credential Identity</label>
+          <form onSubmit={handleSignIn} className="w-full space-y-5 mb-8">
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-5">Credential Identity</label>
               <input
                 placeholder="Email Address"
                 type="email"
                 required
                 value={email}
-                className="w-full h-14 rounded-2xl border border-slate-100 outline-none px-6 text-sm text-slate-900 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all font-bold"
+                className="w-full h-16 rounded-[1.5rem] border border-slate-100 outline-none px-8 text-sm text-slate-900 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all font-bold"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">System Key</label>
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-5">System Key</label>
               <input
                 placeholder="Password"
                 type="password"
                 required
                 value={password}
-                className="w-full h-14 rounded-2xl border border-slate-100 outline-none px-6 text-sm text-slate-900 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all font-bold"
+                className="w-full h-16 rounded-[1.5rem] border border-slate-100 outline-none px-8 text-sm text-slate-900 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all font-bold"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -193,15 +214,18 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-14 bg-slate-900 hover:bg-slate-800 text-white font-black uppercase tracking-widest text-sm rounded-2xl shadow-xl transition-all flex items-center justify-center border-none"
+              className="w-full h-16 bg-slate-900 hover:bg-slate-800 text-white font-black uppercase tracking-widest text-sm rounded-[1.5rem] shadow-2xl shadow-slate-900/20 transition-all flex items-center justify-center border-none hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:scale-100"
             >
               {loading ? <Loader2 className="h-6 w-6 animate-spin" /> : "Authenticate Access"}
             </button>
           </form>
 
-          <p className="text-[10px] text-slate-400 font-bold text-center tracking-wide">
-            Official Administrative Portal for AquaSafe RO Works
-          </p>
+          <div className="space-y-4 text-center">
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+              Official Hub for AquaSafe RO Works
+            </p>
+            <div className="w-12 h-1 bg-primary/10 mx-auto rounded-full" />
+          </div>
         </div>
       </div>
     </div>
