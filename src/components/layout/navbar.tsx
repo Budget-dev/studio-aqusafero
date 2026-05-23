@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -73,7 +74,7 @@ export default function Navbar() {
         { name: "Repair", href: "/services/repair", description: "Rapid diagnostic and on-site restoration." },
       ],
     },
-    { name: "Trainings", href: "/trainings", icon: GraduationCap },
+    { name: "Academy", href: "/trainings", icon: GraduationCap },
     { name: "Our Brands", href: "/brands", icon: Award },
     { name: "Gallery", href: "/gallery", icon: ImageIcon },
     { name: "Contact Us", href: "/contact", icon: Contact2 },
@@ -107,7 +108,9 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  if (pathname === '/login' || pathname === '/signup') return null;
+  // Hide navbar on auth specific pages
+  const isAuthPage = pathname?.includes('/login') || pathname?.includes('/signup')
+  if (isAuthPage) return null;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm h-24 lg:h-36">
@@ -118,7 +121,7 @@ export default function Navbar() {
             <div className="p-1 rounded-md bg-white border border-slate-200">
               <MapPin className="h-3.5 w-3.5 text-primary" />
             </div>
-            <span>#07-13-23/2, Ground Floor, NH-5 Main Road, Old Gajuwaka, Visakhapatnam-530026. India.</span>
+            <span>#07-13-23/2, NH-5 Main Road, Old Gajuwaka, Visakhapatnam-530026. India.</span>
           </div>
           
           <div className="flex items-center gap-6">
@@ -229,7 +232,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
-                <Link href="/login">Sign In</Link>
+                <Link href="/user/login">Sign In</Link>
               </Button>
             )}
           </div>
@@ -316,7 +319,7 @@ export default function Navbar() {
                   </div>
                   <div className="ml-3 min-w-0">
                     <p className="text-xs font-black text-slate-900 uppercase truncate">{user.email}</p>
-                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Engineer</p>
+                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Client</p>
                   </div>
                 </div>
                 <button
@@ -324,13 +327,18 @@ export default function Navbar() {
                   className="w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 font-black uppercase text-xs tracking-widest group"
                 >
                   <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
-                  Logout from Hub
+                  Logout from Account
                 </button>
               </div>
             ) : (
-              <Button asChild className="w-full h-14 rounded-xl font-black uppercase tracking-widest text-xs border-none">
-                <Link href="/login" onClick={() => setIsOpen(false)}>Sign In to Hub</Link>
-              </Button>
+              <div className="grid grid-cols-2 gap-4">
+                <Button asChild className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-none bg-slate-900">
+                  <Link href="/user/login" onClick={() => setIsOpen(false)}>Sign In</Link>
+                </Button>
+                <Button asChild variant="outline" className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-slate-200">
+                  <Link href="/user/signup" onClick={() => setIsOpen(false)}>Register</Link>
+                </Button>
+              </div>
             )}
           </div>
           <div className="h-6 bg-white" />

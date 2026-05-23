@@ -19,8 +19,8 @@ export function useAdminAuth() {
       if (!user || user.email !== ADMIN_EMAIL) {
         setIsAdmin(false);
         if (typeof window !== 'undefined') {
-          // Redirect unauthorized attempts back to login
-          router.push('/login?error=unauthorized');
+          // Redirect unauthorized attempts back to the specialized admin login
+          router.push('/admin/login?error=unauthorized');
         }
       } else {
         setIsAdmin(true);
