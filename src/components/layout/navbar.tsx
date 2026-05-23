@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -132,9 +131,14 @@ export default function Navbar() {
               <Link href="https://wa.me/919985850777" className="flex items-center gap-1.5 hover:text-[#25D366] transition-colors">
                 <MessageCircle className="h-3.5 w-3.5 text-[#25D366]" /> WhatsApp
               </Link>
-              <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                <Mail className="h-3.5 w-3.5" /> Email
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Mail className="h-3.5 w-3.5" /> info@aquasafero.com
+                </Link>
+                <Link href="mailto:aquasafe.ap@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Mail className="h-3.5 w-3.5" /> aquasafe.ap@gmail.com
+                </Link>
+              </div>
             </div>
             
             <div className="flex items-center gap-4">

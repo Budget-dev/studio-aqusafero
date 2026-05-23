@@ -10,7 +10,8 @@ import {
   Youtube, 
   Twitter, 
   Github,
-  Zap
+  Zap,
+  Mail
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -93,10 +94,20 @@ export default function Footer() {
               className="h-16 md:h-[10rem] w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
-            Engineering Purity Since 2006. <br />
-            Leading manufacturer and service provider of water treatment plants.
-          </p>
+          <div className="space-y-4">
+            <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
+              Engineering Purity Since 2006. <br />
+              Leading manufacturer and service provider of water treatment plants.
+            </p>
+            <div className="space-y-1">
+              <p className="text-slate-300 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <Mail className="h-3 w-3 text-primary" /> info@aquasafero.com
+              </p>
+              <p className="text-slate-300 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <Mail className="h-3 w-3 text-primary" /> aquasafe.ap@gmail.com
+              </p>
+            </div>
+          </div>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
             © {new Date().getFullYear()} AQUASAFE WATER TECHNOLOGIES.
           </p>

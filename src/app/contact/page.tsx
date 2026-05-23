@@ -48,7 +48,7 @@ export default function ContactPage() {
         title="Send an Inquiry"
         description="Whether you need a full plant installation or small-scale maintenance, our team of engineers is available for technical assessments and collaboration."
         phone="+91 99858 50777"
-        email="info@aquasafero.com"
+        emails={["info@aquasafero.com", "aquasafe.ap@gmail.com"]}
         web={{ label: "aquasafero.com", url: "https://aquasafero.com" }}
       />
       

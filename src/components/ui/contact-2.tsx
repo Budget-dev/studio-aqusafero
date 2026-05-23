@@ -12,11 +12,11 @@ interface Contact2Props {
   title: string;
   description: string;
   phone: string;
-  email: string;
+  emails: string[];
   web: { label: string; url: string };
 }
 
-export function Contact2({ title, description, phone, email, web }: Contact2Props) {
+export function Contact2({ title, description, phone, emails, web }: Contact2Props) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
@@ -65,7 +65,13 @@ export function Contact2({ title, description, phone, email, web }: Contact2Prop
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Direct Email</p>
-                  <p className="text-xl font-black text-slate-900">{email}</p>
+                  <div className="space-y-1">
+                    {emails.map((email, idx) => (
+                      <p key={idx} className="text-xl font-black text-slate-900 leading-none">
+                        {email}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
 
