@@ -50,6 +50,40 @@
         "category": { "type": "string" }
       }
     },
+    "Brand": {
+      "title": "Brand Partner",
+      "description": "Technical partner and component manufacturers.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "website": { "type": "string" },
+        "featured": { "type": "boolean" }
+      }
+    },
+    "Review": {
+      "title": "Customer Review",
+      "description": "Feedback and ratings for products/services.",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Approved"] }
+      }
+    },
+    "Coupon": {
+      "title": "Commercial Incentive",
+      "description": "Discount codes and special offers.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "discount": { "type": "number" },
+        "expiry": { "type": "string" },
+        "active": { "type": "boolean" }
+      }
+    },
     "Invoice": {
       "title": "Invoice",
       "description": "Professional billing records.",
@@ -79,6 +113,18 @@
     "/gallery/{itemId}": {
       "schema": "#/entities/GalleryItem",
       "description": "Gallery media."
+    },
+    "/brands/{brandId}": {
+      "schema": "#/entities/Brand",
+      "description": "Partner brands."
+    },
+    "/reviews/{reviewId}": {
+      "schema": "#/entities/Review",
+      "description": "Customer feedback."
+    },
+    "/coupons/{couponId}": {
+      "schema": "#/entities/Coupon",
+      "description": "Discount codes."
     },
     "/invoices/{invoiceId}": {
       "schema": "#/entities/Invoice",
