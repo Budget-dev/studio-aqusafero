@@ -1,4 +1,3 @@
-
 "use client"
 
 import type React from "react"
@@ -122,7 +121,7 @@ export default function AboutUsSection() {
   const stats = [
     { icon: <Award />, value: 6000, label: "Projects Completed", suffix: "+" },
     { icon: <Users />, value: 10000, label: "Happy Customers", suffix: "+" },
-    { icon: <Calendar />, value: 25, label: "Years Experience", suffix: "+" },
+    { icon: <Calendar />, value: 20, label: "Serving Since 2006", suffix: "+" },
     { icon: <TrendingUp />, value: 100, label: "Quality Standards", suffix: "%" },
   ]
 
@@ -156,7 +155,7 @@ export default function AboutUsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Zap className="w-4 h-4" />
-            Engineering Purity Since 2006
+            20+ Years of Excellence
           </motion.span>
           <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight uppercase">Technical <span className="text-primary">Solutions</span></h2>
           <motion.div
@@ -168,7 +167,7 @@ export default function AboutUsSection() {
         </motion.div>
 
         <motion.p className="text-center max-w-2xl mx-auto mb-20 text-slate-600 font-bold leading-relaxed" variants={itemVariants}>
-          AquaSafe is an ISO 9001:2015 certified manufacturer delivering engineering excellence across wastewater, purification, and technical filtration plants.
+          AquaSafe is an ISO 9001:2015 certified manufacturer delivering 20+ Years of Excellence across wastewater, purification, and technical filtration plants.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">

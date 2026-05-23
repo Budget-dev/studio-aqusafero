@@ -27,7 +27,7 @@ export default function AboutPage() {
               <span className="text-primary">Excellence</span>
             </h1>
             <p className="text-xl text-slate-100 font-bold leading-relaxed max-w-xl drop-shadow-md">
-              Engineering a purer future through technical mastery and two decades of water treatment innovation.
+              Engineering a purer future through 20+ Years of Excellence and two decades of water treatment innovation.
             </p>
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-4xl font-black font-headline text-slate-900 uppercase tracking-tight">Global Compliance & Standards</h2>
             <p className="text-slate-500 font-bold max-w-2xl mx-auto">
-              Our systems meet and exceed the most stringent international standards for water safety and mechanical engineering.
+              Our systems meet and exceed the most stringent international standards for water safety and mechanical engineering, serving since 2006.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

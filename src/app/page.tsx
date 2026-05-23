@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image";
@@ -102,13 +101,13 @@ export default function Home() {
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="space-y-6">
                   <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-primary/10">
-                    Engineering Purity Since 2006
+                    20+ Years of Excellence
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase">
                     Technical <br />Solutions for <br /><span className="text-primary">Every Sector</span>
                   </h1>
                   <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
-                    We design, manufacture and commission high-performance water treatment plants with ISO certified precision.
+                    We design, manufacture and commission high-performance water treatment plants with ISO certified precision since 2006.
                   </p>
                 </div>
 
@@ -128,7 +127,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 rounded-xl bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
-                    <span>Real-time Monitoring</span>
+                    <span>Established 2006</span>
                   </div>
                 </div>
               </div>
