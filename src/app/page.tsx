@@ -85,13 +85,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
-      {/* Soft Lavender Center Glow */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-40" 
-        style={{
-          backgroundImage: `radial-gradient(circle at center, #c4b5fd, transparent 80%)`,
-        }} 
-      />
+      {/* Glow removed for maximum image clarity */}
 
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
@@ -105,7 +99,7 @@ export default function Home() {
               className="object-cover"
               priority
             />
-            {/* Slight dark overlay to improve text visibility */}
+            {/* Dark overlay for contrast - no blur */}
             <div className="absolute inset-0 bg-slate-900/40" />
           </div>
 
