@@ -5,9 +5,10 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Droplets, Loader2, ArrowLeft, ShieldAlert } from "lucide-react"
-import { useAuth } from "@/firebase"
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { Droplets, Loader2, ArrowLeft, ShieldAlert, Key, ShieldCheck } from "lucide-react"
+import { useAuth, useFirestore, useDoc } from "@/firebase"
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
+import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { useToast } from "@/hooks/use-toast"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
@@ -15,11 +16,21 @@ export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [initLoading, setInitLoading] = useState(false)
   const [isUnauthorized, setIsUnauthorized] = useState(false)
+  
+  // Initialization state
+  const [initPassword, setInitPassword] = useState("")
+  
   const { auth } = useAuth()
+  const firestore = useFirestore()
   const router = useRouter()
   const searchParams = useSearchParams()
   const { toast } = useToast()
+
+  // Check if system is initialized
+  const systemConfigRef = firestore ? doc(firestore, "system", "config") : null
+  const { data: config, loading: configLoading } = useDoc(systemConfigRef)
 
   useEffect(() => {
     if (searchParams.get('error') === 'unauthorized') {
@@ -35,9 +46,8 @@ export default function LoginPage() {
     setIsUnauthorized(false)
     
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
       
-      // CRITICAL: Prevent unauthorized emails from reaching Admin routes
       const adminEmail = 'aquasaferoworks@gmail.com'
       if (email === adminEmail) {
         toast({ title: "Welcome back, Admin!", description: "Accessing Technical Hub Dashboard." })
@@ -57,6 +67,47 @@ export default function LoginPage() {
     }
   }
 
+  const handleInitializeAdmin = async () => {
+    if (!auth || !firestore || !initPassword) return
+    if (initPassword.length < 6) {
+      toast({ variant: "destructive", title: "Weak Key", description: "Password must be at least 6 characters." })
+      return
+    }
+
+    setInitLoading(true)
+    const adminEmail = 'aquasaferoworks@gmail.com'
+
+    try {
+      // 1. Create the Auth User
+      const userCredential = await createUserWithEmailAndPassword(auth, adminEmail, initPassword)
+      
+      // 2. Create the User Profile
+      await setDoc(doc(firestore, "users", userCredential.user.uid), {
+        email: adminEmail,
+        role: "admin",
+        createdAt: serverTimestamp()
+      })
+
+      // 3. Mark system as initialized
+      await setDoc(doc(firestore, "system", "config"), {
+        adminInitialized: true,
+        initializedAt: serverTimestamp()
+      })
+
+      toast({ title: "Hub Initialized", description: "Admin account created. You can now sign in." })
+    } catch (error: any) {
+      toast({ 
+        variant: "destructive", 
+        title: "Init Failed", 
+        description: error.message || "Could not initialize account." 
+      })
+    } finally {
+      setInitLoading(false)
+    }
+  }
+
+  const isSystemInitialized = config && (config as any).adminInitialized === true
+
   return (
     <div className="fixed inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-50 p-4 overflow-hidden">
       <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-black uppercase text-[10px] tracking-widest">
@@ -74,8 +125,34 @@ export default function LoginPage() {
           </Alert>
         )}
 
+        {/* One-Time Initialization Block */}
+        {!configLoading && !isSystemInitialized && (
+          <div className="bg-primary/5 border border-primary/20 rounded-[2.5rem] p-8 mb-4 animate-in fade-in zoom-in duration-700">
+            <div className="flex items-center gap-3 mb-4">
+              <Key className="h-5 w-5 text-primary" />
+              <h3 className="font-black font-headline text-sm uppercase tracking-tight text-slate-900">One-Time Setup</h3>
+            </div>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Set Master Password for aquasaferoworks@gmail.com</p>
+            <div className="space-y-4">
+              <input
+                placeholder="Secure Master Key"
+                type="password"
+                className="w-full h-12 rounded-xl border border-primary/20 outline-none px-4 text-sm font-bold bg-white"
+                value={initPassword}
+                onChange={(e) => setInitPassword(e.target.value)}
+              />
+              <button
+                onClick={handleInitializeAdmin}
+                disabled={initLoading}
+                className="w-full h-12 bg-primary text-white font-black uppercase tracking-widest text-[10px] rounded-xl shadow-lg flex items-center justify-center border-none"
+              >
+                {initLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Confirm Initialization"}
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="bg-white rounded-[2.5rem] shadow-[rgba(0,0,0,0.2)_0px_25px_50px_-12px] p-10 flex flex-col relative overflow-hidden">
-          {/* Subtle decoration */}
           <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 -skew-x-12 translate-x-12 -translate-y-12 pointer-events-none" />
           
           <div className="flex flex-col items-center">
@@ -113,12 +190,6 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="w-full flex justify-end px-2">
-              <button type="button" className="text-[9px] font-black text-slate-400 uppercase tracking-widest hover:text-primary transition-colors">
-                Reset Access Key
-              </button>
-            </div>
-
             <button
               type="submit"
               disabled={loading}
@@ -129,7 +200,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-[10px] text-slate-400 font-bold text-center tracking-wide">
-            Don't have a Hub account? <Link href="/signup" className="font-black text-primary hover:underline ml-1">Register Candidate</Link>
+            Official Administrative Portal for AquaSafe RO Works
           </p>
         </div>
       </div>

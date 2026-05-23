@@ -8,6 +8,13 @@ service cloud.firestore {
       return request.auth != null && request.auth.token.email == 'aquasaferoworks@gmail.com';
     }
 
+    // Allow one-time initialization of the system config
+    match /system/config {
+      allow read: if true;
+      allow create: if request.resource.data.adminInitialized == true;
+      allow update, delete: if isAdmin();
+    }
+
     // Admin-only collections: Strictly locked to the hardcoded admin email
     match /invoices/{invoiceId} {
       allow read, write: if isAdmin();
