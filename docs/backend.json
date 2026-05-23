@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "User": {
@@ -7,20 +8,60 @@
       "properties": {
         "email": {
           "type": "string",
-          "format": "email",
-          "description": "The user's email address."
-        },
-        "phone": {
-          "type": "string",
-          "description": "The user's contact number."
+          "format": "email"
         },
         "role": {
           "type": "string",
-          "enum": ["user", "admin"],
-          "description": "The user's permission level."
+          "enum": ["user", "admin"]
         }
       },
       "required": ["email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Advanced water treatment product details.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string", "enum": ["Commercial", "Domestic"] },
+        "type": { "type": "string", "enum": ["Product", "Spare Part"] },
+        "brand": { "type": "string" },
+        "price": { "type": "number" },
+        "offerPrice": { "type": "number" },
+        "sku": { "type": "string" },
+        "stock": { "type": "number" },
+        "images": { "type": "array", "items": { "type": "object", "properties": { "url": { "type": "string" }, "caption": { "type": "string" } } } },
+        "videos": { "type": "array", "items": { "type": "object", "properties": { "url": { "type": "string" }, "caption": { "type": "string" } } } },
+        "description": { "type": "string" },
+        "specifications": { "type": "array", "items": { "type": "object", "properties": { "key": { "type": "string" }, "value": { "type": "string" } } } },
+        "featured": { "type": "boolean" },
+        "seo": { "type": "object", "properties": { "title": { "type": "string" }, "description": { "type": "string" } } }
+      }
+    },
+    "GalleryItem": {
+      "title": "Gallery Item",
+      "description": "Image or video for the public gallery.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "type": { "type": "string", "enum": ["image", "video"] },
+        "description": { "type": "string" },
+        "category": { "type": "string" }
+      }
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Professional billing records.",
+      "type": "object",
+      "properties": {
+        "invoiceNo": { "type": "string" },
+        "customerName": { "type": "string" },
+        "date": { "type": "string" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["Paid", "Pending"] }
+      }
     }
   },
   "auth": {
@@ -29,7 +70,19 @@
   "firestore": {
     "/users/{userId}": {
       "schema": "#/entities/User",
-      "description": "User profile documents."
+      "description": "User profiles."
+    },
+    "/products/{productId}": {
+      "schema": "#/entities/Product",
+      "description": "Main product catalog."
+    },
+    "/gallery/{itemId}": {
+      "schema": "#/entities/GalleryItem",
+      "description": "Gallery media."
+    },
+    "/invoices/{invoiceId}": {
+      "schema": "#/entities/Invoice",
+      "description": "Sales records."
     }
   }
 }

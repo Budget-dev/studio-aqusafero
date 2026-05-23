@@ -1,25 +1,20 @@
-"use client"
 
-import Image from "next/image";
+'use client';
+
+import { useCollection, useFirestore } from '@/firebase';
+import { collection, query, where, deleteDoc, doc } from 'firebase/firestore';
 import { 
   Plus, 
   Search, 
-  Filter, 
-  MoreHorizontal, 
   Edit2, 
   Trash2, 
+  MoreHorizontal, 
   Package, 
-  BarChart3, 
-  Layers,
-  FileDown,
-  ChevronRight,
-  Zap,
-  CheckCircle2,
-  Clock,
-  Droplets
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+  Filter,
+  ArrowUpDown
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { 
   Table, 
   TableBody, 
@@ -27,134 +22,153 @@ import {
   TableHead, 
   TableHeader, 
   TableRow 
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { PRODUCTS } from "@/app/lib/products-data";
+} from '@/components/ui/dropdown-menu';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
-export default function AdminProductsPage() {
+export default function AdminProductsList() {
+  const searchParams = useSearchParams();
+  const cat = searchParams.get('cat');
+  const type = searchParams.get('type');
+  const firestore = useFirestore();
+  const { toast } = useToast();
+  const [search, setSearch] = useState('');
+
+  const productsQuery = firestore ? query(
+    collection(firestore, 'products'),
+    ...(cat ? [where('category', '==', cat)] : []),
+    ...(type ? [where('type', '==', type)] : [])
+  ) : null;
+
+  const { data: products, loading } = useCollection(productsQuery);
+
+  const handleDelete = async (id: string) => {
+    if (!firestore) return;
+    if (confirm('Are you sure you want to delete this product?')) {
+      try {
+        await deleteDoc(doc(firestore, 'products', id));
+        toast({ title: 'Product Deleted', description: 'The record has been removed from the hub.' });
+      } catch (e) {
+        toast({ variant: 'destructive', title: 'Delete Failed', description: 'Could not remove product.' });
+      }
+    }
+  };
+
+  const filtered = products?.filter(p => 
+    p.name.toLowerCase().includes(search.toLowerCase()) || 
+    p.sku?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="min-h-screen bg-slate-50/50 flex">
-      {/* Admin Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white p-8 flex flex-col gap-8 hidden xl:flex">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary">
-            <Droplets className="h-5 w-5 text-white" />
+    <div className="space-y-8">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className="text-3xl font-black font-headline text-slate-900 uppercase tracking-tight">
+            {cat} <span className="text-primary">{type}s</span>
+          </h1>
+          <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Managing {filtered?.length || 0} catalog entries</p>
+        </div>
+        <Button asChild className="h-14 rounded-2xl bg-slate-900 text-white font-black uppercase tracking-widest text-[10px] shadow-xl">
+          <Link href="/admin/products/new"><Plus className="mr-2 h-4 w-4" /> Add New</Link>
+        </Button>
+      </header>
+
+      <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
+        <div className="p-8 border-b border-slate-50 flex flex-col md:flex-row gap-6 items-center">
+          <div className="relative flex-1">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            <Input 
+              placeholder="Search by name or SKU..." 
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-12 h-14 rounded-2xl bg-slate-50 border-none font-bold"
+            />
           </div>
-          <span className="font-black font-headline text-lg uppercase tracking-tight">Admin Portal</span>
+          <Button variant="outline" className="h-14 rounded-2xl border-slate-100 font-black uppercase text-[10px] tracking-widest px-8">
+            <Filter className="mr-2 h-4 w-4" /> Filters
+          </Button>
         </div>
 
-        <nav className="flex flex-col gap-2">
-          {[
-            { label: "Inventory", icon: Layers, active: true },
-            { label: "Analytics", icon: BarChart3, active: false },
-            { label: "Orders", icon: Clock, active: false },
-          ].map((item) => (
-            <Button key={item.label} variant="ghost" className={cn(
-              "w-full justify-start h-12 rounded-xl font-bold uppercase tracking-widest text-[9px]",
-              item.active ? "bg-primary text-white" : "text-slate-400 hover:bg-white/5"
-            )}>
-              <item.icon className="mr-3 h-4 w-4" /> {item.label}
-            </Button>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-8 lg:p-12 space-y-10">
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <h1 className="text-3xl font-black font-headline text-slate-900 uppercase tracking-tight">Product Management</h1>
-            <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">Catalog Inventory Control</p>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <Button variant="outline" className="h-12 rounded-xl border-slate-200 font-black uppercase text-[9px] tracking-widest bg-white">
-              <FileDown className="mr-2 h-4 w-4" /> Export CSV
-            </Button>
-            <Button className="h-12 rounded-xl bg-slate-900 text-white font-black uppercase text-[9px] tracking-widest shadow-lg">
-              <Plus className="mr-2 h-4 w-4" /> Add Product
-            </Button>
-          </div>
-        </header>
-
-        {/* Table View */}
-        <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input className="pl-12 h-12 bg-slate-50 border-none rounded-xl font-bold" placeholder="Search by SKU, Name..." />
-            </div>
-            <Button variant="ghost" className="h-12 rounded-xl font-black uppercase text-[9px] tracking-widest border border-slate-100">
-              <Filter className="mr-2 h-4 w-4" /> Filter By
-            </Button>
-          </div>
-
-          <Table>
-            <TableHeader className="bg-slate-50">
-              <TableRow className="border-none">
-                <TableHead className="font-black text-[9px] uppercase tracking-widest text-slate-400 py-4 px-6">Product</TableHead>
-                <TableHead className="font-black text-[9px] uppercase tracking-widest text-slate-400 py-4">Category</TableHead>
-                <TableHead className="font-black text-[9px] uppercase tracking-widest text-slate-400 py-4">Price</TableHead>
-                <TableHead className="font-black text-[9px] uppercase tracking-widest text-slate-400 py-4">Stock Status</TableHead>
-                <TableHead className="text-right py-4 px-6"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {PRODUCTS.map((p) => (
-                <TableRow key={p.id} className="border-b border-slate-50 hover:bg-slate-50/50">
-                  <TableCell className="py-4 px-6">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-lg bg-slate-100 overflow-hidden relative border border-slate-200 p-1">
-                        <Image src={p.image} alt={p.name} fill className="object-contain" />
-                      </div>
-                      <div>
-                        <p className="font-bold text-slate-900 leading-tight mb-0.5">{p.name}</p>
-                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{p.id}</p>
-                      </div>
+        <Table>
+          <TableHeader className="bg-slate-50/50">
+            <TableRow className="border-none h-14">
+              <TableHead className="font-black text-[9px] uppercase tracking-widest pl-8">Product Details</TableHead>
+              <TableHead className="font-black text-[9px] uppercase tracking-widest text-center">Price</TableHead>
+              <TableHead className="font-black text-[9px] uppercase tracking-widest text-center">Stock</TableHead>
+              <TableHead className="font-black text-[9px] uppercase tracking-widest text-center">Status</TableHead>
+              <TableHead className="text-right pr-8"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {loading ? (
+              <TableRow><TableCell colSpan={5} className="h-32 text-center text-[10px] font-black uppercase tracking-widest text-slate-400">Synchronizing Hub Data...</TableCell></TableRow>
+            ) : filtered?.length === 0 ? (
+              <TableRow><TableCell colSpan={5} className="h-32 text-center text-[10px] font-black uppercase tracking-widest text-slate-400">No matching entries found</TableCell></TableRow>
+            ) : filtered?.map((p) => (
+              <TableRow key={p.id} className="hover:bg-slate-50/50 border-slate-50 h-20 transition-colors group">
+                <TableCell className="pl-8">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 flex items-center justify-center p-2 relative overflow-hidden">
+                      {p.images?.[0] ? (
+                        <img src={p.images[0].url} alt={p.name} className="object-contain" />
+                      ) : (
+                        <Package className="h-5 w-5 text-slate-300" />
+                      )}
                     </div>
-                  </TableCell>
-                  <TableCell className="font-bold text-slate-600 text-[10px] uppercase tracking-widest">{p.subcategory}</TableCell>
-                  <TableCell className="font-black text-slate-900">₹{p.price.toLocaleString('en-IN')}</TableCell>
-                  <TableCell>
-                    <Badge variant={p.stockStatus === 'In Stock' ? 'default' : 'secondary'} className={cn(
-                      "font-black uppercase tracking-widest text-[8px] px-2 py-0.5 rounded-sm",
-                      p.stockStatus === 'In Stock' ? "bg-green-100 text-green-700 hover:bg-green-200" : "bg-slate-100 text-slate-500"
-                    )}>
-                      {p.stockStatus}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right px-6">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-slate-400">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-48 rounded-xl p-1">
-                        <DropdownMenuItem className="h-10 rounded-lg font-black uppercase text-[9px] tracking-widest gap-2">
-                          <Edit2 className="h-3.5 w-3.5" /> Edit details
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="h-10 rounded-lg font-black uppercase text-[9px] tracking-widest gap-2 text-destructive">
-                          <Trash2 className="h-3.5 w-3.5" /> Delete Product
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </main>
+                    <div>
+                      <p className="font-black text-slate-900 uppercase text-sm leading-none mb-1">{p.name}</p>
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{p.sku || 'NO SKU'}</p>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="text-center">
+                  <span className="font-black text-slate-900">₹{p.offerPrice || p.price}</span>
+                </TableCell>
+                <TableCell className="text-center font-bold text-slate-500">
+                  {p.stock} Units
+                </TableCell>
+                <TableCell className="text-center">
+                  <Badge className={cn(
+                    "font-black uppercase text-[8px] tracking-widest border-none px-2",
+                    p.stock > 10 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                  )}>
+                    {p.stock > 10 ? 'Healthy' : 'Low Stock'}
+                  </Badge>
+                </TableCell>
+                <TableCell className="text-right pr-8">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-white text-slate-400">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48 rounded-2xl p-2 shadow-2xl border-slate-100">
+                      <DropdownMenuItem asChild className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest cursor-pointer">
+                        <Link href={`/admin/products/edit/${p.id}`}><Edit2 className="mr-2 h-3.5 w-3.5" /> Edit Details</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={() => handleDelete(p.id)}
+                        className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest text-red-500 hover:text-red-600 focus:text-red-600 cursor-pointer"
+                      >
+                        <Trash2 className="mr-2 h-3.5 w-3.5" /> Delete Product
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
