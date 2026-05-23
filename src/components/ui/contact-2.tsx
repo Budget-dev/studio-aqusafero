@@ -88,9 +88,10 @@ export function Contact2({ title, description, phone, emails, web }: Contact2Pro
               </div>
             </div>
 
-            <div className="p-10 rounded-[2rem] bg-slate-900 text-white space-y-4">
-              <h4 className="text-xl font-black font-headline uppercase tracking-tight">Visit Our Office</h4>
-              <p className="text-sm font-bold text-slate-400 leading-relaxed">
+            <div className="p-10 rounded-[2rem] bg-slate-900 text-white space-y-4 shadow-2xl border border-white/5 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 -skew-x-12 translate-x-16 -translate-y-16" />
+              <h4 className="text-xl font-black font-headline uppercase tracking-tight relative z-10">Visit Our Office</h4>
+              <p className="text-sm font-bold text-slate-200 leading-relaxed max-w-sm relative z-10">
                 #07-13-23/2, Ground Floor, NH-5 Main Road, Old Gajuwaka, Visakhapatnam-530026. Andhra Pradesh, India.
               </p>
             </div>
@@ -102,27 +103,27 @@ export function Contact2({ title, description, phone, emails, web }: Contact2Pro
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="first-name" className="text-[10px] font-black uppercase tracking-widest text-slate-500">First Name</Label>
-                    <Input id="first-name" placeholder="John" required className="h-14 rounded-xl bg-white border-slate-200 font-bold" />
+                    <Label htmlFor="first-name" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">First Name</Label>
+                    <Input id="first-name" required className="h-14 rounded-xl bg-white border-slate-200 font-bold shadow-sm focus:ring-primary/20" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="last-name" className="text-[10px] font-black uppercase tracking-widest text-slate-500">Last Name</Label>
-                    <Input id="last-name" placeholder="Doe" required className="h-14 rounded-xl bg-white border-slate-200 font-bold" />
+                    <Label htmlFor="last-name" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Last Name</Label>
+                    <Input id="last-name" required className="h-14 rounded-xl bg-white border-slate-200 font-bold shadow-sm focus:ring-primary/20" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-500">Work Email</Label>
-                  <Input id="email" type="email" placeholder="john@company.com" required className="h-14 rounded-xl bg-white border-slate-200 font-bold" />
+                  <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Work Email</Label>
+                  <Input id="email" type="email" required className="h-14 rounded-xl bg-white border-slate-200 font-bold shadow-sm focus:ring-primary/20" />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-[10px] font-black uppercase tracking-widest text-slate-500">Message</Label>
-                  <Textarea id="message" placeholder="Describe your water treatment requirements..." required className="min-h-[160px] rounded-xl bg-white border-slate-200 font-bold p-4" />
+                  <Label htmlFor="message" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Message</Label>
+                  <Textarea id="message" required className="min-h-[160px] rounded-xl bg-white border-slate-200 font-bold p-4 shadow-sm focus:ring-primary/20" />
                 </div>
               </div>
 
-              <Button type="submit" disabled={loading} className="w-full h-16 rounded-xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/20">
+              <Button type="submit" disabled={loading} className="w-full h-16 rounded-xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/20 border-none transition-all">
                 {loading ? (
                   <Loader2 className="h-5 w-5 animate-spin" />
                 ) : (
