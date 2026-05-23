@@ -1,3 +1,4 @@
+
 "use client"
 
 import type React from "react"
@@ -65,20 +66,20 @@ export default function AboutUsSection() {
     {
       icon: <Ruler className="w-6 h-6" />,
       secondaryIcon: <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-primary/40" />,
-      title: "Engineering",
+      title: "Drinking WTP",
       description:
-        "Precision-engineered water treatment systems designed to exact micron-level specifications for industrial and commercial use.",
+        "High-capacity Reverse Osmosis and purification plants delivering WHO-standard drinking water for large-scale operations.",
       position: "left",
-      link: "/services"
+      link: "/drinking-water-treatment-plant"
     },
     {
       icon: <Factory className="w-6 h-6" />,
       secondaryIcon: <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-primary/40" />,
-      title: "Manufacturing",
+      title: "Industrial ETP",
       description:
-        "State-of-the-art assembly of wastewater and purification plants following strict ISO 9001:2015 quality standards.",
+        "Precision-engineered systems designed to neutralize toxic industrial waste and ensure 100% pollution board compliance.",
       position: "left",
-      link: "/services"
+      link: "/compact-effluent-treatment-plant"
     },
     {
       icon: <Search className="w-6 h-6" />,
@@ -96,7 +97,7 @@ export default function AboutUsSection() {
       description:
         "Fast and reliable on-site deployment by our certified engineering teams, ensuring seamless integration with your site.",
       position: "right",
-      link: "/services"
+      link: "/services/installation"
     },
     {
       icon: <Wrench className="w-6 h-6" />,
@@ -105,16 +106,16 @@ export default function AboutUsSection() {
       description:
         "Predictive Annual Maintenance Contracts (AMC) that prevent downtime and extend the lifespan of your purification membranes.",
       position: "right",
-      link: "/services"
+      link: "/services/amc-maintenance"
     },
     {
       icon: <Building2 className="w-6 h-6" />,
       secondaryIcon: <Star className="w-4 h-4 absolute -top-1 -right-1 text-primary/40" />,
       title: "Industrial STP",
       description:
-        "Evolutionary compact Sewage Treatment Plants designed for high-rise residential and commercial complexes.",
+        "Evolutionary compact Sewage Treatment Plants designed for 100% water recovery in high-rise residential complexes.",
       position: "right",
-      link: "/services"
+      link: "/compact-sewage-treatment-plant"
     },
   ]
 
@@ -157,7 +158,7 @@ export default function AboutUsSection() {
             <Zap className="w-4 h-4" />
             Engineering Purity Since 2006
           </motion.span>
-          <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight">Our Technical Story</h2>
+          <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight uppercase">Technical <span className="text-primary">Solutions</span></h2>
           <motion.div
             className="w-24 h-1.5 bg-primary rounded-full"
             initial={{ width: 0 }}
@@ -167,7 +168,7 @@ export default function AboutUsSection() {
         </motion.div>
 
         <motion.p className="text-center max-w-2xl mx-auto mb-20 text-slate-600 font-bold leading-relaxed" variants={itemVariants}>
-          We are a leading ISO certified manufacturer in India, dedicated to delivering milestone solutions in water and wastewater treatment through technical mastery and 25 years of combined experience.
+          AquaSafe is an ISO 9001:2015 certified manufacturer delivering engineering excellence across wastewater, purification, and technical filtration plants.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -347,12 +348,12 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
             {icon}
             {secondaryIcon}
           </motion.div>
-          <h3 className="text-2xl font-black font-headline text-slate-900 group-hover:text-primary transition-colors duration-300 tracking-tight uppercase">
+          <h3 className="text-2xl font-black font-headline text-slate-900 group-hover:text-primary transition-colors duration-300 tracking-tight uppercase leading-none">
             {title}
           </h3>
         </motion.div>
         <motion.p
-          className="text-sm text-slate-500 font-bold leading-relaxed pl-2 md:pl-0"
+          className="text-xs text-slate-500 font-bold leading-relaxed pl-2 md:pl-0 line-clamp-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: delay + 0.4 }}
@@ -363,7 +364,7 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
           className="mt-4 flex items-center text-primary text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
         >
           <span className="flex items-center gap-1.5">
-            Learn more <ArrowRight className="w-3.5 h-3.5" />
+            View Blueprint <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </motion.div>
       </Link>

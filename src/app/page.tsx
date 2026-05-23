@@ -14,7 +14,10 @@ import {
   Activity, 
   Zap, 
   Loader2,
-  Factory
+  Factory,
+  Droplets,
+  Wrench,
+  Construction
 } from "lucide-react";
 import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
@@ -47,20 +50,39 @@ export default function Home() {
 
   const { data: featuredBrands, loading: brandsLoading } = useCollection(brandsQuery);
 
-  // Transform products for Blog7 component
-  const solutions = useMemo(() => {
-    if (!featuredProducts) return [];
-    return featuredProducts.map((p: any) => ({
-      id: p.id,
-      title: p.name,
-      summary: p.shortDescription || p.description?.slice(0, 100) + '...',
-      image: p.images?.[0]?.url || 'https://placehold.co/600x400?text=AquaSafe+Solution',
-      label: p.category || 'Technical',
-      author: p.brand || 'AquaSafe',
-      published: '2024',
-      url: `/products/${p.id}`
-    }));
-  }, [featuredProducts]);
+  // High Impact Engineering Posts
+  const engineeringPosts = [
+    {
+      id: "stp-post",
+      title: "Compact Sewage Plants",
+      summary: "Modular solutions for high-rise residential complexes with 100% water recovery.",
+      image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_44_42%20PM.png",
+      label: "STP Systems",
+      author: "AquaSafe",
+      published: "2024",
+      url: "/compact-sewage-treatment-plant"
+    },
+    {
+      id: "wtp-post",
+      title: "Drinking Water Hub",
+      summary: "Multi-stage RO systems delivering molecular-level purity for hospitals and industry.",
+      image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
+      label: "Purification",
+      author: "AquaSafe",
+      published: "2024",
+      url: "/drinking-water-treatment-plant"
+    },
+    {
+      id: "etp-post",
+      title: "Compact ETP Systems",
+      summary: "Industrial-grade effluent treatment plants ensuring total pollution board compliance.",
+      image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_57_02%20PM.png",
+      label: "ETP Solutions",
+      author: "Engineering",
+      published: "2024",
+      url: "/compact-effluent-treatment-plant"
+    }
+  ];
 
   return (
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
@@ -80,13 +102,13 @@ export default function Home() {
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="space-y-6">
                   <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-primary/10">
-                    Pure Water. Safe Future.
+                    Engineering Purity Since 2006
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase">
                     Technical <br />Solutions for <br /><span className="text-primary">Every Sector</span>
                   </h1>
                   <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
-                    We design, manufacture and commission high-performance water treatment plants since 2006.
+                    We design, manufacture and commission high-performance water treatment plants with ISO certified precision.
                   </p>
                 </div>
 
@@ -126,17 +148,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 2. Dynamic Solutions Section */}
-        {solutions.length > 0 && (
-          <Blog7
-            tagline="Engineering Excellence"
-            heading="Solutions We Deliver"
-            description="Explore our latest precision-engineered systems for industrial and commercial water treatment."
-            buttonText="View All Solutions"
-            buttonUrl="/products"
-            posts={solutions}
-          />
-        )}
+        {/* 2. Engineering Blueprints Section */}
+        <Blog7
+          tagline="Technical Mastery"
+          heading="Core Industrial Solutions"
+          description="Precision-engineered plants designed to meet stringent environmental standards and performance benchmarks."
+          buttonText="View All Blueprints"
+          buttonUrl="/services"
+          posts={engineeringPosts}
+        />
 
         {/* 3. High Impact Animated About Us Section */}
         <AboutUsSection />
