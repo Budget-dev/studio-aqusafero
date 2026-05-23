@@ -3,12 +3,12 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Utility functions
+    // CRITICAL: Hardcoded Admin Identity
     function isAdmin() {
       return request.auth != null && request.auth.token.email == 'aquasaferoworks@gmail.com';
     }
 
-    // Admin-only collections
+    // Admin-only collections: Strictly locked to the hardcoded admin email
     match /invoices/{invoiceId} {
       allow read, write: if isAdmin();
     }
@@ -19,8 +19,13 @@ service cloud.firestore {
     match /coupons/{couponId} {
       allow read, write: if isAdmin();
     }
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if isAdmin();
+    }
 
-    // Publicly readable but Admin-writable
+    // Catalog & Media: Publicly readable, but only hardcoded admin can modify
     match /products/{productId} {
       allow read: if true;
       allow write: if isAdmin();
@@ -33,13 +38,8 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
-    match /reviews/{reviewId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if isAdmin();
-    }
 
-    // User profiles
+    // User profiles: Users can only manage their own, Admin has master access
     match /users/{userId} {
       allow read: if request.auth != null && (request.auth.uid == userId || isAdmin());
       allow write: if request.auth != null && (request.auth.uid == userId || isAdmin());

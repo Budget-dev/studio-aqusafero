@@ -14,7 +14,9 @@ import {
   LogOut,
   Droplets,
   ChevronRight,
-  Plus
+  Plus,
+  Wrench,
+  Zap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -33,18 +35,18 @@ const navItems = [
     label: 'Products', 
     icon: Package,
     children: [
-      { label: 'Commercial Units', href: '/admin/products?cat=Commercial&type=Product' },
-      { label: 'Commercial Spares', href: '/admin/products?cat=Commercial&type=Spare' },
-      { label: 'Domestic Units', href: '/admin/products?cat=Domestic&type=Product' },
-      { label: 'Domestic Spares', href: '/admin/products?cat=Domestic&type=Spare' },
+      { label: 'Commercial Units', href: '/admin/products?cat=Commercial&type=Product', icon: Zap },
+      { label: 'Commercial Spares', href: '/admin/products?cat=Commercial&type=Spare', icon: Wrench },
+      { label: 'Domestic Units', href: '/admin/products?cat=Domestic&type=Product', icon: Zap },
+      { label: 'Domestic Spares', href: '/admin/products?cat=Domestic&type=Spare', icon: Wrench },
     ]
   },
-  { label: 'Gallery', href: '/admin/gallery', icon: ImageIcon },
-  { label: 'Brands', href: '/admin/brands', icon: Award },
+  { label: 'Gallery Hub', href: '/admin/gallery', icon: ImageIcon },
+  { label: 'Brand Partners', href: '/admin/brands', icon: Award },
   { label: 'Certificates', href: '/admin/certificates', icon: Award },
-  { label: 'Invoices', href: '/admin/invoices', icon: FileText },
-  { label: 'Reviews', href: '/admin/reviews', icon: Star },
-  { label: 'Coupons', href: '/admin/coupons', icon: Ticket },
+  { label: 'Invoice Ledger', href: '/admin/invoices', icon: FileText },
+  { label: 'Customer Reviews', href: '/admin/reviews', icon: Star },
+  { label: 'Coupons & Offers', href: '/admin/coupons', icon: Ticket },
 ];
 
 export function AdminSidebar() {
@@ -93,7 +95,7 @@ export function AdminSidebar() {
                     <Link key={child.href} href={child.href}>
                       <span className={cn(
                         "flex items-center h-10 px-4 rounded-lg text-[9px] font-black uppercase tracking-wider transition-colors hover:bg-white/5",
-                        pathname === child.href ? "bg-white/10 text-primary" : "text-slate-400"
+                        pathname === child.href ? "bg-white/10 text-primary border-l-2 border-primary" : "text-slate-400"
                       )}>
                         {child.label}
                       </span>
@@ -101,7 +103,7 @@ export function AdminSidebar() {
                   ))}
                   <Link href="/admin/products/new">
                     <span className="flex items-center h-10 px-4 rounded-lg text-[9px] font-black uppercase tracking-wider text-green-400 hover:bg-green-400/10">
-                      <Plus className="h-3 w-3 mr-2" /> Add New Product
+                      <Plus className="h-3 w-3 mr-2" /> Add New Catalog Entry
                     </span>
                   </Link>
                 </CollapsibleContent>
@@ -133,7 +135,7 @@ export function AdminSidebar() {
           className="w-full justify-start h-12 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-400/10 font-bold uppercase tracking-widest text-[10px]"
         >
           <LogOut className="mr-3 h-4 w-4" />
-          Logout
+          Logout Hub
         </Button>
       </div>
     </aside>

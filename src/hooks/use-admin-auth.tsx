@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
 
+// CRITICAL: Hardcoded Master Admin Account
 const ADMIN_EMAIL = 'aquasaferoworks@gmail.com';
 
 export function useAdminAuth() {
@@ -14,10 +15,12 @@ export function useAdminAuth() {
 
   useEffect(() => {
     if (!loading) {
+      // Strictly enforce that ONLY the hardcoded email can access admin features
       if (!user || user.email !== ADMIN_EMAIL) {
         setIsAdmin(false);
         if (typeof window !== 'undefined') {
-          router.push('/login');
+          // Redirect unauthorized attempts back to login
+          router.push('/login?error=unauthorized');
         }
       } else {
         setIsAdmin(true);
