@@ -95,54 +95,58 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
-        <section className="relative overflow-hidden pt-6 lg:pt-8 pb-20 border-b border-slate-100 bg-slate-50/30">
-          <div className="container mx-auto px-4 max-w-[1400px]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.8fr] gap-12 items-center">
+        <section className="relative min-h-[600px] lg:min-h-[800px] flex items-center overflow-hidden border-b border-slate-100">
+          {/* Full-width Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://vennky.sirv.com/ChatGPT%20Image%20May%2023%2C%202026%2C%2009_35_36%20PM.png"
+              alt="AquaSafe Engineering Hub"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Slight dark overlay to improve text visibility */}
+            <div className="absolute inset-0 bg-slate-900/40" />
+          </div>
+
+          <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="space-y-6">
-                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-primary/10">
+                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-white">
                     20+ Years of Excellence
                   </Badge>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-white leading-[1.05] tracking-tight uppercase drop-shadow-xl">
                     Technical <br />Solutions for <br /><span className="text-primary">Every Sector</span>
                   </h1>
-                  <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
+                  <p className="text-xl text-slate-100 max-w-lg leading-relaxed font-bold drop-shadow-md">
                     We design, manufacture and commission high-performance water treatment plants with ISO certified precision since 2006.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none">
+                  <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-2xl shadow-primary/20">
                     <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-200 hover:bg-slate-100 text-slate-900 transition-all bg-white">
+                  <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-white/20 hover:bg-white/10 text-white transition-all bg-white/5 backdrop-blur-sm">
                     <Link href="/products">View Catalog</Link>
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-xs font-black text-slate-900 pt-2 uppercase tracking-widest">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-xs font-black text-white pt-2 uppercase tracking-widest">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-xl bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
-                    <span>Certified Purity</span>
+                    <div className="p-1.5 rounded-xl bg-primary/20 backdrop-blur-md border border-primary/20"><ShieldCheck className="h-5 w-5 text-primary" /></div>
+                    <span className="drop-shadow-sm">Certified Purity</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-xl bg-primary/10"><Activity className="h-5 w-5 text-primary" /></div>
-                    <span>Established 2006</span>
+                    <div className="p-1.5 rounded-xl bg-primary/20 backdrop-blur-md border border-primary/20"><Activity className="h-5 w-5 text-primary" /></div>
+                    <span className="drop-shadow-sm">Established 2006</span>
                   </div>
                 </div>
               </div>
 
-              <div className="relative animate-in fade-in slide-in-from-right-4 duration-700">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[3rem] shadow-2xl border-8 border-white/50">
-                  <Image
-                    src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2010_40_52%20AM.png"
-                    alt="AquaSafe Industrial Hub"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </div>
+              {/* Right side spacer for visual balance on top of background */}
+              <div className="hidden lg:block h-20" />
             </div>
           </div>
         </section>
