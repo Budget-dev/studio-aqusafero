@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image from "next/image";
@@ -88,8 +89,8 @@ export default function Home() {
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
         <section className="relative min-h-[600px] lg:min-h-[850px] flex items-center bg-white">
-          {/* Framed Background Image - Decreased on all sides */}
-          <div className="absolute inset-4 md:inset-6 lg:inset-8 z-0 overflow-hidden rounded-[2rem] md:rounded-[3rem] lg:rounded-[4rem] shadow-2xl">
+          {/* Framed Background Image - Reduced Top Inset */}
+          <div className="absolute top-2 md:top-3 lg:top-4 inset-x-4 md:inset-x-6 lg:inset-x-8 bottom-4 md:bottom-6 lg:bottom-8 z-0 overflow-hidden rounded-[2rem] md:rounded-[3rem] lg:rounded-[4rem] shadow-2xl">
             <Image
               src="https://vennky.sirv.com/ChatGPT%20Image%20May%2023%2C%202026%2C%2009_35_36%20PM.png"
               alt="AquaSafe Engineering Hub"
