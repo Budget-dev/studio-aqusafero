@@ -89,10 +89,10 @@ export default function Home() {
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
         <section className="relative min-h-[600px] lg:min-h-[850px] flex items-center bg-white">
-          {/* Framed Background Image - Full Width Sides, Flush Top, No Round Edges */}
+          {/* Framed Background Image - Flush Top, Full Width Sides */}
           <div className="absolute top-0 inset-x-0 bottom-0 z-0 overflow-hidden shadow-2xl">
             <Image
-              src="https://vennky.sirv.com/ChatGPT%20Image%20May%2023%2C%202026%2C%2009_35_36%20PM.png"
+              src="https://vennky.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2005_45_01%20PM.png"
               alt="AquaSafe Engineering Hub"
               fill
               className="object-cover transition-transform duration-1000"
@@ -117,7 +117,7 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-4">
                   <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-2xl shadow-primary/20">
-                    <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                    <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-xl text-base font-black border-2 border-slate-200 hover:bg-white/80 text-slate-900 transition-all bg-white/40 backdrop-blur-sm">
                     <Link href="/products">View Catalog</Link>
