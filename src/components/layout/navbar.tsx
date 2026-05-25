@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { 
   Menu, 
@@ -79,40 +79,51 @@ export default function Navbar() {
     { name: "Contact Us", href: "/contact", icon: Contact2 },
   ]
 
-  const toggleSidebar = () => setIsOpen(!isOpen)
+  const toggleSidebar = useCallback((e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setIsOpen(prev => !prev);
+  }, []);
 
   const handleLogout = () => {
     if (auth) signOut(auth)
     setIsOpen(false)
   }
 
+  // Handle outside clicks to close sidebar
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1280 && isOpen) {
-        setIsOpen(false)
-      }
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [isOpen])
+    if (!isOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
 
+  // Lock body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = ""
     }
     return () => {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = ""
     }
   }, [isOpen])
 
-  // Hide navbar on auth specific pages
+  // Close sidebar on navigation
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
   const isAuthPage = pathname?.includes('/login') || pathname?.includes('/signup')
   if (isAuthPage) return null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm h-24 lg:h-36">
+    <header className="sticky top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
       {/* Top Utility Bar */}
       <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
         <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
@@ -150,15 +161,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 h-24 flex items-center justify-between overflow-visible relative">
-        <div className="flex items-center h-24 shrink-0">
-          <Link href="/" className="block relative z-[60]">
+      <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        <div className="flex items-center h-full shrink-0">
+          <Link href="/" className="block relative z-[120]">
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
               width={400} 
               height={160} 
-              className="h-16 md:h-[11rem] w-auto object-contain transition-all duration-300 pointer-events-none"
+              className="h-12 md:h-20 lg:h-32 w-auto object-contain transition-all duration-300"
               priority
             />
           </Link>
@@ -244,7 +255,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle Button */}
         <div className="flex items-center gap-3 xl:hidden">
-          <Link href="/cart" className="p-2 relative">
+          <Link href="/cart" className="p-2 relative z-[130]">
             <ShoppingCart className="h-6 w-6 text-slate-900" />
             {cartCount > 0 && (
               <span className="absolute top-1 right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white animate-in zoom-in">
@@ -253,7 +264,7 @@ export default function Navbar() {
             )}
           </Link>
           <button 
-            className="p-2 text-slate-900 z-[60] relative" 
+            className="p-2 text-slate-900 z-[130] relative" 
             onClick={toggleSidebar}
             aria-label="Toggle Menu"
           >
@@ -262,18 +273,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
+          "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
-        onClick={toggleSidebar}
+        onClick={() => setIsOpen(false)}
       />
       
+      {/* Mobile Sidebar Content */}
       <div
         className={cn(
-          "fixed top-0 right-0 h-svh w-[300px] bg-white z-[100] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
+          "fixed top-0 right-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -285,12 +297,12 @@ export default function Navbar() {
             <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AquaSafe Hub</span>
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Water Technologies</span>
           </div>
-          <button onClick={toggleSidebar} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
+          <button onClick={() => setIsOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
             <X className="h-5 w-5 text-slate-400" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-6">
+        <nav className="flex-1 overflow-y-auto px-3 py-6 custom-scrollbar">
           <ul className="space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon
@@ -298,7 +310,6 @@ export default function Navbar() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
                     className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
                   >
                     <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
@@ -314,7 +325,7 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto border-t bg-slate-50/50 shrink-0">
-          <div className="p-5">
+          <div className="p-5 pb-8">
             {user ? (
               <div className="space-y-4">
                 <div className="flex items-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
@@ -336,16 +347,15 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4">
-                <Button asChild className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-none bg-slate-900">
-                  <Link href="/user/login" onClick={() => setIsOpen(false)}>Sign In</Link>
+                <Button asChild className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-none bg-slate-900 shadow-xl shadow-slate-900/10">
+                  <Link href="/user/login">Sign In</Link>
                 </Button>
-                <Button asChild variant="outline" className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-slate-200">
-                  <Link href="/user/signup" onClick={() => setIsOpen(false)}>Register</Link>
+                <Button asChild variant="outline" className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-slate-200 bg-white">
+                  <Link href="/user/signup">Register</Link>
                 </Button>
               </div>
             )}
           </div>
-          <div className="h-6 bg-white" />
         </div>
       </div>
     </header>
