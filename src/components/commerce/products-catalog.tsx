@@ -9,7 +9,10 @@ import {
   Search, 
   FilterX,
   Filter,
-  Loader2
+  Loader2,
+  Factory,
+  Home,
+  LayoutGrid
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,27 +117,66 @@ export function ProductsCatalog() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Search & Header Section */}
-      <section className="bg-slate-50 border-b py-12">
+      {/* Header Section */}
+      <section className="bg-slate-50 border-b py-8 lg:py-12">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">
-                {selectedCategory || "Technical Catalog"}
-              </h1>
-              <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">
-                {loading ? "Synchronizing with Hub..." : `Displaying ${filteredProducts.length} high-performance assets`}
-              </p>
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+              <div className="space-y-2">
+                <h1 className="text-3xl md:text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">
+                  {selectedCategory || "Technical Catalog"}
+                </h1>
+                <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">
+                  {loading ? "Synchronizing with Hub..." : `Displaying ${filteredProducts.length} high-performance assets`}
+                </p>
+              </div>
+              
+              <div className="relative flex-1 max-w-md w-full">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 h-14 bg-white border-slate-200 rounded-xl font-bold" 
+                  placeholder="Search products or tech..." 
+                />
+              </div>
             </div>
-            
-            <div className="relative flex-1 max-w-md w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-14 bg-white border-slate-200 rounded-xl font-bold" 
-                placeholder="Search products, tech or SKU..." 
-              />
+
+            {/* Mobile-First Category Navigation Bar */}
+            <div className="flex items-center gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit">
+              <Button 
+                variant={!selectedCategory ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedCategory(null)}
+                className={cn(
+                  "rounded-xl font-black uppercase text-[10px] tracking-widest h-10 px-4",
+                  !selectedCategory && "bg-primary text-white shadow-lg shadow-primary/20"
+                )}
+              >
+                <LayoutGrid className="mr-2 h-3.5 w-3.5" /> All Assets
+              </Button>
+              <Button 
+                variant={selectedCategory === 'Commercial' ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedCategory('Commercial')}
+                className={cn(
+                  "rounded-xl font-black uppercase text-[10px] tracking-widest h-10 px-4",
+                  selectedCategory === 'Commercial' && "bg-primary text-white shadow-lg shadow-primary/20"
+                )}
+              >
+                <Factory className="mr-2 h-3.5 w-3.5" /> Industrial
+              </Button>
+              <Button 
+                variant={selectedCategory === 'Domestic' ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedCategory('Domestic')}
+                className={cn(
+                  "rounded-xl font-black uppercase text-[10px] tracking-widest h-10 px-4",
+                  selectedCategory === 'Domestic' && "bg-primary text-white shadow-lg shadow-primary/20"
+                )}
+              >
+                <Home className="mr-2 h-3.5 w-3.5" /> Residential
+              </Button>
             </div>
           </div>
         </div>
@@ -153,23 +195,25 @@ export function ProductsCatalog() {
           <main className="lg:col-span-9 space-y-8">
             <div className="flex items-center justify-between mb-8">
               {/* Mobile Filter Trigger */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline" className="lg:hidden h-12 rounded-xl px-4 border-slate-200">
-                    <Filter className="mr-2 h-4 w-4" /> Filters
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                  <SheetHeader className="mb-8">
-                    <SheetTitle className="text-left font-black uppercase tracking-widest">Filter Options</SheetTitle>
-                  </SheetHeader>
-                  <FilterContent />
-                </SheetContent>
-              </Sheet>
+              <div className="flex items-center gap-4">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="lg:hidden h-12 rounded-xl px-4 border-slate-200 font-black uppercase text-[10px] tracking-widest">
+                      <Filter className="mr-2 h-4 w-4" /> Advanced Filters
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                    <SheetHeader className="mb-8">
+                      <SheetTitle className="text-left font-black uppercase tracking-widest">Filter Options</SheetTitle>
+                    </SheetHeader>
+                    <FilterContent />
+                  </SheetContent>
+                </Sheet>
+              </div>
 
               <div className="flex items-center gap-4 ml-auto">
                 <Select defaultValue="newest">
-                  <SelectTrigger className="w-[180px] h-12 bg-white rounded-xl font-bold border-slate-200">
+                  <SelectTrigger className="w-[160px] h-12 bg-white rounded-xl font-black uppercase text-[10px] tracking-widest border-slate-200">
                     <SelectValue placeholder="Sort By" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">

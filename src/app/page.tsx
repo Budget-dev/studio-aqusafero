@@ -89,8 +89,8 @@ export default function Home() {
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
         <section className="relative min-h-[600px] lg:min-h-[850px] flex items-center bg-white">
-          {/* Framed Background Image - Reduced Top Inset & Removed Rounded Edges */}
-          <div className="absolute top-2 md:top-3 lg:top-4 inset-x-4 md:inset-x-6 lg:inset-x-8 bottom-4 md:bottom-6 lg:bottom-8 z-0 overflow-hidden rounded-none shadow-2xl">
+          {/* Framed Background Image - Full Width Sides, Minimal Top Spacing, No Round Edges */}
+          <div className="absolute top-1 inset-x-0 bottom-0 z-0 overflow-hidden shadow-2xl">
             <Image
               src="https://vennky.sirv.com/ChatGPT%20Image%20May%2023%2C%202026%2C%2009_35_36%20PM.png"
               alt="AquaSafe Engineering Hub"
@@ -148,7 +148,7 @@ export default function Home() {
           heading="Core Industrial Solutions"
           description="Precision-engineered plants designed to meet stringent environmental standards and performance benchmarks."
           buttonText="View All Blueprints"
-          buttonUrl="/services"
+          buttonUrl="/products"
           posts={engineeringPosts}
         />
 
