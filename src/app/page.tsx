@@ -89,8 +89,8 @@ export default function Home() {
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
         <section className="relative min-h-[600px] lg:min-h-[850px] flex items-center bg-white">
-          {/* Framed Background Image - Full Width Sides, Minimal Top Spacing, No Round Edges */}
-          <div className="absolute top-1 inset-x-0 bottom-0 z-0 overflow-hidden shadow-2xl">
+          {/* Framed Background Image - Full Width Sides, Flush Top, No Round Edges */}
+          <div className="absolute top-0 inset-x-0 bottom-0 z-0 overflow-hidden shadow-2xl">
             <Image
               src="https://vennky.sirv.com/ChatGPT%20Image%20May%2023%2C%202026%2C%2009_35_36%20PM.png"
               alt="AquaSafe Engineering Hub"

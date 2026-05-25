@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -68,8 +69,8 @@ const Blog7 = ({
                   className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <CardHeader className="p-3 md:p-8 flex-1">
-                <h3 className="text-[11px] md:text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors uppercase">
+              <CardHeader className="p-2 md:p-8 flex-1">
+                <h3 className="text-xs md:text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors uppercase">
                   <a href={post.url}>
                     {post.title}
                   </a>
@@ -78,10 +79,10 @@ const Blog7 = ({
               <CardContent className="hidden md:block p-8 pt-0">
                 <p className="text-slate-600 font-bold leading-relaxed text-sm">{post.summary}</p>
               </CardContent>
-              <CardFooter className="p-3 md:p-8 md:pb-8 mt-auto">
+              <CardFooter className="p-2 md:p-8 md:pb-8 mt-auto">
                 <a
                   href={post.url}
-                  className="flex items-center text-primary font-black uppercase tracking-widest text-[9px] md:text-xs hover:gap-2 transition-all"
+                  className="flex items-center text-primary font-black uppercase tracking-widest text-[10px] md:text-xs hover:gap-2 transition-all"
                 >
                   <span className="hidden md:inline">Read more</span>
                   <span className="md:hidden">Details</span>
