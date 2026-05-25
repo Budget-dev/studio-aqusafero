@@ -88,9 +88,9 @@ export default function Home() {
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
       <div className="relative z-10 flex flex-col">
         {/* 1. Hero Section */}
-        <section className="relative min-h-[600px] lg:min-h-[850px] flex items-center bg-white">
-          {/* Framed Background Image - Flush Top, Full Width Sides */}
-          <div className="absolute top-0 inset-x-0 bottom-0 z-0 overflow-hidden shadow-2xl">
+        <section className="relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] flex items-center bg-white">
+          {/* Layered Background Image Container */}
+          <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
             <Image
               src="https://vennky.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2005_45_01%20PM.png"
               alt="AquaSafe Engineering Hub"
@@ -98,13 +98,15 @@ export default function Home() {
               className="object-cover transition-transform duration-1000"
               priority
             />
+            {/* Soft Gradient Overlay for Readability & Depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent pointer-events-none" />
           </div>
 
-          <div className="container mx-auto px-4 md:px-12 lg:px-20 max-w-[1400px] relative z-10">
+          <div className="container mx-auto px-4 md:px-12 lg:px-20 max-w-[1400px] relative z-10 pt-24 lg:pt-40">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-700">
-                <div className="space-y-6">
-                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-white/90 backdrop-blur-md shadow-sm">
+              <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-700">
+                <div className="space-y-4">
+                  <Badge variant="outline" className="text-primary border-primary/30 font-black tracking-widest uppercase py-1.5 px-4 text-[10px] rounded-lg bg-white/90 backdrop-blur-md shadow-sm w-fit">
                     20+ Years of Excellence
                   </Badge>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase drop-shadow-sm">
@@ -115,7 +117,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 pt-2">
                   <Button asChild size="lg" className="h-14 px-10 rounded-xl text-base font-black bg-primary text-white hover:bg-primary/90 transition-all border-none shadow-2xl shadow-primary/20">
                     <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
@@ -124,19 +126,19 @@ export default function Home() {
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-xs font-black text-slate-900 pt-2 uppercase tracking-widest">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-xl bg-white/80 backdrop-blur-md border border-primary/20 shadow-sm"><ShieldCheck className="h-5 w-5 text-primary" /></div>
+                <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-xs font-black text-slate-900 pt-8 uppercase tracking-widest">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-white/80 backdrop-blur-md border border-primary/20 shadow-sm transition-transform hover:scale-110"><ShieldCheck className="h-5 w-5 text-primary" /></div>
                     <span>Certified Purity</span>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-xl bg-white/80 backdrop-blur-md border border-primary/20 shadow-sm"><Activity className="h-5 w-5 text-primary" /></div>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-white/80 backdrop-blur-md border border-primary/20 shadow-sm transition-transform hover:scale-110"><Activity className="h-5 w-5 text-primary" /></div>
                     <span>Established 2006</span>
                   </div>
                 </div>
               </div>
 
-              {/* Right side spacer for visual balance on top of background */}
+              {/* Right side balance spacer */}
               <div className="hidden lg:block h-20" />
             </div>
           </div>
