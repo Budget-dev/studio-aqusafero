@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -25,7 +26,8 @@ import {
   LogOut,
   GraduationCap,
   ShoppingCart,
-  Package
+  Package,
+  ArrowRight
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -124,7 +126,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
-      {/* Top Utility Bar */}
+      {/* Top Utility Bar (Desktop) */}
       <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
         <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
           <div className="flex items-center gap-2">
@@ -146,9 +148,6 @@ export default function Navbar() {
                 <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                   <Mail className="h-3.5 w-3.5" /> info@aquasafero.com
                 </Link>
-                <Link href="mailto:aquasafe.ap@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Mail className="h-3.5 w-3.5" /> aquasafe.ap@gmail.com
-                </Link>
               </div>
             </div>
             
@@ -162,6 +161,18 @@ export default function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        {/* Mobile: Hamburger on Left */}
+        <div className="xl:hidden flex items-center">
+          <button 
+            className="p-2 text-slate-900 z-[130] relative" 
+            onClick={toggleSidebar}
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-7 w-7" />}
+          </button>
+        </div>
+
+        {/* Logo - Centered or Left based on screen */}
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="block relative z-[120]">
             <Image 
@@ -220,13 +231,6 @@ export default function Navbar() {
           </NavigationMenu>
           
           <div className="flex items-center gap-4 ml-6 pl-6 border-l">
-            {user && (
-              <Link href="/orders" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative group" title="My Orders">
-                <Package className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform"></span>
-              </Link>
-            )}
-            
             <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
@@ -253,23 +257,11 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile Toggle Button */}
-        <div className="flex items-center gap-3 xl:hidden">
-          <Link href="/cart" className="p-2 relative z-[130]">
-            <ShoppingCart className="h-6 w-6 text-slate-900" />
-            {cartCount > 0 && (
-              <span className="absolute top-1 right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white animate-in zoom-in">
-                {cartCount}
-              </span>
-            )}
-          </Link>
-          <button 
-            className="p-2 text-slate-900 z-[130] relative" 
-            onClick={toggleSidebar}
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+        {/* Mobile Right Action: Get a Quote (As per reference image) */}
+        <div className="xl:hidden flex items-center gap-3">
+          <Button asChild className="h-10 px-4 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-primary/20 border-none">
+            <Link href="/contact">Get a Quote <ArrowRight className="ml-1.5 h-3 w-3" /></Link>
+          </Button>
         </div>
       </div>
 
