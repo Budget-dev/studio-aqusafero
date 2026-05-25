@@ -74,7 +74,7 @@ export default function Footer() {
   if (pathname === '/login' || pathname === '/signup') return null;
 
   return (
-    <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[3rem] md:rounded-t-[4rem] border-t border-white/10 bg-slate-900 px-6 py-16 lg:py-20 overflow-hidden">
+    <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[3rem] md:rounded-t-[4rem] border-t border-white/10 bg-slate-900 px-6 py-10 lg:py-20 overflow-hidden">
       {/* Subtle Top Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/50 to-transparent blur-sm" />
       
@@ -83,15 +83,15 @@ export default function Footer() {
            style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary)) 0%, transparent 70%)' }} 
       />
 
-      <div className="relative z-10 grid w-full gap-12 xl:grid-cols-4">
-        <AnimatedContainer className="space-y-6">
+      <div className="relative z-10 grid w-full gap-8 md:gap-12 xl:grid-cols-4">
+        <AnimatedContainer className="space-y-4 md:space-y-6">
           <Link href="/" className="block">
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
               width={400} 
               height={160} 
-              className="h-16 md:h-[10rem] w-auto object-contain brightness-0 invert"
+              className="h-28 md:h-[10rem] w-auto object-contain brightness-0 invert"
             />
           </Link>
           <div className="space-y-4">
@@ -116,11 +116,11 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-3">
           {footerLinks.map((section, index) => (
             <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-white">
                   {section.label}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2 md:space-y-3">
                   {section.links.map((link) => (
                     <li key={link.title}>
                       <Link
