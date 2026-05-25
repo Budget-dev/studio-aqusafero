@@ -57,7 +57,7 @@ const Blog7 = ({
             </a>
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-1.5 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10 w-full max-w-6xl">
+        <div className="grid grid-cols-3 gap-2 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10 w-full max-w-6xl">
           {posts.map((post) => (
             <Card key={post.id} className="flex flex-col border-none bg-sky-50/30 rounded-xl md:rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group h-full">
               <div className="aspect-[4/3] w-full overflow-hidden relative shrink-0">
@@ -68,8 +68,8 @@ const Blog7 = ({
                   className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <CardHeader className="p-2 md:p-8 flex-1">
-                <h3 className="text-[8px] md:text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors uppercase">
+              <CardHeader className="p-3 md:p-8 flex-1">
+                <h3 className="text-[11px] md:text-2xl font-black font-headline text-slate-900 leading-tight group-hover:text-primary transition-colors uppercase">
                   <a href={post.url}>
                     {post.title}
                   </a>
@@ -78,10 +78,10 @@ const Blog7 = ({
               <CardContent className="hidden md:block p-8 pt-0">
                 <p className="text-slate-600 font-bold leading-relaxed text-sm">{post.summary}</p>
               </CardContent>
-              <CardFooter className="p-2 md:p-8 md:pb-8 mt-auto">
+              <CardFooter className="p-3 md:p-8 md:pb-8 mt-auto">
                 <a
                   href={post.url}
-                  className="flex items-center text-primary font-black uppercase tracking-widest text-[7px] md:text-xs hover:gap-2 transition-all"
+                  className="flex items-center text-primary font-black uppercase tracking-widest text-[9px] md:text-xs hover:gap-2 transition-all"
                 >
                   <span className="hidden md:inline">Read more</span>
                   <span className="md:hidden">Details</span>
