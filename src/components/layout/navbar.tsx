@@ -27,7 +27,10 @@ import {
   GraduationCap,
   ShoppingCart,
   Package,
-  ArrowRight
+  ArrowRight,
+  Factory,
+  Beaker,
+  Building2
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -59,10 +62,12 @@ export default function Navbar() {
       href: "/products",
       icon: Droplets,
       children: [
-        { name: "Domestic Products", href: "/products?category=Domestic+Products", description: "Premium purification and alkaline systems for households." },
-        { name: "Commercial Products", href: "/products?category=Commercial+Products", description: "High-volume treatment for hospitals and industry." },
-        { name: "Spares and Components", href: "/products?category=Spares+and+Components", description: "Certified pumps, membranes, and fittings." },
-        { name: "Filters and Chemicals", href: "/products?category=Filters+and+Chemicals", description: "Membrane cleaners, antiscalants, and media." },
+        { name: "Domestic Products", href: "/products?category=Domestic+Products", description: "Premium purification systems for households.", icon: Home },
+        { name: "Commercial Products", href: "/products?category=Commercial+Products", description: "Water treatment for hospitality and clinics.", icon: ShoppingCart },
+        { name: "Institutional Products", href: "/products?category=Institutional+Products", description: "Safety-first systems for schools and hospitals.", icon: Building2 },
+        { name: "Industrial Products", href: "/products?category=Industrial+Products", description: "High-volume plants for heavy manufacturing.", icon: Factory },
+        { name: "Components & Spare Parts", href: "/products?category=Components+%26+Spare+Parts", description: "Certified pumps, membranes, and fittings.", icon: Wrench },
+        { name: "Filters & Chemicals", href: "/products?category=Filters+%26+Chemicals", description: "Media, antiscalants, and treatment chemicals.", icon: Beaker },
       ],
     },
     {
@@ -94,7 +99,6 @@ export default function Navbar() {
     setIsOpen(false)
   }
 
-  // Handle outside clicks to close sidebar
   useEffect(() => {
     if (!isOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
@@ -104,7 +108,6 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  // Lock body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -116,7 +119,6 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  // Close sidebar on navigation
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
@@ -126,7 +128,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
-      {/* Top Utility Bar (Desktop) */}
       <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
         <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
           <div className="flex items-center gap-2">
@@ -161,7 +162,6 @@ export default function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
-        {/* Mobile: Hamburger on Left */}
         <div className="xl:hidden flex items-center">
           <button 
             className="p-2 text-slate-900 z-[130] relative" 
@@ -172,7 +172,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Logo - Centered or Left based on screen */}
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="block relative z-[120]">
             <Image 
@@ -186,7 +185,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center gap-2">
           <NavigationMenu>
             <NavigationMenuList>
@@ -196,7 +194,7 @@ export default function Navbar() {
                     <>
                       <NavigationMenuTrigger className="font-black text-[11px] uppercase tracking-widest">{item.name}</NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] rounded-xl">
+                        <ul className="grid w-[400px] gap-3 p-4 md:w-[600px] md:grid-cols-2 rounded-xl">
                           {item.children.map((child) => (
                             <li key={child.name}>
                               <NavigationMenuLink asChild>
@@ -204,7 +202,10 @@ export default function Navbar() {
                                   href={child.href}
                                   className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all hover:bg-slate-50 hover:text-primary"
                                 >
-                                  <div className="text-xs font-black uppercase tracking-tight text-slate-900 leading-none mb-1">{child.name}</div>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    {child.icon && <child.icon className="h-3.5 w-3.5 text-primary" />}
+                                    <div className="text-xs font-black uppercase tracking-tight text-slate-900 leading-none">{child.name}</div>
+                                  </div>
                                   <p className="line-clamp-2 text-[10px] font-bold leading-snug text-slate-400">
                                     {child.description}
                                   </p>
@@ -257,7 +258,6 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile Right Action: Get a Quote (As per reference image) */}
         <div className="xl:hidden flex items-center gap-3">
           <Button asChild className="h-10 px-4 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-primary/20 border-none">
             <Link href="/contact">Get a Quote <ArrowRight className="ml-1.5 h-3 w-3" /></Link>
@@ -265,7 +265,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -274,7 +273,6 @@ export default function Navbar() {
         onClick={() => setIsOpen(false)}
       />
       
-      {/* Mobile Sidebar Content */}
       <div
         className={cn(
           "fixed top-0 right-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",

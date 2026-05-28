@@ -16,7 +16,11 @@ import {
   ChevronRight,
   Plus,
   Wrench,
-  Zap
+  Zap,
+  Home,
+  Building2,
+  Factory,
+  Beaker
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -32,13 +36,15 @@ import { useState } from 'react';
 const navItems = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { 
-    label: 'Products', 
+    label: 'Asset Catalog', 
     icon: Package,
     children: [
-      { label: 'Commercial Units', href: '/admin/products?cat=Commercial&type=Product', icon: Zap },
-      { label: 'Commercial Spares', href: '/admin/products?cat=Commercial&type=Spare', icon: Wrench },
-      { label: 'Domestic Units', href: '/admin/products?cat=Domestic&type=Product', icon: Zap },
-      { label: 'Domestic Spares', href: '/admin/products?cat=Domestic&type=Spare', icon: Wrench },
+      { label: 'Domestic Hub', href: '/admin/products?cat=Domestic+Products', icon: Home },
+      { label: 'Commercial Hub', href: '/admin/products?cat=Commercial+Products', icon: Zap },
+      { label: 'Institutional Hub', href: '/admin/products?cat=Institutional+Products', icon: Building2 },
+      { label: 'Industrial Hub', href: '/admin/products?cat=Industrial+Products', icon: Factory },
+      { label: 'Spares & Parts', href: '/admin/products?cat=Components+%26+Spare+Parts', icon: Wrench },
+      { label: 'Filters & Chemicals', href: '/admin/products?cat=Filters+%26+Chemicals', icon: Beaker },
     ]
   },
   { label: 'Gallery Hub', href: '/admin/gallery', icon: ImageIcon },
@@ -95,7 +101,9 @@ export function AdminSidebar() {
                     <Link key={child.href} href={child.href}>
                       <span className={cn(
                         "flex items-center h-10 px-4 rounded-lg text-[9px] font-black uppercase tracking-wider transition-colors hover:bg-white/5",
-                        pathname === child.href ? "bg-white/10 text-primary border-l-2 border-primary" : "text-slate-400"
+                        pathname === child.href || (pathname === '/admin/products' && new URLSearchParams(child.href.split('?')[1]).get('cat') === new URLSearchParams(window.location.search).get('cat')) 
+                          ? "bg-white/10 text-primary border-l-2 border-primary" 
+                          : "text-slate-400"
                       )}>
                         {child.label}
                       </span>
@@ -103,7 +111,7 @@ export function AdminSidebar() {
                   ))}
                   <Link href="/admin/products/new">
                     <span className="flex items-center h-10 px-4 rounded-lg text-[9px] font-black uppercase tracking-wider text-green-400 hover:bg-green-400/10">
-                      <Plus className="h-3 w-3 mr-2" /> Add New Catalog Entry
+                      <Plus className="h-3 w-3 mr-2" /> Add New Asset
                     </span>
                   </Link>
                 </CollapsibleContent>

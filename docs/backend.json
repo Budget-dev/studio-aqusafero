@@ -32,7 +32,18 @@
       "properties": {
         "name": { "type": "string" },
         "slug": { "type": "string" },
-        "category": { "type": "string", "enum": ["Commercial", "Domestic"] },
+        "category": { 
+          "type": "string", 
+          "enum": [
+            "Domestic Products", 
+            "Commercial Products", 
+            "Institutional Products", 
+            "Industrial Products", 
+            "Components & Spare Parts", 
+            "Filters & Chemicals"
+          ] 
+        },
+        "subcategory": { "type": "string" },
         "type": { "type": "string", "enum": ["Product", "Spare Part"] },
         "brand": { "type": "string" },
         "price": { "type": "number" },

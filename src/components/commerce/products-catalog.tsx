@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useMemo, useEffect, useCallback } from "react";
@@ -13,7 +14,10 @@ import {
   Zap,
   Wrench,
   ChevronRight,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Building2,
+  Beaker,
+  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,7 +49,7 @@ export function ProductsCatalog() {
   
   const [isClient, setIsClient] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [priceRange, setPriceRange] = useState([0, 200000]);
+  const [priceRange, setPriceRange] = useState([0, 500000]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
   const [sortBy, setSortBy] = useState("newest");
@@ -56,11 +60,18 @@ export function ProductsCatalog() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
+
   const filteredProducts = useMemo(() => {
     let result = PRODUCTS.filter((p) => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          p.brand.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = !selectedCategory || p.category === selectedCategory || p.type === selectedCategory || p.brand === selectedCategory;
+                          p.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          p.subcategory?.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = !selectedCategory || p.category === selectedCategory;
       const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
       return matchesSearch && matchesCategory && matchesPrice;
     });
@@ -74,10 +85,12 @@ export function ProductsCatalog() {
 
   const categories = [
     { id: null, label: "All Hub", icon: LayoutGrid },
-    { id: "Commercial", label: "Industrial", icon: Factory },
-    { id: "Domestic", label: "Residential", icon: Home },
-    { id: "Spare", label: "Spares", icon: Wrench },
-    { id: "Plant", label: "Plants", icon: Zap },
+    { id: "Domestic Products", label: "Domestic", icon: Home },
+    { id: "Commercial Products", label: "Commercial", icon: Zap },
+    { id: "Institutional Products", label: "Institutional", icon: Building2 },
+    { id: "Industrial Products", label: "Industrial", icon: Factory },
+    { id: "Components & Spare Parts", label: "Spares", icon: Wrench },
+    { id: "Filters & Chemicals", label: "Filters", icon: Beaker },
   ];
 
   const FilterContent = useCallback(() => (
@@ -85,17 +98,17 @@ export function ProductsCatalog() {
       <div className="space-y-6">
         <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 pb-4 border-b">Industrial Sector</h3>
         <div className="space-y-4">
-          {["Commercial", "Domestic"].map((cat) => (
+          {categories.filter(c => c.id !== null).map((cat) => (
             <div 
-              key={cat} 
+              key={cat.id} 
               className="flex items-center space-x-3 group cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedCategory(selectedCategory === cat ? null : cat);
+                setSelectedCategory(selectedCategory === cat.id ? null : cat.id);
               }}
             >
-              <Checkbox checked={selectedCategory === cat} className="rounded-md border-2 border-slate-200" />
-              <Label className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat} Solutions</Label>
+              <Checkbox checked={selectedCategory === cat.id} className="rounded-md border-2 border-slate-200" />
+              <Label className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors cursor-pointer">{cat.id}</Label>
             </div>
           ))}
         </div>
@@ -107,7 +120,7 @@ export function ProductsCatalog() {
           <Slider 
             value={[priceRange[1]]} 
             onValueChange={(val) => setPriceRange([0, val[0]])} 
-            max={200000} 
+            max={500000} 
             step={1000} 
             className="mb-6"
           />
@@ -123,29 +136,28 @@ export function ProductsCatalog() {
         className="w-full h-14 rounded-2xl border-2 border-slate-100 font-black uppercase tracking-widest text-[10px]"
         onClick={() => {
           setSelectedCategory(null);
-          setPriceRange([0, 200000]);
+          setPriceRange([0, 500000]);
           setSearchQuery("");
         }}
       >
-        <FilterX className="mr-2 h-4 w-4" /> Reset Filters
+        <FilterX className="mr-2 h-4 w-4" /> Reset Hub
       </Button>
     </div>
-  ), [selectedCategory, priceRange]);
+  ), [selectedCategory, priceRange, categories]);
 
   if (!isClient) return null;
 
   return (
     <div className="min-h-screen bg-white pb-20">
-      {/* Sticky Filters Sub-Header */}
       <section className="bg-white/80 backdrop-blur-xl border-b sticky top-20 lg:top-36 z-[40] transition-all duration-300">
-        <div className="container mx-auto px-4 max-w-7xl pt-4 pb-4 space-y-4">
+        <div className="container mx-auto px-4 max-get-7xl pt-4 pb-4 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-0.5">
               <h1 className="text-lg md:text-2xl font-black font-headline text-slate-900 tracking-tight uppercase leading-none">
                 Technical <span className="text-primary">Catalog</span>
               </h1>
               <p className="text-slate-400 font-bold text-[8px] md:text-[10px] uppercase tracking-widest">
-                {loading ? "Synchronizing Asset Hub..." : `${filteredProducts.length} Items Indexed`}
+                {loading ? "Synchronizing Asset Hub..." : `${filteredProducts.length} Assets Indexed`}
               </p>
             </div>
             
@@ -155,12 +167,11 @@ export function ProductsCatalog() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 h-10 md:h-12 bg-slate-50/80 border-slate-100 rounded-xl font-bold shadow-inner text-sm" 
-                placeholder="Search catalog..." 
+                placeholder="Search assets, brands, or components..." 
               />
             </div>
           </div>
 
-          {/* Touch-Friendly Categories */}
           <div className="relative -mx-4 px-4 overflow-hidden">
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
               {categories.map((cat) => {
@@ -191,17 +202,13 @@ export function ProductsCatalog() {
         </div>
       </section>
 
-      {/* Main Content Area */}
       <div className="container mx-auto px-4 max-w-7xl py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
-          {/* Desktop Filter Sidebar */}
           <aside className="hidden lg:block lg:col-span-3 h-fit sticky top-64">
             <FilterContent />
           </aside>
 
           <main className="lg:col-span-9">
-            {/* Action Bar */}
             <div className="flex items-center justify-between mb-8 relative z-30">
               <Sheet>
                 <SheetTrigger asChild>
@@ -218,9 +225,8 @@ export function ProductsCatalog() {
               </Sheet>
 
               <div className="ml-auto flex items-center gap-2">
-                <span className="text-[9px] font-black uppercase text-slate-300 tracking-widest hidden sm:inline">Sort:</span>
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-[140px] md:w-[180px] h-10 bg-white rounded-xl font-black uppercase text-[9px] tracking-widest border-slate-100 shadow-sm focus:ring-0">
+                  <SelectTrigger className="w-[160px] md:w-[200px] h-10 bg-white rounded-xl font-black uppercase text-[9px] tracking-widest border-slate-100 shadow-sm focus:ring-0">
                     <SelectValue placeholder="Latest" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl border-slate-100 shadow-2xl z-[150]">
@@ -261,8 +267,8 @@ export function ProductsCatalog() {
                   <p className="text-slate-400 font-bold text-sm max-w-xs mx-auto">Try recalibrating your industrial filters or reset the catalog hub.</p>
                 </div>
                 <Button 
-                  onClick={() => { setSelectedCategory(null); setPriceRange([0, 200000]); setSearchQuery(""); }}
-                  className="bg-primary text-white font-black uppercase text-[10px] tracking-widest px-8 rounded-xl h-12"
+                  onClick={() => { setSelectedCategory(null); setPriceRange([0, 500000]); setSearchQuery(""); }}
+                  className="bg-primary text-white font-black uppercase text-[10px] tracking-widest px-8 rounded-xl h-12 border-none"
                 >
                   Reset Engineering Hub
                 </Button>

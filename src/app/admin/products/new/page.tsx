@@ -20,7 +20,8 @@ import {
   Video as VideoIcon,
   Tag,
   Star,
-  Search
+  Search,
+  Loader2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,6 +40,24 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 
+const CATEGORIES = [
+  "Domestic Products",
+  "Commercial Products",
+  "Institutional Products",
+  "Industrial Products",
+  "Components & Spare Parts",
+  "Filters & Chemicals"
+];
+
+const SUBCATEGORIES: Record<string, string[]> = {
+  "Components & Spare Parts": ["Pumps", "Valves", "Membranes", "Housings", "Connectors", "Motors", "UV Components", "RO Spare Parts"],
+  "Filters & Chemicals": ["Sediment Filters", "Carbon Filters", "RO Membranes", "UF Filters", "Industrial Filters", "Water Treatment Chemicals", "Cleaning Chemicals", "Dosing Solutions", "Industrial Chemical Solutions"],
+  "Domestic Products": ["RO Purifiers", "Alkaline Systems", "Softeners", "UV/UF Units"],
+  "Commercial Products": ["RO Plants", "Softeners", "Chillers", "Dispensers"],
+  "Institutional Products": ["Plant Solutions", "Central Purification", "Public Dispensers"],
+  "Industrial Products": ["Industrial Plants", "Effluent Treatment", "Sewage Treatment", "ZLD Systems"]
+};
+
 export default function AddProductPage() {
   const router = useRouter();
   const firestore = useFirestore();
@@ -48,9 +67,10 @@ export default function AddProductPage() {
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
-    category: 'Commercial',
+    category: 'Domestic Products',
+    subcategory: '',
     type: 'Product',
-    brand: '',
+    brand: 'AquaSafe',
     price: 0,
     offerPrice: 0,
     sku: '',
@@ -80,7 +100,7 @@ export default function AddProductPage() {
       toast({ title: 'System Published', description: 'Technical catalog successfully updated.' });
       router.push('/admin/products');
     } catch (e) {
-      toast({ variant: 'destructive', title: 'Publication Failed', description: 'Database sync error. Check security permissions.' });
+      toast({ variant: 'destructive', title: 'Publication Failed', description: 'Database sync error.' });
     } finally {
       setLoading(false);
     }
@@ -114,7 +134,6 @@ export default function AddProductPage() {
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 space-y-8">
-          {/* Core Info */}
           <Card className="rounded-[2.5rem] border-none shadow-sm overflow-hidden bg-white">
             <CardHeader className="bg-slate-900 text-white p-8">
               <div className="flex items-center gap-3">
@@ -144,28 +163,45 @@ export default function AddProductPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest pl-1">Category</Label>
-                  <Select onValueChange={(val) => setFormData({...formData, category: val})} defaultValue="Commercial">
+                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest pl-1">Primary Category</Label>
+                  <Select onValueChange={(val) => setFormData({...formData, category: val, subcategory: ''})} value={formData.category}>
                     <SelectTrigger className="h-14 rounded-2xl bg-slate-50 border-none font-bold">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="Commercial">Commercial / Industrial</SelectItem>
-                      <SelectItem value="Domestic">Domestic / Residential</SelectItem>
+                      {CATEGORIES.map(cat => (
+                        <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest pl-1">Subcategory</Label>
+                  <Select onValueChange={(val) => setFormData({...formData, subcategory: val})} value={formData.subcategory}>
+                    <SelectTrigger className="h-14 rounded-2xl bg-slate-50 border-none font-bold">
+                      <SelectValue placeholder="Select Hub Subcategory" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl">
+                      {(SUBCATEGORIES[formData.category] || []).map(sub => (
+                        <SelectItem key={sub} value={sub}>{sub}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest pl-1">Asset Type</Label>
-                  <Select onValueChange={(val) => setFormData({...formData, type: val})} defaultValue="Product">
+                  <Select onValueChange={(val) => setFormData({...formData, type: val as any})} value={formData.type}>
                     <SelectTrigger className="h-14 rounded-2xl bg-slate-50 border-none font-bold">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
                       <SelectItem value="Product">Main Unit / Plant</SelectItem>
-                      <SelectItem value="Spare">Technical Spare Part</SelectItem>
+                      <SelectItem value="Spare Part">Technical Spare / Part</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -175,7 +211,7 @@ export default function AddProductPage() {
                     value={formData.brand}
                     onChange={(e) => setFormData({...formData, brand: e.target.value})}
                     className="h-14 rounded-2xl bg-slate-50 border-none font-bold" 
-                    placeholder="e.g. Dow / Pentair" 
+                    placeholder="e.g. AquaSafe / Dow / CRI" 
                   />
                 </div>
               </div>
@@ -202,7 +238,6 @@ export default function AddProductPage() {
             </CardContent>
           </Card>
 
-          {/* Technical Matrix */}
           <Card className="rounded-[2.5rem] border-none shadow-sm overflow-hidden bg-white">
             <CardHeader className="bg-slate-900 text-white p-8">
               <div className="flex items-center gap-3">
@@ -246,103 +281,9 @@ export default function AddProductPage() {
               </Button>
             </CardContent>
           </Card>
-
-          {/* Multi-Media Management */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Images */}
-            <Card className="rounded-[2.5rem] border-none shadow-sm overflow-hidden bg-white">
-              <CardHeader className="bg-slate-800 text-white p-6">
-                <div className="flex items-center gap-3">
-                  <ImageIcon className="h-4 w-4 text-primary" />
-                  <CardTitle className="font-black font-headline uppercase tracking-tight text-xs">Image Assets</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6 space-y-6">
-                {formData.images.map((img, i) => (
-                  <div key={i} className="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 relative">
-                    <Input 
-                      placeholder="Image URL (Public)" 
-                      value={img.url}
-                      onChange={(e) => updateAsset(i, 'images', 'url', e.target.value)}
-                      className="h-10 rounded-lg border-none font-bold text-xs"
-                    />
-                    <Input 
-                      placeholder="Asset Caption" 
-                      value={img.caption}
-                      onChange={(e) => updateAsset(i, 'images', 'caption', e.target.value)}
-                      className="h-10 rounded-lg border-none font-bold text-xs"
-                    />
-                    <Button 
-                      type="button" 
-                      variant="ghost" 
-                      size="icon"
-                      onClick={() => setFormData({...formData, images: formData.images.filter((_, idx) => idx !== i)})}
-                      className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-red-100 text-red-500"
-                    >
-                      <X className="h-3 w-3" />
-                    </Button>
-                  </div>
-                ))}
-                <Button 
-                  type="button" 
-                  variant="ghost" 
-                  onClick={() => setFormData({...formData, images: [...formData.images, { url: '', caption: '' }]})}
-                  className="w-full text-primary font-black uppercase text-[9px] tracking-widest"
-                >
-                  <Plus className="mr-2 h-3 w-3" /> Add Image Slot
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Videos */}
-            <Card className="rounded-[2.5rem] border-none shadow-sm overflow-hidden bg-white">
-              <CardHeader className="bg-slate-800 text-white p-6">
-                <div className="flex items-center gap-3">
-                  <VideoIcon className="h-4 w-4 text-primary" />
-                  <CardTitle className="font-black font-headline uppercase tracking-tight text-xs">Technical Videos</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6 space-y-6">
-                {formData.videos.map((vid, i) => (
-                  <div key={i} className="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 relative">
-                    <Input 
-                      placeholder="YouTube / Video URL" 
-                      value={vid.url}
-                      onChange={(e) => updateAsset(i, 'videos', 'url', e.target.value)}
-                      className="h-10 rounded-lg border-none font-bold text-xs"
-                    />
-                    <Input 
-                      placeholder="Video Caption" 
-                      value={vid.caption}
-                      onChange={(e) => updateAsset(i, 'videos', 'caption', e.target.value)}
-                      className="h-10 rounded-lg border-none font-bold text-xs"
-                    />
-                    <Button 
-                      type="button" 
-                      variant="ghost" 
-                      size="icon"
-                      onClick={() => setFormData({...formData, videos: formData.videos.filter((_, idx) => idx !== i)})}
-                      className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-red-100 text-red-500"
-                    >
-                      <X className="h-3 w-3" />
-                    </Button>
-                  </div>
-                ))}
-                <Button 
-                  type="button" 
-                  variant="ghost" 
-                  onClick={() => setFormData({...formData, videos: [...formData.videos, { url: '', caption: '' }]})}
-                  className="w-full text-primary font-black uppercase text-[9px] tracking-widest"
-                >
-                  <Plus className="mr-2 h-3 w-3" /> Add Video Slot
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         <aside className="lg:col-span-4 space-y-8">
-          {/* Commercial Logistics */}
           <Card className="rounded-[2.5rem] border-none shadow-sm bg-white overflow-hidden">
             <CardHeader className="p-8 border-b border-slate-50">
               <div className="flex items-center gap-3">
@@ -392,19 +333,6 @@ export default function AddProductPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Technical Tags</Label>
-                <div className="relative">
-                  <Tag className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
-                  <Input 
-                    value={formData.tags}
-                    onChange={(e) => setFormData({...formData, tags: e.target.value})}
-                    placeholder="Separate with commas..."
-                    className="h-12 pl-10 rounded-xl bg-slate-50 border-none font-bold" 
-                  />
-                </div>
-              </div>
-
               <Separator className="bg-slate-100" />
 
               <div className="flex items-center justify-between p-5 rounded-[2rem] bg-slate-50 border border-slate-100">
@@ -434,34 +362,6 @@ export default function AddProductPage() {
             </CardContent>
           </Card>
 
-          {/* SEO Hub */}
-          <Card className="rounded-[2.5rem] border-none shadow-sm bg-white overflow-hidden">
-            <CardHeader className="p-8 border-b border-slate-50">
-              <div className="flex items-center gap-3">
-                <Search className="h-5 w-5 text-primary" />
-                <CardTitle className="font-black font-headline uppercase tracking-tight text-xs">SEO Matrix</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-8 space-y-6">
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">SEO Title</Label>
-                <Input 
-                  value={formData.seo.title}
-                  onChange={(e) => setFormData({...formData, seo: {...formData.seo, title: e.target.value}})}
-                  className="h-10 rounded-lg bg-slate-50 border-none font-bold text-xs" 
-                />
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">SEO Description</Label>
-                <Textarea 
-                  value={formData.seo.description}
-                  onChange={(e) => setFormData({...formData, seo: {...formData.seo, description: e.target.value}})}
-                  className="rounded-lg bg-slate-50 border-none font-bold text-xs p-3" 
-                />
-              </div>
-            </CardContent>
-          </Card>
-
           <Button 
             type="submit"
             disabled={loading}
@@ -476,24 +376,5 @@ export default function AddProductPage() {
         </aside>
       </form>
     </div>
-  );
-}
-
-function Loader2(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
   );
 }
