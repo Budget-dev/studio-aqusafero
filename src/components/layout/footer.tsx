@@ -8,10 +8,9 @@ import {
   Instagram, 
   Linkedin, 
   Youtube, 
-  Twitter, 
-  Github,
-  Zap,
-  Mail
+  Mail,
+  MapPin,
+  Phone
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -30,39 +29,30 @@ interface FooterSection {
 
 const footerLinks: FooterSection[] = [
   {
-    label: 'Company',
+    label: 'Solutions',
     links: [
-      { title: 'About Us', href: '/about' },
-      { title: 'Our Brands', href: '/brands' },
-      { title: 'Gallery', href: '/gallery' },
-      { title: 'Contact Us', href: '/contact' },
+      { title: 'Domestic Hub', href: '/products?category=Domestic+Products' },
+      { title: 'Industrial Hub', href: '/products?category=Industrial+Products' },
+      { title: 'Wastewater STP', href: '/compact-sewage-treatment-plant' },
+      { title: 'Effluent ETP', href: '/compact-effluent-treatment-plant' },
     ],
   },
   {
-    label: 'Services',
+    label: 'Expertise',
     links: [
+      { title: 'Engineering Hub', href: '/about' },
+      { title: 'Technical Hub', href: '/trainings' },
       { title: 'Installation', href: '/services/installation' },
-      { title: 'AMC & Maintenance', href: '/services/amc-maintenance' },
-      { title: 'Repair & Diagnostic', href: '/services/repair' },
-      { title: 'Technical Trainings', href: '/trainings' },
+      { title: 'Maintenance', href: '/services/amc-maintenance' },
     ],
   },
   {
-    label: 'Admin Hub',
+    label: 'Support',
     links: [
-      { title: 'Certificate Portal', href: '/admin/certificates' },
-      { title: 'Invoice Portal', href: '/admin/invoices' },
-      { title: 'Product Catalog', href: '/products' },
+      { title: 'Contact Us', href: '/contact' },
+      { title: 'Media Hub', href: '/gallery' },
       { title: 'Resources', href: '/resources' },
-    ],
-  },
-  {
-    label: 'Social Links',
-    links: [
-      { title: 'Facebook', href: '#', icon: Facebook },
-      { title: 'Instagram', href: '#', icon: Instagram },
-      { title: 'Youtube', href: '#', icon: Youtube },
-      { title: 'LinkedIn', href: '#', icon: Linkedin },
+      { title: 'FAQ Hub', href: '/faqs' },
     ],
   },
 ];
@@ -71,70 +61,91 @@ export default function Footer() {
   const pathname = usePathname();
 
   // Hide footer on auth pages
-  if (pathname === '/login' || pathname === '/signup') return null;
+  if (pathname?.includes('/login') || pathname?.includes('/signup')) return null;
 
   return (
-    <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[3rem] md:rounded-t-[4rem] border-t border-white/10 bg-slate-900 px-6 py-10 lg:py-20 overflow-hidden">
+    <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[2.5rem] md:rounded-t-[3.5rem] border-t border-white/5 bg-slate-900 px-6 py-8 md:py-10 overflow-hidden">
       {/* Subtle Top Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/50 to-transparent blur-sm" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-sm" />
       
       {/* Radial Gradient Decoration */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20" 
-           style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary)) 0%, transparent 70%)' }} 
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-10" 
+           style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary)) 0%, transparent 60%)' }} 
       />
 
-      <div className="relative z-10 grid w-full gap-8 md:gap-12 xl:grid-cols-4">
-        <AnimatedContainer className="space-y-4 md:space-y-6">
-          <Link href="/" className="block">
+      <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8 items-start">
+        {/* Brand Column */}
+        <AnimatedContainer className="xl:col-span-2 space-y-4">
+          <Link href="/" className="block w-fit">
             <Image 
               src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
               alt="AquaSafe Logo" 
-              width={400} 
-              height={160} 
-              className="h-28 md:h-[10rem] w-auto object-contain brightness-0 invert"
+              width={200} 
+              height={80} 
+              className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <div className="space-y-4">
-            <p className="text-slate-400 text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest">
-              Engineering Purity Since 2006. <br />
-              Leading manufacturer and service provider of water treatment plants.
+          <div className="space-y-3">
+            <p className="text-slate-400 text-[10px] font-bold leading-relaxed max-w-sm uppercase tracking-widest opacity-80">
+              Engineering Purity Since 2006. ISO 9001:2015 certified manufacturer of high-performance water treatment assets.
             </p>
-            <div className="space-y-1">
-              <p className="text-slate-300 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                <Mail className="h-3 w-3 text-primary" /> info@aquasafero.com
-              </p>
-              <p className="text-slate-300 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                <Mail className="h-3 w-3 text-primary" /> aquasafe.ap@gmail.com
-              </p>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-3 text-slate-300 text-[9px] font-black uppercase tracking-widest">
+                <MapPin className="h-3 w-3 text-primary shrink-0" /> 
+                <span className="truncate">Visakhapatnam, AP, India</span>
+              </div>
+              <div className="flex items-center gap-3 text-slate-300 text-[9px] font-black uppercase tracking-widest">
+                <Mail className="h-3 w-3 text-primary shrink-0" /> 
+                <span>info@aquasafero.com</span>
+              </div>
             </div>
           </div>
-          <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
-            © {new Date().getFullYear()} AQUASAFE WATER TECHNOLOGIES.
-          </p>
         </AnimatedContainer>
 
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-3">
+        {/* Links Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:col-span-3 gap-6 md:gap-8">
           {footerLinks.map((section, index) => (
-            <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-              <div className="space-y-4 md:space-y-6">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-white">
-                  {section.label}
-                </h3>
-                <ul className="space-y-2 md:space-y-3">
-                  {section.links.map((link) => (
-                    <li key={link.title}>
-                      <Link
-                        href={link.href}
-                        className="text-slate-400 hover:text-primary inline-flex items-center text-xs font-bold transition-all duration-300 uppercase tracking-wider group"
-                      >
-                        {link.icon && <link.icon className="me-2 size-3.5 group-hover:scale-110 transition-transform" />}
-                        {link.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <AnimatedContainer key={section.label} delay={0.1 + index * 0.1} className="space-y-3">
+              <h3 className="text-[9px] font-black uppercase tracking-[0.25em] text-white/50 border-b border-white/5 pb-2">
+                {section.label}
+              </h3>
+              <ul className="space-y-1.5">
+                {section.links.map((link) => (
+                  <li key={link.title}>
+                    <Link
+                      href={link.href}
+                      className="text-slate-400 hover:text-primary inline-flex items-center text-[10px] font-bold transition-all duration-300 uppercase tracking-wider group"
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </AnimatedContainer>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="relative z-10 w-full mt-10 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-slate-500 text-[8px] font-black uppercase tracking-[0.25em]">
+          © {new Date().getFullYear()} AQUASAFE WATER TECHNOLOGIES. ALL RIGHTS RESERVED.
+        </p>
+        
+        <div className="flex items-center gap-5">
+          {[
+            { icon: Facebook, href: "#" },
+            { icon: Instagram, href: "#" },
+            { icon: Linkedin, href: "#" },
+            { icon: Youtube, href: "#" },
+          ].map((social, i) => (
+            <Link 
+              key={i} 
+              href={social.href} 
+              className="text-slate-500 hover:text-primary transition-colors duration-300 group"
+            >
+              <social.icon className="h-3.5 w-3.5 group-hover:scale-110 transition-transform" />
+            </Link>
           ))}
         </div>
       </div>
@@ -157,10 +168,10 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
 
   return (
     <motion.div
-      initial={{ filter: 'blur(10px)', translateY: 20, opacity: 0 }}
+      initial={{ filter: 'blur(10px)', translateY: 10, opacity: 0 }}
       whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.8, ease: "easeOut" }}
+      transition={{ delay, duration: 0.6, ease: "easeOut" }}
       className={className}
     >
       {children}
