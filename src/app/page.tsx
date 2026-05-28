@@ -77,65 +77,55 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col">
           
-          {/* MOBILE HERO */}
-          <div className="block md:hidden w-full bg-[#f8fbff] min-h-screen relative flex flex-col pt-10 pb-8 px-6 overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none z-0">
-               <div className="absolute top-10 right-10 w-24 h-24 bg-primary/20 rounded-full blur-3xl" />
-               <div className="absolute top-1/2 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
-            </div>
-
-            <div className="relative z-10 space-y-6 flex-1">
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-white/80 backdrop-blur-sm">
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
-              </div>
-
-              <div className="space-y-4">
-                <h1 className="text-[34px] font-black font-headline text-slate-900 leading-[1.1] tracking-tight uppercase">
-                  Technical <br />Solutions For <br />
-                  <span className="text-primary">Every Sector</span>
-                </h1>
-                <p className="text-sm font-bold text-slate-500 leading-relaxed max-w-[280px]">
-                  We design, manufacture and commission high-performance water treatment plants with ISO certified precision since 2006.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <Button asChild className="h-12 px-6 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 border-none flex-1">
-                  <Link href="/contact">Get a Quote <ArrowRight className="ml-1.5 h-3.5 w-3.5" /></Link>
-                </Button>
-                <Button asChild variant="outline" className="h-12 px-6 rounded-xl border-slate-100 bg-white text-slate-900 font-black uppercase tracking-widest text-[10px] shadow-sm flex-1">
-                  <Link href="/products">View Catalog <FileText className="ml-1.5 h-3.5 w-3.5" /></Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative w-full aspect-[1/2] my-8 z-10">
+          {/* MOBILE HERO (Integrated Text on Image) */}
+          <div className="block md:hidden w-full relative min-h-[90vh] flex flex-col justify-end overflow-hidden bg-slate-900">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
               <Image 
                 src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
                 alt="AquaSafe Technical Hub Mobile"
                 fill
-                className="object-contain"
+                className="object-cover object-center"
                 priority
               />
+              {/* Bottom-heavy gradient for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-[1]" />
             </div>
 
-            <div className="relative z-10 bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 grid grid-cols-2 gap-y-8 gap-x-4 border border-white shadow-xl">
-              {[
-                { title: "Advanced Technology", desc: "Cutting-edge systems for pure & safe water", icon: Droplets },
-                { title: "ISO Certified Quality", desc: "Built to international standards", icon: ShieldCheck },
-                { title: "Custom Built Solutions", desc: "Tailored for every industry need", icon: Settings },
-                { title: "Reliable After Sales Support", desc: "24/7 support for peace of mind", icon: Headset }
-              ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center text-center space-y-2">
-                  <div className="p-2 rounded-lg bg-primary/5 text-primary">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-[9px] font-black uppercase text-slate-900 leading-tight">{item.title}</p>
-                    <p className="text-[7px] font-bold text-slate-400 uppercase tracking-wider">{item.desc}</p>
-                  </div>
+            <div className="relative z-10 p-8 pb-12 space-y-6">
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
+                <span className="text-[10px] font-black uppercase tracking-widest text-white">20+ Years of Excellence</span>
+              </div>
+
+              <div className="space-y-4">
+                <h1 className="text-4xl font-black font-headline text-white leading-tight tracking-tight uppercase">
+                  Technical <br />Solutions For <br />
+                  <span className="text-primary">Every Sector</span>
+                </h1>
+                <p className="text-sm font-bold text-slate-300 leading-relaxed max-w-[300px]">
+                  Custom engineering and ISO certified precision water treatment plants since 2006.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 pt-2">
+                <Button asChild className="h-14 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/20 border-none w-full">
+                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+                <Button asChild variant="outline" className="h-14 rounded-xl border-white/20 bg-white/10 backdrop-blur-md text-white font-black uppercase tracking-widest text-xs w-full">
+                  <Link href="/products">View Catalog</Link>
+                </Button>
+              </div>
+
+              <div className="pt-8 grid grid-cols-2 gap-4 border-t border-white/10">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-200">ISO Certified</span>
                 </div>
-              ))}
+                <div className="flex items-center gap-2">
+                  <Activity className="h-4 w-4 text-primary" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-200">99% Recovery</span>
+                </div>
+              </div>
             </div>
           </div>
 
