@@ -86,7 +86,7 @@ export default function RepairPage() {
 
               <div className="aspect-square relative rounded-[2rem] overflow-hidden">
                 <Image 
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_59_50%20PM.png"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2002_58_58%20PM.png"
                   alt="Repair Service"
                   fill
                   className="object-cover"
