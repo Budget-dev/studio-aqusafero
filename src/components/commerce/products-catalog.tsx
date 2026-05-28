@@ -6,18 +6,15 @@ import { useSearchParams } from "next/navigation";
 import { 
   Search, 
   FilterX,
-  Filter,
   Loader2,
   Factory,
   Home,
   LayoutGrid,
   Zap,
   Wrench,
-  ChevronRight,
   SlidersHorizontal,
   Building2,
   Beaker,
-  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,23 +38,26 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { PRODUCTS, type Product } from "@/app/lib/products-data";
+import { useCollection, useFirestore } from "@/firebase";
+import { collection } from "firebase/firestore";
 
 export function ProductsCatalog() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category');
+  const firestore = useFirestore();
   
   const [isClient, setIsClient] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [priceRange, setPriceRange] = useState([0, 500000]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
   const [sortBy, setSortBy] = useState("newest");
 
+  // Fetch Live Data from Firestore
+  const productsRef = useMemo(() => firestore ? collection(firestore, 'products') : null, [firestore]);
+  const { data: dbProducts, loading } = useCollection<any>(productsRef);
+
   useEffect(() => {
     setIsClient(true);
-    const timer = setTimeout(() => setLoading(false), 800);
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -67,21 +67,23 @@ export function ProductsCatalog() {
   }, [initialCategory]);
 
   const filteredProducts = useMemo(() => {
-    let result = PRODUCTS.filter((p) => {
-      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          p.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    if (!dbProducts) return [];
+    
+    let result = dbProducts.filter((p) => {
+      const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           p.subcategory?.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = !selectedCategory || p.category === selectedCategory;
-      const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
+      const matchesPrice = (p.offerPrice || p.price) >= priceRange[0] && (p.offerPrice || p.price) <= priceRange[1];
       return matchesSearch && matchesCategory && matchesPrice;
     });
 
-    if (sortBy === "price-asc") result.sort((a, b) => a.price - b.price);
-    if (sortBy === "price-desc") result.sort((a, b) => b.price - a.price);
-    if (sortBy === "rating") result.sort((a, b) => b.rating - a.rating);
+    if (sortBy === "price-asc") result.sort((a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price));
+    if (sortBy === "price-desc") result.sort((a, b) => (b.offerPrice || b.price) - (a.offerPrice || a.price));
+    if (sortBy === "rating") result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     
     return result;
-  }, [searchQuery, selectedCategory, priceRange, sortBy]);
+  }, [dbProducts, searchQuery, selectedCategory, priceRange, sortBy]);
 
   const categories = [
     { id: null, label: "All Hub", icon: LayoutGrid },
@@ -143,14 +145,14 @@ export function ProductsCatalog() {
         <FilterX className="mr-2 h-4 w-4" /> Reset Hub
       </Button>
     </div>
-  ), [selectedCategory, priceRange, categories]);
+  ), [selectedCategory, priceRange]);
 
   if (!isClient) return null;
 
   return (
     <div className="min-h-screen bg-white pb-20">
       <section className="bg-white/80 backdrop-blur-xl border-b sticky top-20 lg:top-36 z-[40] transition-all duration-300">
-        <div className="container mx-auto px-4 max-get-7xl pt-4 pb-4 space-y-4">
+        <div className="container mx-auto px-4 max-w-7xl pt-4 pb-4 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-0.5">
               <h1 className="text-lg md:text-2xl font-black font-headline text-slate-900 tracking-tight uppercase leading-none">
@@ -183,7 +185,7 @@ export function ProductsCatalog() {
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      setSelectedCategory(cat.id);
+                      setSelectedCategory(cat.id as string | null);
                     }}
                     className={cn(
                       "flex items-center gap-2 px-4 py-2 rounded-lg text-[9px] md:text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all border shrink-0",

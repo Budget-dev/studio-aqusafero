@@ -16,9 +16,6 @@ import {
   Droplets,
   Settings,
   Headset,
-  Zap,
-  CheckCircle,
-  Menu
 } from "lucide-react";
 import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
@@ -39,7 +36,7 @@ export default function Home() {
 
   const { data: featuredBrands } = useCollection(brandsQuery);
 
-  // High Impact Engineering Posts
+  // Core High-Impact content (Keep as fixed pointers to landing pages)
   const engineeringPosts = [
     {
       id: "stp-post",
@@ -80,15 +77,13 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col">
           
-          {/* MOBILE HERO (As per reference image) */}
+          {/* MOBILE HERO */}
           <div className="block md:hidden w-full bg-[#f8fbff] min-h-screen relative flex flex-col pt-10 pb-8 px-6 overflow-hidden">
-            {/* Background Decorative Patterns */}
             <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none z-0">
                <div className="absolute top-10 right-10 w-24 h-24 bg-primary/20 rounded-full blur-3xl" />
                <div className="absolute top-1/2 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
             </div>
 
-            {/* Hero Content */}
             <div className="relative z-10 space-y-6 flex-1">
               <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-white/80 backdrop-blur-sm">
                 <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
@@ -114,7 +109,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Central High-Impact Image */}
             <div className="relative w-full aspect-[4/3] my-8 z-10">
               <Image 
                 src="https://vennky.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2005_45_01%20PM.png"
@@ -125,7 +119,6 @@ export default function Home() {
               />
             </div>
 
-            {/* Bottom Feature Hub */}
             <div className="relative z-10 bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 grid grid-cols-2 gap-y-8 gap-x-4 border border-white shadow-xl">
               {[
                 { title: "Advanced Technology", desc: "Cutting-edge systems for pure & safe water", icon: Droplets },
@@ -146,7 +139,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* DESKTOP HERO (Existing refined layout) */}
+          {/* DESKTOP HERO */}
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image
