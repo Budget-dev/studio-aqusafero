@@ -52,7 +52,7 @@ export default function Home() {
       id: "wtp-post",
       title: "Drinking Water Hub",
       summary: "Multi-stage RO systems delivering molecular-level purity for hospitals and industry.",
-      image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_52_23%20PM.png",
+      image: "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2009_39_14%20AM.png",
       label: "Purification",
       author: "AquaSafe",
       published: "2024",
