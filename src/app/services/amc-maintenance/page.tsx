@@ -6,8 +6,11 @@ import Link from "next/link";
 import { Activity, Calendar, ClipboardCheck, Microscope, ArrowRight, ShieldCheck, Zap, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export default function AmcPage() {
+  const plcImage = PlaceHolderImages.find(img => img.id === "plc-monitoring")?.imageUrl || "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2003_45_45%20PM.png";
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -69,7 +72,7 @@ export default function AmcPage() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden relative border-8 border-white/5">
                 <Image 
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_01_45%20PM.png"
+                  src={plcImage}
                   alt="PLC Monitoring"
                   fill
                   className="object-cover"

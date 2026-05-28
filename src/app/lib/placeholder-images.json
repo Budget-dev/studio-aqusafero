@@ -60,6 +60,12 @@
       "description": "Advanced RO system troubleshooting and repair session",
       "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_59_50%20PM.png",
       "imageHint": "technical training"
+    },
+    {
+      "id": "plc-monitoring",
+      "description": "Advanced PLC Monitoring Systems interface",
+      "imageUrl": "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2003_45_45%20PM.png",
+      "imageHint": "PLC monitoring"
     }
   ]
 }
