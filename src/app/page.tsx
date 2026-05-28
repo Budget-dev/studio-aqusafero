@@ -78,7 +78,7 @@ export default function Home() {
         <section className="relative flex flex-col">
           
           {/* MOBILE HERO (Integrated Text on Image) */}
-          <div className="block md:hidden w-full relative min-h-[90vh] flex flex-col justify-end overflow-hidden bg-slate-900">
+          <div className="block md:hidden w-full relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-900">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <Image 
@@ -88,17 +88,17 @@ export default function Home() {
                 className="object-cover object-center"
                 priority
               />
-              {/* Bottom-heavy gradient for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-[1]" />
+              {/* Cinematic Gradient for legibility based on mockup */}
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950/10 to-slate-950/90 z-[1]" />
             </div>
 
-            <div className="relative z-10 p-8 pb-12 space-y-6">
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-                <span className="text-[10px] font-black uppercase tracking-widest text-white">20+ Years of Excellence</span>
+            <div className="relative z-10 p-6 space-y-8 mt-12">
+              <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
+                <span className="text-[11px] font-black uppercase tracking-widest text-white/90">20+ Years of Excellence</span>
               </div>
 
               <div className="space-y-4">
-                <h1 className="text-4xl font-black font-headline text-white leading-tight tracking-tight uppercase">
+                <h1 className="text-4xl font-black font-headline text-white leading-[1.1] tracking-tight uppercase">
                   Technical <br />Solutions For <br />
                   <span className="text-primary">Every Sector</span>
                 </h1>
@@ -107,23 +107,25 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 pt-2">
-                <Button asChild className="h-14 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/20 border-none w-full">
-                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <div className="flex flex-col gap-4 pt-4">
+                <Button asChild className="h-16 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 border-none w-full">
+                  <Link href="/contact" className="flex items-center justify-center gap-2">
+                    Get a Quote <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </Button>
-                <Button asChild variant="outline" className="h-14 rounded-xl border-white/20 bg-white/10 backdrop-blur-md text-white font-black uppercase tracking-widest text-xs w-full">
+                <Button asChild variant="outline" className="h-16 rounded-2xl border-2 border-white/20 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-xs w-full">
                   <Link href="/products">View Catalog</Link>
                 </Button>
               </div>
 
-              <div className="pt-8 grid grid-cols-2 gap-4 border-t border-white/10">
+              <div className="pt-10 grid grid-cols-2 gap-4 border-t border-white/10">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-200">ISO Certified</span>
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">ISO Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-primary" />
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-200">99% Recovery</span>
+                  <Activity className="h-5 w-5 text-primary" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">99% Recovery</span>
                 </div>
               </div>
             </div>
