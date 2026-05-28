@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useCollection, useFirestore } from '@/firebase';
@@ -29,7 +28,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useMemo } from 'react';
