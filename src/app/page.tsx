@@ -249,6 +249,7 @@ export default function Home() {
           description="Talk to our senior engineers today for a tailored performance assessment of your RO plants and wastewater systems."
           buttonText="Get Started"
           buttonUrl="/contact"
+          bgImage="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2009_47_13%20AM.png"
           items={[
             "Plant Performance Mapping",
             "Energy Efficiency Audits",

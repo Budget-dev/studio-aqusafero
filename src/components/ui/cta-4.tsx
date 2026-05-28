@@ -2,6 +2,7 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Cta4Props {
   title: string;
@@ -9,20 +10,36 @@ interface Cta4Props {
   buttonText: string;
   buttonUrl: string;
   items: string[];
+  bgImage?: string;
 }
 
-export function Cta4({ title, description, buttonText, buttonUrl, items }: Cta4Props) {
+export function Cta4({ title, description, buttonText, buttonUrl, items, bgImage }: Cta4Props) {
   return (
     <section className="py-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="relative overflow-hidden rounded-[3rem] bg-slate-900 p-12 md:p-16 lg:p-20 shadow-2xl">
+          {/* Background Image with Overlay */}
+          {bgImage && (
+            <>
+              <div className="absolute inset-0 z-0">
+                <Image 
+                  src={bgImage} 
+                  alt="Background" 
+                  fill 
+                  className="object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent z-5" />
+            </>
+          )}
+
           {/* Subtle decoration */}
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2 pointer-events-none z-10" />
           
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-headline text-white leading-[1.1] tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-headline text-white leading-[1.1] tracking-tight uppercase">
                   {title}
                 </h2>
                 <p className="text-xl font-bold text-slate-400 leading-relaxed max-w-xl">
