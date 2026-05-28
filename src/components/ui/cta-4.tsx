@@ -26,10 +26,10 @@ export function Cta4({ title, description, buttonText, buttonUrl, items, bgImage
                   src={bgImage} 
                   alt="Background" 
                   fill 
-                  className="object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="object-cover opacity-80 transition-all duration-1000"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent z-5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/40 to-transparent z-5" />
             </>
           )}
 
@@ -42,7 +42,7 @@ export function Cta4({ title, description, buttonText, buttonUrl, items, bgImage
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-headline text-white leading-[1.1] tracking-tight uppercase">
                   {title}
                 </h2>
-                <p className="text-xl font-bold text-slate-400 leading-relaxed max-w-xl">
+                <p className="text-xl font-bold text-slate-200 leading-relaxed max-w-xl">
                   {description}
                 </p>
               </div>
@@ -63,7 +63,7 @@ export function Cta4({ title, description, buttonText, buttonUrl, items, bgImage
                   <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                     <Check className="h-5 w-5 text-white stroke-[3px]" />
                   </div>
-                  <span className="text-lg font-black text-white/90 tracking-tight uppercase text-xs sm:text-sm">
+                  <span className="font-black text-white tracking-tight uppercase text-[10px] sm:text-xs">
                     {item}
                   </span>
                 </div>
