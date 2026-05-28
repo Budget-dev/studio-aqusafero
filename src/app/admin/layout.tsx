@@ -4,11 +4,16 @@
 import { useAdminAuth } from '@/hooks/use-admin-auth';
 import { AdminSidebar } from '@/components/admin/admin-sidebar';
 import { Loader2 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const { isAdmin, loading } = useAdminAuth();
 
-  if (loading) {
+  // Allow the login page to be viewed without being redirected by the layout protector
+  const isLoginPage = pathname === '/admin/login';
+
+  if (loading && !isLoginPage) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-slate-50">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -16,8 +21,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     );
   }
 
+  // If we are on the login page, just render children (the login form)
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
+
+  // Otherwise, if not admin, return null (the useAdminAuth hook handles the redirect)
   if (!isAdmin) {
-    return null; // Redirect handled by hook
+    return null; 
   }
 
   return (
