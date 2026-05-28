@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFirestore } from '@/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -16,8 +15,6 @@ import {
   Loader2,
   Image as ImageIcon,
   LayoutGrid,
-  Zap,
-  Star,
   Upload,
   Info,
   Layers,
@@ -39,8 +36,6 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 
 const CATEGORIES = [
   "Domestic Products",
@@ -61,10 +56,10 @@ const SUBCATEGORIES: Record<string, string[]> = {
 };
 
 const CATEGORY_GUIDES: Record<string, string> = {
-  "Industrial Products": "Focus on high-capacity scale. Recommended image: 1200x800px.",
-  "Components & Spare Parts": "Focus on mechanical detail. Use macro shots.",
-  "Domestic Products": "Lifestyle-oriented visuals. Show the unit in a modern kitchen.",
-  "Filters & Chemicals": "Clear packaging shots and molecular diagrams."
+  "Industrial Products": "Focus on high-capacity scale. Recommended banner: 1920x800px.",
+  "Components & Spare Parts": "Focus on mechanical detail. Use clear product-on-white backgrounds.",
+  "Domestic Products": "Lifestyle-oriented visuals. Show the unit in modern environments.",
+  "Filters & Chemicals": "Clear packaging shots or technical media diagrams recommended."
 };
 
 export default function AddProductPage() {
@@ -87,20 +82,16 @@ export default function AddProductPage() {
     description: '',
     shortDescription: '',
     featured: false,
-    rating: 5,
     specifications: [{ key: '', value: '' }],
-    // Expanded Image Management
     images: {
       thumbnail: '',
       hover: '',
       bannerDesktop: '',
       bannerMobile: '',
       gallery: [] as string[]
-    },
-    videos: [{ url: '', caption: '' }],
+    }
   });
 
-  // Auto-generate slug from name
   useEffect(() => {
     const slug = formData.name
       .toLowerCase()
@@ -115,7 +106,7 @@ export default function AddProductPage() {
     e.preventDefault();
     if (!firestore) return;
     if (!formData.name || !formData.images.thumbnail) {
-      toast({ variant: 'destructive', title: 'Missing Information', description: 'Product name and thumbnail are required.' });
+      toast({ variant: 'destructive', title: 'Action Required', description: 'Product title and primary image are mandatory.' });
       return;
     }
 
@@ -127,10 +118,10 @@ export default function AddProductPage() {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
-      toast({ title: 'Product Saved', description: 'Technical asset has been added to the master catalog.' });
+      toast({ title: 'Success', description: 'Technical asset has been added to the master ledger.' });
       router.push('/admin/products');
     } catch (e) {
-      toast({ variant: 'destructive', title: 'Save Failed', description: 'Error committing to database.' });
+      toast({ variant: 'destructive', title: 'System Error', description: 'Failed to commit asset to the database.' });
     } finally {
       setLoading(false);
     }
@@ -146,8 +137,7 @@ export default function AddProductPage() {
   const removeSpec = (i: number) => setFormData({...formData, specifications: formData.specifications.filter((_, idx) => idx !== i)});
 
   const addGalleryImage = () => {
-    const newImages = { ...formData.images, gallery: [...formData.images.gallery, ''] };
-    setFormData({ ...formData, images: newImages });
+    setFormData({ ...formData, images: { ...formData.images, gallery: [...formData.images.gallery, ''] } });
   };
 
   const updateGalleryImage = (index: number, value: string) => {
@@ -162,7 +152,7 @@ export default function AddProductPage() {
   };
 
   return (
-    <div className="space-y-8 pb-24 animate-in fade-in duration-500">
+    <div className="space-y-8 pb-24">
       {/* Sticky Command Bar */}
       <div className="sticky top-0 z-50 -mx-4 md:-mx-8 px-4 md:px-8 py-4 bg-white/80 backdrop-blur-md border-b flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-4">
@@ -171,7 +161,7 @@ export default function AddProductPage() {
           </Button>
           <div>
             <h1 className="text-xl font-black font-headline text-slate-900 uppercase tracking-tight leading-none">New Product Registry</h1>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Industrial Asset Management</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">SaaS Asset Management Hub</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -198,22 +188,20 @@ export default function AddProductPage() {
                 </div>
                 <div>
                   <CardTitle className="font-black font-headline uppercase tracking-tight text-sm">Product Identity</CardTitle>
-                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Primary classification & descriptions</CardDescription>
+                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Classification & descriptions</CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="p-8 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2 md:col-span-2">
-                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Product Title *</Label>
-                  <Input 
-                    required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="h-14 rounded-2xl bg-slate-50 border-none font-bold focus:ring-2 focus:ring-primary/20 text-lg" 
-                    placeholder="Enter Product Name (e.g. 500 LPH RO Plant)" 
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Product Title</Label>
+                <Input 
+                  required 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="h-14 rounded-2xl bg-slate-50 border-none font-bold focus:ring-2 focus:ring-primary/20 text-lg" 
+                  placeholder="Enter Product Name" 
+                />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -242,20 +230,20 @@ export default function AddProductPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Short Product Description</Label>
+                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Short Description</Label>
                 <Input 
                   value={formData.shortDescription}
                   onChange={(e) => setFormData({...formData, shortDescription: e.target.value})}
                   className="h-14 rounded-2xl bg-slate-50 border-none font-bold" 
-                  placeholder="One-line summary for catalog cards" 
+                  placeholder="Enter one-line technical summary" 
                 />
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Detailed Technical Overview</Label>
+                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Technical Overview</Label>
                 <Textarea 
                   className="min-h-[160px] rounded-2xl bg-slate-50 border-none font-bold p-6 focus:ring-2 focus:ring-primary/20 text-sm leading-relaxed" 
-                  placeholder="Provide comprehensive engineering details, use cases, and performance data..." 
+                  placeholder="Enter comprehensive engineering details..." 
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                 />
@@ -272,7 +260,7 @@ export default function AddProductPage() {
                 </div>
                 <div>
                   <CardTitle className="font-black font-headline uppercase tracking-tight text-sm">Visual Identity</CardTitle>
-                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Product images & media hub</CardDescription>
+                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Product media hub</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -280,8 +268,8 @@ export default function AddProductPage() {
               <div className="p-4 rounded-xl bg-sky-50 border border-sky-100 flex gap-4 items-start">
                 <Info className="h-5 w-5 text-sky-500 shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase text-sky-900 tracking-wider">Dynamic Visual Guide</p>
-                  <p className="text-xs font-bold text-sky-600/80">{CATEGORY_GUIDES[formData.category] || "Ensure high-contrast, professional product photography on white or industrial backgrounds."}</p>
+                  <p className="text-[10px] font-black uppercase text-sky-900 tracking-wider">Visual Guide</p>
+                  <p className="text-xs font-bold text-sky-600/80">{CATEGORY_GUIDES[formData.category] || "Ensure high-contrast, professional product photography."}</p>
                 </div>
               </div>
 
@@ -289,25 +277,25 @@ export default function AddProductPage() {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest flex items-center gap-2">
-                      <LayoutGrid className="h-3 w-3" /> Main Thumbnail (Public) *
+                      <LayoutGrid className="h-3 w-3" /> Primary Product Image (URL)
                     </Label>
                     <Input 
                       required 
                       value={formData.images.thumbnail}
                       onChange={(e) => setFormData({...formData, images: { ...formData.images, thumbnail: e.target.value }})}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold text-xs" 
-                      placeholder="Paste Thumbnail URL" 
+                      placeholder="Paste main image URL" 
                     />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest flex items-center gap-2">
-                      <Layers className="h-3 w-3" /> Catalog Hover Visual
+                      <Layers className="h-3 w-3" /> Catalog Hover Visual (URL)
                     </Label>
                     <Input 
                       value={formData.images.hover}
                       onChange={(e) => setFormData({...formData, images: { ...formData.images, hover: e.target.value }})}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold text-xs" 
-                      placeholder="Paste Hover Image URL" 
+                      placeholder="Paste hover image URL" 
                     />
                   </div>
                 </div>
@@ -315,24 +303,24 @@ export default function AddProductPage() {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest flex items-center gap-2">
-                      <Monitor className="h-3 w-3" /> Landing Page Banner (Desktop)
+                      <Monitor className="h-3 w-3" /> Desktop Banner (URL)
                     </Label>
                     <Input 
                       value={formData.images.bannerDesktop}
                       onChange={(e) => setFormData({...formData, images: { ...formData.images, bannerDesktop: e.target.value }})}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold text-xs" 
-                      placeholder="Paste Banner URL (1920x600)" 
+                      placeholder="Paste desktop banner URL" 
                     />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest flex items-center gap-2">
-                      <Smartphone className="h-3 w-3" /> Mobile Optimized Banner
+                      <Smartphone className="h-3 w-3" /> Mobile Optimized Banner (URL)
                     </Label>
                     <Input 
                       value={formData.images.bannerMobile}
                       onChange={(e) => setFormData({...formData, images: { ...formData.images, bannerMobile: e.target.value }})}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold text-xs" 
-                      placeholder="Paste Mobile URL (800x1200)" 
+                      placeholder="Paste mobile banner URL" 
                     />
                   </div>
                 </div>
@@ -341,13 +329,10 @@ export default function AddProductPage() {
               <Separator className="bg-slate-50" />
 
               <div className="space-y-4">
-                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Multi-Asset Technical Gallery</Label>
+                <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Multi-Asset Gallery</Label>
                 <div className="grid grid-cols-1 gap-4">
                   {formData.images.gallery.map((url, i) => (
-                    <div key={i} className="flex gap-4 items-center group animate-in slide-in-from-left-2">
-                      <div className="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-300 font-bold text-[10px]">
-                        #{i+1}
-                      </div>
+                    <div key={i} className="flex gap-4 items-center animate-in slide-in-from-left-2">
                       <Input 
                         placeholder="Additional Technical Image URL" 
                         value={url}
@@ -359,7 +344,7 @@ export default function AddProductPage() {
                         variant="ghost" 
                         size="icon"
                         onClick={() => removeGalleryImage(i)}
-                        className="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                        className="text-slate-300 hover:text-red-500"
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -389,7 +374,7 @@ export default function AddProductPage() {
                 </div>
                 <div>
                   <CardTitle className="font-black font-headline uppercase tracking-tight text-sm">Inventory & Pricing</CardTitle>
-                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Financial & stock logistics</CardDescription>
+                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Logistics</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -400,14 +385,14 @@ export default function AddProductPage() {
                   <Input type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: parseFloat(e.target.value)})} className="h-12 rounded-xl bg-slate-50 border-none font-bold" />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Corporate Rate (₹)</Label>
+                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Offer Rate (₹)</Label>
                   <Input type="number" value={formData.offerPrice} onChange={(e) => setFormData({...formData, offerPrice: parseFloat(e.target.value)})} className="h-12 rounded-xl bg-slate-50 border-none font-bold" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Internal SKU ID</Label>
+                  <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">SKU ID</Label>
                   <Input value={formData.sku} onChange={(e) => setFormData({...formData, sku: e.target.value})} className="h-12 rounded-xl bg-slate-50 border-none font-bold uppercase" placeholder="AQ-XXXX" />
                 </div>
                 <div className="space-y-2">
@@ -422,26 +407,23 @@ export default function AddProductPage() {
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100">
                   <div className="space-y-1">
                     <p className="text-[10px] font-black uppercase text-slate-900 tracking-wider">Highlight Asset</p>
-                    <p className="text-[9px] font-bold text-slate-400">Display in "Featured" hubs</p>
+                    <p className="text-[9px] font-bold text-slate-400">Featured collection</p>
                   </div>
                   <Switch checked={formData.featured} onCheckedChange={(v) => setFormData({...formData, featured: v})} />
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-4 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/20 -skew-x-12 translate-x-10 -translate-y-10 pointer-events-none" />
-                <div className="flex items-center gap-2">
-                   <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                   <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">System Visibility</p>
-                </div>
-                <p className="text-xs font-bold leading-relaxed text-slate-300">Once saved, this asset will be immediately indexable across the Technical Catalog Hub.</p>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/20 -skew-x-12 translate-x-10 -translate-y-10" />
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 relative z-10">System Visibility</p>
+                <p className="text-xs font-bold leading-relaxed text-slate-300 relative z-10">Assets are immediately published to the master catalog upon saving.</p>
               </div>
             </CardContent>
           </Card>
-        </div>
+        </aside>
       </div>
 
-      {/* Specifications Card */}
+      {/* Specifications HUB */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-8">
           <Card className="rounded-[2rem] border-none shadow-sm overflow-hidden bg-white">
@@ -452,7 +434,7 @@ export default function AddProductPage() {
                 </div>
                 <div>
                   <CardTitle className="font-black font-headline uppercase tracking-tight text-sm">Engineering Matrix</CardTitle>
-                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Technical parameters & performance data</CardDescription>
+                  <CardDescription className="text-[10px] uppercase font-bold tracking-widest">Technical parameters</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -463,20 +445,20 @@ export default function AddProductPage() {
                     placeholder="Parameter (e.g. TDS Rejection)" 
                     value={spec.key}
                     onChange={(e) => updateSpec(i, 'key', e.target.value)}
-                    className="h-14 rounded-2xl bg-slate-50 border-none font-bold"
+                    className="h-14 rounded-2xl bg-slate-50 border-none font-bold flex-1"
                   />
                   <Input 
-                    placeholder="Value (e.g. 98% Efficiency)" 
+                    placeholder="Value (e.g. 98%)" 
                     value={spec.value}
                     onChange={(e) => updateSpec(i, 'value', e.target.value)}
-                    className="h-14 rounded-2xl bg-slate-50 border-none font-bold"
+                    className="h-14 rounded-2xl bg-slate-50 border-none font-bold flex-1"
                   />
                   <Button 
                     type="button" 
                     variant="ghost" 
                     size="icon"
                     onClick={() => removeSpec(i)}
-                    className="text-slate-300 hover:text-red-500 shrink-0"
+                    className="text-slate-300 hover:text-red-500"
                   >
                     <X className="h-5 w-5" />
                   </Button>
@@ -497,4 +479,3 @@ export default function AddProductPage() {
     </div>
   );
 }
-
