@@ -66,7 +66,7 @@ export default function InstallationPage() {
             <div className="relative">
               <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-slate-50">
                 <Image 
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2003_59_48%20PM.png"
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2028%2C%202026%2C%2002_58_58%20PM.png"
                   alt="Installation Technical"
                   fill
                   className="object-cover"
