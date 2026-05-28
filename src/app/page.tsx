@@ -77,61 +77,76 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col">
           
-          {/* MOBILE HERO (Integrated Text on Image) */}
-          <div className="block md:hidden w-full relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-900">
-            {/* Background Image */}
+          {/* MOBILE HERO (Exactly based on Reference Logic) */}
+          <div className="block md:hidden w-full relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0a1128]">
+            {/* Background Image & Optimized Overlays */}
             <div className="absolute inset-0 z-0">
               <Image 
                 src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
                 alt="AquaSafe Technical Hub Mobile"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-bottom"
                 priority
               />
-              {/* Cinematic Gradient for legibility based on mockup */}
-              <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950/10 to-slate-950/90 z-[1]" />
+              {/* Cinematic Top-Heavy Gradient for legibility */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128]/95 via-[#0a1128]/60 to-transparent z-[1]" />
+              {/* Subtle Tech Glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.15),transparent_60%)] z-[2]" />
             </div>
 
-            <div className="relative z-10 p-6 space-y-8 mt-12">
-              <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-                <span className="text-[11px] font-black uppercase tracking-widest text-white/90">20+ Years of Excellence</span>
+            <div className="relative z-10 p-6 pt-24 flex flex-col h-full">
+              {/* Badge Section */}
+              <div className="mb-6">
+                <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
+                </div>
               </div>
 
-              <div className="space-y-4">
-                <h1 className="text-4xl font-black font-headline text-white leading-[1.1] tracking-tight uppercase">
-                  Technical <br />Solutions For <br />
+              {/* Headline & Description (Higher position to avoid overlap) */}
+              <div className="space-y-5">
+                <h1 className="text-[40px] font-black font-headline text-white leading-[1.05] tracking-tight uppercase">
+                  Technical <br />Solutions <br />For <br />
                   <span className="text-primary">Every Sector</span>
                 </h1>
-                <p className="text-sm font-bold text-slate-300 leading-relaxed max-w-[300px]">
+                <p className="text-sm font-bold text-slate-400 leading-relaxed max-w-[280px]">
                   Custom engineering and ISO certified precision water treatment plants since 2006.
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4 pt-4">
-                <Button asChild className="h-16 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 border-none w-full">
+              {/* Action Buttons (Full width vertical stack) */}
+              <div className="flex flex-col gap-3 pt-10">
+                <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                   <Link href="/contact" className="flex items-center justify-center gap-2">
                     Get a Quote <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="h-16 rounded-2xl border-2 border-white/20 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-xs w-full">
+                <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-white/10 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-[11px] w-full">
                   <Link href="/products">View Catalog</Link>
                 </Button>
               </div>
 
-              <div className="pt-10 grid grid-cols-2 gap-4 border-t border-white/10">
+              {/* Bottom Stats Section */}
+              <div className="mt-auto pt-10 pb-8 flex items-center justify-between border-t border-white/5">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">ISO Certified</span>
+                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/20">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
                 </div>
+                
+                <div className="w-px h-6 bg-white/10 mx-2" />
+
                 <div className="flex items-center gap-2">
-                  <Activity className="h-5 w-5 text-primary" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">99% Recovery</span>
+                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/20">
+                    <Activity className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* DESKTOP HERO */}
+          {/* DESKTOP HERO (Completely Untouched) */}
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image
