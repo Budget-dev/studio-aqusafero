@@ -109,10 +109,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative w-full aspect-[4/3] my-8 z-10">
+            <div className="relative w-full aspect-[1/2] my-8 z-10">
               <Image 
-                src="https://vennky.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2005_45_01%20PM.png"
-                alt="AquaSafe Technical Hub"
+                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
+                alt="AquaSafe Technical Hub Mobile"
                 fill
                 className="object-contain"
                 priority
