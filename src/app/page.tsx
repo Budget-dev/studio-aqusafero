@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image from "next/image";
@@ -74,10 +75,10 @@ export default function Home() {
       <div className="relative z-10 flex flex-col">
         
         {/* --- HERO SECTION --- */}
-        <section className="relative flex flex-col">
+        <section className="relative flex flex-col overflow-hidden">
           
-          {/* MOBILE HERO (Optimized according to technical mockup) */}
-          <div className="block md:hidden w-full relative min-h-[90svh] flex flex-col overflow-hidden bg-[#081948]">
+          {/* MOBILE HERO (Final Enterprise Balanced Version) */}
+          <div className="block md:hidden w-full relative min-h-screen flex flex-col overflow-hidden bg-[#081948]">
             {/* Background Industrial Gradient Layers */}
             <div 
               className="absolute inset-0 z-0" 
@@ -86,27 +87,27 @@ export default function Home() {
               }} 
             />
             
-            <div className="relative z-10 p-6 pt-16 flex flex-col h-full flex-1">
+            <div className="relative z-10 p-6 pt-12 flex flex-col items-center text-center w-full max-w-full">
               {/* Order 1: Badge Section */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md">
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
                 </div>
               </div>
 
               {/* Order 2: Headline */}
-              <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
+              <h1 className="text-[clamp(2.2rem,8vw,3.2rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
                 Technical <br />Solutions <br />For <br />
                 <span className="text-primary">Every Sector</span>
               </h1>
 
               {/* Order 3: Description Text */}
-              <p className="text-[1rem] font-bold text-slate-300 leading-[1.6] max-w-[280px] mb-8">
+              <p className="text-[0.95rem] font-bold text-slate-300 leading-[1.5] max-w-[280px] mb-8">
                 Custom engineering and ISO certified precision water treatment plants since 2006.
               </p>
 
               {/* Order 4: CTA Buttons */}
-              <div className="flex flex-col gap-3 w-full max-w-[320px] mb-12">
+              <div className="flex flex-col gap-3 w-full max-w-[320px] mb-10">
                 <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                   <Link href="/contact" className="flex items-center justify-center gap-2">
                     Get a Quote <ArrowRight className="h-4 w-4" />
@@ -117,29 +118,29 @@ export default function Home() {
                 </Button>
               </div>
 
-              {/* Order 5: Product Image Section (Anchored Bottom) */}
-              <div className="mt-auto relative w-full h-[320px] -mx-6 w-[calc(100%+3rem)]">
+              {/* Order 5: Product Image Section (Directly Below Buttons) */}
+              <div className="relative w-[85%] max-w-[280px] aspect-square mx-auto -mb-10 pointer-events-none">
                 <Image 
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
                   alt="Industrial RO Equipment"
                   fill
-                  className="object-contain object-bottom"
+                  className="object-contain object-bottom drop-shadow-2xl"
                   priority
                 />
-                
-                {/* Bottom Overlay Stats */}
-                <div className="absolute bottom-6 left-0 right-0 px-8 flex items-center justify-between z-20">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="h-4 w-4 text-primary" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
-                  </div>
-                  
-                  <div className="w-px h-6 bg-white/10" />
+              </div>
 
-                  <div className="flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
-                  </div>
+              {/* Bottom Overlay Stats */}
+              <div className="mt-16 w-full px-4 flex items-center justify-around z-20 pb-8 opacity-60">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
+                </div>
+                
+                <div className="w-px h-5 bg-white/10" />
+
+                <div className="flex items-center gap-2">
+                  <Activity className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
                 </div>
               </div>
             </div>
