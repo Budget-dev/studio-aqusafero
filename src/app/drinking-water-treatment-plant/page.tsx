@@ -14,7 +14,9 @@ import {
   Microscope,
   Info,
   Layers,
-  ThermometerSun
+  ThermometerSun,
+  Settings,
+  Factory
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -116,6 +118,7 @@ export default function WTPDetailPage() {
                   <col.icon className="h-7 w-7" />
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tight">{col.title}</h3>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 border-b pb-2">Execution Protocol</p>
                 <ul className="space-y-3">
                   {col.steps.map((s, si) => (
                     <li key={si} className="flex items-center gap-3 font-bold text-sm text-slate-500">
