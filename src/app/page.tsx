@@ -78,7 +78,7 @@ export default function Home() {
         className="md:hidden fixed inset-0 z-0 bg-[url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')] bg-cover bg-[center_top] bg-no-repeat"
         style={{ willChange: 'transform' }}
       >
-         <div className="absolute inset-0 bg-gradient-to-b from-[#030f3c]/75 to-[#030f3c]/55" />
+         {/* Background is now fully clear as requested */}
       </div>
 
       <div className="relative z-10 flex flex-col">
@@ -88,64 +88,53 @@ export default function Home() {
           
           {/* MOBILE HERO (Continuous Background Integration) */}
           <div className="block md:hidden w-full relative min-h-screen flex flex-col items-center pt-24 px-6 text-center">
-            {/* Order 1: Badge Section */}
-            <div className="mb-4">
+            {/* Badge Section */}
+            <div className="mb-6">
               <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
                 <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
               </div>
             </div>
 
-            {/* Order 2: Headline */}
-            <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
+            {/* Headline */}
+            <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1] tracking-tight uppercase mb-4 drop-shadow-sm">
               Technical <br />Solutions <br />For <br />
               <span className="text-primary">Every Sector</span>
             </h1>
 
-            {/* Order 3: Description Text */}
-            <p className="text-[1rem] font-bold text-slate-300 leading-[1.6] max-w-[280px] mb-8">
+            {/* Description Text */}
+            <p className="text-[1rem] font-bold text-slate-600 leading-[1.6] max-w-[280px] mb-10">
               Custom engineering and ISO-certified precision water treatment plants since 2006.
             </p>
 
-            {/* Order 4: CTA Buttons */}
+            {/* CTA Buttons - Positioned at the bottom of the text content */}
             <div className="flex flex-col gap-3 w-full max-w-[320px] mb-8">
               <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                 <Link href="/contact" className="flex items-center justify-center gap-2">
                   Get a Quote <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-white/10 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-[11px] w-full">
+              <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-slate-200 bg-white/40 backdrop-blur-md text-slate-900 font-black uppercase tracking-widest text-[11px] w-full">
                 <Link href="/products">View Catalog</Link>
               </Button>
             </div>
 
-            {/* Order 5: Product Image Section (Tighter Spacing) */}
-            <div className="relative w-[85%] max-w-[280px] aspect-square mx-auto pointer-events-none mt-2">
-              <Image 
-                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
-                alt="Industrial RO Equipment"
-                fill
-                className="object-contain object-bottom drop-shadow-2xl"
-                priority
-              />
-            </div>
-
             {/* Bottom Overlay Stats */}
-            <div className="mt-12 w-full px-4 flex items-center justify-around pb-8 opacity-70">
+            <div className="mt-auto w-full px-4 flex items-center justify-around pb-12 opacity-80">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-white">ISO Certified</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">ISO Certified</span>
               </div>
               
-              <div className="w-px h-5 bg-white/10" />
+              <div className="w-px h-5 bg-slate-300" />
 
               <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-primary" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-white">99% Recovery</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">99% Recovery</span>
               </div>
             </div>
           </div>
 
-          {/* DESKTOP HERO (Completely Untouched) */}
+          {/* DESKTOP HERO (Untouched) */}
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image
@@ -221,7 +210,7 @@ export default function Home() {
                 <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm max-md:bg-primary/20 max-md:backdrop-blur-sm">
                   <span className="text-xs font-black uppercase tracking-widest text-primary">Our Strategic Partners</span>
                 </div>
-                <h2 className="text-5xl font-black font-headline text-slate-900 max-md:text-white tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
+                <h2 className="text-5xl font-black font-headline text-slate-900 max-md:text-slate-900 tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -233,10 +222,10 @@ export default function Home() {
                         alt={brand.name} 
                         width={200} 
                         height={100} 
-                        className="object-contain grayscale group-hover:grayscale-0 transition-all max-md:brightness-0 max-md:invert max-md:grayscale-0" 
+                        className="object-contain grayscale group-hover:grayscale-0 transition-all max-md:grayscale-0" 
                       />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 max-md:text-slate-300 leading-tight px-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 max-md:text-slate-600 leading-tight px-2">
                       {brand.name}
                     </span>
                   </div>
