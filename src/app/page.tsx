@@ -78,7 +78,7 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col overflow-hidden">
           
-          {/* MOBILE HERO (Background restricted to this section only) */}
+          {/* MOBILE HERO (Restricted Background) */}
           <div 
             className="block md:hidden w-full relative min-h-screen flex flex-col bg-cover bg-no-repeat bg-[center_top]"
             style={{ 
@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Text Group (Shifted Higher) */}
+              {/* Text Group (Moved Up) */}
               <div className="mt-4 flex flex-col items-center">
                 {/* Badge Section */}
                 <div className="mb-6">

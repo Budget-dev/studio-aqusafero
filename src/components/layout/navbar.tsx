@@ -111,11 +111,14 @@ export default function Navbar() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
+      document.body.style.paddingRight = "var(--scrollbar-width, 0px)"
     } else {
       document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
     }
     return () => {
       document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
     }
   }, [isOpen])
 
@@ -193,7 +196,6 @@ export default function Navbar() {
                                   className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all hover:bg-slate-50 hover:text-primary"
                                 >
                                   <div className="flex items-center gap-2 mb-1">
-                                    {child.icon && <child.icon className="h-3.5 w-3.5 text-primary" />}
                                     <div className="text-xs font-black uppercase tracking-tight text-slate-900 leading-none">{child.name}</div>
                                   </div>
                                   <p className="line-clamp-2 text-[10px] font-bold leading-snug text-slate-400">
@@ -273,11 +275,11 @@ export default function Navbar() {
         onClick={() => setIsOpen(false)}
       />
       
-      {/* Mobile Sidebar Content */}
+      {/* Mobile Sidebar Content - Sliding from Left */}
       <div
         className={cn(
-          "fixed top-0 right-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
-          isOpen ? "translate-x-0 visible" : "translate-x-full invisible pointer-events-none"
+          "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
+          isOpen ? "translate-x-0 visible" : "-translate-x-full invisible pointer-events-none"
         )}
       >
         <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
@@ -293,7 +295,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-6 custom-scrollbar">
+        <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
           <ul className="space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon
