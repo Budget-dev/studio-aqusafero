@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Droplets, Loader2, ArrowLeft, ShieldAlert, Key, ShieldCheck, Mail } from "lucide-react"
@@ -14,7 +14,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 const ADMIN_EMAIL = 'aquasaferoworks@gmail.com';
 
-export default function AdminLoginPage() {
+function AdminLoginForm() {
   const [email, setEmail] = useState(ADMIN_EMAIL)
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
@@ -218,5 +218,18 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50">
+        <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Loading Portal...</p>
+      </div>
+    }>
+      <AdminLoginForm />
+    </Suspense>
   )
 }

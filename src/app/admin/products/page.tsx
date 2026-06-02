@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useCollection, useFirestore } from '@/firebase';
@@ -9,7 +10,7 @@ import {
   Trash2, 
   MoreHorizontal, 
   Package, 
-  Filter,
+  Loader2,
   LayoutGrid
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,11 +32,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 
-export default function AdminProductsList() {
+function AdminProductsInner() {
   const searchParams = useSearchParams();
   const cat = searchParams.get('cat');
   const firestore = useFirestore();
@@ -177,4 +178,16 @@ export default function AdminProductsList() {
       </div>
     </div>
   );
+}
+
+export default function AdminProductsList() {
+  return (
+    <Suspense fallback={
+      <div className="h-64 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    }>
+      <AdminProductsInner />
+    </Suspense>
+  )
 }
