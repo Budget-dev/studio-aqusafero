@@ -65,7 +65,6 @@ export default function UserLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="Enter your email"
               />
             </div>
           </div>
@@ -83,7 +82,6 @@ export default function UserLoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="••••••••"
               />
             </div>
           </div>

@@ -5,7 +5,7 @@ import { useCollection, useFirestore } from "@/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
 import { useMemo } from "react";
 import InteractiveBentoGallery, { type MediaItemType } from "@/components/ui/bento-gallery";
-import { Loader2, ImageIcon } from "lucide-react";
+import { Loader2, Image as ImageIcon } from "lucide-react";
 
 export default function GalleryPage() {
   const firestore = useFirestore();

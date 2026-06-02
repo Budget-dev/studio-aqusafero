@@ -94,7 +94,6 @@ export default function UserSignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="john@example.com"
               />
             </div>
           </div>
@@ -109,7 +108,6 @@ export default function UserSignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="At least 6 characters"
               />
             </div>
           </div>
@@ -124,7 +122,6 @@ export default function UserSignupPage() {
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="Years"
               />
             </div>
           </div>
@@ -139,7 +136,6 @@ export default function UserSignupPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
-                placeholder="Phone number"
               />
             </div>
           </div>
