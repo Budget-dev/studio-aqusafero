@@ -130,9 +130,9 @@ export default function AboutUsSection() {
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-24 px-4 md:bg-gradient-to-b md:from-slate-50 md:to-white bg-transparent text-slate-900 overflow-hidden relative"
+      className="w-full py-24 px-4 bg-white md:bg-gradient-to-b md:from-slate-50 md:to-white text-slate-900 overflow-hidden relative"
     >
-      {/* Decorative background elements (Hide on mobile for continuous background) */}
+      {/* Decorative background elements */}
       <motion.div
         className="hidden md:block absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
         style={{ y: y1, rotate: rotate1 }}
@@ -158,7 +158,7 @@ export default function AboutUsSection() {
             <Zap className="w-4 h-4" />
             20+ Years of Excellence
           </motion.span>
-          <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight uppercase max-md:text-white">Technical <span className="text-primary">Solutions</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black font-headline mb-4 text-center tracking-tight uppercase text-slate-900">Technical <span className="text-primary">Solutions</span></h2>
           <motion.div
             className="w-24 h-1.5 bg-primary rounded-full"
             initial={{ width: 0 }}
@@ -167,7 +167,7 @@ export default function AboutUsSection() {
           ></motion.div>
         </motion.div>
 
-        <motion.p className="text-center max-w-2xl mx-auto mb-20 text-slate-600 max-md:text-slate-300 font-bold leading-relaxed" variants={itemVariants}>
+        <motion.p className="text-center max-w-2xl mx-auto mb-20 text-slate-600 font-bold leading-relaxed" variants={itemVariants}>
           AquaSafe is an ISO 9001:2015 certified manufacturer delivering 20+ Years of Excellence across wastewater, purification, and technical filtration plants.
         </motion.p>
 
@@ -332,12 +332,12 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
             {icon}
             {secondaryIcon}
           </motion.div>
-          <h3 className="text-2xl font-black font-headline text-slate-900 max-md:text-white group-hover:text-primary transition-colors duration-300 tracking-tight uppercase leading-none">
+          <h3 className="text-2xl font-black font-headline text-slate-900 group-hover:text-primary transition-colors duration-300 tracking-tight uppercase leading-none">
             {title}
           </h3>
         </motion.div>
         <motion.p
-          className="text-xs text-slate-500 max-md:text-slate-300 font-bold leading-relaxed pl-2 md:pl-0 line-clamp-2"
+          className="text-xs text-slate-500 font-bold leading-relaxed pl-2 md:pl-0 line-clamp-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: delay + 0.4 }}
@@ -353,7 +353,7 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
         </motion.div>
       </Link>
     </motion.div>
-  )
+  );
 }
 
 interface StatCounterProps {
@@ -388,7 +388,7 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
 
   return (
     <motion.div
-      className="bg-white max-md:bg-white/5 max-md:backdrop-blur-md max-md:border-white/10 p-8 rounded-3xl flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300 border border-slate-50"
+      className="bg-white p-8 rounded-3xl flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300 border border-slate-50"
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: {
@@ -400,17 +400,17 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
     >
       <motion.div
-        className="w-16 h-16 rounded-2xl bg-slate-50 max-md:bg-white/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500 shadow-sm"
+        className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500 shadow-sm"
         whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
       >
         {icon}
       </motion.div>
-      <motion.div ref={countRef} className="text-4xl font-black font-headline text-slate-900 max-md:text-white flex items-center tracking-tighter">
+      <motion.div ref={countRef} className="text-4xl font-black font-headline text-slate-900 flex items-center tracking-tighter">
         <motion.span>{displayValue}</motion.span>
         <span className="text-primary">{suffix}</span>
       </motion.div>
-      <p className="text-slate-500 max-md:text-slate-300 font-black uppercase tracking-widest text-[10px] mt-2">{label}</p>
+      <p className="text-slate-500 font-black uppercase tracking-widest text-[10px] mt-2">{label}</p>
       <motion.div className="w-10 h-1 bg-primary/20 mt-4 group-hover:w-16 group-hover:bg-primary transition-all duration-500 rounded-full" />
     </motion.div>
-  )
+  );
 }

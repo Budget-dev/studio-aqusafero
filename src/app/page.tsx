@@ -73,68 +73,69 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-white relative overflow-x-hidden">
-      {/* MOBILE FULL-PAGE BACKGROUND (Only visible on mobile) */}
-      <div 
-        className="md:hidden fixed inset-0 z-0 bg-[url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')] bg-cover bg-[center_top] bg-no-repeat"
-        style={{ willChange: 'transform' }}
-      >
-         {/* Background is now fully clear as requested */}
-      </div>
-
       <div className="relative z-10 flex flex-col">
         
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col overflow-hidden">
           
-          {/* MOBILE HERO (Continuous Background Integration) */}
-          <div className="block md:hidden w-full relative min-h-screen flex flex-col items-center pt-24 px-6 text-center">
-            {/* Badge Section */}
-            <div className="mb-6">
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
-              </div>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1] tracking-tight uppercase mb-4 drop-shadow-sm">
-              Technical <br />Solutions <br />For <br />
-              <span className="text-primary">Every Sector</span>
-            </h1>
-
-            {/* Description Text */}
-            <p className="text-[1rem] font-bold text-slate-600 leading-[1.6] max-w-[280px] mb-10">
-              Custom engineering and ISO-certified precision water treatment plants since 2006.
-            </p>
-
-            {/* CTA Buttons - Positioned at the bottom of the text content */}
-            <div className="flex flex-col gap-3 w-full max-w-[320px] mb-8">
-              <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
-                <Link href="/contact" className="flex items-center justify-center gap-2">
-                  Get a Quote <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-slate-200 bg-white/40 backdrop-blur-md text-slate-900 font-black uppercase tracking-widest text-[11px] w-full">
-                <Link href="/products">View Catalog</Link>
-              </Button>
-            </div>
-
-            {/* Bottom Overlay Stats */}
-            <div className="mt-auto w-full px-4 flex items-center justify-around pb-12 opacity-80">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">ISO Certified</span>
-              </div>
+          {/* MOBILE HERO (Background restricted to this section only) */}
+          <div 
+            className="block md:hidden w-full relative min-h-screen flex flex-col bg-cover bg-no-repeat bg-[center_top]"
+            style={{ 
+              backgroundImage: `url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')` 
+            }}
+          >
+            <div className="flex flex-col flex-1 px-6 text-center">
               
-              <div className="w-px h-5 bg-slate-300" />
+              {/* Top Stats */}
+              <div className="w-full flex items-center justify-around py-8 opacity-90">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">ISO Certified</span>
+                </div>
+                <div className="w-px h-5 bg-slate-300" />
+                <div className="flex items-center gap-2">
+                  <Activity className="h-4 w-4 text-primary" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">99% Recovery</span>
+                </div>
+              </div>
 
-              <div className="flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">99% Recovery</span>
+              {/* Text Group (Shifted Higher) */}
+              <div className="mt-4 flex flex-col items-center">
+                {/* Badge Section */}
+                <div className="mb-6">
+                  <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
+                  </div>
+                </div>
+
+                {/* Headline */}
+                <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1] tracking-tight uppercase mb-4 drop-shadow-sm">
+                  Technical <br />Solutions <br />For <br />
+                  <span className="text-primary">Every Sector</span>
+                </h1>
+
+                {/* Description Text */}
+                <p className="text-[1rem] font-bold text-slate-600 leading-[1.6] max-w-[280px]">
+                  Custom engineering and ISO-certified precision water treatment plants since 2006.
+                </p>
+              </div>
+
+              {/* CTA Buttons (At Bottom) */}
+              <div className="mt-auto flex flex-col gap-3 w-full max-w-[320px] mx-auto pb-20">
+                <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
+                  <Link href="/contact" className="flex items-center justify-center gap-2">
+                    Get a Quote <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-slate-200 bg-white/40 backdrop-blur-md text-slate-900 font-black uppercase tracking-widest text-[11px] w-full">
+                  <Link href="/products">View Catalog</Link>
+                </Button>
               </div>
             </div>
           </div>
 
-          {/* DESKTOP HERO (Untouched) */}
+          {/* DESKTOP HERO (No changes to the original layout) */}
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image
@@ -188,7 +189,7 @@ export default function Home() {
         </section>
 
         {/* --- BLUEPRINTS SECTION --- */}
-        <div className="max-md:bg-transparent">
+        <div className="bg-white">
           <Blog7
             tagline="Technical Mastery"
             heading="Core Industrial Solutions"
@@ -204,28 +205,28 @@ export default function Home() {
 
         {/* --- BRANDS SECTION --- */}
         {featuredBrands && featuredBrands.length > 0 && (
-          <section className="py-24 bg-slate-50/50 max-md:bg-transparent">
+          <section className="py-24 bg-slate-50/50">
             <div className="container mx-auto px-4 max-w-7xl">
               <div className="text-center mb-16 space-y-6">
-                <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm max-md:bg-primary/20 max-md:backdrop-blur-sm">
+                <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
                   <span className="text-xs font-black uppercase tracking-widest text-primary">Our Strategic Partners</span>
                 </div>
-                <h2 className="text-5xl font-black font-headline text-slate-900 max-md:text-slate-900 tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
+                <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {featuredBrands.map((brand: any) => (
                   <div key={brand.id} className="flex flex-col items-center text-center group">
-                    <div className="w-full aspect-video rounded-3xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-105 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20 p-6 overflow-hidden max-md:bg-white/10 max-md:backdrop-blur-md max-md:border-white/10">
+                    <div className="w-full aspect-video rounded-3xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-105 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20 p-6 overflow-hidden">
                       <Image 
                         src={brand.logoUrl} 
                         alt={brand.name} 
                         width={200} 
                         height={100} 
-                        className="object-contain grayscale group-hover:grayscale-0 transition-all max-md:grayscale-0" 
+                        className="object-contain grayscale group-hover:grayscale-0 transition-all" 
                       />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 max-md:text-slate-600 leading-tight px-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 leading-tight px-2">
                       {brand.name}
                     </span>
                   </div>
