@@ -135,7 +135,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* DESKTOP HERO (No changes to the original layout) */}
+          {/* DESKTOP HERO */}
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image

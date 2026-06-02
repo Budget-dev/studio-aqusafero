@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -161,16 +162,6 @@ export default function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
-        <div className="xl:hidden flex items-center">
-          <button 
-            className="p-2 text-slate-900 z-[130] relative" 
-            onClick={toggleSidebar}
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-7 w-7" />}
-          </button>
-        </div>
-
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="block relative z-[120]">
             <Image 
@@ -257,10 +248,19 @@ export default function Navbar() {
           </div>
         </nav>
 
+        {/* Mobile Actions Right */}
         <div className="xl:hidden flex items-center gap-3">
           <Button asChild className="h-10 px-4 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-primary/20 border-none">
             <Link href="/contact">Get a Quote <ArrowRight className="ml-1.5 h-3 w-3" /></Link>
           </Button>
+          
+          <button 
+            className="p-2 text-slate-900 z-[130] relative" 
+            onClick={toggleSidebar}
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-7 w-7" />}
+          </button>
         </div>
       </div>
 
