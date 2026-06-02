@@ -14,7 +14,8 @@ import {
   TestTube,
   Microscope,
   Cpu,
-  Flame
+  Flame,
+  Activity
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -129,7 +130,7 @@ export default function ETPDetailPage() {
                   "Auto & Heavy Manufacturing"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 font-black uppercase text-xs tracking-widest text-primary">
-                    <CheckCircle2 className="h-5 w-5" /> {item}
+                    <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
                   </div>
                 ))}
               </div>

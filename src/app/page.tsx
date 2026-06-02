@@ -80,15 +80,13 @@ export default function Home() {
           
           {/* MOBILE HERO (Restricted Background) */}
           <div 
-            className="block md:hidden w-full relative min-h-screen flex flex-col bg-cover bg-no-repeat bg-[center_top]"
+            className="block md:hidden w-full relative min-h-[650px] flex flex-col bg-cover bg-no-repeat bg-center"
             style={{ 
               backgroundImage: `url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')` 
             }}
           >
-            <div className="flex flex-col flex-1 px-6 text-center">
-              
-              {/* Top Stats */}
-              <div className="w-full flex items-center justify-around py-8 opacity-90">
+            {/* Top Stats Overlay */}
+            <div className="w-full flex items-center justify-around py-6 border-b border-white/10 bg-white/10 backdrop-blur-sm relative z-20">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-primary" />
                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">ISO Certified</span>
@@ -98,10 +96,12 @@ export default function Home() {
                   <Activity className="h-4 w-4 text-primary" />
                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-900">99% Recovery</span>
                 </div>
-              </div>
+            </div>
 
-              {/* Text Group (Moved Up) */}
-              <div className="mt-4 flex flex-col items-center">
+            <div className="flex flex-col flex-1 px-6 pt-10 text-center relative z-20">
+              
+              {/* Text Group (Elevated to Top) */}
+              <div className="flex flex-col items-center">
                 {/* Badge Section */}
                 <div className="mb-6">
                   <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
@@ -121,8 +121,8 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* CTA Buttons (At Bottom) */}
-              <div className="mt-auto flex flex-col gap-3 w-full max-w-[320px] mx-auto pb-20">
+              {/* CTA Buttons (Anchored at Bottom) */}
+              <div className="mt-auto flex flex-col gap-4 w-full max-w-[320px] mx-auto pb-12">
                 <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                   <Link href="/contact" className="flex items-center justify-center gap-2">
                     Get a Quote <ArrowRight className="h-4 w-4" />

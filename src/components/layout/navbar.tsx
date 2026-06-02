@@ -111,14 +111,11 @@ export default function Navbar() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
-      document.body.style.paddingRight = "var(--scrollbar-width, 0px)"
     } else {
       document.body.style.overflow = ""
-      document.body.style.paddingRight = ""
     }
     return () => {
       document.body.style.overflow = ""
-      document.body.style.paddingRight = ""
     }
   }, [isOpen])
 
@@ -266,7 +263,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Sidebar Overlay - Clicking here closes the menu */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -303,6 +300,7 @@ export default function Navbar() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
+                    onClick={() => setIsOpen(false)}
                     className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
                   >
                     <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
@@ -341,10 +339,10 @@ export default function Navbar() {
             ) : (
               <div className="grid grid-cols-2 gap-4">
                 <Button asChild className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-none bg-slate-900 shadow-xl shadow-slate-900/10">
-                  <Link href="/user/login">Sign In</Link>
+                  <Link href="/user/login" onClick={() => setIsOpen(false)}>Sign In</Link>
                 </Button>
                 <Button asChild variant="outline" className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-slate-200 bg-white">
-                  <Link href="/user/signup">Register</Link>
+                  <Link href="/user/signup" onClick={() => setIsOpen(false)}>Register</Link>
                 </Button>
               </div>
             )}
