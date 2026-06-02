@@ -20,6 +20,7 @@ import {
 import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
 import AboutUsSection from "@/components/sections/about-us-section";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const firestore = useFirestore();
@@ -71,77 +72,75 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-hidden">
+    <div className="min-h-screen w-full bg-white relative overflow-x-hidden">
+      {/* MOBILE FULL-PAGE BACKGROUND (Only visible on mobile) */}
+      <div 
+        className="md:hidden fixed inset-0 z-0 bg-[url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')] bg-cover bg-[center_top] bg-no-repeat"
+        style={{ willChange: 'transform' }}
+      >
+         <div className="absolute inset-0 bg-gradient-to-b from-[#030f3c]/75 to-[#030f3c]/55" />
+      </div>
+
       <div className="relative z-10 flex flex-col">
         
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col overflow-hidden">
           
-          {/* MOBILE HERO (Final Enterprise Balanced Version) */}
-          <div className="block md:hidden w-full relative min-h-screen flex flex-col overflow-hidden bg-[#081948]">
-            {/* Background Industrial Gradient Layers */}
-            <div 
-              className="absolute inset-0 z-0" 
-              style={{ 
-                background: 'linear-gradient(180deg, rgba(8,25,72,0.98) 0%, rgba(15,45,110,0.95) 45%, rgba(15,45,110,0.85) 100%)' 
-              }} 
-            />
-            
-            <div className="relative z-10 p-6 pt-12 flex flex-col items-center text-center w-full max-w-full">
-              {/* Order 1: Badge Section */}
-              <div className="mb-4">
-                <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
-                </div>
+          {/* MOBILE HERO (Continuous Background Integration) */}
+          <div className="block md:hidden w-full relative min-h-screen flex flex-col items-center pt-24 px-6 text-center">
+            {/* Order 1: Badge Section */}
+            <div className="mb-4">
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
               </div>
+            </div>
 
-              {/* Order 2: Headline */}
-              <h1 className="text-[clamp(2.2rem,8vw,3.2rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
-                Technical <br />Solutions <br />For <br />
-                <span className="text-primary">Every Sector</span>
-              </h1>
+            {/* Order 2: Headline */}
+            <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
+              Technical <br />Solutions <br />For <br />
+              <span className="text-primary">Every Sector</span>
+            </h1>
 
-              {/* Order 3: Description Text */}
-              <p className="text-[0.95rem] font-bold text-slate-300 leading-[1.5] max-w-[280px] mb-8">
-                Custom engineering and ISO certified precision water treatment plants since 2006.
-              </p>
+            {/* Order 3: Description Text */}
+            <p className="text-[1rem] font-bold text-slate-300 leading-[1.6] max-w-[280px] mb-8">
+              Custom engineering and ISO-certified precision water treatment plants since 2006.
+            </p>
 
-              {/* Order 4: CTA Buttons */}
-              <div className="flex flex-col gap-3 w-full max-w-[320px] mb-10">
-                <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
-                  <Link href="/contact" className="flex items-center justify-center gap-2">
-                    Get a Quote <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-white/10 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-[11px] w-full">
-                  <Link href="/products">View Catalog</Link>
-                </Button>
+            {/* Order 4: CTA Buttons */}
+            <div className="flex flex-col gap-3 w-full max-w-[320px] mb-8">
+              <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
+                <Link href="/contact" className="flex items-center justify-center gap-2">
+                  Get a Quote <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="h-14 rounded-2xl border-2 border-white/10 bg-white/5 backdrop-blur-md text-white font-black uppercase tracking-widest text-[11px] w-full">
+                <Link href="/products">View Catalog</Link>
+              </Button>
+            </div>
+
+            {/* Order 5: Product Image Section (Tighter Spacing) */}
+            <div className="relative w-[85%] max-w-[280px] aspect-square mx-auto pointer-events-none mt-2">
+              <Image 
+                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
+                alt="Industrial RO Equipment"
+                fill
+                className="object-contain object-bottom drop-shadow-2xl"
+                priority
+              />
+            </div>
+
+            {/* Bottom Overlay Stats */}
+            <div className="mt-12 w-full px-4 flex items-center justify-around pb-8 opacity-70">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-white">ISO Certified</span>
               </div>
+              
+              <div className="w-px h-5 bg-white/10" />
 
-              {/* Order 5: Product Image Section (Directly Below Buttons) */}
-              <div className="relative w-[85%] max-w-[280px] aspect-square mx-auto -mb-10 pointer-events-none">
-                <Image 
-                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
-                  alt="Industrial RO Equipment"
-                  fill
-                  className="object-contain object-bottom drop-shadow-2xl"
-                  priority
-                />
-              </div>
-
-              {/* Bottom Overlay Stats */}
-              <div className="mt-16 w-full px-4 flex items-center justify-around z-20 pb-8 opacity-60">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
-                </div>
-                
-                <div className="w-px h-5 bg-white/10" />
-
-                <div className="flex items-center gap-2">
-                  <Activity className="h-3.5 w-3.5 text-primary" />
-                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
-                </div>
+              <div className="flex items-center gap-2">
+                <Activity className="h-4 w-4 text-primary" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-white">99% Recovery</span>
               </div>
             </div>
           </div>
@@ -200,42 +199,44 @@ export default function Home() {
         </section>
 
         {/* --- BLUEPRINTS SECTION --- */}
-        <Blog7
-          tagline="Technical Mastery"
-          heading="Core Industrial Solutions"
-          description="Precision-engineered plants designed to meet stringent environmental standards and performance benchmarks."
-          buttonText="View All Blueprints"
-          buttonUrl="/products"
-          posts={engineeringPosts}
-        />
+        <div className="max-md:bg-transparent">
+          <Blog7
+            tagline="Technical Mastery"
+            heading="Core Industrial Solutions"
+            description="Precision-engineered plants designed to meet stringent environmental standards and performance benchmarks."
+            buttonText="View All Blueprints"
+            buttonUrl="/products"
+            posts={engineeringPosts}
+          />
+        </div>
 
         {/* --- ABOUT US SECTION --- */}
         <AboutUsSection />
 
         {/* --- BRANDS SECTION --- */}
         {featuredBrands && featuredBrands.length > 0 && (
-          <section className="py-24 bg-slate-50/50">
+          <section className="py-24 bg-slate-50/50 max-md:bg-transparent">
             <div className="container mx-auto px-4 max-w-7xl">
               <div className="text-center mb-16 space-y-6">
-                <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
+                <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm max-md:bg-primary/20 max-md:backdrop-blur-sm">
                   <span className="text-xs font-black uppercase tracking-widest text-primary">Our Strategic Partners</span>
                 </div>
-                <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
+                <h2 className="text-5xl font-black font-headline text-slate-900 max-md:text-white tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {featuredBrands.map((brand: any) => (
                   <div key={brand.id} className="flex flex-col items-center text-center group">
-                    <div className="w-full aspect-video rounded-3xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-105 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20 p-6 overflow-hidden">
+                    <div className="w-full aspect-video rounded-3xl bg-white shadow-sm flex items-center justify-center mb-5 transition-all group-hover:scale-105 group-hover:shadow-xl border border-slate-100 group-hover:border-primary/20 p-6 overflow-hidden max-md:bg-white/10 max-md:backdrop-blur-md max-md:border-white/10">
                       <Image 
                         src={brand.logoUrl} 
                         alt={brand.name} 
                         width={200} 
                         height={100} 
-                        className="object-contain grayscale group-hover:grayscale-0 transition-all" 
+                        className="object-contain grayscale group-hover:grayscale-0 transition-all max-md:brightness-0 max-md:invert max-md:grayscale-0" 
                       />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 leading-tight px-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 max-md:text-slate-300 leading-tight px-2">
                       {brand.name}
                     </span>
                   </div>
