@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -265,18 +264,20 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setIsOpen(false)}
       />
       
+      {/* Mobile Sidebar Content */}
       <div
         className={cn(
           "fixed top-0 right-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? "translate-x-0 visible" : "translate-x-full invisible pointer-events-none"
         )}
       >
         <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">

@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image";
@@ -77,44 +76,37 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col">
           
-          {/* MOBILE HERO (Exactly based on Reference Logic) */}
-          <div className="block md:hidden w-full relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0a1128]">
-            {/* Background Image & Optimized Overlays */}
-            <div className="absolute inset-0 z-0">
-              <Image 
-                src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
-                alt="AquaSafe Technical Hub Mobile"
-                fill
-                className="object-cover object-bottom"
-                priority
-              />
-              {/* Cinematic Top-Heavy Gradient for legibility */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128]/95 via-[#0a1128]/60 to-transparent z-[1]" />
-              {/* Subtle Tech Glow */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.15),transparent_60%)] z-[2]" />
-            </div>
-
-            <div className="relative z-10 p-6 pt-24 flex flex-col h-full">
-              {/* Badge Section */}
+          {/* MOBILE HERO (Optimized according to technical mockup) */}
+          <div className="block md:hidden w-full relative min-h-[90svh] flex flex-col overflow-hidden bg-[#081948]">
+            {/* Background Industrial Gradient Layers */}
+            <div 
+              className="absolute inset-0 z-0" 
+              style={{ 
+                background: 'linear-gradient(180deg, rgba(8,25,72,0.98) 0%, rgba(15,45,110,0.95) 45%, rgba(15,45,110,0.85) 100%)' 
+              }} 
+            />
+            
+            <div className="relative z-10 p-6 pt-16 flex flex-col h-full flex-1">
+              {/* Order 1: Badge Section */}
               <div className="mb-6">
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md">
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
                 </div>
               </div>
 
-              {/* Headline & Description (Higher position to avoid overlap) */}
-              <div className="space-y-5">
-                <h1 className="text-[40px] font-black font-headline text-white leading-[1.05] tracking-tight uppercase">
-                  Technical <br />Solutions <br />For <br />
-                  <span className="text-primary">Every Sector</span>
-                </h1>
-                <p className="text-sm font-bold text-slate-400 leading-relaxed max-w-[280px]">
-                  Custom engineering and ISO certified precision water treatment plants since 2006.
-                </p>
-              </div>
+              {/* Order 2: Headline */}
+              <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-white leading-[1] tracking-tight uppercase mb-4">
+                Technical <br />Solutions <br />For <br />
+                <span className="text-primary">Every Sector</span>
+              </h1>
 
-              {/* Action Buttons (Full width vertical stack) */}
-              <div className="flex flex-col gap-3 pt-10">
+              {/* Order 3: Description Text */}
+              <p className="text-[1rem] font-bold text-slate-300 leading-[1.6] max-w-[280px] mb-8">
+                Custom engineering and ISO certified precision water treatment plants since 2006.
+              </p>
+
+              {/* Order 4: CTA Buttons */}
+              <div className="flex flex-col gap-3 w-full max-w-[320px] mb-12">
                 <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                   <Link href="/contact" className="flex items-center justify-center gap-2">
                     Get a Quote <ArrowRight className="h-4 w-4" />
@@ -125,22 +117,29 @@ export default function Home() {
                 </Button>
               </div>
 
-              {/* Bottom Stats Section */}
-              <div className="mt-auto pt-10 pb-8 flex items-center justify-between border-t border-white/5">
-                <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/20">
-                    <ShieldCheck className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
-                </div>
+              {/* Order 5: Product Image Section (Anchored Bottom) */}
+              <div className="mt-auto relative w-full h-[320px] -mx-6 w-[calc(100%+3rem)]">
+                <Image 
+                  src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png"
+                  alt="Industrial RO Equipment"
+                  fill
+                  className="object-contain object-bottom"
+                  priority
+                />
                 
-                <div className="w-px h-6 bg-white/10 mx-2" />
-
-                <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/20">
-                    <Activity className="h-4 w-4 text-primary" />
+                {/* Bottom Overlay Stats */}
+                <div className="absolute bottom-6 left-0 right-0 px-8 flex items-center justify-between z-20">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">ISO Certified</span>
                   </div>
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
+                  
+                  <div className="w-px h-6 bg-white/10" />
+
+                  <div className="flex items-center gap-2">
+                    <Activity className="h-4 w-4 text-primary" />
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">99% Recovery</span>
+                  </div>
                 </div>
               </div>
             </div>
