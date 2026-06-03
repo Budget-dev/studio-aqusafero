@@ -12,10 +12,9 @@ import {
   ArrowRight, 
   Factory,
   TestTube,
-  Microscope,
+  Activity,
   Cpu,
-  Flame,
-  Activity
+  Flame
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

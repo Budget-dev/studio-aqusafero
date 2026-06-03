@@ -80,7 +80,7 @@ export default function Home() {
           
           {/* MOBILE HERO (Restricted Background) */}
           <div 
-            className="block md:hidden w-full relative min-h-[500px] flex flex-col bg-cover bg-no-repeat bg-center"
+            className="block md:hidden w-full relative min-h-[750px] flex flex-col bg-cover bg-no-repeat bg-center"
             style={{ 
               backgroundImage: `url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')` 
             }}
@@ -110,9 +110,9 @@ export default function Home() {
                 </div>
 
                 {/* Headline */}
-                <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1] tracking-tight uppercase mb-4 drop-shadow-sm">
-                  Advanced <br />Water Treatment <br />For <br />
-                  <span className="text-primary">Every Sector</span>
+                <h1 className="text-[clamp(1.8rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1.1] tracking-tight uppercase mb-4 drop-shadow-sm">
+                  ADVANCED <br />WATER TREATMENT <br />FOR <br />
+                  <span className="text-primary">EVERY SECTOR</span>
                 </h1>
               </div>
 
@@ -151,7 +151,7 @@ export default function Home() {
                       20+ Years of Excellence
                     </Badge>
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase drop-shadow-sm">
-                      Advanced <br />Water Treatment for <br /><span className="text-primary">Every Sector</span>
+                      ADVANCED <br />WATER TREATMENT FOR <br /><span className="text-primary">EVERY SECTOR</span>
                     </h1>
                     <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
                       We design, manufacture and commission high-performance water treatment plants with ISO certified precision since 2006.
