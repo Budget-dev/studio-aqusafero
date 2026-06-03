@@ -30,7 +30,8 @@ import {
   ArrowRight,
   Factory,
   Beaker,
-  Building2
+  Building2,
+  ChevronDown
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -47,8 +48,11 @@ import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
 import { signOut } from "firebase/auth"
 
+const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_09_23%20PM.png";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [expandedItems, setExpandedItems] = useState<string[]>([])
   const pathname = usePathname()
   const { cartCount } = useCart()
   const { user } = useUser()
@@ -93,6 +97,12 @@ export default function Navbar() {
     }
     setIsOpen(prev => !prev);
   }, []);
+
+  const toggleExpanded = (name: string) => {
+    setExpandedItems(prev => 
+      prev.includes(name) ? prev.filter(i => i !== name) : [...prev, name]
+    )
+  }
 
   const handleLogout = () => {
     if (auth) signOut(auth)
@@ -165,7 +175,7 @@ export default function Navbar() {
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="block relative z-[120]">
             <Image 
-              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
+              src={LOGO_URL} 
               alt="AquaSafe Logo" 
               width={400} 
               height={160} 
@@ -263,7 +273,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay - Clicking here closes the menu */}
+      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -272,7 +282,7 @@ export default function Navbar() {
         onClick={() => setIsOpen(false)}
       />
       
-      {/* Mobile Sidebar Content - Sliding from Left */}
+      {/* Mobile Sidebar Content - Left Side */}
       <div
         className={cn(
           "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
@@ -296,6 +306,41 @@ export default function Navbar() {
           <ul className="space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon
+              const hasChildren = item.children && item.children.length > 0;
+              const isExpanded = expandedItems.includes(item.name);
+
+              if (hasChildren) {
+                return (
+                  <li key={item.name} className="space-y-1">
+                    <button
+                      onClick={() => toggleExpanded(item.name)}
+                      className="w-full flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
+                    >
+                      <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
+                        <Icon className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
+                      </div>
+                      <span className="text-sm font-black uppercase tracking-tight">{item.name}</span>
+                      <ChevronDown className={cn("ml-auto h-4 w-4 transition-transform duration-200", isExpanded && "rotate-180")} />
+                    </button>
+                    {isExpanded && (
+                      <ul className="ml-12 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
+                        {item.children?.map((child) => (
+                          <li key={child.name}>
+                            <Link
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className="block py-2.5 px-4 rounded-lg text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-primary hover:bg-primary/5 transition-all"
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                )
+              }
+
               return (
                 <li key={item.name}>
                   <Link

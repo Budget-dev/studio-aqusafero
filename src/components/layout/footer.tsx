@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -15,6 +16,8 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+
+const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_09_23%20PM.png";
 
 interface FooterLink {
   title: string;
@@ -78,7 +81,7 @@ export default function Footer() {
         <AnimatedContainer className="xl:col-span-2 space-y-4">
           <Link href="/" className="block w-fit">
             <Image 
-              src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2004_19_37%20PM.png" 
+              src={LOGO_URL} 
               alt="AquaSafe Logo" 
               width={200} 
               height={80} 
