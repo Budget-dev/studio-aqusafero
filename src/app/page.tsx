@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image";
@@ -73,7 +72,7 @@ export default function Home() {
         {/* --- HERO SECTION --- */}
         <section className="relative flex flex-col overflow-hidden">
           
-          {/* MOBILE HERO (Restricted Background) */}
+          {/* MOBILE HERO */}
           <div 
             className="block md:hidden w-full relative min-h-[750px] flex flex-col bg-cover bg-no-repeat bg-center"
             style={{ 
@@ -94,24 +93,19 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col flex-1 px-6 pt-10 text-center relative z-20">
-              
-              {/* Text Group (Elevated to Top) */}
               <div className="flex flex-col items-center">
-                {/* Badge Section */}
                 <div className="mb-6">
                   <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/30 bg-primary/20 backdrop-blur-md">
                     <span className="text-[10px] font-black uppercase tracking-widest text-primary">20+ Years of Excellence</span>
                   </div>
                 </div>
 
-                {/* Headline */}
                 <h1 className="text-[clamp(1.8rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1.1] tracking-tight uppercase mb-4 drop-shadow-sm">
                   ADVANCED <br />WATER TREATMENT <br />FOR <br />
                   <span className="text-primary">EVERY SECTOR</span>
                 </h1>
               </div>
 
-              {/* CTA Buttons (Anchored at Bottom) */}
               <div className="mt-auto flex flex-col gap-4 w-full max-w-[320px] mx-auto pb-12">
                 <Button asChild className="h-14 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 border-none w-full">
                   <Link href="/contact" className="flex items-center justify-center gap-2">
@@ -178,7 +172,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- BLUEPRINTS SECTION --- */}
         <div className="bg-white">
           <Blog7
             tagline="Technical Mastery"
@@ -190,10 +183,8 @@ export default function Home() {
           />
         </div>
 
-        {/* --- ABOUT US SECTION --- */}
         <AboutUsSection />
 
-        {/* --- BRANDS SECTION --- */}
         {featuredBrands && featuredBrands.length > 0 && (
           <section className="py-24 bg-slate-50/50">
             <div className="container mx-auto px-4 max-w-7xl">
@@ -201,7 +192,7 @@ export default function Home() {
                 <div className="inline-block px-6 py-2 rounded-xl bg-sky-50 border border-primary/20 shadow-sm">
                   <span className="text-xs font-black uppercase tracking-widest text-primary">Our Strategic Partners</span>
                 </div>
-                <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight">World-Class Engineering <br />Behind Our Hub</h2>
+                <h2 className="text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight text-center">World-Class Engineering <br />Behind Our Hub</h2>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -231,7 +222,6 @@ export default function Home() {
           </section>
         )}
 
-        {/* --- AUDIT CTA --- */}
         <Cta4
           title="Need a technical audit for your facility?"
           description="Talk to our senior engineers today for a tailored performance assessment of your RO plants and wastewater systems."

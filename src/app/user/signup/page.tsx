@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -82,7 +81,7 @@ export default function UserSignupPage() {
             <Droplets className="w-8 h-8" />
           </div>
           <h1 className="text-3xl font-black font-headline uppercase tracking-tight text-slate-900">Join <span className="text-primary">AquaSafe</span></h1>
-          <p className="text-slate-500 font-medium">Create an account to track your orders and get support.</p>
+          <p className="text-slate-500 font-medium text-center">Create an account to track your orders and get support.</p>
         </div>
 
         <form onSubmit={handleSignUp} className="grid grid-cols-1 md:grid-cols-2 gap-5">

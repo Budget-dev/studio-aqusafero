@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -64,7 +63,7 @@ export function AdminSidebar() {
     <aside className="hidden md:flex w-72 flex-col bg-slate-900 text-white sticky top-0 h-screen">
       <div className="p-8 border-b border-white/5">
         <Link href="/admin" className="flex items-center gap-3 group">
-          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+          <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
             <Droplets className="text-white h-7 w-7" />
           </div>
           <div>
@@ -101,7 +100,7 @@ export function AdminSidebar() {
                     <Link key={child.href} href={child.href}>
                       <span className={cn(
                         "flex items-center h-10 px-4 rounded-lg text-[9px] font-black uppercase tracking-wider transition-colors hover:bg-white/5",
-                        pathname === child.href || (pathname === '/admin/products' && new URLSearchParams(child.href.split('?')[1]).get('cat') === new URLSearchParams(window.location.search).get('cat')) 
+                        pathname === child.href
                           ? "bg-white/10 text-primary border-l-2 border-primary" 
                           : "text-slate-400"
                       )}>
