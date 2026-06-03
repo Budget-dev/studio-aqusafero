@@ -5,7 +5,7 @@ import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Droplets, Loader2, ArrowLeft, Mail, Key, Phone, Calendar } from "lucide-react"
+import { Droplets, Loader2, ArrowLeft, Mail, Key, Phone, Calendar, Building2 } from "lucide-react"
 import { useAuth, useFirestore } from "@/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
@@ -18,6 +18,7 @@ export default function UserSignupPage() {
   const [password, setPassword] = useState("")
   const [phone, setPhone] = useState("")
   const [age, setAge] = useState("")
+  const [org, setOrg] = useState("")
   const [loading, setLoading] = useState(false)
   
   const { auth } = useAuth()
@@ -40,6 +41,7 @@ export default function UserSignupPage() {
           email: user.email,
           phone: phone,
           age: parseInt(age),
+          organization: org,
           role: "user",
           createdAt: serverTimestamp()
         };
@@ -136,6 +138,18 @@ export default function UserSignupPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1.5 md:col-span-2">
+            <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Organization / Institution</label>
+            <div className="relative">
+              <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
+              <input 
+                value={org}
+                onChange={(e) => setOrg(e.target.value)}
+                className="w-full h-14 pl-12 rounded-xl border border-slate-100 bg-slate-50 outline-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold" 
               />
             </div>
           </div>

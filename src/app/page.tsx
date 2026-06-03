@@ -80,7 +80,7 @@ export default function Home() {
           
           {/* MOBILE HERO (Restricted Background) */}
           <div 
-            className="block md:hidden w-full relative min-h-[650px] flex flex-col bg-cover bg-no-repeat bg-center"
+            className="block md:hidden w-full relative min-h-[500px] flex flex-col bg-cover bg-no-repeat bg-center"
             style={{ 
               backgroundImage: `url('https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2006_00_38%20PM.png')` 
             }}
@@ -114,11 +114,6 @@ export default function Home() {
                   Technical <br />Solutions <br />For <br />
                   <span className="text-primary">Every Sector</span>
                 </h1>
-
-                {/* Description Text */}
-                <p className="text-[1rem] font-bold text-slate-600 leading-[1.6] max-w-[280px]">
-                  Custom engineering and ISO-certified precision water treatment plants since 2006.
-                </p>
               </div>
 
               {/* CTA Buttons (Anchored at Bottom) */}

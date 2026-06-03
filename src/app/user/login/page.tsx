@@ -56,7 +56,7 @@ export default function UserLoginPage() {
 
         <form onSubmit={handleSignIn} className="space-y-5">
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Email</label>
+            <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Email Address</label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
               <input
