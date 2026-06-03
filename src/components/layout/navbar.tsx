@@ -15,7 +15,6 @@ import {
   Linkedin,
   ChevronRight,
   Home,
-  Droplets,
   Wrench,
   Users,
   Image as ImageIcon,
@@ -45,6 +44,8 @@ import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
 import { signOut } from "firebase/auth"
 
+const LOGO_ICON_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_26_22%20PM.png";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
@@ -64,7 +65,7 @@ export default function Navbar() {
     {
       name: "Products",
       href: "/products",
-      icon: Droplets,
+      icon: ImageIcon,
       children: [
         { name: "Domestic Products", href: "/products?category=Domestic+Products", description: "Premium purification systems for households.", icon: Home },
         { name: "Commercial Products", href: "/products?category=Commercial+Products", description: "Water treatment for hospitality and clinics.", icon: ShoppingCart },
@@ -171,15 +172,19 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
         {/* Logo Section */}
         <div className="flex items-center h-full shrink-0">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-14 h-14 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
-              <Droplets className="text-white h-8 w-8 md:h-7 md:w-7" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-14 h-14 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105">
+              <img 
+                src={LOGO_ICON_URL} 
+                alt="AquaSafe Icon" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
-              <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-none mt-1">
+              <span className="text-[8px] md:text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] leading-none mt-1">
                 Water Technologies
               </span>
             </div>
@@ -295,12 +300,16 @@ export default function Navbar() {
             )}
           >
             <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                <Droplets className="text-white h-6 w-6" />
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img 
+                  src={LOGO_ICON_URL} 
+                  alt="AquaSafe Icon" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AQUA SAFE</span>
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Water Technologies</span>
+                <span className="text-[10px] text-slate-600 font-black uppercase tracking-widest mt-1">Water Technologies</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
                 <X className="h-5 w-5 text-slate-400" />
@@ -310,7 +319,6 @@ export default function Navbar() {
             <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
               <ul className="space-y-1">
                 {navigation.map((item) => {
-                  const Icon = item.icon
                   const hasChildren = item.children && item.children.length > 0;
                   const isExpanded = expandedItems.includes(item.name);
 
@@ -321,14 +329,11 @@ export default function Navbar() {
                           onClick={() => toggleExpanded(item.name)}
                           className="w-full flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
                         >
-                          <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
-                            <Icon className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
-                          </div>
                           <span className="text-sm font-black uppercase tracking-tight">{item.name}</span>
                           <ChevronDown className={cn("ml-auto h-4 w-4 transition-transform duration-200", isExpanded && "rotate-180")} />
                         </button>
                         {isExpanded && (
-                          <ul className="ml-12 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
+                          <ul className="ml-6 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300 border-l-2 border-slate-50">
                             {item.children?.map((child) => (
                               <li key={child.name}>
                                 <Link
@@ -353,9 +358,6 @@ export default function Navbar() {
                         onClick={() => setIsOpen(false)}
                         className="flex items-center gap-4 px-4 py-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-primary transition-all duration-200 group"
                       >
-                        <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 transition-colors">
-                          <Icon className="h-5 w-5 text-slate-400 group-hover:text-primary transition-colors" />
-                        </div>
                         <span className="text-sm font-black uppercase tracking-tight">{item.name}</span>
                         <ChevronRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                       </Link>

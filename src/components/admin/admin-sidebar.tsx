@@ -11,7 +11,6 @@ import {
   Star, 
   Ticket, 
   LogOut,
-  Droplets,
   ChevronRight,
   Plus,
   Wrench,
@@ -31,6 +30,8 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useState } from 'react';
+
+const LOGO_ICON_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_26_22%20PM.png";
 
 const navItems = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -63,12 +64,16 @@ export function AdminSidebar() {
     <aside className="hidden md:flex w-72 flex-col bg-slate-900 text-white sticky top-0 h-screen">
       <div className="p-8 border-b border-white/5">
         <Link href="/admin" className="flex items-center gap-3 group">
-          <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-            <Droplets className="text-white h-7 w-7" />
+          <div className="w-12 h-12 flex items-center justify-center">
+            <img 
+              src={LOGO_ICON_URL} 
+              alt="AquaSafe Icon" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <h2 className="font-black font-headline text-lg uppercase tracking-tight leading-none">Admin Hub</h2>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Aqua Safe RO Works</p>
+            <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest mt-1">Aqua Safe RO Works</p>
           </div>
         </Link>
       </div>

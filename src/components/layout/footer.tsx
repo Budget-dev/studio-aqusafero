@@ -9,11 +9,12 @@ import {
   Linkedin, 
   Youtube, 
   Mail,
-  MapPin,
-  Droplets
+  MapPin
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+const LOGO_ICON_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_26_22%20PM.png";
 
 interface FooterLink {
   title: string;
@@ -80,15 +81,19 @@ export default function Footer() {
       <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8 items-start">
         {/* Brand Column */}
         <AnimatedContainer className="xl:col-span-2 space-y-4">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-14 h-14 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <Droplets className="text-white h-8 w-8 md:h-7 md:w-7" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-14 h-14 md:w-12 md:h-12 flex items-center justify-center">
+              <img 
+                src={LOGO_ICON_URL} 
+                alt="AquaSafe Icon" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-black text-white text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
-              <span className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-0.5">
+              <span className="text-[8px] md:text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mt-0.5">
                 Water Technologies
               </span>
             </div>
