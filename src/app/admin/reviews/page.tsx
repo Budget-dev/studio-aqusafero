@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -122,7 +121,7 @@ export default function AdminReviewsPage() {
                 <Input 
                   type="number" min="1" max="5" required 
                   value={newReview.rating}
-                  onChange={(e) => setNewReview({...newReview, rating: parseInt(e.target.value)})}
+                  onChange={(e) => setNewReview({...newReview, rating: parseInt(e.target.value) || 0})}
                   className="h-12 rounded-xl bg-slate-50 border-none font-bold"
                 />
               </div>

@@ -382,11 +382,21 @@ export default function AddProductPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Standard Rate (₹)</Label>
-                  <Input type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: parseFloat(e.target.value)})} className="h-12 rounded-xl bg-slate-50 border-none font-bold" />
+                  <Input 
+                    type="number" 
+                    value={formData.price} 
+                    onChange={(e) => setFormData({...formData, price: parseFloat(e.target.value) || 0})} 
+                    className="h-12 rounded-xl bg-slate-50 border-none font-bold" 
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Offer Rate (₹)</Label>
-                  <Input type="number" value={formData.offerPrice} onChange={(e) => setFormData({...formData, offerPrice: parseFloat(e.target.value)})} className="h-12 rounded-xl bg-slate-50 border-none font-bold" />
+                  <Input 
+                    type="number" 
+                    value={formData.offerPrice} 
+                    onChange={(e) => setFormData({...formData, offerPrice: parseFloat(e.target.value) || 0})} 
+                    className="h-12 rounded-xl bg-slate-50 border-none font-bold" 
+                  />
                 </div>
               </div>
 
@@ -397,7 +407,12 @@ export default function AddProductPage() {
                 </div>
                 <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Stock Level</Label>
-                  <Input type="number" value={formData.stock} onChange={(e) => setFormData({...formData, stock: parseInt(e.target.value)})} className="h-12 rounded-xl bg-slate-50 border-none font-bold" />
+                  <Input 
+                    type="number" 
+                    value={formData.stock} 
+                    onChange={(e) => setFormData({...formData, stock: parseInt(e.target.value) || 0})} 
+                    className="h-12 rounded-xl bg-slate-50 border-none font-bold" 
+                  />
                 </div>
               </div>
 
@@ -468,7 +483,7 @@ export default function AddProductPage() {
                 type="button" 
                 variant="outline" 
                 onClick={addSpec}
-                className="w-full h-16 rounded-2xl border-dashed border-slate-200 font-black uppercase text-[10px] tracking-widest text-slate-400 hover:border-amber-500 hover:text-amber-500 transition-all"
+                className="size-full h-16 rounded-2xl border-dashed border-slate-200 font-black uppercase text-[10px] tracking-widest text-slate-400 hover:border-amber-500 hover:text-amber-500 transition-all"
               >
                 <Plus className="mr-2 h-4 w-4" /> Add Parameter Entry
               </Button>

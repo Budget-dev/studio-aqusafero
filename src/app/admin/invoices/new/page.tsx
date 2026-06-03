@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -189,7 +188,7 @@ export default function NewInvoicePage() {
                     <Input 
                       type="number"
                       value={item.qty}
-                      onChange={(e) => updateItem(i, 'qty', parseInt(e.target.value))}
+                      onChange={(e) => updateItem(i, 'qty', parseInt(e.target.value) || 0)}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold"
                     />
                   </div>
@@ -198,7 +197,7 @@ export default function NewInvoicePage() {
                     <Input 
                       type="number"
                       value={item.price}
-                      onChange={(e) => updateItem(i, 'price', parseFloat(e.target.value))}
+                      onChange={(e) => updateItem(i, 'price', parseFloat(e.target.value) || 0)}
                       className="h-12 rounded-xl bg-slate-50 border-none font-bold"
                     />
                   </div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -121,7 +120,7 @@ export default function AdminCouponsPage() {
                 <Input 
                   type="number" required 
                   value={newCoupon.discount}
-                  onChange={(e) => setNewCoupon({...newCoupon, discount: parseInt(e.target.value)})}
+                  onChange={(e) => setNewCoupon({...newCoupon, discount: parseInt(e.target.value) || 0})}
                   className="h-12 rounded-xl bg-slate-50 border-none font-bold"
                 />
               </div>

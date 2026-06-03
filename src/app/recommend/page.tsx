@@ -1,5 +1,4 @@
-
-"use client"
+'use client';
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -93,7 +92,7 @@ export default function RecommendationTool() {
                       id="capacity"
                       type="number"
                       value={formData.dailyCapacityGPD}
-                      onChange={(e) => setFormData({...formData, dailyCapacityGPD: parseInt(e.target.value)})}
+                      onChange={(e) => setFormData({...formData, dailyCapacityGPD: parseInt(e.target.value) || 0})}
                       placeholder="e.g. 5000"
                     />
                   </div>
