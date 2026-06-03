@@ -11,16 +11,11 @@ import { Button } from "@/components/ui/button";
 import { 
   ShieldCheck, 
   ArrowRight, 
-  Activity, 
-  FileText,
-  Droplets,
-  Settings,
-  Headset,
+  Activity
 } from "lucide-react";
 import { Cta4 } from "@/components/ui/cta-4";
 import { Blog7 } from "@/components/ui/blog-7";
 import AboutUsSection from "@/components/sections/about-us-section";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
   const firestore = useFirestore();
@@ -37,7 +32,7 @@ export default function Home() {
 
   const { data: featuredBrands } = useCollection(brandsQuery);
 
-  // Core High-Impact content (Keep as fixed pointers to landing pages)
+  // Core High-Impact content
   const engineeringPosts = [
     {
       id: "stp-post",

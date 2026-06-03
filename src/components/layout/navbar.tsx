@@ -2,7 +2,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState, useEffect, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { 
@@ -47,8 +46,6 @@ import { cn } from "@/lib/utils"
 import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
 import { signOut } from "firebase/auth"
-
-const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_09_23%20PM.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -173,15 +170,18 @@ export default function Navbar() {
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
         <div className="flex items-center h-full shrink-0">
-          <Link href="/" className="block relative z-[120]">
-            <Image 
-              src={LOGO_URL} 
-              alt="AquaSafe Logo" 
-              width={400} 
-              height={160} 
-              className="h-16 md:h-20 lg:h-32 w-auto object-contain transition-all duration-300"
-              priority
-            />
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+              <Droplets className="text-white h-6 w-6 md:h-7 md:w-7" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-black text-slate-900 text-lg md:text-2xl tracking-tighter leading-none uppercase">
+                AQUA<span className="text-primary">SAFE</span>
+              </span>
+              <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-none mt-1">
+                Water Technologies
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -273,7 +273,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Sidebar Overlay (Surrounding area) */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -294,7 +294,7 @@ export default function Navbar() {
             <Droplets className="text-white h-6 w-6" />
           </div>
           <div className="flex flex-col">
-            <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AquaSafe Hub</span>
+            <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AQUA SAFE</span>
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Water Technologies</span>
           </div>
           <button onClick={() => setIsOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
