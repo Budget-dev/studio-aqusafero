@@ -111,7 +111,7 @@ export default function Home() {
 
                 {/* Headline */}
                 <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-[800] font-headline text-slate-900 leading-[1] tracking-tight uppercase mb-4 drop-shadow-sm">
-                  Technical <br />Solutions <br />For <br />
+                  Advanced <br />Water Treatment <br />For <br />
                   <span className="text-primary">Every Sector</span>
                 </h1>
               </div>
@@ -151,7 +151,7 @@ export default function Home() {
                       20+ Years of Excellence
                     </Badge>
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-headline text-slate-900 leading-[1.05] tracking-tight uppercase drop-shadow-sm">
-                      Technical <br />Solutions for <br /><span className="text-primary">Every Sector</span>
+                      Advanced <br />Water Treatment for <br /><span className="text-primary">Every Sector</span>
                     </h1>
                     <p className="text-xl text-slate-700 max-w-lg leading-relaxed font-bold">
                       We design, manufacture and commission high-performance water treatment plants with ISO certified precision since 2006.

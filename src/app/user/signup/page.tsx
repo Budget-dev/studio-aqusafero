@@ -40,7 +40,7 @@ export default function UserSignupPage() {
         const userData = {
           email: user.email,
           phone: phone,
-          age: parseInt(age),
+          age: parseInt(age) || 0,
           organization: org,
           role: "user",
           createdAt: serverTimestamp()
