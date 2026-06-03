@@ -50,10 +50,15 @@ import { signOut } from "firebase/auth"
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { cartCount } = useCart()
   const { user } = useUser()
   const { auth } = useAuth()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navigation = [
     { name: "Home", href: "/", icon: Home },
@@ -170,7 +175,7 @@ export default function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
-        {/* Logo Section - Increased mobile size h-14 vs md:h-12 */}
+        {/* Logo Section - Optimized mobile size */}
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-14 h-14 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
@@ -236,23 +241,23 @@ export default function Navbar() {
           <div className="flex items-center gap-4 ml-6 pl-6 border-l">
             <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
               <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
+              {mounted && cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-white animate-in zoom-in">
                   {cartCount}
                 </span>
               )}
             </Link>
 
-            {user ? (
+            {mounted && user ? (
               <div className="flex items-center gap-3 ml-2">
                 <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-black text-xs">
                   {user.email?.[0].toUpperCase()}
                 </div>
-                <button onClick={() => auth && signOut(auth)} className="text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-600">
+                <button onClick={handleLogout} className="text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-600">
                   Logout
                 </button>
               </div>
-            ) : (
+            ) : mounted && (
               <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
                 <Link href="/user/login">Sign In</Link>
               </Button>
@@ -276,7 +281,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay (Fixed Backdrop) */}
+      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -285,14 +290,13 @@ export default function Navbar() {
         onClick={() => setIsOpen(false)}
       />
       
-      {/* Mobile Sidebar Content - Left Side Entry */}
+      {/* Mobile Sidebar Content */}
       <div
         className={cn(
           "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
           isOpen ? "translate-x-0 visible" : "-translate-x-full invisible pointer-events-none"
         )}
       >
-        {/* Sidebar Header */}
         <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
             <Droplets className="text-white h-6 w-6" />
@@ -306,7 +310,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Sidebar Internal Navigation - Scrollable */}
         <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
           <ul className="space-y-1">
             {navigation.map((item) => {
@@ -365,10 +368,9 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Sidebar Footer */}
         <div className="mt-auto border-t bg-slate-50/50 shrink-0">
           <div className="p-5 pb-8">
-            {user ? (
+            {mounted && user ? (
               <div className="space-y-4">
                 <div className="flex items-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
                   <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-black text-sm">
@@ -384,10 +386,10 @@ export default function Navbar() {
                   className="w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 font-black uppercase text-xs tracking-widest group"
                 >
                   <LogOut className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
-                  Logout from Account
+                  Logout
                 </button>
               </div>
-            ) : (
+            ) : mounted && (
               <div className="grid grid-cols-2 gap-4">
                 <Button asChild className="h-12 rounded-xl font-black uppercase tracking-widest text-[10px] border-none bg-slate-900 shadow-xl shadow-slate-900/10">
                   <Link href="/user/login" onClick={() => setIsOpen(false)}>Sign In</Link>

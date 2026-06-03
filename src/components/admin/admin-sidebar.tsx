@@ -63,15 +63,15 @@ export function AdminSidebar() {
   return (
     <aside className="hidden md:flex w-72 flex-col bg-slate-900 text-white sticky top-0 h-screen">
       <div className="p-8 border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-primary">
-            <Droplets className="h-6 w-6 text-white" />
+        <Link href="/admin" className="flex items-center gap-3 group">
+          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+            <Droplets className="text-white h-7 w-7" />
           </div>
           <div>
             <h2 className="font-black font-headline text-lg uppercase tracking-tight leading-none">Admin Hub</h2>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Aqua Safe RO Works</p>
           </div>
-        </div>
+        </Link>
       </div>
 
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto custom-scrollbar">

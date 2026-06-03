@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { 
@@ -59,6 +59,11 @@ const footerLinks: FooterSection[] = [
 
 export default function Footer() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Hide footer on auth pages
   if (pathname?.includes('/login') || pathname?.includes('/signup')) return null;
@@ -77,14 +82,14 @@ export default function Footer() {
         {/* Brand Column */}
         <AnimatedContainer className="xl:col-span-2 space-y-4">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <Droplets className="text-white h-6 w-6" />
+            <div className="w-14 h-14 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+              <Droplets className="text-white h-8 w-8 md:h-7 md:w-7" />
             </div>
             <div className="flex flex-col">
-              <span className="font-black text-white text-lg tracking-tighter leading-none uppercase">
+              <span className="font-black text-white text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
-              <span className="text-[8px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-0.5">
+              <span className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-0.5">
                 Water Technologies
               </span>
             </div>
