@@ -135,6 +135,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
+      {/* Top Contact Bar - Hidden on Mobile */}
       <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
         <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
           <div className="flex items-center gap-2">
@@ -169,13 +170,14 @@ export default function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        {/* Logo Section - Increased mobile size h-14 vs md:h-12 */}
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
-              <Droplets className="text-white h-6 w-6 md:h-7 md:w-7" />
+            <div className="w-14 h-14 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+              <Droplets className="text-white h-8 w-8 md:h-7 md:w-7" />
             </div>
             <div className="flex flex-col">
-              <span className="font-black text-slate-900 text-lg md:text-2xl tracking-tighter leading-none uppercase">
+              <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
               <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-none mt-1">
@@ -185,6 +187,7 @@ export default function Navbar() {
           </Link>
         </div>
 
+        {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center gap-2">
           <NavigationMenu>
             <NavigationMenuList>
@@ -273,7 +276,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay (Surrounding area) */}
+      {/* Mobile Sidebar Overlay (Fixed Backdrop) */}
       <div
         className={cn(
           "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -282,13 +285,14 @@ export default function Navbar() {
         onClick={() => setIsOpen(false)}
       />
       
-      {/* Mobile Sidebar Content - Left Side */}
+      {/* Mobile Sidebar Content - Left Side Entry */}
       <div
         className={cn(
           "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
           isOpen ? "translate-x-0 visible" : "-translate-x-full invisible pointer-events-none"
         )}
       >
+        {/* Sidebar Header */}
         <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
             <Droplets className="text-white h-6 w-6" />
@@ -302,6 +306,7 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* Sidebar Internal Navigation - Scrollable */}
         <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
           <ul className="space-y-1">
             {navigation.map((item) => {
@@ -360,6 +365,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
+        {/* Sidebar Footer */}
         <div className="mt-auto border-t bg-slate-50/50 shrink-0">
           <div className="p-5 pb-8">
             {user ? (
