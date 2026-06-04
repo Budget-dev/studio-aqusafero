@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -173,11 +174,11 @@ export default function Navbar() {
         {/* Logo Section */}
         <div className="flex items-center h-full shrink-0">
           <Link href="/" className="flex items-center gap-1 md:gap-3 group">
-            <div className="w-12 h-16 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+            <div className="w-16 h-20 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
               <img 
                 src={LOGO_ICON_URL} 
                 alt="AquaSafe Icon" 
-                className="w-full h-full object-contain scale-110 md:scale-100"
+                className="w-full h-full object-contain scale-125 md:scale-100"
               />
             </div>
             <div className="flex flex-col justify-center">
