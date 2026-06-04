@@ -173,15 +173,16 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
         {/* Logo Section */}
         <div className="flex items-center h-full shrink-0">
-          <Link href="/" className="flex items-center gap-1 md:gap-3 group">
-            <div className="w-16 h-20 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+          <Link href="/" className="flex items-center gap-0 md:gap-3 group">
+            <div className="w-16 h-20 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden shrink-0">
               <img 
                 src={LOGO_ICON_URL} 
                 alt="AquaSafe Icon" 
                 className="w-full h-full object-contain scale-125 md:scale-100"
               />
             </div>
-            <div className="flex flex-col justify-center">
+            {/* -ml-4 pulls the text closer to the visible part of the logo icon, overlapping its transparent padding area on mobile */}
+            <div className="flex flex-col justify-center -ml-4 md:ml-0">
               <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
@@ -268,8 +269,8 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Actions Right */}
-        <div className="xl:hidden flex items-center gap-3">
-          <Button asChild className="h-9 px-2.5 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[8px] shadow-lg shadow-primary/20 border-none transition-all">
+        <div className="xl:hidden flex items-center gap-2 md:gap-3">
+          <Button asChild className="h-8 px-2 rounded-lg bg-primary text-white font-black uppercase tracking-widest text-[7px] shadow-lg shadow-primary/20 border-none transition-all">
             <Link href="/contact" className="flex items-center">Get a Quote <ArrowRight className="ml-1 h-2.5 w-2.5" /></Link>
           </Button>
           
