@@ -172,15 +172,15 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
         {/* Logo Section */}
         <div className="flex items-center h-full shrink-0">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-14 h-14 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 group">
+            <div className="w-16 h-16 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105">
               <img 
                 src={LOGO_ICON_URL} 
                 alt="AquaSafe Icon" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center">
               <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
@@ -267,13 +267,13 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Actions Right */}
-        <div className="xl:hidden flex items-center gap-3">
+        <div className="xl:hidden flex items-center gap-4">
           <Button asChild className="h-10 px-4 rounded-xl bg-primary text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-primary/20 border-none">
             <Link href="/contact">Get a Quote <ArrowRight className="ml-1.5 h-3 w-3" /></Link>
           </Button>
           
           <button 
-            className="p-2 text-slate-900 z-[130] relative" 
+            className="p-2 text-slate-900 z-[130] relative flex items-center justify-center" 
             onClick={toggleSidebar}
             aria-label="Toggle Menu"
           >
