@@ -181,8 +181,8 @@ export default function Navbar() {
                 className="w-full h-full object-contain scale-125 md:scale-100"
               />
             </div>
-            {/* -ml-4 pulls the text closer to the visible part of the logo icon, overlapping its transparent padding area on mobile */}
-            <div className="flex flex-col justify-center -ml-4 md:ml-0">
+            {/* -ml-2 pulls the text closer but leaves "one space" gap as requested */}
+            <div className="flex flex-col justify-center -ml-2 md:ml-0">
               <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                 AQUA<span className="text-primary">SAFE</span>
               </span>
