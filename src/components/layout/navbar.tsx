@@ -308,7 +308,7 @@ export default function Navbar() {
               {/* Header inside drawer */}
               <div className="p-4 border-b flex items-center gap-0 bg-slate-50/80 shrink-0">
                 <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-0 shrink-0">
-                  <div className="w-16 h-20 flex items-center justify-center overflow-hidden">
+                  <div className="w-16 h-20 flex items-center justify-center overflow-hidden shrink-0">
                     <img 
                       src={LOGO_ICON_URL} 
                       alt="AquaSafe Icon" 
