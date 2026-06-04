@@ -107,6 +107,7 @@ export default function Navbar() {
     setIsOpen(false)
   }
 
+  // Handle Escape key to close
   useEffect(() => {
     if (!isOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
@@ -116,6 +117,7 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
+  // Lock body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -182,7 +184,6 @@ export default function Navbar() {
                   className="w-full h-full object-contain scale-125 md:scale-100"
                 />
               </div>
-              {/* -ml-2 pulls the text closer but leaves "one space" gap as requested */}
               <div className="flex flex-col justify-center -ml-2 md:ml-0">
                 <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
                   AQUA<span className="text-primary">SAFE</span>
@@ -288,6 +289,7 @@ export default function Navbar() {
         {/* Mobile Sidebar Overlay */}
         {mounted && (
           <>
+            {/* Backdrop */}
             <div
               className={cn(
                 "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -296,29 +298,34 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             />
             
+            {/* Drawer */}
             <div
               className={cn(
                 "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
                 isOpen ? "translate-x-0 visible" : "-translate-x-full invisible pointer-events-none"
               )}
             >
-              <div className="p-5 border-b flex items-center gap-3 bg-slate-50/80 shrink-0">
-                <div className="w-10 h-10 flex items-center justify-center">
-                  <img 
-                    src={LOGO_ICON_URL} 
-                    alt="AquaSafe Icon" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AQUA SAFE</span>
-                  <span className="text-[10px] text-slate-600 font-black uppercase tracking-widest mt-1">Water Technologies</span>
-                </div>
+              {/* Header inside drawer */}
+              <div className="p-4 border-b flex items-center gap-0 bg-slate-50/80 shrink-0">
+                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-0 shrink-0">
+                  <div className="w-16 h-20 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={LOGO_ICON_URL} 
+                      alt="AquaSafe Icon" 
+                      className="w-full h-full object-contain scale-125"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center -ml-2">
+                    <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AQUA SAFE</span>
+                    <span className="text-[9px] text-slate-600 font-black uppercase tracking-widest mt-1">Water Technologies</span>
+                  </div>
+                </Link>
                 <button onClick={() => setIsOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
                   <X className="h-5 w-5 text-slate-400" />
                 </button>
               </div>
 
+              {/* Navigation content */}
               <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
                 <ul className="space-y-1">
                   {navigation.map((item) => {
@@ -370,6 +377,7 @@ export default function Navbar() {
                 </ul>
               </nav>
 
+              {/* Footer inside drawer */}
               <div className="mt-auto border-t bg-slate-50/50 shrink-0">
                 <div className="p-5 pb-8">
                   {user ? (
