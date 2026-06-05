@@ -76,7 +76,7 @@ export default function Footer() {
   const currentLogoHeight = mounted && windowWidth < 1024 ? '250%' : '311%';
 
   return (
-    <footer className="relative w-full max-w-7xl xl:max-max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[2.5rem] md:rounded-t-[3.5rem] border-t border-white/5 bg-slate-900 px-6 py-8 md:py-10 overflow-hidden">
+    <footer className="relative w-full max-w-screen-2xl mx-auto flex flex-col items-center justify-center rounded-t-[2.5rem] md:rounded-t-[3.5rem] border-t border-white/5 bg-slate-900 px-6 py-8 md:py-10 overflow-hidden">
       {/* Subtle Top Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-sm" />
       

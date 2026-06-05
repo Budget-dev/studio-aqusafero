@@ -145,12 +145,12 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 lg:sticky lg:top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
-        {/* Top Contact Bar - Hidden on Mobile */}
+        {/* Top Contact Bar - Expanded to screen-2xl */}
         <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
-          <div className="container mx-auto xl:max-w-7xl px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
+          <div className="container mx-auto px-4 max-w-screen-2xl h-12 flex items-center justify-between text-[9px] font-black text-slate-900 uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <div className="p-1 rounded-md bg-white border border-slate-200">
-                <MapPin className="h-3.5 w-3.5 text-primary" />
+                <MapPin className="h-3 w-3 text-primary" />
               </div>
               <span>#07-13-23/2, NH-5 Main Road, Old Gajuwaka, Visakhapatnam-530026. India.</span>
             </div>
@@ -158,14 +158,14 @@ export default function Navbar() {
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4 border-r border-slate-200 pr-6">
                 <Link href="tel:+919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <PhoneCall className="h-3.5 w-3.5" /> Call Us
+                  <PhoneCall className="h-3 w-3" /> CALL US
                 </Link>
                 <Link href="https://wa.me/919985850777" className="flex items-center gap-1.5 hover:text-[#25D366] transition-colors">
-                  <MessageCircle className="h-3.5 w-3.5 text-[#25D366]" /> WhatsApp
+                  <MessageCircle className="h-3 w-3 text-[#25D366]" /> WHATSAPP
                 </Link>
                 <div className="flex items-center gap-4">
                   <Link href="mailto:info@aquasafero.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                    <Mail className="h-3.5 w-3.5" /> info@aquasafero.com
+                    <Mail className="h-3 w-3" /> INFO@AQUASAFERO.COM
                   </Link>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="container mx-auto xl:max-w-7xl px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        <div className="container mx-auto px-4 max-w-screen-2xl h-20 lg:h-24 flex items-center justify-between relative z-[110]">
           {/* Logo Section */}
           <div className="flex items-center h-full shrink-0">
             <Link href="/" className="flex items-center group">
@@ -194,7 +194,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Sleek & Wide */}
           <nav className="hidden xl:flex items-center gap-1">
             <NavigationMenu>
               <NavigationMenuList className="gap-0">
@@ -202,7 +202,9 @@ export default function Navbar() {
                   <NavigationMenuItem key={item.name}>
                     {item.children ? (
                       <>
-                        <NavigationMenuTrigger className="px-3 font-black text-[10px] uppercase tracking-wider">{item.name}</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className="px-2.5 font-black text-[10px] uppercase tracking-[0.05em] h-10 hover:text-primary">
+                          {item.name}
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <ul className="grid w-[400px] gap-3 p-4 md:w-[600px] md:grid-cols-2 rounded-xl">
                             {item.children.map((child) => (
@@ -229,7 +231,10 @@ export default function Navbar() {
                       <NavigationMenuLink asChild>
                         <Link
                           href={item.href}
-                          className={cn(navigationMenuTriggerStyle(), "px-3 font-black text-[10px] uppercase tracking-wider")}
+                          className={cn(
+                            navigationMenuTriggerStyle(), 
+                            "px-2.5 font-black text-[10px] uppercase tracking-[0.05em] h-10 bg-transparent hover:text-primary"
+                          )}
                         >
                           {item.name}
                         </Link>
@@ -240,7 +245,7 @@ export default function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
             
-            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-slate-100">
+            <div className="flex items-center gap-3 ml-2 pl-4 border-l border-slate-100">
               <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
                 <ShoppingCart className="h-5 w-5" />
                 {mounted && cartCount > 0 && (
@@ -252,8 +257,8 @@ export default function Navbar() {
 
               {mounted ? (
                 user ? (
-                  <div className="flex items-center gap-3 ml-2">
-                    <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-black text-xs">
+                  <div className="flex items-center gap-3 ml-1">
+                    <div className="w-9 h-9 rounded-full bg-slate-900 flex items-center justify-center text-white font-black text-xs">
                       {user.email?.[0].toUpperCase()}
                     </div>
                     <button onClick={handleLogout} className="text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-600">
@@ -288,7 +293,6 @@ export default function Navbar() {
         {/* Mobile Sidebar Overlay */}
         {mounted && (
           <>
-            {/* Backdrop */}
             <div
               className={cn(
                 "fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm transition-opacity duration-300 xl:hidden",
@@ -297,14 +301,12 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             />
             
-            {/* Drawer */}
             <div
               className={cn(
                 "fixed top-0 left-0 h-[100dvh] w-[300px] bg-white z-[210] transition-transform duration-300 ease-in-out flex flex-col xl:hidden shadow-2xl overflow-hidden",
                 isOpen ? "translate-x-0 visible" : "-translate-x-full invisible pointer-events-none"
               )}
             >
-              {/* Header inside drawer */}
               <div className="p-4 border-b flex items-center gap-0 bg-slate-50/80 shrink-0">
                 <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center shrink-0">
                   <div className="h-14 flex items-center shrink-0">
@@ -321,7 +323,6 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* Navigation content */}
               <nav className="flex-1 overflow-y-auto px-3 py-6 no-scrollbar">
                 <ul className="space-y-1">
                   {navigation.map((item) => {
@@ -373,7 +374,6 @@ export default function Navbar() {
                 </ul>
               </nav>
 
-              {/* Footer inside drawer */}
               <div className="mt-auto border-t bg-slate-50/50 shrink-0">
                 <div className="p-5 pb-8">
                   {user ? (
