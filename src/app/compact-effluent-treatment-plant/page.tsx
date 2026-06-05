@@ -32,10 +32,10 @@ export default function ETPDetailPage() {
               Industrial Compliance Master
             </Badge>
             <h1 className="text-5xl md:text-8xl font-black font-headline tracking-tight leading-[1.05] uppercase">
-              Compact <span className="text-primary">ETP</span> <br />Systems
+              ETP Plant <span className="text-primary">Supplier</span> <br />Andhra Pradesh
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 font-bold leading-relaxed max-w-2xl">
-              High-performance Effluent Treatment Plants designed to neutralize industrial waste and ensure total pollution board compliance.
+              High-performance Effluent Treatment Plants designed to neutralize industrial waste for pharma and chemical units in Visakhapatnam.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="h-16 px-10 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-sm shadow-2xl shadow-primary/30 border-none">
@@ -53,7 +53,7 @@ export default function ETPDetailPage() {
             <div className="space-y-8 order-2 lg:order-1">
               <h2 className="text-4xl md:text-5xl font-black font-headline text-slate-900 uppercase tracking-tight">Neutralizing Complexity</h2>
               <p className="text-lg text-slate-600 font-bold leading-relaxed">
-                Industrial effluent often contains complex chemicals, heavy metals, and high organic loads. Our ETP systems are custom-engineered for your specific waste profile, using a combination of chemical, physical, and biological methods to deliver safe, compliant discharge.
+                Industrial effluent in the Vizag pharma hub often contains complex chemicals and heavy metals. Our ETP systems are custom-engineered to deliver safe, compliant discharge for Andhra Pradesh industries.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
@@ -73,7 +73,7 @@ export default function ETPDetailPage() {
               <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-slate-50 bg-slate-100">
                 <Image 
                   src="https://aquasaferoworks.sirv.com/ChatGPT%20Image%20May%2015%2C%202026%2C%2012_57_02%20PM.png"
-                  alt="Compact ETP Installation"
+                  alt="Industrial ETP Plant Installation Vizag"
                   fill
                   className="object-cover"
                 />
@@ -111,60 +111,54 @@ export default function ETPDetailPage() {
         </div>
       </section>
 
-      {/* Industry Sector Compliance */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-black font-headline uppercase tracking-tight leading-tight">Pollution Board <br /><span className="text-primary">Compliant</span> Solutions</h2>
-              <p className="text-xl text-slate-400 font-bold">
-                We guarantee that your industrial facility will meet and exceed the discharge standards set by central and state pollution control boards.
-              </p>
-              <div className="space-y-4">
-                {[
-                  "Pharma & Chemical Units",
-                  "Food & Beverage Processing",
-                  "Textile & Dyeing Industries",
-                  "Electroplating & Surface Treatment",
-                  "Auto & Heavy Manufacturing"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 font-black uppercase text-xs tracking-widest text-primary">
-                    <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <div className="p-12 rounded-[4rem] bg-white/5 border border-white/10 backdrop-blur-xl relative">
-                <ShieldAlert className="h-20 w-20 text-red-500 mb-8" />
-                <h3 className="text-3xl font-black font-headline uppercase tracking-tight mb-4">Zero Discharge Capability</h3>
-                <p className="text-slate-400 font-bold leading-relaxed mb-8">
-                  Ask us about our ZLD (Zero Liquid Discharge) upgrade modules to reclaim 95% of your industrial waste water for cooling towers and boilers.
+      {/* Enterprise SEO Content Block */}
+      <section className="py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="prose prose-slate max-w-none">
+            <h2 className="text-3xl font-black font-headline uppercase tracking-tight text-slate-900 mb-8">Premium ETP Plant Solutions for Industries in Andhra Pradesh</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-slate-600 font-bold text-sm leading-relaxed">
+              <div className="space-y-6">
+                <p>
+                  Aqua Safe Water Technologies is recognized as the leading <strong>ETP plant supplier in Andhra Pradesh</strong>, specializing in high-performance effluent treatment solutions for the diverse industrial sectors of Visakhapatnam. Our systems are engineered to handle the complex wastewater generated by pharmaceutical units, chemical manufacturing facilities, and heavy engineering plants in the Vizag special economic zones.
                 </p>
-                <Button asChild variant="outline" className="h-14 px-8 rounded-xl border-white/20 text-white font-black uppercase text-xs">
-                  <Link href="/contact">Learn About ZLD</Link>
-                </Button>
+                <p>
+                  Industrial compliance is no longer optional. With the strict enforcement of environmental regulations by the <strong>AP State Pollution Control Board (APPCB)</strong>, having a reliable Effluent Treatment Plant (ETP) is essential for operational continuity. We provide turnkey ETP solutions that focus on <strong>Zero Liquid Discharge (ZLD)</strong>, allowing industries to recycle waste water and minimize environmental footprint.
+                </p>
+                <p>
+                  Our treatment methodologies include physico-chemical treatment, biological processes (AEROBIC & ANAEROBIC), and advanced tertiary polishing using multi-grade filters and activated carbon absorbers. We customize every plant based on a detailed <em>"Treatability Study"</em> of your specific effluent characteristics, ensuring that the final discharge parameters meet or exceed regulatory requirements.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <p>
+                  Why industries in Visakhapatnam trust Aqua Safe? Our localized presence in Gajuwaka allows us to provide rapid on-site technical support and spare parts availability. We understand the specific challenges of water salinity and chemical toxicity in the coastal industrial belt of Vizag, and our engineering reflects that expertise.
+                </p>
+                <p>
+                  Key features of our industrial ETP systems include corrosion-resistant FRP or epoxy-coated MS tanks, specialized chemical dosing pumps, and automated instrumentation for real-time monitoring of pH, TDS, and flow rates. We also offer <strong>RO-based effluent recycling</strong> units that can recover up to 95% of industrial water for cooling towers or boiler feed applications.
+                </p>
+                <p>
+                  Whether you are looking for a compact skid-mounted ETP or a large-scale customized installation, our team provides complete support from conceptual design to statutory documentation. We serve the entire Andhra Pradesh region, including Vijayawada, Kakinada, and Nellore, bringing enterprise-grade water treatment technology to your doorstep.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Technical FAQ & CTA */}
-      <section className="py-24">
+      {/* Technical FAQ */}
+      <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-4xl font-black font-headline text-slate-900 text-center mb-16 uppercase tracking-tight">Expert ETP FAQ</h2>
           <Accordion type="single" collapsible className="w-full space-y-4">
-            <AccordionItem value="item-1" className="border rounded-2xl px-6 bg-slate-50 border-slate-100">
+            <AccordionItem value="item-1" className="border rounded-2xl px-6 bg-white border-slate-100">
               <AccordionTrigger className="text-left font-black font-headline uppercase tracking-tight py-6 hover:no-underline">How do you determine the correct chemical dosing?</AccordionTrigger>
               <AccordionContent className="text-slate-500 font-bold pb-6">
-                We perform an initial "Treatability Study" on your effluent sample in our labs. This determines the exact chemical reagents and concentrations required for your specific waste.
+                We perform an initial "Treatability Study" on your effluent sample in our labs. This determines the exact chemical reagents and concentrations required for your specific industrial waste in Andhra Pradesh.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-2" className="border rounded-2xl px-6 bg-slate-50 border-slate-100">
+            <AccordionItem value="item-2" className="border rounded-2xl px-6 bg-white border-slate-100">
               <AccordionTrigger className="text-left font-black font-headline uppercase tracking-tight py-6 hover:no-underline">What is the lifespan of an ETP plant?</AccordionTrigger>
               <AccordionContent className="text-slate-500 font-bold pb-6">
-                With proper AMC maintenance, our industrial grade ETP systems are built to last 15-20 years. All tanks are corrosion-resistant (FRP/Epoxy coated).
+                With proper AMC maintenance from our Vizag team, our industrial grade ETP systems are built to last 15-20 years. All tanks are corrosion-resistant (FRP/Epoxy coated).
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -172,7 +166,7 @@ export default function ETPDetailPage() {
           <div className="mt-24 p-12 rounded-[3rem] bg-primary text-white text-center space-y-8 shadow-2xl shadow-primary/20">
              <Flame className="h-16 w-16 mx-auto mb-4" />
              <h3 className="text-3xl md:text-5xl font-black font-headline uppercase tracking-tight">Prevent Industrial Non-Compliance</h3>
-             <p className="text-white/80 font-bold max-w-xl mx-auto">Don't risk legal penalties. Ensure your waste treatment is precision-engineered by specialists.</p>
+             <p className="text-white/80 font-bold max-w-xl mx-auto">Don't risk legal penalties from the pollution board. Ensure your waste treatment is precision-engineered by specialists in Vizag.</p>
              <Button asChild className="h-16 px-12 rounded-2xl bg-slate-900 text-white font-black uppercase tracking-widest text-sm border-none transition-all">
                <Link href="/contact">Book Site Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
              </Button>

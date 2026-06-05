@@ -32,6 +32,43 @@ import { cn } from "@/lib/utils";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
 
+/**
+ * Enterprise Product SEO & Schema Generator
+ */
+function ProductSchema({ product, url }: { product: any, url: string }) {
+  const schema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.images?.[0]?.url,
+    "description": product.shortDescription || product.description,
+    "sku": product.sku,
+    "brand": {
+      "@type": "Brand",
+      "name": product.brand || "AquaSafe"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": url,
+      "priceCurrency": "INR",
+      "price": product.offerPrice || product.price,
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Aqua Safe Water Technologies"
+      }
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -59,7 +96,6 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (!product) return;
     
-    // Adapt Firestore product to Cart format
     const cartProduct = {
       id: product.id,
       name: product.name,
@@ -97,8 +133,12 @@ export default function ProductDetailPage() {
     );
   }
 
+  const pageUrl = `https://aquasafero.com/products/${product.id}`;
+
   return (
     <div className="min-h-screen bg-white">
+      <ProductSchema product={product} url={pageUrl} />
+      
       <div className="border-b bg-slate-50/50">
         <div className="container mx-auto px-4 max-w-7xl h-14 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
           <a href="/" className="hover:text-primary transition-colors">Hub</a>
@@ -115,7 +155,13 @@ export default function ProductDetailPage() {
           {/* Gallery */}
           <div className="lg:col-span-7 space-y-6">
             <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-white border border-slate-100 p-8 shadow-inner">
-              <Image src={images[activeImage]} alt={product.name} fill className="object-contain" priority />
+              <Image 
+                src={images[activeImage]} 
+                alt={`${product.name} - Technical Water Solution by AquaSafe Vizag`} 
+                fill 
+                className="object-contain" 
+                priority 
+              />
             </div>
             
             <div className="grid grid-cols-4 gap-4">
@@ -128,7 +174,7 @@ export default function ProductDetailPage() {
                     activeImage === i ? "border-primary shadow-lg" : "border-slate-100 opacity-60 hover:opacity-100"
                   )}
                 >
-                  <Image src={img} alt={`View ${i}`} fill className="object-contain" />
+                  <Image src={img} alt={`${product.name} view ${i}`} fill className="object-contain" />
                 </button>
               ))}
             </div>
@@ -158,6 +204,11 @@ export default function ProductDetailPage() {
 
               <p className="text-slate-500 font-bold leading-relaxed text-sm">
                 {product.shortDescription || product.description}
+              </p>
+              
+              {/* Local SEO Signal */}
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                Professional Installation & Service Available in Visakhapatnam & Gajuwaka.
               </p>
             </div>
 
@@ -228,7 +279,7 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Video / Visual Context Section */}
+        {/* Video Section */}
         {product.videos?.[0]?.url && (
           <section className="mt-24 pt-24 border-t border-slate-100">
             <div className="max-w-4xl mx-auto space-y-12">
@@ -249,7 +300,7 @@ export default function ProductDetailPage() {
                   width="100%" 
                   height="100%" 
                   src={product.videos[0].url.includes('youtube.com/embed') ? product.videos[0].url : `https://www.youtube.com/embed/${product.videos[0].url.split('v=')[1] || product.videos[0].url.split('/').pop()}`} 
-                  title={product.name}
+                  title={`${product.name} Performance Video`}
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen
@@ -260,14 +311,29 @@ export default function ProductDetailPage() {
           </section>
         )}
 
+        {/* SEO Technical Footer */}
+        <section className="mt-24 pt-24 border-t border-slate-100">
+           <div className="max-w-4xl mx-auto">
+              <h2 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-6">About {product.name} for Vizag Residents & Industries</h2>
+              <div className="text-xs text-slate-500 font-bold leading-relaxed space-y-4">
+                <p>
+                  At Aqua Safe Water Technologies, we ensure that every <strong>{product.name}</strong> we deliver is optimized for the local water conditions in <strong>Visakhapatnam</strong> and <strong>Gajuwaka</strong>. Our engineering hub is located right in the heart of Vizag, allowing us to provide rapid deployment and unmatched technical support.
+                </p>
+                <p>
+                  Whether you are purchasing for a domestic setup in Gajuwaka or an industrial facility in the Vizag SEZ, the <strong>{product.name}</strong> provides high-efficiency filtration tailored for high-TDS environments. We offer comprehensive <strong>RO service in Vizag</strong> and affordable AMC plans to ensure your equipment continues to perform at its peak for years to come.
+                </p>
+              </div>
+           </div>
+        </section>
+
         {/* Technical Support CTA */}
         <section className="mt-24">
           <div className="p-10 rounded-[3rem] bg-slate-900 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2" />
             <div className="relative z-10 space-y-6">
-              <h4 className="text-2xl font-black font-headline uppercase tracking-tight">Need a custom technical audit?</h4>
+              <h4 className="text-2xl font-black font-headline uppercase tracking-tight">Need a custom technical audit in Vizag?</h4>
               <p className="text-slate-400 font-bold max-w-lg">
-                Our senior engineering team can provide on-site diagnostics and performance mapping for your specific site conditions.
+                Our senior engineering team can provide on-site diagnostics and performance mapping for your specific site conditions in Visakhapatnam.
               </p>
               <Button asChild className="h-12 px-8 rounded-xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-[10px] border-none shadow-xl shadow-primary/20">
                 <a href="/contact">Book Technical Consultation</a>
