@@ -2,7 +2,7 @@
 "use client"
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { 
   ArrowLeft, 
@@ -13,35 +13,68 @@ import {
   Clock,
   Wrench,
   Factory,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useFirestore, useCollection } from "@/firebase";
+import { collection, query, where, limit } from "firebase/firestore";
 
 const STEPS = [
-  { id: 1, name: "Order Confirmed", desc: "Your payment has been verified.", date: "Just now", status: "completed", icon: Package },
-  { id: 2, name: "Engineering Check", desc: "Quality inspection for components.", date: "Today", status: "completed", icon: Factory },
-  { id: 3, name: "Processing", desc: "Packing your specialized unit.", date: "Awaiting", status: "active", icon: Wrench },
-  { id: 4, name: "On the Way", desc: "Courier partner has picked up.", date: "Pending", status: "pending", icon: Truck },
-  { id: 5, name: "Delivered", desc: "Product handed over to customer.", date: "Pending", status: "pending", icon: CheckCircle2 },
+  { id: 1, name: "Order Confirmed", desc: "Your payment has been verified.", date: "Just now", status: "Pending", icon: Package },
+  { id: 2, name: "Engineering Check", desc: "Quality inspection for components.", date: "Today", status: "Confirmed", icon: Factory },
+  { id: 3, name: "Processing", desc: "Packing your specialized unit.", date: "Awaiting", status: "Confirmed", icon: Wrench },
+  { id: 4, name: "On the Way", desc: "Courier partner has picked up.", date: "Pending", status: "Shipped", icon: Truck },
+  { id: 5, name: "Delivered", desc: "Product handed over to customer.", date: "Pending", status: "Delivered", icon: CheckCircle2 },
 ];
 
 export default function OrderTrackingPage() {
   const params = useParams();
-  const [order, setOrder] = useState<any>(null);
+  const firestore = useFirestore();
 
-  useEffect(() => {
-    const savedOrders = JSON.parse(localStorage.getItem('aquasafe-orders') || '[]');
-    const found = savedOrders.find((o: any) => o.id === params.id || o.orderId === params.id);
-    setOrder(found);
-  }, [params.id]);
+  // Query Firestore for the latest order data
+  const orderQuery = useMemo(() => {
+    if (!firestore || !params.id) return null;
+    return query(
+      collection(firestore, "orders"),
+      where("orderId", "==", params.id),
+      limit(1)
+    );
+  }, [firestore, params.id]);
 
-  if (!order) return (
+  const { data: orderResults, loading } = useCollection<any>(orderQuery);
+  const order = orderResults?.[0];
+
+  if (loading) return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <div className="h-10 w-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      <Loader2 className="h-10 w-10 text-primary animate-spin" />
       <p className="font-black uppercase text-[10px] tracking-widest text-slate-400">Locating Hub Transaction...</p>
     </div>
   );
+
+  if (!order) return (
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6">
+      <div className="h-20 w-20 rounded-full bg-slate-50 flex items-center justify-center text-slate-200">
+        <Package className="h-10 w-10" />
+      </div>
+      <h2 className="text-2xl font-black font-headline uppercase">Order Not Found</h2>
+      <Button asChild variant="outline">
+        <Link href="/orders">Return to History</Link>
+      </Button>
+    </div>
+  );
+
+  // Status mapping for timeline
+  const getStepStatus = (stepStatus: string) => {
+    const statuses = ['Pending', 'Confirmed', 'Shipped', 'Delivered'];
+    const currentIdx = statuses.indexOf(order.status || 'Pending');
+    const stepIdx = statuses.indexOf(stepStatus);
+
+    if (currentIdx >= stepIdx) return 'completed';
+    if (currentIdx + 1 === stepIdx) return 'active';
+    return 'pending';
+  };
 
   return (
     <div className="min-h-screen bg-white py-20">
@@ -51,7 +84,7 @@ export default function OrderTrackingPage() {
             <Button asChild variant="ghost" className="p-0 font-black uppercase text-[10px] tracking-widest mb-4 hover:text-primary">
               <Link href="/orders"><ArrowLeft className="mr-2 h-4 w-4" /> Back to History</Link>
             </Button>
-            <h1 className="text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">Tracking <span className="text-primary">#{order.orderId || params.id}</span></h1>
+            <h1 className="text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">Tracking <span className="text-primary">#{order.orderId}</span></h1>
           </div>
           
           <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
@@ -72,28 +105,33 @@ export default function OrderTrackingPage() {
               <div className="absolute left-6 top-0 bottom-0 w-1 bg-slate-100 rounded-full" />
               
               <div className="space-y-12 relative">
-                {STEPS.map((step, i) => (
-                  <div key={step.id} className="flex gap-8 group">
-                    <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all ${
-                      step.status === 'completed' ? 'bg-primary text-white scale-110' :
-                      step.status === 'active' ? 'bg-slate-900 text-white animate-pulse scale-125' : 'bg-white text-slate-300 border-2 border-slate-100'
-                    }`}>
-                      <step.icon className="h-5 w-5" />
-                    </div>
-                    
-                    <div className="flex-1 space-y-1">
-                      <div className="flex items-center justify-between">
-                        <h4 className={`text-lg font-black font-headline uppercase tracking-tight ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-900'}`}>
-                          {step.name}
-                        </h4>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{step.status === 'completed' ? (order.date || 'Today') : step.date}</span>
+                {STEPS.map((step, i) => {
+                  const state = getStepStatus(step.status);
+                  return (
+                    <div key={step.id} className="flex gap-8 group">
+                      <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all ${
+                        state === 'completed' ? 'bg-primary text-white scale-110' :
+                        state === 'active' ? 'bg-slate-900 text-white animate-pulse scale-125' : 'bg-white text-slate-300 border-2 border-slate-100'
+                      }`}>
+                        <step.icon className="h-5 w-5" />
                       </div>
-                      <p className={`text-sm font-bold leading-relaxed ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-500'}`}>
-                        {step.desc}
-                      </p>
+                      
+                      <div className="flex-1 space-y-1">
+                        <div className="flex items-center justify-between">
+                          <h4 className={`text-lg font-black font-headline uppercase tracking-tight ${state === 'pending' ? 'text-slate-300' : 'text-slate-900'}`}>
+                            {step.name}
+                          </h4>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                            {state === 'completed' ? 'Done' : step.date}
+                          </span>
+                        </div>
+                        <p className={`text-sm font-bold leading-relaxed ${state === 'pending' ? 'text-slate-300' : 'text-slate-500'}`}>
+                          {step.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -129,7 +167,7 @@ export default function OrderTrackingPage() {
               </div>
               <Separator className="bg-white/10" />
               <div className="flex justify-between text-lg font-black font-headline">
-                <span>Paid Total</span>
+                <span>Total Value</span>
                 <span className="text-primary">₹{order.total?.toLocaleString()}</span>
               </div>
               <Button asChild className="w-full h-12 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-black uppercase text-[10px] tracking-widest border-none">
