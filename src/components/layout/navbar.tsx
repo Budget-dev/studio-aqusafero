@@ -147,7 +147,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 lg:sticky lg:top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
         {/* Top Contact Bar - Hidden on Mobile */}
         <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
-          <div className="container mx-auto xl:max-w-6xl px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
+          <div className="container mx-auto xl:max-w-7xl px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <div className="p-1 rounded-md bg-white border border-slate-200">
                 <MapPin className="h-3.5 w-3.5 text-primary" />
@@ -156,7 +156,7 @@ export default function Navbar() {
             </div>
             
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-6 border-r border-slate-200 pr-6">
+              <div className="flex items-center gap-4 border-r border-slate-200 pr-6">
                 <Link href="tel:+919985850777" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                   <PhoneCall className="h-3.5 w-3.5" /> Call Us
                 </Link>
@@ -179,7 +179,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="container mx-auto xl:max-w-6xl px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        <div className="container mx-auto xl:max-w-7xl px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
           {/* Logo Section */}
           <div className="flex items-center h-full shrink-0">
             <Link href="/" className="flex items-center group">
@@ -195,14 +195,14 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-2">
+          <nav className="hidden xl:flex items-center gap-1">
             <NavigationMenu>
-              <NavigationMenuList>
+              <NavigationMenuList className="gap-0">
                 {navigation.map((item) => (
                   <NavigationMenuItem key={item.name}>
                     {item.children ? (
                       <>
-                        <NavigationMenuTrigger className="font-black text-[11px] uppercase tracking-widest">{item.name}</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className="px-3 font-black text-[10px] uppercase tracking-wider">{item.name}</NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <ul className="grid w-[400px] gap-3 p-4 md:w-[600px] md:grid-cols-2 rounded-xl">
                             {item.children.map((child) => (
@@ -229,7 +229,7 @@ export default function Navbar() {
                       <NavigationMenuLink asChild>
                         <Link
                           href={item.href}
-                          className={cn(navigationMenuTriggerStyle(), "font-black text-[11px] uppercase tracking-widest")}
+                          className={cn(navigationMenuTriggerStyle(), "px-3 font-black text-[10px] uppercase tracking-wider")}
                         >
                           {item.name}
                         </Link>
@@ -240,7 +240,7 @@ export default function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
             
-            <div className="flex items-center gap-4 ml-6 pl-6 border-l">
+            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-slate-100">
               <Link href="/cart" className="p-2 rounded-full hover:bg-slate-50 text-slate-600 transition-all relative" title="Shopping Cart">
                 <ShoppingCart className="h-5 w-5" />
                 {mounted && cartCount > 0 && (
@@ -261,7 +261,7 @@ export default function Navbar() {
                     </button>
                   </div>
                 ) : (
-                  <Button asChild className="bg-primary hover:bg-primary/90 px-6 rounded-xl h-11 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
+                  <Button asChild className="bg-primary hover:bg-primary/90 px-5 rounded-xl h-10 shadow-xl shadow-primary/20 text-[10px] font-black uppercase tracking-widest border-none">
                     <Link href="/user/login">Sign In</Link>
                   </Button>
                 )
