@@ -45,7 +45,7 @@ import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
 import { signOut } from "firebase/auth"
 
-const LOGO_ICON_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%203%2C%202026%2C%2006_26_22%20PM.png";
+const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%205%2C%202026%2C%2012_42_31%20PM.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -176,21 +176,13 @@ export default function Navbar() {
         <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
           {/* Logo Section */}
           <div className="flex items-center h-full shrink-0">
-            <Link href="/" className="flex items-center gap-0 md:gap-3 group">
-              <div className="w-16 h-20 md:w-12 md:h-12 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden shrink-0">
+            <Link href="/" className="flex items-center group">
+              <div className="h-14 md:h-16 flex items-center transition-transform group-hover:scale-105 shrink-0">
                 <img 
-                  src={LOGO_ICON_URL} 
-                  alt="AquaSafe Icon" 
-                  className="w-full h-full object-contain scale-125 md:scale-100"
+                  src={LOGO_URL} 
+                  alt="AquaSafe Water Technologies" 
+                  className="h-full w-auto object-contain"
                 />
-              </div>
-              <div className="flex flex-col justify-center -ml-2 md:ml-0">
-                <span className="font-black text-slate-900 text-xl md:text-2xl tracking-tighter leading-none uppercase">
-                  AQUA<span className="text-primary">SAFE</span>
-                </span>
-                <span className="text-[8px] md:text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] leading-none mt-1">
-                  Water Technologies
-                </span>
               </div>
             </Link>
           </div>
@@ -307,17 +299,13 @@ export default function Navbar() {
             >
               {/* Header inside drawer */}
               <div className="p-4 border-b flex items-center gap-0 bg-slate-50/80 shrink-0">
-                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-0 shrink-0">
-                  <div className="w-16 h-20 flex items-center justify-center overflow-hidden shrink-0">
+                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center shrink-0">
+                  <div className="h-14 flex items-center shrink-0">
                     <img 
-                      src={LOGO_ICON_URL} 
-                      alt="AquaSafe Icon" 
-                      className="w-full h-full object-contain scale-125"
+                      src={LOGO_URL} 
+                      alt="AquaSafe Water Technologies" 
+                      className="h-full w-auto object-contain"
                     />
-                  </div>
-                  <div className="flex flex-col justify-center -ml-2">
-                    <span className="font-black text-slate-900 text-sm uppercase tracking-tight leading-none">AQUA SAFE</span>
-                    <span className="text-[9px] text-slate-600 font-black uppercase tracking-widest mt-1">Water Technologies</span>
                   </div>
                 </Link>
                 <button onClick={() => setIsOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100 transition-colors">
@@ -388,7 +376,7 @@ export default function Navbar() {
                         </div>
                         <div className="ml-3 min-w-0">
                           <p className="text-xs font-black text-slate-900 uppercase truncate">{user.email}</p>
-                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Active Client</p>
+                          <p className="text-[9px] font-bold uppercase tracking-widest">Active Client</p>
                         </div>
                       </div>
                       <button
