@@ -123,7 +123,7 @@ export default function Home() {
           <div className="hidden md:flex relative -mt-24 lg:-mt-36 min-h-[650px] lg:min-h-[850px] items-center bg-white">
             <div className="absolute inset-0 z-0 overflow-hidden shadow-2xl">
               <Image
-                src="https://vennky.sirv.com/ChatGPT%20Image%20May%2025%2C%202026%2C%2005_45_01%20PM.png"
+                src="https://res.cloudinary.com/drjrbb4yn/image/upload/v1780650627/ChatGPT_Image_May_25_2026_05_45_01_PM_1_x4dftp.png"
                 alt="AquaSafe Engineering Hub"
                 fill
                 className="object-cover transition-transform duration-1000"
