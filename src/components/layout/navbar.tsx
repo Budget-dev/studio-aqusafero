@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -182,7 +181,7 @@ export default function Navbar() {
                   src={LOGO_URL} 
                   alt="AquaSafe Water Technologies" 
                   className="w-auto object-contain"
-                  style={{ height: '179%' }}
+                  style={{ height: '311%' }}
                 />
               </div>
             </Link>
@@ -306,7 +305,7 @@ export default function Navbar() {
                       src={LOGO_URL} 
                       alt="AquaSafe Water Technologies" 
                       className="w-auto object-contain"
-                      style={{ height: '179%' }}
+                      style={{ height: '311%' }}
                     />
                   </div>
                 </Link>

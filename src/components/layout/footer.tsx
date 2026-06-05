@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -88,7 +87,7 @@ export default function Footer() {
                 src={LOGO_URL} 
                 alt="AquaSafe Water Technologies" 
                 className="w-auto object-contain"
-                style={{ height: '179%' }}
+                style={{ height: '311%' }}
               />
             </div>
           </Link>

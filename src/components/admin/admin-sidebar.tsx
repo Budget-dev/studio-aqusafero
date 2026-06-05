@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -70,7 +69,7 @@ export function AdminSidebar() {
               src={LOGO_URL} 
               alt="AquaSafe Hub" 
               className="w-auto object-contain"
-              style={{ height: '179%' }}
+              style={{ height: '311%' }}
             />
           </div>
         </Link>
