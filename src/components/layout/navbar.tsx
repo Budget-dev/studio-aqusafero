@@ -50,6 +50,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
   const [mounted, setMounted] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0)
   const pathname = usePathname()
   const { cartCount } = useCart()
   const { user } = useUser()
@@ -57,6 +58,10 @@ export default function Navbar() {
 
   useEffect(() => {
     setMounted(true)
+    setWindowWidth(window.innerWidth)
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const navigation = [
@@ -135,6 +140,8 @@ export default function Navbar() {
   const isAuthPage = pathname?.includes('/login') || pathname?.includes('/signup')
   if (isAuthPage) return null;
 
+  const currentLogoHeight = mounted && windowWidth < 1024 ? '250%' : '311%';
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 lg:sticky lg:top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
@@ -181,7 +188,7 @@ export default function Navbar() {
                   src={LOGO_URL} 
                   alt="AquaSafe Water Technologies" 
                   className="w-auto object-contain"
-                  style={{ height: '311%' }}
+                  style={{ height: currentLogoHeight }}
                 />
               </div>
             </Link>
@@ -305,7 +312,7 @@ export default function Navbar() {
                       src={LOGO_URL} 
                       alt="AquaSafe Water Technologies" 
                       className="w-auto object-contain"
-                      style={{ height: '311%' }}
+                      style={{ height: '250%' }}
                     />
                   </div>
                 </Link>

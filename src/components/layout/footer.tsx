@@ -60,13 +60,20 @@ const footerLinks: FooterSection[] = [
 export default function Footer() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
     setMounted(true);
+    setWindowWidth(window.innerWidth)
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, []);
 
   // Hide footer on auth pages
   if (pathname?.includes('/login') || pathname?.includes('/signup')) return null;
+
+  const currentLogoHeight = mounted && windowWidth < 1024 ? '250%' : '311%';
 
   return (
     <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center rounded-t-[2.5rem] md:rounded-t-[3.5rem] border-t border-white/5 bg-slate-900 px-6 py-8 md:py-10 overflow-hidden">
@@ -87,7 +94,7 @@ export default function Footer() {
                 src={LOGO_URL} 
                 alt="AquaSafe Water Technologies" 
                 className="w-auto object-contain"
-                style={{ height: '311%' }}
+                style={{ height: currentLogoHeight }}
               />
             </div>
           </Link>
