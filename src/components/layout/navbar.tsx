@@ -45,7 +45,7 @@ import { useCart } from "@/context/cart-context"
 import { useUser, useAuth } from "@/firebase"
 import { signOut } from "firebase/auth"
 
-const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%205%2C%202026%2C%2012_51_14%20PM.png";
+const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%205%2C%202026%2C%2001_00_17%20PM.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
