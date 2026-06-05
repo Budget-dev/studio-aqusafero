@@ -69,7 +69,8 @@ export function AdminSidebar() {
             <img 
               src={LOGO_URL} 
               alt="AquaSafe Hub" 
-              className="h-full w-auto object-contain"
+              className="w-auto object-contain"
+              style={{ height: '179%' }}
             />
           </div>
         </Link>

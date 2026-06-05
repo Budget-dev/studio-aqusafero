@@ -87,7 +87,8 @@ export default function Footer() {
               <img 
                 src={LOGO_URL} 
                 alt="AquaSafe Water Technologies" 
-                className="h-full w-auto object-contain"
+                className="w-auto object-contain"
+                style={{ height: '179%' }}
               />
             </div>
           </Link>
