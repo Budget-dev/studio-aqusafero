@@ -32,11 +32,16 @@ export default function OrderTrackingPage() {
 
   useEffect(() => {
     const savedOrders = JSON.parse(localStorage.getItem('aquasafe-orders') || '[]');
-    const found = savedOrders.find((o: any) => o.id === params.id);
+    const found = savedOrders.find((o: any) => o.id === params.id || o.orderId === params.id);
     setOrder(found);
   }, [params.id]);
 
-  if (!order) return <div className="min-h-screen flex items-center justify-center">Loading Tracking...</div>;
+  if (!order) return (
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+      <div className="h-10 w-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      <p className="font-black uppercase text-[10px] tracking-widest text-slate-400">Locating Hub Transaction...</p>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white py-20">
@@ -46,7 +51,7 @@ export default function OrderTrackingPage() {
             <Button asChild variant="ghost" className="p-0 font-black uppercase text-[10px] tracking-widest mb-4 hover:text-primary">
               <Link href="/orders"><ArrowLeft className="mr-2 h-4 w-4" /> Back to History</Link>
             </Button>
-            <h1 className="text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">Tracking <span className="text-primary">#{params.id}</span></h1>
+            <h1 className="text-4xl font-black font-headline text-slate-900 tracking-tight uppercase">Tracking <span className="text-primary">#{order.orderId || params.id}</span></h1>
           </div>
           
           <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
@@ -81,7 +86,7 @@ export default function OrderTrackingPage() {
                         <h4 className={`text-lg font-black font-headline uppercase tracking-tight ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-900'}`}>
                           {step.name}
                         </h4>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{step.status === 'completed' ? order.date : step.date}</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{step.status === 'completed' ? (order.date || 'Today') : step.date}</span>
                       </div>
                       <p className={`text-sm font-bold leading-relaxed ${step.status === 'pending' ? 'text-slate-300' : 'text-slate-500'}`}>
                         {step.desc}
@@ -102,7 +107,7 @@ export default function OrderTrackingPage() {
                 <div className="space-y-1">
                   <p className="text-sm font-black text-slate-900 uppercase">{order.customerName}</p>
                   <p className="text-sm font-bold text-slate-600 leading-relaxed">
-                    {order.shippingAddress}
+                    {order.address}
                   </p>
                   <p className="text-sm font-bold text-primary pt-2">{order.phone}</p>
                 </div>
@@ -112,20 +117,20 @@ export default function OrderTrackingPage() {
             <section className="bg-slate-900 text-white p-8 rounded-3xl space-y-6">
               <h3 className="font-black font-headline uppercase tracking-tight text-lg">Items Summary</h3>
               <div className="space-y-4">
-                {order.orderItems.map((item: any, i: number) => (
+                {order.items?.map((item: any, i: number) => (
                   <div key={i} className="flex justify-between items-center text-xs">
                     <div className="flex gap-2">
-                      <span className="font-bold opacity-60">x{item.qty}</span>
+                      <span className="font-bold opacity-60">x{item.quantity}</span>
                       <span className="font-black uppercase tracking-tight">{item.name}</span>
                     </div>
-                    <span className="font-black">{item.price}</span>
+                    <span className="font-black">₹{item.price?.toLocaleString()}</span>
                   </div>
                 ))}
               </div>
               <Separator className="bg-white/10" />
               <div className="flex justify-between text-lg font-black font-headline">
                 <span>Paid Total</span>
-                <span className="text-primary">{order.total}</span>
+                <span className="text-primary">₹{order.total?.toLocaleString()}</span>
               </div>
               <Button asChild className="w-full h-12 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-black uppercase text-[10px] tracking-widest border-none">
                 <Link href="/contact">Support Center <ChevronRight className="ml-1 h-3 w-3" /></Link>
