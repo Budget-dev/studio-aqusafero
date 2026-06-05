@@ -147,7 +147,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 lg:sticky lg:top-0 z-[100] w-full border-b bg-white/95 backdrop-blur-md">
         {/* Top Contact Bar - Hidden on Mobile */}
         <div className="hidden lg:block border-b border-slate-100 bg-slate-50/50">
-          <div className="container mx-auto px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
+          <div className="container mx-auto xl:max-w-6xl px-4 h-12 flex items-center justify-between text-[10px] font-black text-slate-900 uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <div className="p-1 rounded-md bg-white border border-slate-200">
                 <MapPin className="h-3.5 w-3.5 text-primary" />
@@ -179,7 +179,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
+        <div className="container mx-auto xl:max-w-6xl px-4 h-20 lg:h-24 flex items-center justify-between relative z-[110]">
           {/* Logo Section */}
           <div className="flex items-center h-full shrink-0">
             <Link href="/" className="flex items-center group">

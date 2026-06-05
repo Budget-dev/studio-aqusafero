@@ -1,4 +1,3 @@
-
 "use client"
 
 import type React from "react"
@@ -143,7 +142,7 @@ export default function AboutUsSection() {
       />
       
       <motion.div
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto max-w-5xl relative z-10"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}

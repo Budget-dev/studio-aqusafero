@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -40,7 +39,7 @@ const Blog7 = ({
 }: Blog7Props) => {
   return (
     <section className="py-12 md:py-24 bg-white">
-      <div className="container mx-auto flex flex-col items-center gap-8 md:gap-16 px-4">
+      <div className="container mx-auto xl:max-w-6xl flex flex-col items-center gap-8 md:gap-16 px-4">
         <div className="text-center">
           <Badge variant="outline" className="mb-4 md:mb-6 text-primary border-primary/30 font-black tracking-widest uppercase py-1 px-3 md:py-1.5 md:px-4 text-[8px] md:text-[10px] rounded-lg bg-primary/10">
             {tagline}
@@ -58,7 +57,7 @@ const Blog7 = ({
             </a>
           </Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 w-full max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 w-full max-w-5xl">
           {posts.map((post) => (
             <Card key={post.id} className="flex flex-col border-none bg-sky-50/30 rounded-xl md:rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group h-full">
               <div className="aspect-[4/3] w-full overflow-hidden relative shrink-0">

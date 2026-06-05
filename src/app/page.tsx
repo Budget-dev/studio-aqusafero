@@ -132,7 +132,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            <div className="container mx-auto px-4 md:px-12 lg:px-20 max-w-[1400px] relative z-10 pt-24 lg:pt-40">
+            <div className="container mx-auto px-4 md:px-12 lg:px-20 xl:max-w-6xl relative z-10 pt-24 lg:pt-40">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                   <div className="space-y-4">

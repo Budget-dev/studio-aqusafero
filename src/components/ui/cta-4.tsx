@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -16,7 +15,7 @@ interface Cta4Props {
 export function Cta4({ title, description, buttonText, buttonUrl, items, bgImage }: Cta4Props) {
   return (
     <section className="py-24">
-      <div className="container mx-auto px-4 max-w-7xl">
+      <div className="container mx-auto px-4 max-w-7xl xl:max-w-6xl">
         <div className="relative overflow-hidden rounded-[3rem] bg-slate-900 p-12 md:p-16 lg:p-20 shadow-2xl">
           {/* Background Image with Overlay */}
           {bgImage && (
