@@ -40,7 +40,7 @@ function ProductSchema({ product, url }: { product: any, url: string }) {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.name,
-    "image": product.images?.[0]?.url,
+    "image": product.images?.thumbnail || product.images?.[0]?.url,
     "description": product.shortDescription || product.description,
     "sku": product.sku,
     "brand": {
@@ -87,10 +87,28 @@ export default function ProductDetailPage() {
   const { data: product, loading } = useDoc(productRef);
 
   const images = useMemo(() => {
-    if (!product || !product.images || product.images.length === 0) {
+    if (!product || !product.images) {
       return ["https://placehold.co/800x1000?text=AquaSafe+Technical+Asset"];
     }
-    return product.images.map((img: any) => img.url);
+    
+    // Handle the object structure from the new admin form
+    if (typeof product.images === 'object' && !Array.isArray(product.images)) {
+      const imgObj = product.images;
+      const list = [];
+      if (imgObj.thumbnail) list.push(imgObj.thumbnail);
+      if (imgObj.hover) list.push(imgObj.hover);
+      if (imgObj.gallery && Array.isArray(imgObj.gallery)) {
+        list.push(...imgObj.gallery.filter((url: string) => !!url));
+      }
+      return list.length > 0 ? list : ["https://placehold.co/800x1000?text=No+Image"];
+    }
+
+    // Handle legacy array structure
+    if (Array.isArray(product.images)) {
+      return product.images.map((img: any) => typeof img === 'string' ? img : img.url);
+    }
+
+    return ["https://placehold.co/800x1000?text=AquaSafe+Technical+Asset"];
   }, [product]);
 
   const handleAddToCart = () => {
@@ -140,7 +158,7 @@ export default function ProductDetailPage() {
       <ProductSchema product={product} url={pageUrl} />
       
       <div className="border-b bg-slate-50/50">
-        <div className="container mx-auto px-4 max-w-7xl h-14 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
+        <div className="container mx-auto px-4 max-w-screen-2xl h-14 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
           <a href="/" className="hover:text-primary transition-colors">Hub</a>
           <ChevronRight className="h-3 w-3" />
           <a href="/products" className="hover:text-primary transition-colors">Catalog</a>
@@ -149,7 +167,7 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      <main className="container mx-auto px-4 max-w-7xl py-12 lg:py-20">
+      <main className="container mx-auto px-4 max-w-screen-2xl py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           
           {/* Gallery */}
@@ -206,7 +224,6 @@ export default function ProductDetailPage() {
                 {product.shortDescription || product.description}
               </p>
               
-              {/* Local SEO Signal */}
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                 Professional Installation & Service Available in Visakhapatnam & Gajuwaka.
               </p>
@@ -278,69 +295,6 @@ export default function ProductDetailPage() {
             </Accordion>
           </div>
         </div>
-
-        {/* Video Section */}
-        {product.videos?.[0]?.url && (
-          <section className="mt-24 pt-24 border-t border-slate-100">
-            <div className="max-w-4xl mx-auto space-y-12">
-              <div className="text-center space-y-4">
-                <Badge className="bg-primary hover:bg-primary text-white border-none px-4 py-1 uppercase tracking-widest font-black text-[10px]">
-                  Visual Diagnostics
-                </Badge>
-                <h2 className="text-3xl md:text-5xl font-black font-headline text-slate-900 tracking-tight uppercase leading-tight">
-                  Performance <span className="text-primary">& Mastery</span>
-                </h2>
-                <p className="text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
-                  {product.videos[0].caption || "Take a closer look at the technical mastery powering this system."}
-                </p>
-              </div>
-
-              <div className="relative aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50 bg-slate-900 group">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  src={product.videos[0].url.includes('youtube.com/embed') ? product.videos[0].url : `https://www.youtube.com/embed/${product.videos[0].url.split('v=')[1] || product.videos[0].url.split('/').pop()}`} 
-                  title={`${product.name} Performance Video`}
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                  className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100"
-                ></iframe>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* SEO Technical Footer */}
-        <section className="mt-24 pt-24 border-t border-slate-100">
-           <div className="max-w-4xl mx-auto">
-              <h2 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-6">About {product.name} for Vizag Residents & Industries</h2>
-              <div className="text-xs text-slate-500 font-bold leading-relaxed space-y-4">
-                <p>
-                  At Aqua Safe Water Technologies, we ensure that every <strong>{product.name}</strong> we deliver is optimized for the local water conditions in <strong>Visakhapatnam</strong> and <strong>Gajuwaka</strong>. Our engineering hub is located right in the heart of Vizag, allowing us to provide rapid deployment and unmatched technical support.
-                </p>
-                <p>
-                  Whether you are purchasing for a domestic setup in Gajuwaka or an industrial facility in the Vizag SEZ, the <strong>{product.name}</strong> provides high-efficiency filtration tailored for high-TDS environments. We offer comprehensive <strong>RO service in Vizag</strong> and affordable AMC plans to ensure your equipment continues to perform at its peak for years to come.
-                </p>
-              </div>
-           </div>
-        </section>
-
-        {/* Technical Support CTA */}
-        <section className="mt-24">
-          <div className="p-10 rounded-[3rem] bg-slate-900 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 translate-x-1/2" />
-            <div className="relative z-10 space-y-6">
-              <h4 className="text-2xl font-black font-headline uppercase tracking-tight">Need a custom technical audit in Vizag?</h4>
-              <p className="text-slate-400 font-bold max-w-lg">
-                Our senior engineering team can provide on-site diagnostics and performance mapping for your specific site conditions in Visakhapatnam.
-              </p>
-              <Button asChild className="h-12 px-8 rounded-xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-[10px] border-none shadow-xl shadow-primary/20">
-                <a href="/contact">Book Technical Consultation</a>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );

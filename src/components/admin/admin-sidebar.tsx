@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -18,7 +19,8 @@ import {
   Home,
   Building2,
   Factory,
-  Beaker
+  Beaker,
+  ShoppingCart
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -35,6 +37,7 @@ const LOGO_URL = "https://aquasaferoworks.sirv.com/ChatGPT%20Image%20Jun%205%2C%
 
 const navItems = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+  { label: 'Customer Orders', href: '/admin/orders', icon: ShoppingCart },
   { 
     label: 'Asset Catalog', 
     icon: Package,

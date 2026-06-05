@@ -8,32 +8,10 @@ service cloud.firestore {
       return request.auth != null && request.auth.token.email == 'aquasaferoworks@gmail.com';
     }
 
-    // Allow one-time initialization of the system config
-    match /system/config {
-      allow read: if true;
-      allow create: if request.resource.data.adminInitialized == true;
-      allow update, delete: if isAdmin();
-    }
-
-    // Admin-only collections: Strictly locked to the hardcoded admin email
-    match /invoices/{invoiceId} {
+    // Orders: Anyone can create, only Admin can list all, users can read their own
+    match /orders/{orderId} {
+      allow create: if true;
       allow read, write: if isAdmin();
-    }
-    match /certificates/{certId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-    match /coupons/{couponId} {
-      allow read, write: if isAdmin();
-    }
-    match /reviews/{reviewId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if isAdmin();
-    }
-    match /brands/{brandId} {
-      allow read: if true;
-      allow write: if isAdmin();
     }
 
     // Catalog & Media: Publicly readable, but only hardcoded admin can modify
@@ -45,11 +23,21 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+    match /brands/{brandId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
 
-    // User profiles: Users can only manage their own, Admin has master access
+    // User profiles
     match /users/{userId} {
-      allow read: if request.auth != null && (request.auth.uid == userId || isAdmin());
-      allow write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+      allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+    }
+
+    // System config
+    match /system/config {
+      allow read: if true;
+      allow create: if request.resource.data.adminInitialized == true;
+      allow update, delete: if isAdmin();
     }
   }
 }

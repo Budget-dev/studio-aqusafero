@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, ShoppingCart, Check, Heart, Star } from "lucide-react";
@@ -18,7 +18,21 @@ export function ProductCard(props: any) {
   const [isAdded, setIsAdded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const displayImage = images?.[0]?.url || "https://placehold.co/600x400?text=AquaSafe+Asset";
+  const displayImage = useMemo(() => {
+    if (!images) return "https://placehold.co/600x400?text=AquaSafe+Asset";
+    
+    // Check if new object structure
+    if (typeof images === 'object' && !Array.isArray(images)) {
+      return images.thumbnail || images.hover || "https://placehold.co/600x400?text=AquaSafe+Asset";
+    }
+
+    // Handle legacy array
+    if (Array.isArray(images)) {
+      return typeof images[0] === 'string' ? images[0] : (images[0]?.url || "https://placehold.co/600x400?text=AquaSafe+Asset");
+    }
+
+    return "https://placehold.co/600x400?text=AquaSafe+Asset";
+  }, [images]);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -90,7 +104,7 @@ export function ProductCard(props: any) {
             </span>
             <div className="flex items-center gap-0.5 text-amber-400">
               <Star className="h-2.5 w-2.5 fill-current" />
-              <span className="text-[8px] md:text-[10px] font-black text-slate-400">{rating}</span>
+              <span className="text-[8px] md:text-[10px] font-black text-slate-400">{rating || 5}</span>
             </div>
           </div>
           
