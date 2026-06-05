@@ -16,7 +16,8 @@ import {
   Locate,
   MessageCircle,
   Upload,
-  AlertCircle
+  AlertCircle,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

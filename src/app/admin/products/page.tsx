@@ -118,61 +118,68 @@ function AdminProductsInner() {
               <TableRow><TableCell colSpan={5} className="h-32 text-center text-[10px] font-black uppercase tracking-widest text-slate-400">Synchronizing Hub Data...</TableCell></TableRow>
             ) : filtered?.length === 0 ? (
               <TableRow><TableCell colSpan={5} className="h-32 text-center text-[10px] font-black uppercase tracking-widest text-slate-400">No matching entries found</TableCell></TableRow>
-            ) : filtered?.map((p) => (
-              <TableRow key={p.id} className="hover:bg-slate-50/50 border-slate-50 h-20 transition-colors group">
-                <TableCell className="pl-8">
-                  <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-slate-100 flex items-center justify-center p-2 relative overflow-hidden">
-                      {p.images?.[0] ? (
-                        <img src={p.images[0].url} alt={p.name} className="object-contain" />
-                      ) : (
-                        <Package className="h-5 w-5 text-slate-300" />
-                      )}
+            ) : filtered?.map((p) => {
+              // Extract thumbnail from potentially different data structures
+              const thumb = typeof p.images === 'object' && !Array.isArray(p.images) 
+                ? p.images.thumbnail 
+                : (Array.isArray(p.images) ? p.images[0]?.url : null);
+
+              return (
+                <TableRow key={p.id} className="hover:bg-slate-50/50 border-slate-50 h-20 transition-colors group">
+                  <TableCell className="pl-8">
+                    <div className="flex items-center gap-4">
+                      <div className="h-12 w-12 rounded-xl bg-slate-100 flex items-center justify-center p-2 relative overflow-hidden">
+                        {thumb ? (
+                          <img src={thumb} alt={p.name} className="object-contain" />
+                        ) : (
+                          <Package className="h-5 w-5 text-slate-300" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-black text-slate-900 uppercase text-sm leading-none mb-1">{p.name}</p>
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{p.sku || 'NO SKU'}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-black text-slate-900 uppercase text-sm leading-none mb-1">{p.name}</p>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{p.sku || 'NO SKU'}</p>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center">
-                  <span className="font-black text-slate-900">₹{p.offerPrice || p.price}</span>
-                </TableCell>
-                <TableCell className="text-center">
-                   <Badge variant="outline" className="font-black uppercase text-[8px] tracking-widest border-slate-100 px-2 py-0.5">
-                     {p.subcategory || 'General'}
-                   </Badge>
-                </TableCell>
-                <TableCell className="text-center">
-                  <Badge className={cn(
-                    "font-black uppercase text-[8px] tracking-widest border-none px-2",
-                    p.stock > 5 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-                  )}>
-                    {p.stock > 5 ? 'Healthy' : 'Low Stock'}
-                  </Badge>
-                </TableCell>
-                <TableCell className="text-right pr-8">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-white text-slate-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48 rounded-2xl p-2 shadow-2xl border-slate-100">
-                      <DropdownMenuItem asChild className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest cursor-pointer">
-                        <Link href={`/admin/products/edit/${p.id}`}><Edit2 className="mr-2 h-3.5 w-3.5" /> Edit Details</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem 
-                        onClick={() => handleDelete(p.id)}
-                        className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest text-red-500 hover:text-red-600 focus:text-red-600 cursor-pointer"
-                      >
-                        <Trash2 className="mr-2 h-3.5 w-3.5" /> Delete Asset
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
-            ))}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <span className="font-black text-slate-900">₹{p.offerPrice || p.price}</span>
+                  </TableCell>
+                  <TableCell className="text-center">
+                     <Badge variant="outline" className="font-black uppercase text-[8px] tracking-widest border-slate-100 px-2 py-0.5">
+                       {p.subcategory || 'General'}
+                     </Badge>
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Badge className={cn(
+                      "font-black uppercase text-[8px] tracking-widest border-none px-2",
+                      p.stock > 5 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                    )}>
+                      {p.stock > 5 ? 'Healthy' : 'Low Stock'}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right pr-8">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-white text-slate-400">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-48 rounded-2xl p-2 shadow-2xl border-slate-100">
+                        <DropdownMenuItem asChild className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest cursor-pointer">
+                          <Link href={`/admin/products/edit/${p.id}`}><Edit2 className="mr-2 h-3.5 w-3.5" /> Edit Details</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem 
+                          onClick={() => handleDelete(p.id)}
+                          className="rounded-xl h-11 font-black uppercase text-[9px] tracking-widest text-red-500 hover:text-red-600 focus:text-red-600 cursor-pointer"
+                        >
+                          <Trash2 className="mr-2 h-3.5 w-3.5" /> Delete Asset
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>
